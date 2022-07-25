@@ -16,35 +16,22 @@ A way to proove it would be to check whether wiping out the spanish plateu would
 - Get rid of the heat/moisture flux and check whether spain did add heat or not.
 
 
-
+## Expected outcomes
 Interest in how to display info to be able to diagnose.
 
-Diagnostics
-1,2 -> Air temperature and dewpoint temperature at the surface and 850 hPa
-3,4 -> Static stability (difference in air temperature) T(700 hPa) – T(500 hPa) and T(850 hPa) – T(700 hPa)
-5 ->   Sea-level pressure and Precipitation at surface and wind barbs
-5/6?   500-hPa geopotential height (wind barbs)
-7 ->   CAPE (convective available potential energy), CIN (convective inhibition)
+### Diagnostics
 
-WRF Variables for diagnostics
-4D -> T -> Temperature °C -- Supposed to be K, but value range [-20,60] doesn't add up...
-4D -> P -> Pressure Pa
-4D -> U -> X wind component
-4D -> V -> Y wind component
-Dewpoint?
+- 1,2 -> Air temperature and dewpoint temperature at the surface and 850 hPa
+- 3,4 -> Static stability (difference in air temperature) T(700 hPa) – T(500 hPa) and T(850 hPa) – T(700 hPa)
+- 5 ->   Sea-level pressure and Precipitation at surface and wind barbs
+- 5/6?   500-hPa geopotential height (wind barbs)
+- 7 ->   CAPE (convective available potential energy), CIN (convective inhibition)
 
 
-**** 1 ****
-Get a good control simulation
-	Be able to visualize flows
-	Animate maps with hourly screenshots
-	
-**** 2  ****
-Check whether gravity waves are important or not
-	Turn on in WRF, compare with control simulation
+### WRF Variables for diagnostics
 
-**** 3 ****
-Being able to select areas (geometries) 
-	Defining 'domains' to be able to modify things
-	Change height of spain and portugal
-	Compare with control
+- 4D -> T -> Temperature °C -- Supposed to be K, but value range [-20,60] doesn't add up...
+- 4D -> P -> Pressure Pa
+- 4D -> U -> X wind component
+- 4D -> V -> Y wind component
+- Dewpoint?
