@@ -1,3 +1,6 @@
+#from datetime import datetime      ###############################################
+#print(datetime.now())           	###############################################
+
 from netCDF4 import Dataset
 import matplotlib.pyplot as plt
 from matplotlib.cm import get_cmap
@@ -8,35 +11,38 @@ import cartopy.feature as cfeature
 from wrf import (to_np, getvar, smooth2d, get_cartopy, cartopy_xlim,
                  cartopy_ylim, latlon_coords)
 
-def Plot2DField(variable,ptitle,time,outfname):
+def Plot2DField(fdir,fname,variable,ptitle,time,outfname):
 	if variable =="default":
 		variable="slp"
 		ptitle="Sea Level Pressure (hPa)"
 		time=0
 		outfname="default_t=0.png"
 	#Need to implement input check here!
-
-	# Open the NetCDF file
-	ncfile = Dataset("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/wrfout_d01_2015-06-29_00:00:00")
-
-	# Get the sea level pressure
+	
+	# Open the NetCDF file							####Takes ~0.2s
+	ncfile = Dataset(fdir+fname)
+	
+	# Get the variable								####Takes ~5s
 	var = getvar(ncfile, variable, timeidx=time)
-
+	
 	# Smooth the sea level pressure since it tends to be noisy near the mountains
 	smooth_var = smooth2d(var, 3, cenweight=4)
 
+	
 	# Get the latitude and longitude points
 	lats, lons = latlon_coords(var)
-
+	
 	# Get the cartopy mapping object
 	cart_proj = get_cartopy(var)
-
-	# Create a figure
-	fig = plt.figure(figsize=(12,6))
+	
+	# Create a figure								####Takes ~7s first time, but reuses preexisting figure
+	fig = plt.gcf()
+	plt.clf()
+	
 	# Set the GeoAxes to the projection used by WRF
 	ax = plt.axes(projection=cart_proj)
-
-	# Download and add the borders and coastlines
+	
+	# Download and add the borders and coastlines	####Takes ~2s
 	borders = cfeature.BORDERS.with_scale('50m')
 	ax.add_feature(borders, linewidth=.4, edgecolor="black")
 	ax.coastlines('50m', linewidth=0.8)
@@ -48,7 +54,7 @@ def Plot2DField(variable,ptitle,time,outfname):
 	plt.contourf(to_np(lons), to_np(lats), to_np(smooth_var), 16,
 				 transform=crs.PlateCarree(),
 				 cmap=get_cmap("jet"),alpha=0.8)
-
+	
 	# Add a color bar
 	plt.colorbar(ax=ax, shrink=.98)
 
@@ -60,7 +66,7 @@ def Plot2DField(variable,ptitle,time,outfname):
 	ax.gridlines(color="black", linestyle="dotted")
 
 	plt.title(ptitle)
-
+	
 	plt.savefig(outfname)
-	print("Saved",outfname,"\n")
+	#print("Saved",outfname)
 	#plt.show()
