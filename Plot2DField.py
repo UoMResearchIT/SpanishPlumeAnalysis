@@ -11,7 +11,7 @@ import cartopy.feature as cfeature
 from wrf import (to_np, getvar, smooth2d, get_cartopy, cartopy_xlim,
                  cartopy_ylim, latlon_coords)
 
-def Plot2DField(fdir,fname,variable,ptitle,time,outfname):
+def Plot2DField(ncfile,variable,ptitle,time,outfname):
 	if variable =="default":
 		variable="slp"
 		ptitle="Sea Level Pressure (hPa)"
@@ -19,8 +19,6 @@ def Plot2DField(fdir,fname,variable,ptitle,time,outfname):
 		outfname="default_t=0.png"
 	#Need to implement input check here!
 	
-	# Open the NetCDF file							####Takes ~0.2s
-	ncfile = Dataset(fdir+fname)
 	
 	# Get the variable								####Takes ~5s
 	var = getvar(ncfile, variable, timeidx=time)
