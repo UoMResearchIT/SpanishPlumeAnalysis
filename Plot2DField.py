@@ -11,11 +11,7 @@ from wrf import (to_np, getvar, smooth2d, get_cartopy, cartopy_xlim,
 
 def Plot2DField(ncfile,variable,ptitle,range_min,range_max,time,outfname):
 	#Input check
-	if variable =="default":
-		variable="slp"
-		ptitle="Sea Level Pressure (hPa)"
-		time=0
-		outfname="default_t=0.png"
+
 	#Need to implement input check here!
 	
 	
@@ -46,13 +42,13 @@ def Plot2DField(ncfile,variable,ptitle,range_min,range_max,time,outfname):
 	ax.coastlines('50m', linewidth=0.8)
 
 	# Filled contours
-	levs = np.linspace(range_min, range_max, 20)
+	levs = np.linspace(range_min, range_max, 21)
 	plt.contourf(to_np(lons), to_np(lats), to_np(smooth_var), levels=levs,
 				 transform=crs.PlateCarree(),
 				 cmap=get_cmap("jet"),alpha=0.8)
 	
 	# Add a color bar
-	plt.colorbar(ax=ax, shrink=.98)
+	plt.colorbar(ax=ax, shrink=.98,ticks=levs[::4])
 
 	# Set the map bounds
 	ax.set_xlim(cartopy_xlim(smooth_var))

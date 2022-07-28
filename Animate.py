@@ -5,9 +5,16 @@ import os
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
 
-#Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",
-#        980,1040,"slp","Sea level pressure [hPa]","SLP",1):
+#python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",985,1035,"slp","Sea level pressure [hPa]","slp",1)'
+#python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",270,330,"T2","Temperature at 2m [K]","T2",1)'
+#python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",-20,40,"td2","Dewpoint Temperature at 2m [C?]","td2",1)'
+
 def Animate(dir_path,range_min,range_max,variable,ptitle,outfile,cleanpng):
+    
+	#Input check
+
+	#Need to implement input check here!
+    
     # Initialization
     WRFfiles=[]
     PNGfiles=[]
@@ -26,7 +33,7 @@ def Animate(dir_path,range_min,range_max,variable,ptitle,outfile,cleanpng):
 
         # Get number of time frames and plot them
         timerange=ncfile.variables['Times'].shape[0]
-    #	if timerange>3:timerange=1                              ## For tests only
+#        if timerange>1:timerange=1                              ## For tests only
         for ti in range(timerange):
             of=outfile+wrf_fn+"_t_"+str(ti)+".png"
             PNGfiles.append(of)
