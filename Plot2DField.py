@@ -1,17 +1,16 @@
-#from datetime import datetime      ###############################################
-#print(datetime.now())           	###############################################
-
 from netCDF4 import Dataset
 import matplotlib.pyplot as plt
 from matplotlib.cm import get_cmap
+import numpy as np
 import cartopy.crs as crs
-#from cartopy.feature import NaturalEarthFeature
 import cartopy.feature as cfeature
-
 from wrf import (to_np, getvar, smooth2d, get_cartopy, cartopy_xlim,
-                 cartopy_ylim, latlon_coords)
+                 cartopy_ylim, latlon_coords,extract_times)
+#from datetime import datetime      ###############################################
+#print(datetime.now())           	###############################################
 
-def Plot2DField(ncfile,variable,ptitle,time,outfname):
+def Plot2DField(ncfile,variable,ptitle,range_min,range_max,time,outfname):
+	#Input check
 	if variable =="default":
 		variable="slp"
 		ptitle="Sea Level Pressure (hPa)"
@@ -22,8 +21,9 @@ def Plot2DField(ncfile,variable,ptitle,time,outfname):
 	
 	# Get the variable								####Takes ~5s
 	var = getvar(ncfile, variable, timeidx=time)
+	dtime=str(extract_times(ncfile,time))[0:19]
 	
-	# Smooth the sea level pressure since it tends to be noisy near the mountains
+	# Smooth the variable
 	smooth_var = smooth2d(var, 3, cenweight=4)
 
 	
@@ -45,11 +45,9 @@ def Plot2DField(ncfile,variable,ptitle,time,outfname):
 	ax.add_feature(borders, linewidth=.4, edgecolor="black")
 	ax.coastlines('50m', linewidth=0.8)
 
-	# Make the contour outlines 
-	#plt.contour(to_np(lons), to_np(lats), to_np(smooth_var), 4, colors="black",
-	#            transform=crs.PlateCarree(),linewidths=0.2)
 	# Filled contours
-	plt.contourf(to_np(lons), to_np(lats), to_np(smooth_var), 16,
+	levs = np.linspace(range_min, range_max, 20)
+	plt.contourf(to_np(lons), to_np(lats), to_np(smooth_var), levels=levs,
 				 transform=crs.PlateCarree(),
 				 cmap=get_cmap("jet"),alpha=0.8)
 	
@@ -63,8 +61,8 @@ def Plot2DField(ncfile,variable,ptitle,time,outfname):
 	# Add the gridlines
 	ax.gridlines(color="black", linestyle="dotted")
 
+	# Add title and frame time
 	plt.title(ptitle)
+	plt.annotate(dtime, xy=(.02, .02),  xycoords='axes fraction')
 	
 	plt.savefig(outfname)
-	#print("Saved",outfname)
-	#plt.show()
