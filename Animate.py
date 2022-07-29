@@ -7,7 +7,7 @@ import os
 
 #python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",985,1035,"slp","Sea level pressure [hPa]","slp",1)'
 #python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",270,330,"T2","Temperature at 2m [K]","T2",1)'
-#python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",-20,40,"td2","Dewpoint Temperature at 2m [C?]","td2",1)'
+#python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",-20,35,"td2","Dewpoint Temperature at 2m [C?]","td2",1)'
 
 def Animate(dir_path,range_min,range_max,variable,ptitle,outfile,cleanpng):
     
