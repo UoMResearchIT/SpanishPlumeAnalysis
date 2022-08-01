@@ -1,7 +1,9 @@
 from Animate import Animate;
 import SensibleVariables as sv
 
-wvarlist=[sv.RelativeHumidity2m,
+wvarlist=[sv.AirTemp850,
+		  sv.DewpointTemp850,
+		  sv.RelativeHumidity2m,
 		  sv.SeaLevelPressure,
 		  sv.AirTemp2m,
 		  sv.DewpointTemp2m]

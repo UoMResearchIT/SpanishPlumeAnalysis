@@ -5,7 +5,7 @@ import numpy as np
 import cartopy.crs as crs
 import cartopy.feature as cfeature
 from wrf import (to_np, getvar, smooth2d, get_cartopy, cartopy_xlim,
-                 cartopy_ylim, latlon_coords,extract_times)
+                 cartopy_ylim, latlon_coords,extract_times,interplevel)
 
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
@@ -17,12 +17,21 @@ def Plot2DField(ncfile,svariable,time,outfname):
 	
 	
 	# Get the variable								####Takes ~5s
-	var = getvar(ncfile, svariable.wrfname, timeidx=time)
-	dtime=str(extract_times(ncfile,time))[0:19]
+	# For simple 2D +value variables
+	if svariable.dim==3:
+		var = getvar(ncfile, svariable.wrfname, timeidx=time)
+	# For 3D +value variables, interpolated at interpvalue of interpvar
+	elif svariable.dim==4:
+		interpvar=p = getvar(ncfile,svariable.interpvar,timeidx=time)
+		d4var = getvar(ncfile, svariable.wrfname, timeidx=time)
+		var = interplevel(d4var, interpvar, svariable.interpvalue)
+	#Gets timestamp
+	dtime=str(var.Time.values)[0:19]
 	
 	# Smooth the variable
 	smooth_var = smooth2d(var, 3, cenweight=4)
-
+	thismin=np.nanmin((smooth_var.values))
+	thismax=np.nanmax((smooth_var.values))
 	
 	# Get the latitude and longitude points
 	lats, lons = latlon_coords(var)
@@ -50,6 +59,8 @@ def Plot2DField(ncfile,svariable,time,outfname):
 	
 	# Add a color bar
 	plt.colorbar(ax=ax, shrink=.98,ticks=levs[::4])
+	plt.annotate("v", xy=(1.11, ((thismin-svariable.range_min)/(svariable.range_max-svariable.range_min))-.05),  xycoords='axes fraction', fontsize=6)
+	plt.annotate("ʌ", xy=(1.11, ((thismax-svariable.range_min)/(svariable.range_max-svariable.range_min))-.03),  xycoords='axes fraction', fontsize=6)
 
 	# Set the map bounds
 	ax.set_xlim(cartopy_xlim(smooth_var))
