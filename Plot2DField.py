@@ -6,17 +6,18 @@ import cartopy.crs as crs
 import cartopy.feature as cfeature
 from wrf import (to_np, getvar, smooth2d, get_cartopy, cartopy_xlim,
                  cartopy_ylim, latlon_coords,extract_times)
+
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
 
-def Plot2DField(ncfile,variable,ptitle,range_min,range_max,time,outfname):
+def Plot2DField(ncfile,svariable,time,outfname):
 	#Input check
 
 	#Need to implement input check here!
 	
 	
 	# Get the variable								####Takes ~5s
-	var = getvar(ncfile, variable, timeidx=time)
+	var = getvar(ncfile, svariable.wrfname, timeidx=time)
 	dtime=str(extract_times(ncfile,time))[0:19]
 	
 	# Smooth the variable
@@ -42,7 +43,7 @@ def Plot2DField(ncfile,variable,ptitle,range_min,range_max,time,outfname):
 	ax.coastlines('50m', linewidth=0.8)
 
 	# Filled contours
-	levs = np.linspace(range_min, range_max, 21)
+	levs = np.linspace(svariable.range_min, svariable.range_max, 21)
 	plt.contourf(to_np(lons), to_np(lats), to_np(smooth_var), levels=levs,
 				 transform=crs.PlateCarree(),
 				 cmap=get_cmap("jet"),alpha=0.8)
@@ -58,7 +59,7 @@ def Plot2DField(ncfile,variable,ptitle,range_min,range_max,time,outfname):
 	ax.gridlines(color="black", linestyle="dotted")
 
 	# Add title and frame time
-	plt.title(ptitle)
+	plt.title(svariable.ptitle)
 	plt.annotate(dtime, xy=(.02, .02),  xycoords='axes fraction')
 	
 	plt.savefig(outfname)
