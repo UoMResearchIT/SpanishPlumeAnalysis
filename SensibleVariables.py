@@ -36,12 +36,12 @@ CAPE = wrf_var(wrfname="cape_2d",
 			   ptitle="Max CAPE (Convective Available Potential Energy) [J/kg]",
 			   outfile="CAPE",
 			   range_min=0,
-			   range_max=4000)
+			   range_max=6000)
 CIN = wrf_var(wrfname="cape_2d",
 			   ptitle="Max CIN (Convective Inhibition) [J/kg]",
 			   outfile="CIN",
 			   range_min=0,
-			   range_max=1000)
+			   range_max=1600)
 
 # 3D + Field
 AirTemp850 = wrf_var(dim=4,
@@ -62,8 +62,24 @@ DewpointTemp850 = wrf_var(dim=4,
 GeoPotHeight500 = wrf_var(dim=4,
 						  ptitle="Geopotential Height at 500hPa [m]",
 						  outfile="GeoPotHeight500",
-						  range_min=5300,
-						  range_max=6100,
+						  range_min=5350,
+						  range_max=6050,
 						  windbarbs=1,
 						  interpvar="pressure",
 						  interpvalue=500)
+StaticStability700500 = wrf_var(dim=4,
+								wrfname="temp",
+								ptitle="Static stability at 700-500 hPa [C]",
+								outfile="StaticStability700500",
+								range_min=5,
+								range_max=30,
+								interpvar="pressure",
+								interpvalue=700)
+StaticStability850700 = wrf_var(dim=4,
+								wrfname="temp",
+								ptitle="Static stability at 850-700 hPa [C]",
+								outfile="StaticStability850700",
+								range_min=-5,
+								range_max=20,
+								interpvar="pressure",
+								interpvalue=700)

@@ -24,7 +24,7 @@ def Plot2DField(ncfile,svariable,time,windbarbs,outfname):
 		if windbarbs:
 			# Get wind speed components at 10m
 			u,v=to_np(getvar(ncfile, "uvmet10", timeidx=time))
-		#Special variable acquisition			
+		#Special variable acquisition
 		if svariable==sv.CAPE:
 			var=var[0]
 		elif svariable==sv.CIN:
@@ -34,9 +34,17 @@ def Plot2DField(ncfile,svariable,time,windbarbs,outfname):
 		interpvar = getvar(ncfile,svariable.interpvar,timeidx=time)
 		if svariable.wrfname is not None:
 			d4var = getvar(ncfile, svariable.wrfname, timeidx=time)
+		#Special variable acquisition
 		elif svariable==sv.GeoPotHeight500:
 			d4var=g_geoht.get_height(ncfile, timeidx=time)
 		var = interplevel(d4var, interpvar, svariable.interpvalue)
+		#Special variable computation
+		if svariable==sv.StaticStability700500:
+			var2=interplevel(d4var, interpvar, 500)
+			var.values=var.values-var2.values
+		if svariable==sv.StaticStability850700:
+			var2=interplevel(d4var, interpvar, 850)
+			var.values=var2.values-var.values	
 		if windbarbs:
 			#Get wind speed components at interpvalue
 			ua = getvar(ncfile, "ua", timeidx=time)
