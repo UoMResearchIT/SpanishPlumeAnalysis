@@ -42,6 +42,12 @@ CIN = wrf_var(wrfname="cape_2d",
 			   outfile="CIN",
 			   range_min=0,
 			   range_max=1600)
+Rain = wrf_var(wrfname="RAINNC",
+			   ptitle="Intantaneous* Total Grid Scale Precipitation (RAINNC) [mm]",
+			   outfile="Rain",
+			   range_min=0,
+			   range_max=20,
+			   windbarbs=1)
 
 # 3D + Field
 AirTemp850 = wrf_var(dim=4,
@@ -55,7 +61,7 @@ DewpointTemp850 = wrf_var(dim=4,
 						  wrfname="td",
 						  ptitle="Dewpoint Temperature at 850hPa [C]",
 						  outfile="DewpointTemp850",
-						  range_min=-45,
+						  range_min=-80,
 						  range_max=25,
 						  interpvar="pressure",
 						  interpvalue=850)

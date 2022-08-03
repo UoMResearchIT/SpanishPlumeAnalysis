@@ -29,6 +29,13 @@ def Plot2DField(ncfile,svariable,time,windbarbs,outfname):
 			var=var[0]
 		elif svariable==sv.CIN:
 			var=var[1]
+		#Special variable computation
+		if svariable==sv.Rain:
+			#Converts Accumulated rain to "instantaneous" rain
+			if time>0: tprev=time-1
+			else: tprev=0
+			varprev=getvar(ncfile, svariable.wrfname, timeidx=tprev)
+			var.values=var.values-varprev.values
 	# For 3D +value variables, interpolated at interpvalue of interpvar
 	elif svariable.dim==4:
 		interpvar = getvar(ncfile,svariable.interpvar,timeidx=time)
@@ -40,9 +47,11 @@ def Plot2DField(ncfile,svariable,time,windbarbs,outfname):
 		var = interplevel(d4var, interpvar, svariable.interpvalue)
 		#Special variable computation
 		if svariable==sv.StaticStability700500:
+			#Static stability computed as air temperature difference
 			var2=interplevel(d4var, interpvar, 500)
 			var.values=var.values-var2.values
 		if svariable==sv.StaticStability850700:
+			#Static stability computed as air temperature difference
 			var2=interplevel(d4var, interpvar, 850)
 			var.values=var2.values-var.values	
 		if windbarbs:
@@ -84,10 +93,11 @@ def Plot2DField(ncfile,svariable,time,windbarbs,outfname):
 	levs = np.linspace(svariable.range_min, svariable.range_max, 21)
 	plt.contourf(x, y, to_np(smooth_var), levels=levs,
 				 transform=crs.PlateCarree(),
-				 cmap=get_cmap("jet"),alpha=0.8)
+				 cmap=get_cmap("jet"),alpha=0.8,
+				 extend="both")
 	
 	# Add a color bar
-	plt.colorbar(ax=ax, shrink=.98,ticks=levs[::4])
+	plt.colorbar(ax=ax, extendfrac=[0.01,0.01],ticks=levs[::4])
 	plt.annotate("v", xy=(1.11, ((thismin-svariable.range_min)/(svariable.range_max-svariable.range_min))+.01),  xycoords='axes fraction', fontsize=6)
 	plt.annotate("ʌ", xy=(1.11, ((thismax-svariable.range_min)/(svariable.range_max-svariable.range_min))-.03),  xycoords='axes fraction', fontsize=6)
 
