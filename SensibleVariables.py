@@ -1,4 +1,4 @@
-class wrf_var:
+class svariable:
 	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0):
 		self.dim = dim
 		self.wrfname = wrfname
@@ -12,38 +12,38 @@ class wrf_var:
 		self.isdif = isdif
 
 # 2D + Field
-SeaLevelPressure = wrf_var(wrfname="slp",
+SeaLevelPressure = svariable(wrfname="slp",
 						   ptitle="Sea level pressure [hPa]",
 						   outfile="SeaLevelPressure",
 						   range_min=980,
 						   range_max=1035,
 						   windbarbs=1)
-AirTemp2m = wrf_var(wrfname="T2",
+AirTemp2m = svariable(wrfname="T2",
 					ptitle="Temperature at 2m [K]",
 					outfile="AirTemp2m",
 					range_min=270,
 					range_max=330)
-DewpointTemp2m = wrf_var(wrfname="td2",
+DewpointTemp2m = svariable(wrfname="td2",
 						 ptitle="Dewpoint Temperature at 2m [C]",
 						 outfile="DewpointTemp2m",
 						 range_min=-20,
 						 range_max=35)
-RelativeHumidity2m = wrf_var(wrfname="rh2",
+RelativeHumidity2m = svariable(wrfname="rh2",
 							 ptitle="Relative Humidity at 2m [%]",
 							 outfile="RelHum2m",
 							 range_min=0,
 							 range_max=100)
-CAPE = wrf_var(wrfname="cape_2d",
+CAPE = svariable(wrfname="cape_2d",
 			   ptitle="Max CAPE (Convective Available Potential Energy) [J/kg]",
 			   outfile="CAPE",
 			   range_min=0,
 			   range_max=6000)
-CIN = wrf_var(wrfname="cape_2d",
+CIN = svariable(wrfname="cape_2d",
 			   ptitle="Max CIN (Convective Inhibition) [J/kg]",
 			   outfile="CIN",
 			   range_min=0,
 			   range_max=1600)
-Rain = wrf_var(wrfname="RAINC",
+Rain = svariable(wrfname="RAINC",
 			   ptitle="Total Hourly Precipitation [mm]",
 			   outfile="Rain",
 			   range_min=0,
@@ -52,14 +52,14 @@ Rain = wrf_var(wrfname="RAINC",
 			   isdif=1)
 
 # 3D + Field
-AirTemp850 = wrf_var(dim=4,
+AirTemp850 = svariable(dim=4,
 					 wrfname="temp",
 					 ptitle="Temperature at 850 hPa [K]",
 					 outfile="AirTemp850",
 					 range_min=265,range_max=315,
 					 interpvar="pressure",
 					 interpvalue=850)
-DewpointTemp850 = wrf_var(dim=4,
+DewpointTemp850 = svariable(dim=4,
 						  wrfname="td",
 						  ptitle="Dewpoint Temperature at 850hPa [C]",
 						  outfile="DewpointTemp850",
@@ -67,7 +67,7 @@ DewpointTemp850 = wrf_var(dim=4,
 						  range_max=25,
 						  interpvar="pressure",
 						  interpvalue=850)
-GeoPotHeight500 = wrf_var(dim=4,
+GeoPotHeight500 = svariable(dim=4,
 						  ptitle="Geopotential Height at 500hPa [m]",
 						  outfile="GeoPotHeight500",
 						  range_min=5350,
@@ -75,7 +75,7 @@ GeoPotHeight500 = wrf_var(dim=4,
 						  windbarbs=1,
 						  interpvar="pressure",
 						  interpvalue=500)
-StaticStability700500 = wrf_var(dim=4,
+StaticStability700500 = svariable(dim=4,
 								wrfname="temp",
 								ptitle="Static stability at 700-500 hPa [C]",
 								outfile="StaticStability700500",
@@ -83,7 +83,7 @@ StaticStability700500 = wrf_var(dim=4,
 								range_max=30,
 								interpvar="pressure",
 								interpvalue=700)
-StaticStability850700 = wrf_var(dim=4,
+StaticStability850700 = svariable(dim=4,
 								wrfname="temp",
 								ptitle="Static stability at 850-700 hPa [C]",
 								outfile="StaticStability850700",
