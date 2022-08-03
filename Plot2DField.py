@@ -4,62 +4,17 @@ from matplotlib.cm import get_cmap
 import numpy as np
 import cartopy.crs as crs
 import cartopy.feature as cfeature
-from wrf import (to_np, getvar, smooth2d, get_cartopy, cartopy_xlim,
-                 cartopy_ylim, latlon_coords,g_uvmet,g_geoht,interplevel)
+from wrf import (to_np, smooth2d, get_cartopy, cartopy_xlim,cartopy_ylim, latlon_coords)
 import SensibleVariables as sv
 
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
 
-def Plot2DField(ncfile,svariable,time,windbarbs,outfname):
+def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None):
 	#Input check
 
 	#Need to implement input check here!
-	
-	
-	# Get the variable								####Takes ~5s
-	# For simple 2D +value variables
-	if svariable.dim==3:
-		var = getvar(ncfile, svariable.wrfname, timeidx=time)
-		if windbarbs:
-			# Get wind speed components at 10m
-			u,v=to_np(getvar(ncfile, "uvmet10", timeidx=time))
-		#Special variable acquisition
-		if svariable==sv.CAPE:
-			var=var[0]
-		elif svariable==sv.CIN:
-			var=var[1]
-		#Special variable computation
-		if svariable==sv.Rain:
-			#Converts Accumulated rain to "instantaneous" rain
-			if time>0: tprev=time-1
-			else: tprev=0
-			varprev=getvar(ncfile, svariable.wrfname, timeidx=tprev)
-			var.values=var.values-varprev.values
-	# For 3D +value variables, interpolated at interpvalue of interpvar
-	elif svariable.dim==4:
-		interpvar = getvar(ncfile,svariable.interpvar,timeidx=time)
-		if svariable.wrfname is not None:
-			d4var = getvar(ncfile, svariable.wrfname, timeidx=time)
-		#Special variable acquisition
-		elif svariable==sv.GeoPotHeight500:
-			d4var=g_geoht.get_height(ncfile, timeidx=time)
-		var = interplevel(d4var, interpvar, svariable.interpvalue)
-		#Special variable computation
-		if svariable==sv.StaticStability700500:
-			#Static stability computed as air temperature difference
-			var2=interplevel(d4var, interpvar, 500)
-			var.values=var.values-var2.values
-		if svariable==sv.StaticStability850700:
-			#Static stability computed as air temperature difference
-			var2=interplevel(d4var, interpvar, 850)
-			var.values=var2.values-var.values	
-		if windbarbs:
-			#Get wind speed components at interpvalue
-			ua = getvar(ncfile, "ua", timeidx=time)
-			va = getvar(ncfile, "va", timeidx=time)
-			u=to_np(interplevel(ua, interpvar, svariable.interpvalue))
-			v=to_np(interplevel(va, interpvar, svariable.interpvalue))
+		
 	#Gets timestamp
 	dtime=str(var.Time.values)[0:19]
 	

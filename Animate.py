@@ -2,6 +2,7 @@ from netCDF4 import Dataset
 from Plot2DField import *
 import imageio
 import os
+from GetSensVar import *
 
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
@@ -10,7 +11,7 @@ import os
 #python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",270,330,"T2","Temperature at 2m [K]","T2",1)'
 #python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",-20,35,"td2","Dewpoint Temperature at 2m [C?]","td2",1)'
 
-def Animate(dir_path,svariable,windbarbs,outfile,cleanpng):
+def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
     
 	#Input check
 
@@ -39,7 +40,8 @@ def Animate(dir_path,svariable,windbarbs,outfile,cleanpng):
             of=outfile+wrf_fn+"_t_"+str(ti)+".png"
             PNGfiles.append(of)
             print("Processing:",ti+1,"/",timerange, end = '\r')
-            Plot2DField(ncfile,svariable,ti,windbarbs,of)
+            var,u,v=GetSensVar(ncfile,svariable,windbarbs,ti)
+            Plot2DField(var,svariable,windbarbs,of,u,v)
         print("Processed successfully.")
 
     # Build GIF
