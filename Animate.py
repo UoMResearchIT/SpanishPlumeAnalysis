@@ -20,7 +20,7 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
     # Initialization
     WRFfiles=[]
     PNGfiles=[]
-    varprev=None
+    vpv=None
 
     # Get list of files from directoy
     for file in os.listdir(dir_path):
@@ -41,10 +41,8 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
             of=outfile+wrf_fn+"_t_"+str(ti)+".png"
             PNGfiles.append(of)
             print("Processing:",ti+1,"/",timerange, end = '\r')
-            var,u,v=GetSensVar(ncfile,svariable,windbarbs,ti,varprev)
+            var,u,v,vpv=GetSensVar(ncfile,svariable,windbarbs,ti,vpv)
             Plot2DField(var,svariable,windbarbs,of,u,v)
-            #Only saves variable to pass in next iteration if svariable is a difference
-            if svariable.isdif: varprev=var
         print("Processed successfully.")
 
     # Build GIF

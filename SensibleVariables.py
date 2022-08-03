@@ -47,7 +47,7 @@ Rain = svariable(wrfname="RAINC",
 			   ptitle="Total Hourly Precipitation [mm]",
 			   outfile="Rain",
 			   range_min=0,
-			   range_max=30,
+			   range_max=10,
 			   windbarbs=1,
 			   isdif=1)
 
