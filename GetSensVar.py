@@ -1,7 +1,7 @@
 from wrf import (to_np, getvar,g_geoht,interplevel)
 import SensibleVariables as sv
 
-def GetSensVar(ncfile,svariable,windbarbs=0,time=0):
+def GetSensVar(ncfile,svariable,windbarbs=0,time=0,varprev=None):
 	u=v=None
 	# For simple 2D +value variables
 	if svariable.dim==3:
@@ -16,11 +16,12 @@ def GetSensVar(ncfile,svariable,windbarbs=0,time=0):
 			var=var[1]
 		#Special variable computation
 		if svariable==sv.Rain:
-			#Converts Accumulated rain to "instantaneous" rain
-			if time>0: tprev=time-1
-			else: tprev=0
-			varprev=getvar(ncfile, svariable.wrfname, timeidx=tprev)
-			var.values=var.values-varprev.values
+			#Adds RAINC and RAINNC to get total accumulated precipitation
+			rnc = getvar(ncfile, "RAINNC", timeidx=time)
+			var.values=var.values+rnc.values
+			#Converts accumulated rain to "hourly" rain (given hourly time indices)
+			if varprev is not None:
+				var.values=var.values-varprev.values
 
 	# For 3D +value variables, interpolated at interpvalue of interpvar
 	elif svariable.dim==4:

@@ -1,5 +1,5 @@
 class wrf_var:
-	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0):
+	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0):
 		self.dim = dim
 		self.wrfname = wrfname
 		self.ptitle = ptitle
@@ -9,6 +9,7 @@ class wrf_var:
 		self.interpvar = interpvar
 		self.interpvalue = interpvalue
 		self.windbarbs = windbarbs
+		self.isdif = isdif
 
 # 2D + Field
 SeaLevelPressure = wrf_var(wrfname="slp",
@@ -42,12 +43,13 @@ CIN = wrf_var(wrfname="cape_2d",
 			   outfile="CIN",
 			   range_min=0,
 			   range_max=1600)
-Rain = wrf_var(wrfname="RAINNC",
-			   ptitle="Intantaneous* Total Grid Scale Precipitation (RAINNC) [mm]",
+Rain = wrf_var(wrfname="RAINC",
+			   ptitle="Total Hourly Precipitation [mm]",
 			   outfile="Rain",
 			   range_min=0,
-			   range_max=20,
-			   windbarbs=1)
+			   range_max=30,
+			   windbarbs=1,
+			   isdif=1)
 
 # 3D + Field
 AirTemp850 = wrf_var(dim=4,
