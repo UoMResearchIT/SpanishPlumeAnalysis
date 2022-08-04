@@ -12,4 +12,5 @@ dependencies:
 #  - pyngl==1.6     #Reccomended by wrf-python, not needed for Plotting a Two-dimensional Field script
 #  - basemap==1.3   #Reccomended by wrf-python, not needed for Plotting a Two-dimensional Field script
   - wrf-python==1.3.4
-  
+  - imageio==2.9.0
+  - imageio-ffmpeg==0.4.7

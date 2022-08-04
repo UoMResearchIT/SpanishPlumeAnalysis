@@ -1,0 +1,77 @@
+from netCDF4 import Dataset
+import matplotlib.pyplot as plt
+from matplotlib.cm import get_cmap
+import numpy as np
+import cartopy.crs as crs
+import cartopy.feature as cfeature
+from wrf import (to_np, smooth2d, get_cartopy, cartopy_xlim,cartopy_ylim, latlon_coords)
+import SensibleVariables as sv
+
+#from datetime import datetime      ###############################################
+#print(datetime.now())           	###############################################
+
+def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None):
+	#Input check
+
+	#Need to implement input check here!
+		
+	#Gets timestamp
+	dtime=str(var.Time.values)[0:19]
+	
+	# Smooth the variable
+	smooth_var = smooth2d(var, 3, cenweight=4)
+	thismin=np.nanmin((smooth_var.values))
+	thismax=np.nanmax((smooth_var.values))
+	#print("min=",thismin," max=",thismax)
+	
+	# Get the latitude and longitude points
+	lats, lons = latlon_coords(var)
+	x=to_np(lons)
+	y=to_np(lats)
+	
+	# Get the cartopy mapping object
+	cart_proj = get_cartopy(var)
+	
+	# Create a figure								####Takes ~7s first time, but reuses preexisting figure
+	fig = plt.gcf()
+	plt.clf()
+	
+	# Set the GeoAxes to the projection used by WRF
+	ax = plt.axes(projection=cart_proj)
+	
+	# Download and add the borders and coastlines	####Takes ~2s
+	borders = cfeature.BORDERS.with_scale('50m')
+	ax.add_feature(borders, linewidth=.4, edgecolor="black")
+	ax.coastlines('50m', linewidth=0.8)
+
+	# Filled contours
+	levs = np.linspace(svariable.range_min, svariable.range_max, 21)
+	plt.contourf(x, y, to_np(smooth_var), levels=levs,
+				 transform=crs.PlateCarree(),
+				 cmap=get_cmap("jet"),alpha=0.8,
+				 extend="both")
+	
+	# Add a color bar
+	plt.colorbar(ax=ax, extendfrac=[0.01,0.01],ticks=levs[::4])
+	plt.annotate("v", xy=(1.11, ((thismin-svariable.range_min)/(svariable.range_max-svariable.range_min))+.01),  xycoords='axes fraction', fontsize=6)
+	plt.annotate("ʌ", xy=(1.11, ((thismax-svariable.range_min)/(svariable.range_max-svariable.range_min))-.03),  xycoords='axes fraction', fontsize=6)
+
+	if windbarbs:
+		# Add wind barbs, only plotting every nbarbs
+		nbarbs=20
+		ax.barbs(x[::nbarbs,::nbarbs], y[::nbarbs,::nbarbs],
+		u[::nbarbs, ::nbarbs],v[::nbarbs, ::nbarbs], 
+		transform=crs.PlateCarree(), length=4,linewidth=0.3)
+
+	# Set the map bounds
+	ax.set_xlim(cartopy_xlim(smooth_var))
+	ax.set_ylim(cartopy_ylim(smooth_var))
+
+	# Add the gridlines
+	ax.gridlines(color="black", linestyle="dotted")
+
+	# Add title and frame time
+	plt.title(svariable.ptitle)
+	plt.annotate(dtime, xy=(.02, .02),  xycoords='axes fraction')
+	
+	plt.savefig(outfname)
