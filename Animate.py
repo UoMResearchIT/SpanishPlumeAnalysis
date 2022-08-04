@@ -21,6 +21,10 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
     WRFfiles=[]
     PNGfiles=[]
     vpv=None
+    tmp_dir="__"+outfile
+    if not os.path.exists(tmp_dir):
+        os.mkdir(tmp_dir)
+    tmp_dir=tmp_dir+"/"
 
     # Get list of files from directoy
     for file in os.listdir(dir_path):
@@ -38,7 +42,7 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
         timerange=ncfile.variables['Times'].shape[0]
 #        if timerange>1:timerange=1                              ## For tests only
         for ti in range(timerange):
-            of=outfile+wrf_fn+"_t_"+str(ti)+".png"
+            of=tmp_dir+outfile+wrf_fn+"_t_"+str(ti)+".png"
             PNGfiles.append(of)
             print("Processing:",ti+1,"/",timerange, end = '\r')
             var,u,v,vpv=GetSensVar(ncfile,svariable,windbarbs,ti,vpv)
@@ -51,6 +55,7 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
     #        image = imageio.imread(filename)
     #        writer.append_data(image)
     # Build mp4
+    print("Building MP4 from png files...")
     with imageio.get_writer(outfile+".mp4", mode='I') as writer:
         for filename in PNGfiles:
             image = imageio.imread(filename)
@@ -58,5 +63,8 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
 
     # Remove individual frame files
     if cleanpng:
+        print("Deleting png files...")
         for file in PNGfiles:
             os.remove(file)
+        os.removedirs(tmp_dir)
+        print("All done.")
