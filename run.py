@@ -30,4 +30,4 @@ dout="Results/vs_Control-GWavesFix/"
 diff=1
 for wvar in wvarlist:
 	print("Comparing",wvar.outfile)
-	ConcatNDiff(d1,wvar.outfile,d2,wvar.outfile,diff,dout+wvar.outfile)
+	ConcatNDiff(wvar.outfile,wvar.outfile,d1,d2,"Control","GWaves_fix",diff,dout+wvar.outfile)
