@@ -43,6 +43,17 @@ During this process, it also takes care of some variable computation, which is n
 
 The outputs are the processed variable ***var***, the wind velocity components ***u*** and ***v*** (if windbarbs=0 these will be None), and the raw variable values ***varv*** (for use in *isdif* **svariable** computation).
 
+## ConcatNDiff
+This function is a very quick way to compare mp4 files. 
+
+If the flag ***diff*** is set to 0, it simply concatenates the two mp4 files side by side. 
+
+If ***diff*** is set to 1, it also gets the absolute value pixel to pixel difference of each frame, and concatenates it too.
+
+
+
+
+
 # SpanishPlumeAnalysis
 Visualization and comparison of WRF data on the Spanish Plume, modifying the geographical terrain and or heat/moisture flux over the spanish peninsula.
 
