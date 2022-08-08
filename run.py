@@ -1,6 +1,7 @@
 from Animate import Animate;
 import SensibleVariables as sv
 from MP4Compare import ConcatNDiff
+from WRFCompare import WRFSmoothDiff
 
 wvarlist=[sv.SeaLevelPressure,
 		  sv.AirTemp2m,
@@ -23,11 +24,20 @@ wvarlist=[sv.SeaLevelPressure,
 # 	print("Working on",wvar.outfile)
 # 	Animate(dir_path,wvar,wvar.windbarbs,wvar.outfile,cleanpng)
 
-## Comparing mp4 files
-d1="Results/Control/"
-d2="Results/Gravity_Waves_fix/"
-dout="Results/vs_Control-GWavesFix/"
-diff=1
+# ## Comparing mp4 files
+# d1="Results/Control/"
+# d2="Results/Gravity_Waves_fix/"
+# dout="Results/vs_Control-GWavesFix/"
+# diff=1
+# for wvar in wvarlist:
+# 	print("Comparing",wvar.outfile)
+# 	ConcatNDiff(wvar.outfile,wvar.outfile,d1,d2,"Control","GWaves_fix",diff,dout+wvar.outfile)
+
+## Comparing WRF files
+d1="/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/"
+d2="/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/"
+cleanpng=1
 for wvar in wvarlist:
 	print("Comparing",wvar.outfile)
-	ConcatNDiff(wvar.outfile,wvar.outfile,d1,d2,"Control","GWaves_fix",diff,dout+wvar.outfile)
+	WRFSmoothDiff(d1,d2,wvar,wvar.windbarbs,wvar.outfile,cleanpng)
+

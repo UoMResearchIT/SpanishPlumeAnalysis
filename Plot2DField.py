@@ -10,7 +10,7 @@ import SensibleVariables as sv
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
 
-def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None):
+def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,smooth=1):
 	#Input check
 
 	#Need to implement input check here!
@@ -19,7 +19,10 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None):
 	dtime=str(var.Time.values)[0:19]
 	
 	# Smooth the variable
-	smooth_var = smooth2d(var, 3, cenweight=4)
+	if smooth:
+		smooth_var = smooth2d(var, 3, cenweight=4)
+	else:
+		smooth_var=var
 	thismin=np.nanmin((smooth_var.values))
 	thismax=np.nanmax((smooth_var.values))
 	#print("min=",thismin," max=",thismax)
