@@ -4,11 +4,21 @@ from GetSensVar import *
 from wrf import smooth2d
 from Plot2DField import *
 import imageio
+from PIL import Image, ImageDraw
 
-def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
+def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,smooth=1,difflabel="",outfile="MyMP4",outdir="./",cleanpng=1):
+    #
+    print("Comparing WRF files for.",svariable.outfile)
+    print("Source wrfout files:",dir_path1," & ",dir_path2)
+    print("Using:\n\tdifflabel=",difflabel,
+                "\n\twindbarbs=",windbarbs,
+                "\n\tsmooth=",smooth,
+                "\n\tcleanpng=",cleanpng)
+    print("Output will be saved as ",outdir+outfile,"\n")
 
 	#Input check
-
+    svariable.range_min=(svariable.range_min-svariable.range_max)/2
+    svariable.range_max=(svariable.range_max-svariable.range_min)/2
 	#Need to implement input check here!
     
     # Initialization
@@ -16,7 +26,7 @@ def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,outfile="MyMP4",clea
     WRFfiles2=[]
     PNGfiles=[]
     vpv1=vpv2=u=v=None
-    tmp_dir="__"+outfile
+    tmp_dir=outdir+"__"+outfile
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
     tmp_dir=tmp_dir+"/"
@@ -61,16 +71,20 @@ def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,outfile="MyMP4",clea
             print("This is probably a good time to stop... quitting...")
         else:
             timerange=timerange1
-            # if timerange>1:timerange=1                              ## For tests only
+            # for ti in range(0,timerange,4):                              ## For tests only
             for ti in range(timerange):
                 of=tmp_dir+outfile+wrf_fn+"_t_"+str(ti)+".png"
                 PNGfiles.append(of)
                 print("Processing:",ti+1,"/",timerange, end = '\r')
                 var1,u1,v1,vpv1=GetSensVar(ncfile1,svariable,windbarbs,ti,vpv1)
                 var2,u2,v2,vpv2=GetSensVar(ncfile2,svariable,windbarbs,ti,vpv2)
-                #Smoothing variables
-                smovar1 = smooth2d(var1, 3, cenweight=4)
-                smovar2 = smooth2d(var2, 3, cenweight=4)
+                if smooth:
+                    #Smoothing variables
+                    smovar1 = smooth2d(var1, 3, cenweight=4)
+                    smovar2 = smooth2d(var2, 3, cenweight=4)
+                else:
+                    smovar1 = var1
+                    smovar2 = var2
                 #Making diff
                 smooth_var = smooth2d(var1, 3, cenweight=4)
                 smooth_var.values = smovar2.values-smovar1.values
@@ -81,9 +95,17 @@ def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,outfile="MyMP4",clea
                 Plot2DField(smooth_var,svariable,windbarbs,of,u,v,smooth=0)
             print("Processed",timerange,"/",timerange,"successfully.")
 
+    if difflabel!="":
+        #Adds difflabels to frames
+        for i in range(len(PNGfiles)):
+            with Image.open(PNGfiles[i]) as im:
+                draw = ImageDraw.Draw(im)
+                draw.text((10,10),difflabel,fill=(0,0,0))
+                im.save(PNGfiles[i])
+
     # Build mp4
     print("Building MP4 from png files...")
-    with imageio.get_writer(outfile+".mp4", mode='I') as writer:
+    with imageio.get_writer(outdir+outfile+".mp4", mode='I') as writer:
         for filename in PNGfiles:
             image = imageio.imread(filename)
             writer.append_data(image)

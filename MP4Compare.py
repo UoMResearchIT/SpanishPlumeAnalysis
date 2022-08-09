@@ -2,15 +2,23 @@ import imageio as iio
 import numpy as np
 from PIL import Image, ImageChops, ImageDraw
 
-def ConcatNDiff(file1,file2,dir1="./",dir2="./",title1="",title2="",diff=1,outfile="vs_f1-f2"):
-    
-	#Input check
+def ConcatNDiff(file1,file2,dir1="./",dir2="./",label1="",label2="",difflabel="",diff=1,outfile="vs_f1-f2"):
+    #Input check
     file1=file1.replace('.mp4','')
     file2=file2.replace('.mp4','')
     outfile=outfile.replace('.mp4','')
     if outfile=="vs_f1-f2": outfile="vs_"+file1+"-"+file2
-    if title1+title2=="":titles=0
-    else: titles=1
+    if label1+label2=="":labels=0
+    else: labels=1
+
+    #
+    print("Comparing MP4 files:",dir1+file1," & ",dir2+file2)
+    print("Using:\n\diff=",diff)
+    if labels: print("\tlabels=",label1," & ",label2)
+    else: print("\tlabels=None")
+    print("Output will be saved as ",outfile,"\n")
+
+	
 	#Need to implement input check here!
     
     #Loads images from mp4 files
@@ -37,14 +45,15 @@ def ConcatNDiff(file1,file2,dir1="./",dir2="./",title1="",title2="",diff=1,outfi
             #Stitches MP4_1,MP4_2 and MP4_D side by side
             S=np.concatenate((S,MP4_D),axis=2)
 
-        if titles:
-            #Adds titles to frames
+        if labels:
+            #Adds labels to frames
             width=np.shape(MP4_1[0])[1]
             for i in range(frames):
                 imS=Image.fromarray(S[i])
                 draw=ImageDraw.Draw(imS)
-                draw.text((10,10),title1,fill=(0,0,0))
-                draw.text((10+width,10),title2,fill=(0,0,0))
+                draw.text((10,10),label1,fill=(0,0,0))
+                draw.text((10+width,10),label2,fill=(0,0,0))
+                draw.text((10+2*width,10),difflabel,fill=(0,0,0))
                 S[i]=np.array(imS)
 
         #Saves mp4 with stitched frames
