@@ -51,7 +51,7 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,sm
 	levs = np.linspace(svariable.range_min, svariable.range_max, 21)
 	plt.contourf(x, y, to_np(smooth_var), levels=levs,
 				 transform=crs.PlateCarree(),
-				 cmap=get_cmap("jet"),alpha=0.8,
+				 cmap=get_cmap(svariable.colormap),alpha=0.8,
 				 extend="both")
 	
 	# Add a color bar

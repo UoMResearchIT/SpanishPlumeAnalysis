@@ -1,5 +1,5 @@
 class svariable:
-	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0):
+	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0,colormap="jet"):
 		self.dim = dim
 		self.wrfname = wrfname
 		self.ptitle = ptitle
@@ -10,6 +10,7 @@ class svariable:
 		self.interpvalue = interpvalue
 		self.windbarbs = windbarbs
 		self.isdif = isdif
+		self.colormap = colormap
 
 # 2D + Field
 SeaLevelPressure = svariable(wrfname="slp",
@@ -17,39 +18,46 @@ SeaLevelPressure = svariable(wrfname="slp",
 						   outfile="SeaLevelPressure",
 						   range_min=980,
 						   range_max=1035,
-						   windbarbs=1)
+						   windbarbs=1,
+			   			   colormap="Purples")
 AirTemp2m = svariable(wrfname="T2",
 					ptitle="Temperature at 2m [K]",
 					outfile="AirTemp2m",
 					range_min=270,
-					range_max=330)
+					range_max=330,
+			   		colormap="Reds")
 DewpointTemp2m = svariable(wrfname="td2",
 						 ptitle="Dewpoint Temperature at 2m [C]",
 						 outfile="DewpointTemp2m",
 						 range_min=-20,
-						 range_max=35)
+						 range_max=35,
+			   			 colormap="BuPu")
 RelativeHumidity2m = svariable(wrfname="rh2",
 							 ptitle="Relative Humidity at 2m [%]",
 							 outfile="RelHum2m",
 							 range_min=0,
-							 range_max=100)
+							 range_max=100,
+			   				 colormap="YlGnBu")
 CAPE = svariable(wrfname="cape_2d",
 			   ptitle="Max CAPE (Convective Available Potential Energy) [J/kg]",
 			   outfile="CAPE",
 			   range_min=0,
-			   range_max=6000)
+			   range_max=6000,
+			   colormap="BuGn")
 CIN = svariable(wrfname="cape_2d",
 			   ptitle="Max CIN (Convective Inhibition) [J/kg]",
 			   outfile="CIN",
 			   range_min=0,
-			   range_max=1600)
+			   range_max=1600,
+			   colormap="BuGn")
 Rain = svariable(wrfname="RAINC",
 			   ptitle="Total Hourly Precipitation [mm]",
 			   outfile="Rain",
 			   range_min=0,
 			   range_max=10,
 			   windbarbs=1,
-			   isdif=1)
+			   isdif=1,
+			   colormap="Blues")
 
 # 3D + Field
 AirTemp850 = svariable(dim=4,
@@ -58,7 +66,8 @@ AirTemp850 = svariable(dim=4,
 					 outfile="AirTemp850",
 					 range_min=265,range_max=315,
 					 interpvar="pressure",
-					 interpvalue=850)
+					 interpvalue=850,
+			   		 colormap="Reds")
 DewpointTemp850 = svariable(dim=4,
 						  wrfname="td",
 						  ptitle="Dewpoint Temperature at 850hPa [C]",
@@ -66,7 +75,8 @@ DewpointTemp850 = svariable(dim=4,
 						  range_min=-80,
 						  range_max=25,
 						  interpvar="pressure",
-						  interpvalue=850)
+						  interpvalue=850,
+			   			  colormap="BuPu")
 GeoPotHeight500 = svariable(dim=4,
 						  ptitle="Geopotential Height at 500hPa [m]",
 						  outfile="GeoPotHeight500",
@@ -74,7 +84,8 @@ GeoPotHeight500 = svariable(dim=4,
 						  range_max=6050,
 						  windbarbs=1,
 						  interpvar="pressure",
-						  interpvalue=500)
+						  interpvalue=500,
+			   			colormap="Greens")
 StaticStability700500 = svariable(dim=4,
 								wrfname="temp",
 								ptitle="Static stability at 700-500 hPa [C]",
@@ -82,7 +93,8 @@ StaticStability700500 = svariable(dim=4,
 								range_min=5,
 								range_max=30,
 								interpvar="pressure",
-								interpvalue=700)
+								interpvalue=700,
+			   			 		colormap="Oranges")
 StaticStability850700 = svariable(dim=4,
 								wrfname="temp",
 								ptitle="Static stability at 850-700 hPa [C]",
@@ -90,4 +102,5 @@ StaticStability850700 = svariable(dim=4,
 								range_min=-5,
 								range_max=20,
 								interpvar="pressure",
-								interpvalue=700)
+								interpvalue=700,
+			   			 		colormap="Oranges")

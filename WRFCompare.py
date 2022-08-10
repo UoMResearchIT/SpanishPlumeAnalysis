@@ -6,7 +6,7 @@ from Plot2DField import *
 import imageio
 from PIL import Image, ImageDraw
 
-def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,smooth=1,difflabel="",outfile="MyMP4",outdir="./",cleanpng=1):
+def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,smooth=1,difflabel="",colormap="seismic",outfile="MyMP4",outdir="./",cleanpng=1):
     #
     print("Comparing WRF files for.",svariable.outfile)
     print("Source wrfout files:",dir_path1," & ",dir_path2)
@@ -19,6 +19,8 @@ def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,smooth=1,difflabel="
 	#Input check
     svariable.range_min=(svariable.range_min-svariable.range_max)/2
     svariable.range_max=(svariable.range_max-svariable.range_min)/2
+    if colormap is None: svariable.colormap="seismic"
+    else: svariable.colormap=colormap
 	#Need to implement input check here!
     
     # Initialization

@@ -36,6 +36,10 @@ if __name__ == '__main__':
                         type=bool,
                         default=1,
                         help="If 0 mp4compare simply stitches input files, without making a diff of frames.")
+    parser.add_argument('--colormap',
+                        type=str,
+                        default=None,
+                        help="Default colormaps are defined in sensible variables or the chosen task. You can override them by choosing a different one here.")
     parser.add_argument('--difflabel',
                         type=str,
                         default="",
@@ -97,7 +101,7 @@ match args.var:
 if args.windbarbs is None:
     windbarbs=wvar.windbarbs
 if not os.path.exists(args.outdir):
-    os.mkdir(args.outdir)
+    os.makedirs(args.outdir)
 
 match args.task:
     case "diagnostic":
@@ -120,6 +124,7 @@ match args.task:
         WRFSmoothDiff(args.dir1,args.dir2,wvar,
                       windbarbs=windbarbs,
                       difflabel=args.difflabel,
+                      colormap=args.colormap,
                       outfile=wvar.outfile,
                       outdir=args.outdir,
                       smooth=args.smooth,
