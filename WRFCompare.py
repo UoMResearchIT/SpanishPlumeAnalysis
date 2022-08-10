@@ -6,22 +6,30 @@ from Plot2DField import *
 import imageio
 from PIL import Image, ImageDraw
 
-def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,smooth=1,difflabel="",colormap="seismic",outfile="MyMP4",outdir="./",cleanpng=1):
+def WRFSmoothDiff(dir1,dir2,svariable,windbarbs=0,smooth=1,difflabel="",colormap="seismic",outfile="MyMP4",outdir="./",cleanpng=1):
+	#Input check
+    #Directories
+    if dir1[-1]!="/":dir1=dir1+"/"
+    if dir2[-1]!="/":dir2=dir2+"/"
+    if outdir[-1]!="/":outdir=outdir+"/"
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
+    #Need to implement input check here!
+        
     #
     print("Comparing WRF files for.",svariable.outfile)
-    print("Source wrfout files:",dir_path1," & ",dir_path2)
+    print("Source wrfout files:",dir1," & ",dir2)
     print("Using:\n\tdifflabel=",difflabel,
                 "\n\twindbarbs=",windbarbs,
                 "\n\tsmooth=",smooth,
                 "\n\tcleanpng=",cleanpng)
     print("Output will be saved as ",outdir+outfile,"\n")
 
-	#Input check
-    svariable.range_min=(svariable.range_min-svariable.range_max)/2
+    #Modifies plotting range and colormap
     svariable.range_max=(svariable.range_max-svariable.range_min)/2
+    svariable.range_min=-1*svariable.range_max
     if colormap is None: svariable.colormap="seismic"
     else: svariable.colormap=colormap
-	#Need to implement input check here!
     
     # Initialization
     WRFfiles1=[]
@@ -34,13 +42,13 @@ def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,smooth=1,difflabel="
     tmp_dir=tmp_dir+"/"
 
     # Get list of files from directoy 1
-    for file in os.listdir(dir_path1):
+    for file in os.listdir(dir1):
         if file.startswith('wrfout'):
             WRFfiles1.append(file)
     WRFfiles1.sort()
 
     # Get list of files from directoy 2
-    for file in os.listdir(dir_path2):
+    for file in os.listdir(dir2):
         if file.startswith('wrfout'):
             WRFfiles2.append(file)
     WRFfiles2.sort()
@@ -61,8 +69,8 @@ def WRFSmoothDiff(dir_path1,dir_path2,svariable,windbarbs=0,smooth=1,difflabel="
         wrf_fn_2=WRFfiles2[i]
         wrf_fn=wrf_fn_1
         print("Loading ",wrf_fn_1,"and",wrf_fn_2)
-        ncfile1 = Dataset(dir_path1+wrf_fn_1)
-        ncfile2 = Dataset(dir_path2+wrf_fn_2)
+        ncfile1 = Dataset(dir1+wrf_fn_1)
+        ncfile2 = Dataset(dir2+wrf_fn_2)
         # Get number of time frames and plot them
         timerange1=ncfile1.variables['Times'].shape[0]
         timerange2=ncfile2.variables['Times'].shape[0]

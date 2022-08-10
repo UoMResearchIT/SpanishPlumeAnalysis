@@ -15,29 +15,51 @@ wvarlist=[sv.SeaLevelPressure,
 		  sv.GeoPotHeight500,
 		  sv.StaticStability700500,
 		  sv.StaticStability850700]
-	
 
-## Generating diagnostics
+
+# ## Generating diagnostics
 # dir_path="/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/"
-# cleanpng=1
+# dout=dir_path.replace('/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/','').replace('run-zrek/','Control').replace('run-zrek.','').replace('/','')
 # for wvar in wvarlist:
 # 	print("Working on",wvar.outfile)
-# 	Animate(dir_path,wvar,wvar.windbarbs,wvar.outfile,cleanpng)
+# 	Animate(dir_path,wvar,
+# 		windbarbs=wvar.windbarbs,
+# 		outfile=wvar.outfile,
+# 		outdir=dout,
+# 		smooth=0,
+# 		cleanpng=1)
 
 # ## Comparing mp4 files
 # d1="Results/Control/"
 # d2="Results/Gravity_Waves_fix/"
-# dout="Results/vs_Control-GWavesFix/"
 # diff=1
+# l1=d1.replace('Results','').replace('/','')
+# l2=d2.replace('Results','').replace('/','')
+# dout="vsMP4_"+l1+"-"+l2+"/"
 # for wvar in wvarlist:
 # 	print("Comparing",wvar.outfile)
-# 	ConcatNDiff(wvar.outfile,wvar.outfile,d1,d2,"Control","GWaves_fix",diff,dout+wvar.outfile)
+# 	ConcatNDiff(wvar.outfile,wvar.outfile,d1,d2,
+# 			label1=l1,
+# 			label2=l2,
+# 			difflabel="| "+l2+" - "+l1+" |",
+# 			diff=1,
+# 			outfile=wvar.outfile,
+# 			outdir=dout)
 
 ## Comparing WRF files
 d1="/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/"
 d2="/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/"
-cleanpng=1
+l1=d1.replace('/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/','').replace('run-zrek/','Control').replace('run-zrek.','').replace('/','')
+l2=d2.replace('/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/','').replace('run-zrek/','Control').replace('run-zrek.','').replace('/','')
+dout="vsWRF_"+l1+"-"+l2+"/"
 for wvar in wvarlist:
 	print("Comparing",wvar.outfile)
-	WRFSmoothDiff(d1,d2,wvar,wvar.windbarbs,wvar.outfile,cleanpng)
+	WRFSmoothDiff(d1,d2,wvar,
+			windbarbs=wvar.windbarbs,
+			smooth=0,
+			difflabel="| "+l2+" - "+l1+" |",
+			colormap="seismic",
+			outfile=wvar.outfile,
+			outdir=dout,
+			cleanpng=1)
 

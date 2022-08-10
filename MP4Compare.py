@@ -1,19 +1,28 @@
+import os
 import imageio as iio
 import numpy as np
 from PIL import Image, ImageChops, ImageDraw
 
-def ConcatNDiff(file1,file2,dir1="./",dir2="./",label1="",label2="",difflabel="",diff=1,outfile="vs_f1-f2"):
-    #Input check
+def ConcatNDiff(file1,file2,dir1="./",dir2="./",label1="",label2="",difflabel="",diff=1,outfile="vs_f1-f2",outdir="./"):
+    ##Input check
+    #Directories
+    if dir1[-1]!="/":dir1=dir1+"/"
+    if dir2[-1]!="/":dir2=dir2+"/"
+    if outdir[-1]!="/":outdir=outdir+"/"
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
+    #File extensions
     file1=file1.replace('.mp4','')
     file2=file2.replace('.mp4','')
-    outfile=outfile.replace('.mp4','')
+    outfile=outdir+outfile.replace('.mp4','')
     if outfile=="vs_f1-f2": outfile="vs_"+file1+"-"+file2
+    #Labels
     if label1+label2=="":labels=0
     else: labels=1
 
     #
     print("Comparing MP4 files:",dir1+file1," & ",dir2+file2)
-    print("Using:\n\diff=",diff)
+    print("Using:\n\t\diff=",diff)
     if labels: print("\tlabels=",label1," & ",label2)
     else: print("\tlabels=None")
     print("Output will be saved as ",outfile,"\n")
@@ -53,7 +62,7 @@ def ConcatNDiff(file1,file2,dir1="./",dir2="./",label1="",label2="",difflabel=""
                 draw=ImageDraw.Draw(imS)
                 draw.text((10,10),label1,fill=(0,0,0))
                 draw.text((10+width,10),label2,fill=(0,0,0))
-                draw.text((10+2*width,10),difflabel,fill=(0,0,0))
+                draw.text((10+2*width,10),difflabel,fill=(255,255,255))
                 S[i]=np.array(imS)
 
         #Saves mp4 with stitched frames

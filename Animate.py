@@ -12,6 +12,14 @@ from GetSensVar import *
 #python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",-20,35,"td2","Dewpoint Temperature at 2m [C?]","td2",1)'
 
 def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,cleanpng=1):
+	##Input check
+    #Directories
+    if dir_path[-1]!="/":dir_path=dir_path+"/"
+    if outdir[-1]!="/":outdir=outdir+"/"
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
+	#Need to implement input check here!
+    
     #
     print("Generating diagnostic for",svariable.outfile)
     print("Source wrfout files:",dir_path)
@@ -19,10 +27,6 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,
                 "\n\tsmooth=",smooth,
                 "\n\tcleanpng=",cleanpng)
     print("Output will be saved as ",outdir+outfile,"\n")
-    
-	#Input check
-
-	#Need to implement input check here!
     
     # Initialization
     WRFfiles=[]

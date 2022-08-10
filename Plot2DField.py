@@ -38,6 +38,8 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,sm
 	# Create a figure								####Takes ~7s first time, but reuses preexisting figure
 	fig = plt.gcf()
 	plt.clf()
+	fig.set_size_inches(10.88,8.16)
+	fig.set_dpi(100)
 	
 	# Set the GeoAxes to the projection used by WRF
 	ax = plt.axes(projection=cart_proj)
@@ -48,16 +50,17 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,sm
 	ax.coastlines('50m', linewidth=0.8)
 
 	# Filled contours
-	levs = np.linspace(svariable.range_min, svariable.range_max, 21)
+	levs = np.linspace(svariable.range_min, svariable.range_max, 20)
 	plt.contourf(x, y, to_np(smooth_var), levels=levs,
 				 transform=crs.PlateCarree(),
 				 cmap=get_cmap(svariable.colormap),alpha=0.8,
 				 extend="both")
 	
 	# Add a color bar
-	plt.colorbar(ax=ax, extendfrac=[0.01,0.01],ticks=levs[::4])
-	plt.annotate("v", xy=(1.11, ((thismin-svariable.range_min)/(svariable.range_max-svariable.range_min))+.01),  xycoords='axes fraction', fontsize=6)
-	plt.annotate("ʌ", xy=(1.11, ((thismax-svariable.range_min)/(svariable.range_max-svariable.range_min))-.03),  xycoords='axes fraction', fontsize=6)
+	ticklevs = np.linspace(svariable.range_min, svariable.range_max, 5)
+	plt.colorbar(ax=ax, extendfrac=[0.01,0.01],ticks=ticklevs)
+	plt.annotate("v", xy=(1.11, ((thismin-svariable.range_min)/(svariable.range_max-svariable.range_min))+.00),  xycoords='axes fraction', fontsize=10)
+	plt.annotate("ʌ", xy=(1.11, ((thismax-svariable.range_min)/(svariable.range_max-svariable.range_min))-.015),  xycoords='axes fraction', fontsize=10)
 
 	if windbarbs:
 		# Add wind barbs, only plotting every nbarbs

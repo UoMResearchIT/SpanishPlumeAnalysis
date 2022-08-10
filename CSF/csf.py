@@ -100,8 +100,6 @@ match args.var:
 
 if args.windbarbs is None:
     windbarbs=wvar.windbarbs
-if not os.path.exists(args.outdir):
-    os.makedirs(args.outdir)
 
 match args.task:
     case "diagnostic":
