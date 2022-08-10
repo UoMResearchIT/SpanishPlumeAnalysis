@@ -9,6 +9,6 @@ export LIBGL_ALWAYS_INDIRECT=1
 
 #$ -t 1-12                      # Array of 12 jobs
 
-PARAM=`sed -n "${SGE_TASK_ID}p" *.inputs`
+PARAM=`sed -n "${SGE_TASK_ID}p" mp4comp.inputs`
 
 python csf.py $PARAM

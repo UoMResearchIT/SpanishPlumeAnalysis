@@ -7,8 +7,8 @@ conda activate wrf-py-env
 export LIBGL_ALWAYS_INDIRECT=1
 
 
-#$ -t 1-12                      # Array of 12 jobs
+#$ -t 1-36                      # Array of 36 jobs
 
-PARAM=`sed -n "${SGE_TASK_ID}p" *.inputs`
+PARAM=`sed -n "${SGE_TASK_ID}p" wrfcomp.inputs`
 
 python csf.py $PARAM
