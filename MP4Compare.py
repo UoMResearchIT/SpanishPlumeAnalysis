@@ -3,7 +3,7 @@ import imageio as iio
 import numpy as np
 from PIL import Image, ImageChops, ImageDraw
 
-def ConcatNDiff(file1,file2,dir1="./",dir2="./",label1="",label2="",difflabel="",diff=1,outfile="vs_f1-f2",outdir="./"):
+def ConcatNDiff(file1,file2,dir1="./",dir2="./",label1="",label2="",difflabel="",outfile="vs_f1-f2",outdir="./",cleandiff=1):
     ##Input check
     #Directories
     if dir1[-1]!="/":dir1=dir1+"/"
@@ -11,38 +11,36 @@ def ConcatNDiff(file1,file2,dir1="./",dir2="./",label1="",label2="",difflabel=""
     if outdir[-1]!="/":outdir=outdir+"/"
     if not os.path.exists(outdir):
         os.makedirs(outdir)
+    dirs=[dir1,dir2,outdir]
     #File extensions
     file1=file1.replace('.mp4','')
     file2=file2.replace('.mp4','')
-    outfile=outdir+outfile.replace('.mp4','')
     if outfile=="vs_f1-f2": outfile="vs_"+file1+"-"+file2
+    files=[file1,file2,"diff_"+outfile]
+    file1=file1+'.mp4'
+    file2=file2+'.mp4'
+    outfile=outfile.replace('.mp4','')
+    difffile=outdir+"diff_"+outfile+".mp4"
     #Labels
-    if label1+label2=="":labels=0
-    else: labels=1
+    labels=[label1,label2,difflabel]
 
     #
     print("Comparing MP4 files:",dir1+file1," & ",dir2+file2)
-    print("Using:\n\t\diff=",diff)
-    if labels: print("\tlabels=",label1," & ",label2)
-    else: print("\tlabels=None")
-    print("Output will be saved as ",outfile,"\n")
+    if ''.join(labels)=="":
+        print("No labels are being added.")
+    else: print("With labels:\n\t","\n\t ".join(labels))
+    print("Output will be saved as ",outdir+outfile+".mp4\n")
 
-	
-	#Need to implement input check here!
     
     #Loads images from mp4 files
-    MP4_1 = iio.mimread(dir1+file1+'.mp4')
-    MP4_2 = iio.mimread(dir2+file2+'.mp4')
+    MP4_1 = iio.mimread(dir1+file1,memtest=False)
+    MP4_2 = iio.mimread(dir2+file2,memtest=False)
     frames=len(MP4_1)
     if frames != len(MP4_2):
         print("The mp4 files dont have the same number of frames.")
     else:
-        #Stitches MP4_1 and MP4_2 side by side
-        S=np.concatenate((MP4_1,MP4_2),axis=2)
-
-        if diff:
+        with iio.get_writer(difffile,format="mp4", mode='I',) as writer:
             #Initializes diff image
-            MP4_D = [None]*frames
             for i in range(frames):
                 #Loads frames  into PIL.Image format
                 im1=Image.fromarray(MP4_1[i])
@@ -50,25 +48,22 @@ def ConcatNDiff(file1,file2,dir1="./",dir2="./",label1="",label2="",difflabel=""
                 #Computes pixel by pixel absolute value difference of frames
                 farme_diff=ImageChops.difference(im1,im2)
                 #farme_diff.show()
-                MP4_D[i]=np.array(farme_diff)
-            #Stitches MP4_1,MP4_2 and MP4_D side by side
-            S=np.concatenate((S,MP4_D),axis=2)
+                MP4_D=np.array(farme_diff)
+                if difflabel!="":
+                    imD=Image.fromarray(MP4_D)
+                    draw=ImageDraw.Draw(imD)
+                    draw.text((10,10),difflabel,fill=(255,255,255))
+                    MP4_D=np.array(imD)
+            #Saves temporary mp4 with mp4 diff
+                writer.append_data(MP4_D)
+        #Concatenates MP4 original files and diff file in a single row
+        ConcatNxM(files,dirs=dirs,labels=labels,N=1,M=3,outfile=outfile,outdir=outdir)
 
-        if labels:
-            #Adds labels to frames
-            width=np.shape(MP4_1[0])[1]
-            for i in range(frames):
-                imS=Image.fromarray(S[i])
-                draw=ImageDraw.Draw(imS)
-                draw.text((10,10),label1,fill=(0,0,0))
-                draw.text((10+width,10),label2,fill=(0,0,0))
-                draw.text((10+2*width,10),difflabel,fill=(255,255,255))
-                S[i]=np.array(imS)
-
-        #Saves mp4 with stitched frames
-        with iio.get_writer(outfile+".mp4",format="mp4", mode='I',) as writer:
-            for frame in S:
-                writer.append_data(frame)
+        # Remove diff mp4 file
+        if cleandiff:
+            print("Deleting diff mp4 file...")
+            os.remove(difffile)
+            print("All done.")
 
 def ConcatNxM(files,dirs=["./","./"],labels=["",""],N=1,M=1,outfile="Concat_NxM",outdir="./"):
     ##Input check

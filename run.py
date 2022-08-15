@@ -32,7 +32,7 @@ wvarlist=[sv.SeaLevelPressure,
 # ## Comparing mp4 files
 # d1="Results/Control/"
 # d2="Results/Gravity_Waves_fix/"
-# diff=1
+# cleandiff=1
 # l1=d1.replace('Results','').replace('/','')
 # l2=d2.replace('Results','').replace('/','')
 # dout="vsMP4_"+l1+"-"+l2+"/"
@@ -42,9 +42,9 @@ wvarlist=[sv.SeaLevelPressure,
 # 			label1=l1,
 # 			label2=l2,
 # 			difflabel="| "+l2+" - "+l1+" |",
-# 			diff=1,
 # 			outfile=wvar.outfile,
-# 			outdir=dout)
+# 			outdir=dout,
+# 			cleandiff=cleandiff)
 
 ## Comparing WRF files
 d1="/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/"
