@@ -57,7 +57,7 @@ def ConcatNDiff(file1,file2,dir1="./",dir2="./",label1="",label2="",difflabel=""
             #Saves temporary mp4 with mp4 diff
                 writer.append_data(MP4_D)
         #Concatenates MP4 original files and diff file in a single row
-        ConcatNxM(files,dirs=dirs,labels=labels,N=1,M=3,outfile=outfile,outdir=outdir)
+        ConcatNxM(files,dirs=dirs,labels=labels[0:-1],N=1,M=3,outfile=outfile,outdir=outdir)
 
         # Remove diff mp4 file
         if cleandiff:
@@ -72,8 +72,8 @@ def ConcatNxM(files,dirs=["./","./"],labels=["",""],N=1,M=1,outfile="Concat_NxM"
         print("Number of files is greater than NxM space. Changing M to fit files.")
         M=int((nfiles+N-1)/N)
     if len(dirs)<nfiles:
-        print("Number of directories is less than number of files. Searching for files in cwd.")
-        dirs=dirs+["./"]*(nfiles-len(dirs))
+        print("Number of directories is less than number of files. Searching for files in",dirs[0])
+        dirs=dirs+[dirs[0]]*(nfiles-len(dirs))
     if len(labels)<nfiles:
         labels=labels+[""]*(nfiles-len(labels))
 
