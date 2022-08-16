@@ -1,5 +1,8 @@
+from matplotlib.cm import get_cmap
+from matplotlib.colors import ListedColormap
+
 class svariable:
-	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0,colormap="jet"):
+	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0,colormap=get_cmap("jet"),scale="linear",numloglevs=10,logbase=10,bounds=None):
 		self.dim = dim
 		self.wrfname = wrfname
 		self.ptitle = ptitle
@@ -11,6 +14,10 @@ class svariable:
 		self.windbarbs = windbarbs
 		self.isdif = isdif
 		self.colormap = colormap
+		self.scale=scale
+		self.numloglevs=numloglevs
+		self.logbase=logbase
+		self.bounds=bounds
 
 # 2D + Field
 SeaLevelPressure = svariable(wrfname="slp",
@@ -19,45 +26,57 @@ SeaLevelPressure = svariable(wrfname="slp",
 						   range_min=990,
 						   range_max=1030,
 						   windbarbs=1,
-			   			   colormap="Purples")
+			   			   colormap=get_cmap("Purples"))
 AirTemp2m = svariable(wrfname="T2",
 					ptitle="Temperature at 2m [K]",
 					outfile="AirTemp2m",
 					range_min=270,
 					range_max=330,
-			   		colormap="Reds")
+			   		colormap=get_cmap("Reds"))
 DewpointTemp2m = svariable(wrfname="td2",
 						 ptitle="Dewpoint Temperature at 2m [C]",
 						 outfile="DewpointTemp2m",
 						 range_min=-21,
 						 range_max=35,
-			   			 colormap="BuPu")
+			   			 colormap=get_cmap("BuPu"))
 RelativeHumidity2m = svariable(wrfname="rh2",
 							 ptitle="Relative Humidity at 2m [%]",
 							 outfile="RelHum2m",
 							 range_min=0,
 							 range_max=100,
-			   				 colormap="YlGnBu")
+			   				 colormap=get_cmap("YlGnBu"))
 CAPE = svariable(wrfname="cape_2d",
 			   ptitle="Max CAPE (Convective Available Potential Energy) [J/kg]",
 			   outfile="CAPE",
 			   range_min=0,
 			   range_max=6000,
-			   colormap="BuGn")
+			   colormap=get_cmap("BuGn"))
 CIN = svariable(wrfname="cape_2d",
 			   ptitle="Max CIN (Convective Inhibition) [J/kg]",
 			   outfile="CIN",
 			   range_min=0,
 			   range_max=1600,
-			   colormap="BuGn")
+			   colormap=get_cmap("BuGn"))
 Rain = svariable(wrfname="RAINC",
 			   ptitle="Total Hourly Precipitation [mm]",
 			   outfile="Rain",
-			   range_min=0,
-			   range_max=12,
 			   windbarbs=1,
 			   isdif=1,
-			   colormap="Blues")
+			#    scale="linear",
+			#    colormap=get_cmap("Blues"),
+			#    range_min=0,
+			#    range_max=12)
+			#    scale="log",
+			#    colormap = ListedColormap(["white","blue","blue","darkgreen","gold","darkorange","red","magenta","cyan"]),
+			#    numloglevs=10,
+			#    logbase=2,
+			#    range_min=-3,
+			#    range_max=6)
+			   scale="bounds",
+			   colormap = ListedColormap(["white","blue","blue","darkgreen","gold","darkorange","red","magenta","cyan"]),
+			   bounds=[0,0.01,.5,1,2,4,8,16,32,64],
+			   range_min=0,
+			   range_max=64)
 
 # 3D + Field
 AirTemp850 = svariable(dim=4,
@@ -67,7 +86,7 @@ AirTemp850 = svariable(dim=4,
 					 range_min=270,range_max=314,
 					 interpvar="pressure",
 					 interpvalue=850,
-			   		 colormap="Reds")
+			   		 colormap=get_cmap("Reds"))
 DewpointTemp850 = svariable(dim=4,
 						  wrfname="td",
 						  ptitle="Dewpoint Temperature at 850hPa [C]",
@@ -76,7 +95,7 @@ DewpointTemp850 = svariable(dim=4,
 						  range_max=25,
 						  interpvar="pressure",
 						  interpvalue=850,
-			   			  colormap="BuPu")
+			   			  colormap=get_cmap("BuPu"))
 GeoPotHeight500 = svariable(dim=4,
 						  ptitle="Geopotential Height at 500hPa [m]",
 						  outfile="GeoPotHeight500",
@@ -85,7 +104,7 @@ GeoPotHeight500 = svariable(dim=4,
 						  windbarbs=1,
 						  interpvar="pressure",
 						  interpvalue=500,
-			   			colormap="Greens")
+			   			  colormap=get_cmap("Greens"))
 StaticStability700500 = svariable(dim=4,
 								wrfname="temp",
 								ptitle="Static stability at 700-500 hPa [C]",
@@ -94,7 +113,7 @@ StaticStability700500 = svariable(dim=4,
 								range_max=30,
 								interpvar="pressure",
 								interpvalue=700,
-			   			 		colormap="Oranges")
+			   			 		colormap=get_cmap("Oranges"))
 StaticStability850700 = svariable(dim=4,
 								wrfname="temp",
 								ptitle="Static stability at 850-700 hPa [C]",
@@ -103,4 +122,4 @@ StaticStability850700 = svariable(dim=4,
 								range_max=23,
 								interpvar="pressure",
 								interpvalue=700,
-			   			 		colormap="Oranges")
+			   			 		colormap=get_cmap("Oranges"))

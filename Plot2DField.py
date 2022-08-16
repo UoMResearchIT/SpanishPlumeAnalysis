@@ -1,6 +1,6 @@
 from netCDF4 import Dataset
 import matplotlib.pyplot as plt
-from matplotlib.cm import get_cmap
+from matplotlib.colors import (Normalize, LogNorm, BoundaryNorm)
 import numpy as np
 import cartopy.crs as crs
 import cartopy.feature as cfeature
@@ -50,14 +50,27 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,sm
 	ax.coastlines('50m', linewidth=0.8)
 
 	# Filled contours
-	levs = np.linspace(svariable.range_min, svariable.range_max, 20)
-	plt.contourf(x, y, to_np(smooth_var), levels=levs,
+	z = to_np(smooth_var)
+	match svariable.scale:
+		case "linear":
+			levs = np.linspace(svariable.range_min, svariable.range_max, 10)
+			norm = Normalize(svariable.range_min,svariable.range_max)
+			ticklevs = np.linspace(svariable.range_min, svariable.range_max, 5)
+		case "log":
+			levs = np.logspace(svariable.range_min, svariable.range_max, num=svariable.numloglevs, base=svariable.logbase)
+			norm = LogNorm(svariable.logbase**svariable.range_min,svariable.logbase**svariable.range_max)
+			z = np.ma.masked_where(z <= 0, z)
+			ticklevs = np.logspace(svariable.range_min, svariable.range_max, num=svariable.numloglevs, base=svariable.logbase)
+		case "bounds":
+			levs = svariable.bounds
+			norm = BoundaryNorm(levs,len(levs))
+			ticklevs = levs
+	plt.contourf(x, y, z,
+				 levels=levs, norm=norm,
 				 transform=crs.PlateCarree(),
-				 cmap=get_cmap(svariable.colormap),alpha=0.8,
+				 cmap=svariable.colormap,alpha=0.8,
 				 extend="both")
-	
 	# Add a color bar
-	ticklevs = np.linspace(svariable.range_min, svariable.range_max, 5)
 	plt.colorbar(ax=ax, extendfrac=[0.01,0.01],ticks=ticklevs)
 	plt.annotate("v", xy=(1.11, ((thismin-svariable.range_min)/(svariable.range_max-svariable.range_min))+.00),  xycoords='axes fraction', fontsize=10)
 	plt.annotate("ʌ", xy=(1.11, ((thismax-svariable.range_min)/(svariable.range_max-svariable.range_min))-.015),  xycoords='axes fraction', fontsize=10)
