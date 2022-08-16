@@ -11,17 +11,28 @@ from GetSensVar import *
 #python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",270,330,"T2","Temperature at 2m [K]","T2",1)'
 #python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",-20,35,"td2","Dewpoint Temperature at 2m [C?]","td2",1)'
 
-def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
-    
-	#Input check
-
+def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,cleanpng=1):
+	##Input check
+    #Directories
+    if dir_path[-1]!="/":dir_path=dir_path+"/"
+    if outdir[-1]!="/":outdir=outdir+"/"
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
 	#Need to implement input check here!
+    
+    #
+    print("Generating diagnostic for",svariable.outfile)
+    print("Source wrfout files:",dir_path)
+    print("Using:\n\twindbarbs=",windbarbs,
+                "\n\tsmooth=",smooth,
+                "\n\tcleanpng=",cleanpng)
+    print("Output will be saved as ",outdir+outfile,"\n")
     
     # Initialization
     WRFfiles=[]
     PNGfiles=[]
     vpv=None
-    tmp_dir="__"+outfile
+    tmp_dir=outdir+"__"+outfile
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
     tmp_dir=tmp_dir+"/"
@@ -46,7 +57,7 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
             PNGfiles.append(of)
             print("Processing:",ti+1,"/",timerange, end = '\r')
             var,u,v,vpv=GetSensVar(ncfile,svariable,windbarbs,ti,vpv)
-            Plot2DField(var,svariable,windbarbs,of,u,v)
+            Plot2DField(var,svariable,windbarbs,of,u,v,smooth)
         print("Processed successfully.")
 
     # Build GIF
@@ -56,7 +67,7 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",cleanpng=1):
     #        writer.append_data(image)
     # Build mp4
     print("Building MP4 from png files...")
-    with imageio.get_writer(outfile+".mp4", mode='I') as writer:
+    with imageio.get_writer(outdir+outfile+".mp4", mode='I') as writer:
         for filename in PNGfiles:
             image = imageio.imread(filename)
             writer.append_data(image)

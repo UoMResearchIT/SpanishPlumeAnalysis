@@ -1,0 +1,12 @@
+--task=mp4compare   --var=SeaLevelPressure        --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=AirTemp2m               --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=DewpointTemp2m          --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=StaticStability700500   --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=RelativeHumidity2m      --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=CAPE                    --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=CIN                     --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=Rain                    --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=AirTemp850              --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=DewpointTemp850         --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=GeoPotHeight500         --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/
+--task=mp4compare   --var=StaticStability850700   --dir1=../Results/Control/    --label1=Control    --dir2=../Results/Half_hgt/     --label2=Half_hgt   --outdir=../Results/CSF/vsMP4_Control-Half_hgt/

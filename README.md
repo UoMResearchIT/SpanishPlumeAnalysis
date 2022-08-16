@@ -7,6 +7,27 @@ It consist on a simple call to **Animate**, with all the sensible variables for 
 
 These should simply be put in ***wvarlist***, and the directory path to your wrfout files should be set in ***dir_path***.
 
+## csf
+This should in time replace the "Run" script, as it parses the arguments from the command line, and is able to do everything from a single line of code.
+The main arguments to use include:
+
+**task**, which can be *diagnostic*, *wrfcompare*, *mp4diff* or *mp4stitch*.
+**var**, which can be any of the predefined **SensibleVariables**.
+**dirs**, which is the directory (or directories) of the source files.
+**files**, which is the list of names of files, when being compared.
+**labels**, which is the list of labels added when files are being compared or stitched.
+**outdir**, which is the directory where outputs will be saved.
+
+The following are sample calls for this function:
+
+*python csf.py --task=diagnostic --var=Rain --dir_path=./MyData/ --outdir=./*
+
+*python csf.py --task=wrfcompare --var=SeaLevelPressure --dirs="Data1,Data2" --outdir=./ --difflabel=Data2-Data1*
+
+*python csf.py --task=mp4diff --var=DewpointTemp850 --dirs="./MP4_1,./MP4_2/" --labels="MP4_1,MP4_2,MP4Diff"*
+
+*python csf.py --task=mp4stitch --dirs="MyVideos" --files="f1,f2,f3,f4" --N=2 --M=2*
+
 ## Animate
 This is the core of the diagnostic generation.
 In this function all your wrfout files are loaded, the variables are extracted using **GetSensVar**, plotted using **Plot2DField**, and combined into an mp4.
@@ -42,6 +63,23 @@ This includes loading the wind velocity components when ***windbarbs*** is set t
 During this process, it also takes care of some variable computation, which is not universally implemented in *getvar*.
 
 The outputs are the processed variable ***var***, the wind velocity components ***u*** and ***v*** (if windbarbs=0 these will be None), and the raw variable values ***varv*** (for use in *isdif* **svariable** computation).
+
+## ConcatNDiff
+This function is a very quick way to compare mp4 files. 
+
+It  gets the absolute value pixel to pixel difference of each frame, and concatenates it to the two original videos side by side.
+
+## ConcatNxM
+This function simply stitches videos on a grid with ***N*** rows and ***M*** columns.
+
+## WRFSmoothDiff
+This is a slightly more advanced way of comparing two sets of data.
+
+It gets the difference directly from the wrfout files, and then animates the result using a divergent colourscale.
+If the flag ***smooth*** is set to 1, it smooths the data before making the diff, so that slight positional changes are not as strongly reflected in the output.
+
+
+
 
 # SpanishPlumeAnalysis
 Visualization and comparison of WRF data on the Spanish Plume, modifying the geographical terrain and or heat/moisture flux over the spanish peninsula.
