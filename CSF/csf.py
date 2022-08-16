@@ -19,7 +19,20 @@ if __name__ == '__main__':
                         type=str,
                         default="DewpointTemp2m",
                         help="Sensible variable to work with.",
-                        choices=["SeaLevelPressure","AirTemp2m","DewpointTemp2m","RelativeHumidity2m","CAPE","CIN","Rain","AirTemp850","DewpointTemp850","GeoPotHeight500","StaticStability700500","StaticStability850700"])
+                        choices=["SeaLevelPressure",
+                                 "AirTemp2m",
+                                 "DewpointTemp2m",
+                                 "RelativeHumidity2m",
+                                 "CAPE",
+                                 "CIN",
+                                 "Rain",
+                                 "SimRadarReflectivityMax",
+                                 "AirTemp850",
+                                 "DewpointTemp850",
+                                 "GeoPotHeight500",
+                                 "StaticStability700500",
+                                 "StaticStability850700",
+                                 "SimRadarReflectivity1km"])
     parser.add_argument('--windbarbs',
                         type=bool,
                         default=None,
@@ -71,32 +84,7 @@ if __name__ == '__main__':
    
     args = parser.parse_args()
 
-
-match args.var:
-    case "SeaLevelPressure":
-        wvar=sv.SeaLevelPressure
-    case "AirTemp2m":
-        wvar=sv.AirTemp2m
-    case "DewpointTemp2m":
-        wvar=sv.DewpointTemp2m
-    case "RelativeHumidity2m":
-        wvar=sv.RelativeHumidity2m
-    case "CAPE":
-        wvar=sv.CAPE
-    case "CIN":
-        wvar=sv.CIN
-    case "Rain":
-        wvar=sv.Rain
-    case "AirTemp850":
-        wvar=sv.AirTemp850
-    case "DewpointTemp850":
-        wvar=sv.DewpointTemp850
-    case "GeoPotHeight500":
-        wvar=sv.GeoPotHeight500
-    case "StaticStability700500":
-        wvar=sv.StaticStability700500
-    case "StaticStability850700":
-        wvar=sv.StaticStability850700
+wvar=eval("sv."+args.var)
 
 if args.windbarbs is None:
     windbarbs=wvar.windbarbs
