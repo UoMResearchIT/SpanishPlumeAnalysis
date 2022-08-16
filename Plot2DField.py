@@ -64,7 +64,7 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,sm
 		case "bounds":
 			levs = svariable.bounds
 			norm = BoundaryNorm(levs,len(levs))
-			ticklevs = levs
+			ticklevs = levs[1:-1]
 	plt.contourf(x, y, z,
 				 levels=levs, norm=norm,
 				 transform=crs.PlateCarree(),
