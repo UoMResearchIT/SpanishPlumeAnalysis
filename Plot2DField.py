@@ -83,8 +83,10 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,sm
 		transform=crs.PlateCarree(), length=4,linewidth=0.3)
 
 	# Set the map bounds
-	ax.set_xlim(cartopy_xlim(smooth_var))
-	ax.set_ylim(cartopy_ylim(smooth_var))
+	# ax.set_xlim(cartopy_xlim(smooth_var))
+	# ax.set_ylim(cartopy_ylim(smooth_var))
+	ax.set_xlim([-3542499.4953854363, 942500.950843083])
+	ax.set_ylim([-732499.172137629, 3642500.0773183405])
 
 	# Add the gridlines
 	ax.gridlines(color="black", linestyle="dotted")
