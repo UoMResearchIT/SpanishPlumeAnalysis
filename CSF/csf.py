@@ -32,6 +32,7 @@ if __name__ == '__main__':
                                  "SimRadarReflectivityMax",
                                  "AirTemp850",
                                  "DewpointTemp850",
+                                 "RelativeHumidity700",
                                  "GeoPotHeight500",
                                  "StaticStability700500",
                                  "StaticStability850700",
