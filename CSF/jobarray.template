@@ -2,6 +2,8 @@
 #$ -cwd                           # Job runs in current directory
 #$ -V                             # Job inherits environment
 #$ -j y                           # Joins error and output files
+$z1
+$z2
 
 conda activate wrf-py-env         # Activates conda environment
 export LIBGL_ALWAYS_INDIRECT=1    # Makes susre graphics are exported correctly

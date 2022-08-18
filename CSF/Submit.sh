@@ -14,6 +14,17 @@ fi
 # Gets inputs
 inputsfile=$1				            # Saves input 1 (inputs file)
 folder=$2				                # Saves input 2 (folder in which to run the program)
+zrek=$3                                 # Saves input 3 (option to submit in zrek)
+
+if [ ! -z $zrek ]; then                 # Checks if option to submit at zrek is not empty
+    if [ $zrek == "zrek" ]; then            # Checks if it is the correct flag
+        echo "Submit to zrek atmos-c.q"
+        z1="#$ -S /bin/bash"                    # Saves additional jobscript lines needed for zrek
+        z2="#$ -q atmos-c.q"
+    else
+        echo "Third argument is not zrek. I will submit to csf normally."
+    fi
+fi
 
 # Address to jobarray.template and csf.py
 jatemplate="/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/CSF/jobarray.template"
@@ -45,9 +56,9 @@ chmod +x deduplicated_dirs.sh                                       # Makes fold
 rm dirs.sh deduplicated_dirs.sh                                     # Removes temp files
 
 # Generates jobarray file
-jafile=$folder.jobarray                                             # Defines jobarray filename
-export counter inputsfile program                                   # Exports variables to environment
-envsubst '$counter $inputsfile $program' < $jatemplate > $jafile    # Substites environment variables into jatemplate and saves as jafile
+jafile=$folder.jobarray                                                     # Defines jobarray filename
+export counter inputsfile program z1 z2                                     # Exports variables to environment
+envsubst '$z1 $z2 $counter $inputsfile $program' < $jatemplate > $jafile    # Substites environment variables into jatemplate and saves as jafile
 
 wait
 # Submits job array and saves the confirmation of submission string
