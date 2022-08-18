@@ -28,6 +28,25 @@ The following are sample calls for this function:
 
 *python csf.py --task=mp4stitch --dirs="MyVideos" --files="f1,f2,f3,f4" --N=2 --M=2*
 
+### Diagnostic computation time
+|    ***svariable***    |   min   |
+| --------------------- | ------- |
+| DewpointTemp2m        |   19    |
+| AirTemp2m             |   20    |
+| DewpointTemp850       |   26    |
+| AirTemp850            |   28    |
+| StaticStability700500 |   28    |
+| StaticStability850700 |   28    |
+| GeoPotHeight500       |   30    |
+| SeaLevelPressure      |   30    |
+| Rain                  |   44    |
+| RelHum2m              |   44    |
+| RelHum700             |   44    |
+| CIN                   |   45    |
+| SimRadarRefl1km       |   76    |
+| SimRadarReflMax       |   98    |
+| CAPE                  |   99    |
+
 ## Animate
 This is the core of the diagnostic generation.
 In this function all your wrfout files are loaded, the variables are extracted using **GetSensVar**, plotted using **Plot2DField**, and combined into an mp4.
