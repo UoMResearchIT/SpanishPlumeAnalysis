@@ -12,8 +12,8 @@ if [ $# -lt 2 ]; then
 fi
 
 # Gets inputs
-export inputsfile=$1				    # Saves input 1 (inputs file)
-export folder=$2				        # Saves input 2 (folder in which to run the program)
+inputsfile=$1				            # Saves input 1 (inputs file)
+folder=$2				                # Saves input 2 (folder in which to run the program)
 
 # Address to jobarray.template and csf.py
 jatemplate="/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/CSF/jobarray.template"
@@ -27,19 +27,27 @@ rm -f $folder/*.jobarray		        # Makes sure there is no other jobarray files 
 #Prepares inputs file
 cp $inputsfile $folder                  # Copies inputs file to destination folder
 cd $folder                              # Moves to results folder
+folder=$(basename ${folder})            # Strips directory from folder
+inputsfile=$(basename $inputsfile)      # Strips directory from inputsfile
+mv $inputsfile $folder.inputs		    # Renames inputs file to match folder name
+inputsfile=$folder.inputs               # Updates variable to match file name
 wait				                    # Makes sure it has finished doing previous instructions
 sed -i '/^[[:space:]]*$/d' $inputsfile  # Deletes empty lines
-wait
 sed -i '$a\' $inputsfile                # Makes sure there's an empty line at the end
 wait
 counter=$(wc -l < $inputsfile)          # Counts number of input lines
-wait
-mv $inputsfile $folder.inputs		    # Renames inputs file to match folder name
-inputsfile=$folder.inputs
 
-# Generates jobarray file by substituting environment variables into jatemplate and saving as jafile
-jafile=$folder.jobarray
-envsubst '$counter $inputsfile $program' < $jatemplate > $jafile
+# Creates output folders
+awk -F '--outdir=' '{print "mkdir -p " $2}' $inputsfile > dirs.sh   # Gets all the paths from inputs file
+awk '!visited[$0]++' dirs.sh > deduplicated_dirs.sh                 # Removes duplicates
+chmod +x deduplicated_dirs.sh                                       # Makes folder creation file executable
+./deduplicated_dirs.sh                                              # Executes the file, creating folders
+rm dirs.sh deduplicated_dirs.sh                                     # Removes temp files
+
+# Generates jobarray file
+jafile=$folder.jobarray                                             # Defines jobarray filename
+export counter inputsfile program                                   # Exports variables to environment
+envsubst '$counter $inputsfile $program' < $jatemplate > $jafile    # Substites environment variables into jatemplate and saves as jafile
 
 wait
 # Submits job array and saves the confirmation of submission string
@@ -50,3 +58,8 @@ JOBID2=$(echo $JOBID1 | cut -d' ' -f 3 )	# Cuts JOBID1 with delimiter ' ', and s
 wait
 JOBID3=$(echo $JOBID2 | cut -d'.' -f 1 )	# Cuts JOBID2 with delimiter '.', and saves first element in JOBID3 (e.g. "1392990")
 wait
+
+# Submits a job called zip_$folder which only runs when the jobarray finishes. The job zips all the .o files and sends an e-mail when finished.
+qsub -b y -j y -hold_jid $JOBID3 -N zip_$folder -cwd -l short -m e -M francisco.herreriasazcue@manchester.ac.uk zip $folder.o.zip $folder.inputs $folder.jobarray $folder.jobarray.o$JOBID3.*
+# Submits a job called delo_$folder which only runs when the zip_* finishes. The job deletes all the .o files.
+qsub -b y -j y -hold_jid zip_$folder -N delo_$folder -cwd -l short rm $folder.inputs $folder.jobarray $folder.jobarray.o$JOBID3.* zip_$folder* delo_$folder* 
