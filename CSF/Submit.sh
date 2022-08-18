@@ -16,11 +16,13 @@ inputsfile=$1				            # Saves input 1 (inputs file)
 folder=$2				                # Saves input 2 (folder in which to run the program)
 zrek=$3                                 # Saves input 3 (option to submit in zrek)
 
+short="-l short"                        # Short job option used for cleanup jobs in csf
 if [ ! -z $zrek ]; then                 # Checks if option to submit at zrek is not empty
     if [ $zrek == "zrek" ]; then            # Checks if it is the correct flag
         echo "Submit to zrek atmos-c.q"
         z1="#$ -S /bin/bash"                    # Saves additional jobscript lines needed for zrek
         z2="#$ -q atmos-c.q"
+        short=""                                # Removes short job option, not available in zrek
     else
         echo "Third argument is not zrek. I will submit to csf normally."
     fi
@@ -71,6 +73,6 @@ JOBID3=$(echo $JOBID2 | cut -d'.' -f 1 )	# Cuts JOBID2 with delimiter '.', and s
 wait
 
 # Submits a job called zip_$folder which only runs when the jobarray finishes. The job zips all the .o files and sends an e-mail when finished.
-qsub -b y -j y -hold_jid $JOBID3 -N zip_$folder -cwd -l short -m e -M francisco.herreriasazcue@manchester.ac.uk zip $folder.o.zip $folder.inputs $folder.jobarray $folder.jobarray.o$JOBID3.*
+qsub -b y -j y -hold_jid $JOBID3 -N zip_$folder -cwd $short -m e -M francisco.herreriasazcue@manchester.ac.uk zip $folder.o.zip $folder.inputs $folder.jobarray $folder.jobarray.o$JOBID3.*
 # Submits a job called delo_$folder which only runs when the zip_* finishes. The job deletes all the .o files.
-qsub -b y -j y -hold_jid zip_$folder -N delo_$folder -cwd -l short rm $folder.inputs $folder.jobarray $folder.jobarray.o$JOBID3.* zip_$folder* delo_$folder* 
+qsub -b y -j y -hold_jid zip_$folder -N delo_$folder -cwd $short rm $folder.inputs $folder.jobarray $folder.jobarray.o$JOBID3.* zip_$folder* delo_$folder* 
