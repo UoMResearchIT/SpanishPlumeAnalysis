@@ -11,7 +11,7 @@ from GetSensVar import *
 #python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",270,330,"T2","Temperature at 2m [K]","T2",1)'
 #python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",-20,35,"td2","Dewpoint Temperature at 2m [C?]","td2",1)'
 
-def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,cleanpng=1):
+def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,domain="zoom",cleanpng=1):
 	##Input check
     #Directories
     if dir_path[-1]!="/":dir_path=dir_path+"/"
@@ -57,7 +57,7 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,
             PNGfiles.append(of)
             print("Processing:",ti+1,"/",timerange, end = '\r')
             var,u,v,vpv=GetSensVar(ncfile,svariable,windbarbs,ti,vpv)
-            Plot2DField(var,svariable,windbarbs,of,u,v,smooth)
+            Plot2DField(var,svariable,windbarbs,of,u,v,smooth,domain=domain)
         print("Processed successfully.")
 
     # Build GIF

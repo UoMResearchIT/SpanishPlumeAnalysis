@@ -6,7 +6,7 @@ from Plot2DField import *
 import imageio
 from PIL import Image, ImageDraw
 
-def WRFSmoothDiff(dir1,dir2,svariable,windbarbs=0,smooth=1,difflabel="",colormap="seismic",outfile="MyMP4",outdir="./",cleanpng=1):
+def WRFSmoothDiff(dir1,dir2,svariable,windbarbs=0,smooth=1,difflabel="",colormap="seismic",outfile="MyMP4",outdir="./",domain="zoom",cleanpng=1):
 	#Input check
     #Directories
     if dir1[-1]!="/":dir1=dir1+"/"
@@ -102,7 +102,7 @@ def WRFSmoothDiff(dir1,dir2,svariable,windbarbs=0,smooth=1,difflabel="",colormap
                     u=u2-u1
                     v=v2-v1
                 #Plotting
-                Plot2DField(smooth_var,svariable,windbarbs,of,u,v,smooth=0)
+                Plot2DField(smooth_var,svariable,windbarbs,of,u,v,smooth=0,domain=domain)
             print("Processed",timerange,"/",timerange,"successfully.")
 
     if difflabel!="":

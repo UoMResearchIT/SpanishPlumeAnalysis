@@ -49,6 +49,11 @@ if __name__ == '__main__':
                         type=bool,
                         default=1,
                         help="Set to 0 to conserve png or mp4 temp files generated during the task")
+    parser.add_argument('--domain',
+                        type=str,
+                        default="zoom",
+                        choices=["zoom","full"],
+                        help="Area to plot, can be the full domain, which includes most of Africa and east Europe, or the zoomed domain, which focuses on North Africa, West Europe and the UK.")
     parser.add_argument('--N',
                         type=int,
                         default=1,
@@ -121,6 +126,7 @@ match args.task:
                 outfile=wvar.outfile,
                 outdir=args.outdir,
                 smooth=args.smooth,
+                domain=args.domain,
                 cleanpng=args.clean)
     case "mp4diff":
         if len(dirs)<2:
@@ -171,4 +177,5 @@ match args.task:
                       outfile=wvar.outfile,
                       outdir=args.outdir,
                       smooth=args.smooth,
+                      domain=args.domain,
                       cleanpng=args.clean)
