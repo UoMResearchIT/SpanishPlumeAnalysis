@@ -10,7 +10,7 @@ import SensibleVariables as sv
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
 
-def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,smooth=1,domain="zoom"):
+def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,smooth=1,domain="zoom",nlevs=10):
 	#Input check
 
 	#Need to implement input check here!
@@ -53,7 +53,7 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,sm
 	z = to_np(smooth_var)
 	match svariable.scale:
 		case "linear":
-			levs = np.linspace(svariable.range_min, svariable.range_max, 10)
+			levs = np.linspace(svariable.range_min, svariable.range_max, nlevs)
 			norm = Normalize(svariable.range_min,svariable.range_max)
 			ticklevs = np.linspace(svariable.range_min, svariable.range_max, 5)
 		case "log":

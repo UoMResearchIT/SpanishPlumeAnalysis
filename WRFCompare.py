@@ -26,7 +26,15 @@ def WRFSmoothDiff(dir1,dir2,svariable,windbarbs=0,smooth=1,difflabel="",colormap
     print("Output will be saved as ",outdir+outfile,"\n")
 
     #Modifies plotting range and colormap
-    svariable.range_max=(svariable.range_max-svariable.range_min)/2
+    match svariable.scale:
+        case "linear":
+            svariable.range_max=(svariable.range_max-svariable.range_min)/2
+        case "log":
+            svariable.range_max=svariable.logbase**((svariable.range_max+svariable.range_min)*2/3)
+            svariable.scale="linear"
+        case "bounds":
+            svariable.range_max=svariable.bounds[len(svariable.bounds)//2]
+            svariable.scale="linear"
     svariable.range_min=-1*svariable.range_max
     if colormap is None: svariable.colormap="seismic"
     else: svariable.colormap=colormap
@@ -102,7 +110,7 @@ def WRFSmoothDiff(dir1,dir2,svariable,windbarbs=0,smooth=1,difflabel="",colormap
                     u=u2-u1
                     v=v2-v1
                 #Plotting
-                Plot2DField(smooth_var,svariable,windbarbs,of,u,v,smooth=0,domain=domain)
+                Plot2DField(smooth_var,svariable,windbarbs,of,u,v,smooth=0,domain=domain,nlevs=20)
             print("Processed",timerange,"/",timerange,"successfully.")
 
     if difflabel!="":
