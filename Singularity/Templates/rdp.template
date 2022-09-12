@@ -1,0 +1,4 @@
+&userin
+ptimes=$t_0,-$t_f,$dt,ptimeunits='h',tacc=90.,
+iexpandedout=1
+/
