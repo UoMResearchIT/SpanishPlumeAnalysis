@@ -90,13 +90,15 @@ wait
 npoints=$(wc -l < $inputsfile)          # Counts number of input lines
 
 traji=0
-# Generates trajectory input files
-while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color eol; do    #Reads inputs file line by line
+Trajectory_Spec_List=""
+# Generates trajectory input files and trajectory plot file
+while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
     traji=$((traji+1))
-    echo "Traj$traji: col=$color, z: $traj_z"
+    Trajectory_Spec_List=$Trajectory_Spec_List"feld=arrow; ptyp=ht; tjfl=BTrajectories/traj$traji.traj; vcor=s;>"$'\n'
+    Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; tjst=$traj_t_0; tjen=$traj_t_f"$'\n'
     # Copies traj template
-    export ncarg_type traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color
-    envsubst '$ncarg_type $traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor $color' < $traj_tpl > $folder/BTrajectories/traj$traji.in
+    export ncarg_type traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor
+    envsubst '$ncarg_type $traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor' < $traj_tpl > $folder/BTrajectories/traj$traji.in
 done <"$inputsfile"
 # Checks that all lines were read
 if [ $traji -ne $npoints ]; then
@@ -123,14 +125,34 @@ for (( traji=1; traji<=$npoints; traji++ )); do
             ripdocker_latest.sif  \
             /bin/bash run_traj_i.sh
 done
-# Generates plot
 
+# Generates plot
+# Copies traj_plot template
+export ncarg_type traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color Trajectory_Spec_List
+envsubst '$ncarg_type $traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor $color $Trajectory_Spec_List' < $tplot_tpl > $folder/traj_plot.in
+
+# Copies run template
+rip_program="rip -f"
+rip_program_args="$folder/traj_plot.in"
+export rip_program rip_program_args folder
+envsubst '$rip_program $rip_program_args $folder' < $run_tpl > $folder/run_tplot.sh
+
+# Runs ripdp inside singularity container
+singularity \
+    exec \
+        --contain \
+        --cleanenv \
+        --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$folder/ \
+        --bind $data/:/$folder/WRFData/ \
+        --pwd /$folder \
+        ripdocker_latest.sif  \
+        /bin/bash run_tplot.sh
 
 # singularity \
 #     shell \
 #         --contain \
 #         --cleanenv \
-#         --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/Test/:/Test/ \
-#         --bind /mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/:/Test/WRFData/ \
-#         --pwd /Test \
+#         --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$folder/ \
+#         --bind $data/:/$folder/WRFData/ \
+#         --pwd /$folder \
 #         ripdocker_latest.sif
