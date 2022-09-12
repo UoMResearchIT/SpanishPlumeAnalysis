@@ -2,4 +2,4 @@
 
 source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable
 
-$rip_program RIPDP/rdp_$Name $rip_program_args
+$rip_program RIPDP/rdp_$folder $rip_program_args
