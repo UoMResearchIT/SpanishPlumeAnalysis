@@ -18,11 +18,12 @@ if [ $# -lt 2 ]; then
 fi
 
 # Gets inputs
-folder=$1				# Saves input 1 (folder to clean)
-data=$2                 # Saves input 2 (path to wrfout files)
-skip=$3                 # Saves input 3 (option to skip rip-dp preprocessing, trajectory computation, or plot generation)
-inputsfile="${4:-$folder.inputs}"   # Saves input 4, file with trajectory inputs
-interactive="${5:-0}"   # Saves input 5 (option to load interactive singularity container at the end)
+folder=$1				            # Saves input 1 (folder to clean)
+name=$(basename ${folder})          # Strips directory from folder
+data=$2                             # Saves input 2 (path to wrfout files)
+skip=$3                             # Saves input 3 (option to skip rip-dp preprocessing, trajectory computation, or plot generation)
+inputsfile="${4:-$name.inputs}"     # Saves input 4, file with trajectory inputs
+interactive="${5:-0}"               # Saves input 5 (option to load interactive singularity container at the end)
 
 rdp_tpl="Templates/rdp.template"
 run_tpl="Templates/run.template"
@@ -30,7 +31,7 @@ tplot_tpl="Templates/traj_plot.template"
 traj_tpl="Templates/traj.template"
 
 
-# Checks data folder exists
+# Checks data path exists
 if [ ! -d "$data" ]; then
     echo "ERROR: Cannot find $data."
     exit 1
@@ -50,7 +51,7 @@ mkdir -p $folder/BTrajectories
 mkdir -p $folder/WRFData
 
 t_0=0
-t_f=169
+t_f=168
 dt=1
 ncarg_type="pdf"
 
@@ -58,22 +59,22 @@ ncarg_type="pdf"
 if [[ "$skip" != *"noRDP"* ]]; then
     # Copies rdp template
     export t_0 t_f dt
-    envsubst '$t_0 $t_f $dt' < $rdp_tpl >$folder/RIPDP/rdp_$folder
+    envsubst '$t_0 $t_f $dt' < $rdp_tpl >$folder/RIPDP/rdp_$name
 
     # Copies run template
     rip_program="ripdp_wrfarw"
     rip_program_args="all WRFData/wrfout_d01_*"
-    export rip_program rip_program_args folder
-    envsubst '$rip_program $rip_program_args $folder' < $run_tpl > $folder/run_rdp.sh
+    export rip_program rip_program_args name
+    envsubst '$rip_program $rip_program_args $name' < $run_tpl > $folder/run_rdp.sh
 
     # Runs ripdp inside singularity container
     singularity \
         exec \
             --contain \
             --cleanenv \
-            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$folder/ \
-            --bind $data/:/$folder/WRFData/ \
-            --pwd /$folder \
+            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
+            --bind $data/:/$name/WRFData/ \
+            --pwd /$name \
             ripdocker_latest.sif  \
             /bin/bash run_rdp.sh
 else
@@ -119,17 +120,17 @@ if [[ "$skip" != *"noTraj"* ]]; then
         # Copies run template
         rip_program="rip -f"
         rip_program_args="BTrajectories/traj$traji.in"
-        export rip_program rip_program_args folder
-        envsubst '$rip_program $rip_program_args $folder' < $run_tpl > $folder/run_traj_i.sh
+        export rip_program rip_program_args name
+        envsubst '$rip_program $rip_program_args $name' < $run_tpl > $folder/run_traj_i.sh
 
         # Runs rip inside singularity container
         singularity \
             exec \
                 --contain \
                 --cleanenv \
-                --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$folder/ \
-                --bind $data/:/$folder/WRFData/ \
-                --pwd /$folder \
+                --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
+                --bind $data/:/$name/WRFData/ \
+                --pwd /$name \
                 ripdocker_latest.sif  \
                 /bin/bash run_traj_i.sh
     done <"$inputsfile"
@@ -153,30 +154,31 @@ if [[ "$skip" != *"noPlot"* ]]; then
     # Copies run template
     rip_program="rip -f"
     rip_program_args="traj_plot.in"
-    export rip_program rip_program_args folder
-    envsubst '$rip_program $rip_program_args $folder' < $run_tpl > $folder/run_tplot.sh
+    export rip_program rip_program_args name
+    envsubst '$rip_program $rip_program_args $name' < $run_tpl > $folder/run_tplot.sh
 
     # Runs rip inside singularity container
     singularity \
         exec \
             --contain \
             --cleanenv \
-            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$folder/ \
-            --bind $data/:/$folder/WRFData/ \
-            --pwd /$folder \
+            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
+            --bind $data/:/$name/WRFData/ \
+            --pwd /$name \
             ripdocker_latest.sif  \
             /bin/bash run_tplot.sh
 else
     echo "Skipping plot generation..."
 fi
 
+# Enter interactive mode in singularity container
 if [ $interactive -eq 1 ]; then
     singularity \
         shell \
             --contain \
             --cleanenv \
-            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$folder/ \
-            --bind $data/:/$folder/WRFData/ \
-            --pwd /$folder \
+            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
+            --bind $data/:/$name/WRFData/ \
+            --pwd /$name \
             ripdocker_latest.sif
 fi
