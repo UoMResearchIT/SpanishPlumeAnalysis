@@ -1,8 +1,0 @@
-#traj_t_0   traj_t_f    traj_dt     file_dt     traj_x  traj_y  traj_z  hydrometeor     color
-68          35          600         3600        195     410     10      0               dark.red
-68          35          600         3600        195     410     15      0               red
-68          35          600         3600        195     410     20      0               orange
-68          35          600         3600        195     410     25      0               gold
-68          35          600         3600        195     410     30      0               green
-68          35          600         3600        195     410     35      0               leaf.green
-68          35          600         3600        195     410     40      0               blue
