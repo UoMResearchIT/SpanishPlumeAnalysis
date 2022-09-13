@@ -3,12 +3,14 @@
 # Checks that there are enough inputs
 if [ $# -lt 2 ]; then
     echo "ERROR: Not enough arguments provided. I need at least the folder name to work on, and the data directory."
-    echo "Usage: ./singularity_rip.sh [Directory] [/path/to/WRF/data] [noRDP]"
+    echo "Usage: ./singularity_rip.sh [Directory] [/path/to/WRF/data] [noRDP] [inputsfile]"
     echo "For example: "
     echo "./singularity_rip.sh Control /mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/"
     echo "will create the folder ./Control, pre-process the data from run-zrek with rip-dp, and generate the backtrajectories from the Control.inputs file."
     echo "If you want to skip the pre-processing with rip-dp, make sure your folder already contains the preprocessed data, and trail the command with noRDP, e.g.:"
     echo "./singularity_rip.sh Control /mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/ noRDP"
+    echo "If you want to use an inputs file with a different name, specify it as the fourth argument, e.g.:"
+    echo "./singularity_rip.sh Control /mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/ RDP Other.inputs"
     echo ""
     exit 1
 fi
@@ -95,10 +97,13 @@ Trajectory_Spec_List=""
 while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
     traji=$((traji+1))
     Trajectory_Spec_List=$Trajectory_Spec_List"feld=arrow; ptyp=ht; tjfl=BTrajectories/traj$traji.traj; vcor=s;>"$'\n'
-    Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; tjst=$traj_t_0; tjen=$traj_t_f"$'\n'
+    Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; tjst=$traj_t_f; tjen=$traj_t_0"$'\n'
     # Copies traj template
     export ncarg_type traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor
     envsubst '$ncarg_type $traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor' < $traj_tpl > $folder/BTrajectories/traj$traji.in
+    # Copies traj_plot template
+    export ncarg_type traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color Trajectory_Spec_List
+    envsubst '$ncarg_type $traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor $color $Trajectory_Spec_List' < $tplot_tpl > $folder/traj_plot.in
 done <"$inputsfile"
 # Checks that all lines were read
 if [ $traji -ne $npoints ]; then
@@ -106,8 +111,12 @@ if [ $traji -ne $npoints ]; then
     exit 1
 fi
 
+traji=0
 # Computes trajectories
-for (( traji=1; traji<=$npoints; traji++ )); do
+while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
+    traji=$((traji+1))
+    echo "Processing Trajectory $traji: t_0=$traj_t_0 t_f=$traj_t_f x:$traj_x y:$traj_y z:$traj_z color=$color"
+    
     # Copies run template
     rip_program="rip -f"
     rip_program_args="BTrajectories/traj$traji.in"
@@ -124,16 +133,13 @@ for (( traji=1; traji<=$npoints; traji++ )); do
             --pwd /$folder \
             ripdocker_latest.sif  \
             /bin/bash run_traj_i.sh
-done
+done <"$inputsfile"
 
 # Generates plot
-# Copies traj_plot template
-export ncarg_type traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color Trajectory_Spec_List
-envsubst '$ncarg_type $traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor $color $Trajectory_Spec_List' < $tplot_tpl > $folder/traj_plot.in
-
+sed -i '/^[[:space:]]*$/d' $folder/traj_plot.in  # Deletes empty lines
 # Copies run template
 rip_program="rip -f"
-rip_program_args="$folder/traj_plot.in"
+rip_program_args="traj_plot.in"
 export rip_program rip_program_args folder
 envsubst '$rip_program $rip_program_args $folder' < $run_tpl > $folder/run_tplot.sh
 
