@@ -22,6 +22,7 @@ folder=$1				# Saves input 1 (folder to clean)
 data=$2                 # Saves input 2 (path to wrfout files)
 skip=$3                 # Saves input 3 (option to skip rip-dp preprocessing, trajectory computation, or plot generation)
 inputsfile="${4:-$folder.inputs}"   # Saves input 4, file with trajectory inputs
+interactive="${5:-0}"   # Saves input 5 (option to load interactive singularity container at the end)
 
 rdp_tpl="Templates/rdp.template"
 run_tpl="Templates/run.template"
@@ -139,6 +140,7 @@ fi
 # Generates plot
 if [[ "$skip" != *"noPlot"* ]]; then
     Trajectory_Spec_List=""
+    traji=0
     while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
         traji=$((traji+1))
         Trajectory_Spec_List=$Trajectory_Spec_List"feld=arrow; ptyp=ht; tjfl=BTrajectories/traj$traji.traj; vcor=s;>"$'\n'
@@ -168,11 +170,13 @@ else
     echo "Skipping plot generation..."
 fi
 
-# singularity \
-#     shell \
-#         --contain \
-#         --cleanenv \
-#         --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$folder/ \
-#         --bind $data/:/$folder/WRFData/ \
-#         --pwd /$folder \
-#         ripdocker_latest.sif
+if [ $interactive -eq 1 ]; then
+    singularity \
+        shell \
+            --contain \
+            --cleanenv \
+            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$folder/ \
+            --bind $data/:/$folder/WRFData/ \
+            --pwd /$folder \
+            ripdocker_latest.sif
+fi
