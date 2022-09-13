@@ -8,18 +8,11 @@
  idescriptive=1,icgmsplit=0,maxfld=10,itrajcalc=0,imakev5d=0,
  ncarg_type='$ncarg_type',
  /
- &trajcalc
- rtim=$traj_t_0,ctim=$traj_t_f,dtfile=$file_dt.,dttraj=$traj_dt.,vctraj='s',
- xjtraj=$traj_x,
- yitraj=$traj_y,
- zktraj=$traj_z,
- ihydrometeor=$hydrometeor
- /
 ===========================================================================
 ----------------------    Plot Specification Table    ---------------------
 ===========================================================================
-#feld=arrow; ptyp=ht; tjfl=$trajfile_i.traj; vcor=s;> 
-#    colr=$color; tjst=$traj_t_0; tjen=$traj_t_f 
+#feld=arrow; ptyp=ht; tjfl=$trajfile_i.traj; vcor=p;> 
+#    colr=$color; nmsg; tjst=$traj_t_0; tjen=$traj_t_f
 $Trajectory_Spec_List
 feld=map; ptyp=hb 
 feld=tic; ptyp=hb 

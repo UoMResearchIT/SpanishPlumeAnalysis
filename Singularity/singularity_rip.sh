@@ -102,8 +102,8 @@ if [[ "$skip" != *"noTraj"* ]]; then
     while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
         traji=$((traji+1))
         # Copies traj template
-        export ncarg_type traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor
-        envsubst '$ncarg_type $traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor' < $traj_tpl > $folder/BTrajectories/traj$traji.in
+        export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor
+        envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor' < $traj_tpl > $folder/BTrajectories/traj$traji.in
     done <"$inputsfile"
     # Checks that all lines were read
     if [ $traji -ne $npoints ]; then
@@ -145,10 +145,10 @@ if [[ "$skip" != *"noPlot"* ]]; then
     while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
         traji=$((traji+1))
         Trajectory_Spec_List=$Trajectory_Spec_List"feld=arrow; ptyp=ht; tjfl=BTrajectories/traj$traji.traj; vcor=s;>"$'\n'
-        Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; tjst=$traj_t_f; tjen=$traj_t_0"$'\n'
+        Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; nmsg; tjst=$traj_t_f; tjen=$traj_t_0"$'\n'
         # Copies traj_plot template
-        export ncarg_type traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color Trajectory_Spec_List
-        envsubst '$ncarg_type $traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor $color $Trajectory_Spec_List' < $tplot_tpl > $folder/traj_plot.in
+        export ncarg_type Trajectory_Spec_List
+        envsubst '$ncarg_type $Trajectory_Spec_List' < $tplot_tpl > $folder/traj_plot.in
     done <"$inputsfile"
     sed -i '/^[[:space:]]*$/d' $folder/traj_plot.in  # Deletes empty lines
     # Copies run template
