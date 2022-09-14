@@ -1,4 +1,7 @@
-#traj_t_0   traj_t_f    traj_dt     file_dt     traj_x  traj_y  traj_z  hydrometeor     color
-80          60          600         3600        200     400     10      0               red
-80          60          600         3600        200     400     20      0               green
-80          60          600         3600        200     400     30      0               blue
+#traj_t_0   traj_t_f    traj_dt     file_dt     traj_x  traj_y  traj_p  hydrometeor     color
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 850     $hydrometeor    red
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 800     $hydrometeor    orange
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 750     $hydrometeor    mustard
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 700     $hydrometeor    green
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 650     $hydrometeor    dark.green
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 600     $hydrometeor    blue
