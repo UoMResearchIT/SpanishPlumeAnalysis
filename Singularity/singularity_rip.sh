@@ -6,10 +6,11 @@ set -o pipefail
 usage()
 {
     echo ""
-    echo "Usage: ./singularity_rip.sh -od=outputdir -wd=wrfdata [-ti=trajinputs] [options]"
+    echo "  Usage: ./singularity_rip.sh -od=outputdir -wd=wrfdata [-ti=trajinputs] [options]"
     echo ""
-    echo "The output directory and the path to the wrf data are the only necessary inputs. They can be specified in the order indicated above or with the options -od and -wd."
-    echo "If the inputs file is not specified, and the trajectgory times (-tt) are not set, the basename of the output directory will be used, and the .inputs file is assumed to exist in the cwd."
+    echo "  The output directory is the only necessary input. It can be specified with the option -od, or directly as the first positional parameter."
+    echo "  If data will be pre-processed with ripdp, then the path to WRF data is also necessary. It can be specified with the option -wd, or as the second positional parameter."
+    echo "  If the inputs file is not specified, and the trajectgory times (-tt) are not set, the basename of the output directory will be used, and the .inputs file is assumed to exist in the cwd."
     echo ""
     echo "  Options:"
     echo "    -h    --help          Print usage info."
@@ -35,55 +36,56 @@ usage()
     echo "          --dt=*          Simulation step time interval, measured in hours. The default value is 1."
     echo ""
     echo "      Trajectory inputs template:"
-    echo "          --traj_dt=*     Timestep for trajectory numerical computation, measured in seconds. The default value is 600."
+    echo "          --traj_dt=*     Timestep for trajectory numerical computation, measured in seconds. It should be smaller than file_dt. The default value is 600."
     echo "          --file_dt=*     Time interval in ripdp preprocessed data files, measured in seconds. The default value is 3600."
     echo "          --traj_x=*      Grid horizontal (east-west) position for tracking particle release. The default value is 195."
     echo "          --traj_y=*      Grid vertical (north-south) position for tracking particle release. The default value is 410."
     echo "          --hydrometeor   The default value is 0."
     echo ""
     echo ""
-    echo "Examples:"
-    echo "  ./singularity_rip.sh Control /mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/"
-    echo "      The above will create the folder ./Control, pre-process the data from run-zrek with ripdp, compute the backtrajectories from the ./Control.inputs file, generate a plot and save it as traj_plot.pdf"
+    echo "  Examples:"
+    echo "    ./singularity_rip.sh Control /mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/"
+    echo "       The above will create the folder ./Control, pre-process the data from run-zrek with ripdp, compute the backtrajectories from the ./Control.inputs file, generate a plot and save it as traj_plot.pdf"
     echo ""
-    echo "  ./singularity_rip.sh -od=Results/Control -wd=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/ --noRDP -tt=68-35 -tp=Traj_68"
-    echo "      The above look in ./Results/Control/RIPDP for the ripdp pre-processed data, use the template to compute trajectories from simulation time 68 to 35 (backtrajectories), generate a plot and save it as Traj_68.pdf"
+    echo "    ./singularity_rip.sh -od=Results/Control --noRDP -tt=68-35 -tp=Traj_68"
+    echo "       The above will look in ./Results/Control/RIPDP for the ripdp pre-processed data, use the template to compute trajectories from simulation time 68 to 35 (backtrajectories), generate a plot and save it as Traj_68.pdf"
     echo ""
-    echo "  ./singularity_rip.sh -od=Results/Sample -wd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/Sample/WRFData/ -tt=12-0 --traj_dt=600 --file_dt=10800 --traj_x=55 --traj_y=40"
-    echo "      The above configures the trajectory inputs template to be able to use it with the sample data."
+    echo "    ./singularity_rip.sh -od=Results/Sample -wd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/Sample/WRFData/ -tt=12-0 --traj_dt=600 --file_dt=10800 --traj_x=55 --traj_y=40"
+    echo "       The above configures the trajectory inputs template to be able to use it with the sample data."
     echo ""
 }
 
-# Defaults
-    #ripdp
-t_0=0
-t_f=168
-dt=1
-    #plot format
-ncarg_type="pdf"
-    #traj inputs
-traj_dt=600
-file_dt=3600
-traj_x=195
-traj_y=410
-hydrometeor=0
-    #templates
-rdp_tpl="Templates/rdp.template"
-run_tpl="Templates/run.template"
-tinp_tpl="Templates/traj_inputs.template"
-tplot_tpl="Templates/traj_plot.template"
-traj_tpl="Templates/traj.template"
-POSITIONAL_ARGS=()
-posod=1
-poswd=1
-cwdti=1
-trajtimes=""
-ripdpdata=""
-trajplot="traj_plot"
-noRDP=0
-noTraj=0
-noPlot=0
-interactive=0
+## Defaults
+    # RIPDP
+        t_0=0
+        t_f=168
+        dt=1
+    # Plot format
+        ncarg_type="pdf"
+    # Traj inputs
+        traj_dt=600
+        file_dt=3600
+        traj_x=195
+        traj_y=410
+        hydrometeor=0
+    # Templates
+        rdp_tpl="Templates/rdp.template"
+        run_tpl="Templates/run.template"
+        tinp_tpl="Templates/traj_inputs.template"
+        tplot_tpl="Templates/traj_plot.template"
+        traj_tpl="Templates/traj.template"
+    # Script
+        POSITIONAL_ARGS=()
+        posod=1
+        poswd=1
+        cwdti=1
+        trajtimes=""
+        ripdpdata=""
+        trajplot="traj_plot"
+        noRDP=0
+        noTraj=0
+        noPlot=0
+        interactive=0
 
 # Argument parsing
 for i in "$@"; do       #cycles through arguments
@@ -163,30 +165,30 @@ for i in "$@"; do       #cycles through arguments
 done
     # Positional arguments
 set -- "${POSITIONAL_ARGS[@]}"  # restore positional parameters
-if [ $posod -eq 1 ]; then
-    folder=$1                   # Saves input 1 (folder to clean)
-    echo "outputdir=$folder"
-fi
-if [ $poswd -eq 1 ]; then
-    data=$2                     # Saves input 2 (path to wrfout files)
-    echo "wrfdata=$data"
+if [ $# -gt 0 ]; then
+    echo "WARNING: Detected positional arguments. Make sure the values were identified correctly:"
+    if [ $posod -eq 1 ]; then
+        folder=$1                   # Saves input 1 (folder to clean)
+        echo "             outputdir=$folder"
+        shift
+    fi
+    if [ $poswd -eq 1 ]; then
+        data=$1                     # Saves input 2 (path to wrfout files)
+        echo "             wrfdata=$data"
+        shift
+    fi
+    echo "         Use options to set the values if you don't want this warning to show up."
+    if [ $# -gt 0 ]; then
+        echo "ERROR: Unexpected positional parameters: $@"
+        exit 1
+    fi
 fi
     # Argument processing
-name=$(basename ${folder})      # Strips directory from folder
-
-#####
-
-
 if [[ $folder = */ ]]; then
     # Deletes trailing /
         folder=${folder::-1}
 fi
-# Creates directory structure if it does not exist
-mkdir -p $folder/WRFData
-mkdir -p $folder/RIPDP
-mkdir -p $folder/BTrajectories
-
-
+name=$(basename ${folder})      # Strips directory from folder
 if [ "$ripdpdata" = "" ]; then
     ripdpdata_dir=$folder/RIPDP
     ripdpdata="rdp_$name"
@@ -201,6 +203,13 @@ else
         ripdpdata=$(basename -- "$ripdpdata")
     fi
 fi
+
+#####
+
+# Creates directory structure if it does not exist
+mkdir -p $folder/WRFData
+mkdir -p $folder/RIPDP
+mkdir -p $folder/BTrajectories
 
 # Pre-processes data with rdp
 if [ $noRDP -eq 0 ]; then
