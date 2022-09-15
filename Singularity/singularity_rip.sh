@@ -1,5 +1,7 @@
 #!/bin/bash
+#set -o nounset
 set -o errexit
+set -o pipefail
 
 usage()
 {
@@ -10,14 +12,17 @@ usage()
     echo "If the inputs file is not specified, and the trajectgory times (-tt) are not set, the basename of the output directory will be used, and the .inputs file is assumed to exist in the cwd."
     echo ""
     echo "  Options:"
-    echo "    -h    --help          Print usage info"
-    echo "    -od=* --outputdir=*   Path to output directory"
-    echo "    -wd=* --wrfdata=*     Path to wrfout data"
-    echo "    -tp=* --trajplot=*    Option to specify a name for the trajectory plot. The default is traj_plot"
-    echo "    -ti=* --trajinputs=*  Path to trajectory inputs file"
-    echo "    -tt=* --trajtimes=*   Trajectory times specified as a range separated by a dash, e.g. '-tt=0-12'"
+    echo "    -h    --help          Print usage info."
+    echo "    -od=* --outputdir=*   Path to output directory. The basename of outputdir will be used as prefix in ripdp generated files."
+    echo "    -wd=* --wrfdata=*     Path to wrfout data."
+    echo "    -tp=* --trajplot=*    Option to specify a name for the trajectory plot. The default is traj_plot."
+    echo "    -ti=* --trajinputs=*  Path to trajectory inputs file."
+    echo "    -tt=* --trajtimes=*   Trajectory times specified as a range separated by a dash, e.g. '-tt=0-12'."
     echo "                            *Note that this option will generate a .inputs file from the template, overriding the file specified with -ti."
     echo "                            You may also want to change the default values of traj_dt, file_dt, traj_x, traj_y and hydrometeor."
+    echo "    -pd=* --ripdpdata=*   Path to ripdp input file used to preprocess the data ( which should be the prefix of the ripdp data files)."
+    echo "                            This option need only be used when the preprocessed data is not in the default directory or name outputdir/RIPDP/rdp_name."
+    echo "                            *Note that this option automatically enables --noRDP, as pre-processing should not be needed."
     echo ""
     echo "    -nr   --noRDP         Skips the ripdp pre-processing of wrfout files. Pre-processed data is expected to be in RIPDP/."
     echo "    -nt   --noTraj        Skips trajectory computation. If a plot will be generated, *.traj files are expected to be in BTrajectory/."
@@ -73,6 +78,7 @@ posod=1
 poswd=1
 cwdti=1
 trajtimes=""
+ripdpdata=""
 trajplot="traj_plot"
 noRDP=0
 noTraj=0
@@ -104,6 +110,10 @@ for i in "$@"; do       #cycles through arguments
         -tt=*|--trajtimes=*)
             trajtimes="${i#*=}"
             cwdti=0
+            ;;
+        -pd=*|--ripdpdata=*)
+            ripdpdata="${i#*=}"
+            noRDP=1
             ;;
         -nr|--noRDP)
             noRDP=1
@@ -166,36 +176,53 @@ name=$(basename ${folder})      # Strips directory from folder
 
 #####
 
-# Checks data path exists
-if [ ! -d "$data" ]; then
-    echo "ERROR: Cannot find $data."
-    exit 1
-else
-    if [[ $data = */ ]]; then
-        # Deletes trailing /
-            data=${data::-1}
-    fi    
-fi
+
 if [[ $folder = */ ]]; then
     # Deletes trailing /
         folder=${folder::-1}
 fi
 # Creates directory structure if it does not exist
+mkdir -p $folder/WRFData
 mkdir -p $folder/RIPDP
 mkdir -p $folder/BTrajectories
-mkdir -p $folder/WRFData
+
+
+if [ "$ripdpdata" = "" ]; then
+    ripdpdata_dir=$folder/RIPDP
+    ripdpdata="rdp_$name"
+else
+    # Checks ripdp data exists
+    if [ ! -f "$ripdpdata" ]; then
+        echo "ERROR: Cannot find $ripdpdata."
+        echo "   Remember, rdpdata should be the path to the rdp_name *file*, not just the directory where the data is stored."
+        exit 1
+    else
+        ripdpdata_dir=$(dirname -- "$ripdpdata")
+        ripdpdata=$(basename -- "$ripdpdata")
+    fi
+fi
 
 # Pre-processes data with rdp
 if [ $noRDP -eq 0 ]; then
+    # Checks data path exists
+    if [ ! -d "$data" ]; then
+        echo "ERROR: Cannot find $data."
+        exit 1
+    else
+        if [[ $data = */ ]]; then
+            # Deletes trailing /
+                data=${data::-1}
+        fi    
+    fi
     # Copies rdp template
     export t_0 t_f dt
-    envsubst '$t_0 $t_f $dt' < $rdp_tpl >$folder/RIPDP/rdp_$name
+    envsubst '$t_0 $t_f $dt' < $rdp_tpl >$folder/RIPDP/$ripdpdata
 
     # Copies run template
     rip_program="ripdp_wrfarw"
     rip_program_args="all WRFData/wrfout_d01_*"
-    export rip_program rip_program_args name
-    envsubst '$rip_program $rip_program_args $name' < $run_tpl > $folder/run_rdp.sh
+    export rip_program rip_program_args ripdpdata
+    envsubst '$rip_program $rip_program_args $ripdpdata' < $run_tpl > $folder/run_rdp.sh
 
     # Runs ripdp inside singularity container
     singularity \
@@ -204,6 +231,7 @@ if [ $noRDP -eq 0 ]; then
             --cleanenv \
             --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
             --bind $data/:/$name/WRFData/ \
+            --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
             ripdocker_latest.sif  \
             /bin/bash run_rdp.sh
@@ -262,8 +290,8 @@ if [ $noTraj -eq 0 ]; then
         # Copies run template
         rip_program="rip -f"
         rip_program_args="BTrajectories/traj$traji.in"
-        export rip_program rip_program_args name
-        envsubst '$rip_program $rip_program_args $name' < $run_tpl > $folder/run_traj_i.sh
+        export rip_program rip_program_args ripdpdata
+        envsubst '$rip_program $rip_program_args $ripdpdata' < $run_tpl > $folder/run_traj_i.sh
 
         # Runs rip inside singularity container
         singularity \
@@ -272,6 +300,7 @@ if [ $noTraj -eq 0 ]; then
                 --cleanenv \
                 --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
                 --bind $data/:/$name/WRFData/ \
+            --bind $ripdpdata_dir/:/$name/RIPDP/ \
                 --pwd /$name \
                 ripdocker_latest.sif  \
                 /bin/bash run_traj_i.sh
@@ -290,14 +319,14 @@ if [ $noPlot -eq 0 ]; then
         Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; nmsg; tjst=$traj_t_f; tjen=$traj_t_0"$'\n'
         # Copies traj_plot template
         export ncarg_type Trajectory_Spec_List
-        envsubst '$ncarg_type $Trajectory_Spec_List' < $tplot_tpl > $folder/traj_plot.in
+        envsubst '$ncarg_type $Trajectory_Spec_List' < $tplot_tpl > $folder/$trajplot.in
     done <"$inputsfile"
-    sed -i '/^[[:space:]]*$/d' $folder/traj_plot.in  # Deletes empty lines
+    sed -i '/^[[:space:]]*$/d' $folder/$trajplot.in  # Deletes empty lines
     # Copies run template
     rip_program="rip -f"
-    rip_program_args="traj_plot.in"
-    export rip_program rip_program_args name
-    envsubst '$rip_program $rip_program_args $name' < $run_tpl > $folder/run_tplot.sh
+    rip_program_args="$trajplot.in"
+    export rip_program rip_program_args ripdpdata
+    envsubst '$rip_program $rip_program_args $ripdpdata' < $run_tpl > $folder/run_$trajplot.sh
 
     # Runs rip inside singularity container
     singularity \
@@ -306,9 +335,10 @@ if [ $noPlot -eq 0 ]; then
             --cleanenv \
             --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
             --bind $data/:/$name/WRFData/ \
+            --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
             ripdocker_latest.sif  \
-            /bin/bash run_tplot.sh
+            /bin/bash run_$trajplot.sh
 else
     echo "Skipping plot generation..."
 fi
@@ -321,6 +351,7 @@ if [ $interactive -eq 1 ]; then
             --cleanenv \
             --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
             --bind $data/:/$name/WRFData/ \
+            --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
             ripdocker_latest.sif
 fi
