@@ -228,7 +228,7 @@ if [ $noRDP -eq 0 ]; then
     envsubst '$t_0 $t_f $dt' < $rdp_tpl >$folder/RIPDP/$ripdpdata
 
     # Copies run template
-    rip_program="ripdp_wrfarw"
+    rip_program="ripdp_wrfarw  -n RIPDP/$ripdpdata"
     rip_program_args="all WRFData/wrfout_d01_*"
     export rip_program rip_program_args ripdpdata
     envsubst '$rip_program $rip_program_args $ripdpdata' < $run_tpl > $folder/run_rdp.sh
