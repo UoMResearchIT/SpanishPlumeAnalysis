@@ -70,11 +70,12 @@ usage()
         traj_y=410
         hydrometeor=0
     # Templates
-        rdp_tpl="Templates/rdp.template"
-        run_tpl="Templates/run.template"
-        tinp_tpl="Templates/traj_inputs.template"
-        tplot_tpl="Templates/traj_plot.template"
-        traj_tpl="Templates/traj.template"
+        swd="/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/"
+        rdp_tpl="$swd""Templates/rdp.template"
+        run_tpl="$swd""Templates/run.template"
+        tinp_tpl="$swd""Templates/traj_inputs.template"
+        tplot_tpl="$swd""Templates/traj_plot.template"
+        traj_tpl="$swd""Templates/traj.template"
     # Script
         POSITIONAL_ARGS=()
         posod=1
@@ -249,11 +250,11 @@ if [ $noRDP -eq 0 ]; then
         exec \
             --contain \
             --cleanenv \
-            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
+            --bind $folder/:/$name/ \
             --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
-            ripdocker_latest.sif  \
+            "$swd"ripdocker_latest.sif  \
             /bin/bash run_rdp.sh
 else
     echo "Skipping ripdp pre-processing..."
@@ -325,11 +326,11 @@ if [ $noTraj -eq 0 ]; then
             exec \
                 --contain \
                 --cleanenv \
-                --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
+                --bind $folder/:/$name/ \
                 --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
                 --pwd /$name \
-                ripdocker_latest.sif  \
+                "$swd"ripdocker_latest.sif  \
                 /bin/bash run_"$trajplot"_traj_i.sh
     done <"$inputsfile"
 else
@@ -360,11 +361,11 @@ if [ $noPlot -eq 0 ]; then
         exec \
             --contain \
             --cleanenv \
-            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
+            --bind $folder/:/$name/ \
             --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
-            ripdocker_latest.sif  \
+            "$swd"ripdocker_latest.sif  \
             /bin/bash run_$trajplot.sh
 else
     echo "Skipping plot generation..."
@@ -376,7 +377,7 @@ if [ $interactive -eq 1 ]; then
         shell \
             --contain \
             --cleanenv \
-            --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
+            --bind $folder/:/$name/ \
             --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
