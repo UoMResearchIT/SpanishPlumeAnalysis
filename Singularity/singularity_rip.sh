@@ -16,9 +16,9 @@ usage()
     echo "    -h    --help          Print usage info."
     echo "    -od=* --outputdir=*   Path to output directory. The basename of outputdir will be used as prefix in ripdp generated files."
     echo "    -wd=* --wrfdata=*     Path to wrfout data."
-    echo "    -tp=* --trajplot=*    Option to specify a name for the trajectory plot. The default is traj_plot."
+    echo "    -tp=* --trajplot=*    Option to specify a name for the trajectory plot. The default is tp."
     echo "    -ti=* --trajinputs=*  Path to trajectory inputs file."
-    echo "    -tt=* --trajtimes=*   Trajectory times specified as a range separated by a dash, e.g. '-tt=0-12'."
+    echo "    -tt=* --trajtimes=*   Trajectory times specified as a range separated by a dash, e.g. '-tt=12-0'."
     echo "                            *Note that this option will generate a .inputs file from the template, overriding the file specified with -ti."
     echo "                            You may also want to change the default values of traj_dt, file_dt, traj_x, traj_y and hydrometeor."
     echo "    -pd=* --ripdpdata=*   Path to ripdp input file used to preprocess the data ( which should be the prefix of the ripdp data files)."
@@ -45,7 +45,7 @@ usage()
     echo ""
     echo "  Examples:"
     echo "    ./singularity_rip.sh Control /mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/"
-    echo "       The above will create the folder ./Control, pre-process the data from run-zrek with ripdp, compute the backtrajectories from the ./Control.inputs file, generate a plot and save it as traj_plot.pdf"
+    echo "       The above will create the folder ./Control, pre-process the data from run-zrek with ripdp, compute the backtrajectories from the ./Control.inputs file, generate a plot and save it as tp.pdf"
     echo ""
     echo "    ./singularity_rip.sh -od=Results/Control --noRDP -tt=68-35 -tp=Traj_68"
     echo "       The above will look in ./Results/Control/RIPDP for the ripdp pre-processed data, use the template to compute trajectories from simulation time 68 to 35 (backtrajectories), generate a plot and save it as Traj_68.pdf"
@@ -79,9 +79,10 @@ usage()
         posod=1
         poswd=1
         cwdti=1
+        wrfdata=""
         trajtimes=""
         ripdpdata=""
-        trajplot="traj_plot"
+        trajplot="tp"
         noRDP=0
         noTraj=0
         noPlot=0
@@ -99,7 +100,7 @@ for i in "$@"; do       #cycles through arguments
             posod=0
             ;;
         -wd=*|--wrfdata=*)
-            data="${i#*=}"
+            wrfdata="${i#*=}"
             poswd=0
             ;;
         -tp=*|--trajplot=*)
@@ -173,8 +174,8 @@ if [ $# -gt 0 ]; then
         shift
     fi
     if [ $poswd -eq 1 ]; then
-        data=$1                     # Saves input 2 (path to wrfout files)
-        echo "             wrfdata=$data"
+        wrfdata=$1                  # Saves input 2 (path to wrfout files)
+        echo "             wrfdata=$wrfdata"
         shift
     fi
     echo "         Use options to set the values if you don't want this warning to show up."
@@ -189,6 +190,9 @@ if [[ $folder = */ ]]; then
         folder=${folder::-1}
 fi
 name=$(basename ${folder})      # Strips directory from folder
+if [ "$wrfdata" = "" ]; then
+    wrfdata="$folder/WRFData"
+fi
 if [ "$ripdpdata" = "" ]; then
     ripdpdata_dir=$folder/RIPDP
     ripdpdata="rdp_$name"
@@ -214,13 +218,13 @@ mkdir -p $folder/BTrajectories
 # Pre-processes data with rdp
 if [ $noRDP -eq 0 ]; then
     # Checks data path exists
-    if [ ! -d "$data" ]; then
-        echo "ERROR: Cannot find $data."
+    if [ ! -d "$wrfdata" ]; then
+        echo "ERROR: Cannot find $wrfdata."
         exit 1
     else
-        if [[ $data = */ ]]; then
+        if [[ $wrfdata = */ ]]; then
             # Deletes trailing /
-                data=${data::-1}
+                wrfdata=${wrfdata::-1}
         fi    
     fi
     # Copies rdp template
@@ -239,7 +243,7 @@ if [ $noRDP -eq 0 ]; then
             --contain \
             --cleanenv \
             --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
-            --bind $data/:/$name/WRFData/ \
+            --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
             ripdocker_latest.sif  \
@@ -258,14 +262,14 @@ if [ $((noTraj+noPlot)) -lt 2 ]; then
             echo "ERROR: Cannot find $inputsfile."
             exit 1
         fi
-        cp $inputsfile $folder/BTrajectories/traj_inputs    
+        cp $inputsfile $folder/BTrajectories/"$trajplot"_traj_inputs    
     else                            # Inputs file will be generated from template
         traj_t_0=${trajtimes%-*}        # Read first number (everything before -)
         traj_t_f=${trajtimes#*-}        # Read second number (everything after -)
         export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y hydrometeor
-        envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $hydrometeor' < $tinp_tpl > $folder/BTrajectories/traj_inputs
+        envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $hydrometeor' < $tinp_tpl > $folder/BTrajectories/"$trajplot"_traj_inputs
     fi
-    inputsfile=$folder/BTrajectories/traj_inputs
+    inputsfile=$folder/BTrajectories/"$trajplot"_traj_inputs
     sed -i '/^#/d'  $inputsfile             # Deletes header/comment lines
     sed -i '/^[[:space:]]*$/d' $inputsfile  # Deletes empty lines
     sed -i 's/ *$//; s/[[:space:]]\+/|/g; s/$/|/' $inputsfile   # Replaces spaces with |
@@ -282,7 +286,7 @@ if [ $noTraj -eq 0 ]; then
         traji=$((traji+1))
         # Copies traj template
         export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor
-        envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor' < $traj_tpl > $folder/BTrajectories/traj$traji.in
+        envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor' < $traj_tpl > $folder/BTrajectories/"$trajplot"_traj_$traji.in
     done <"$inputsfile"
     # Checks that all lines were read
     if [ $traji -ne $npoints ]; then
@@ -298,9 +302,9 @@ if [ $noTraj -eq 0 ]; then
         
         # Copies run template
         rip_program="rip -f"
-        rip_program_args="BTrajectories/traj$traji.in"
+        rip_program_args="BTrajectories/"$trajplot"_traj_$traji.in"
         export rip_program rip_program_args ripdpdata
-        envsubst '$rip_program $rip_program_args $ripdpdata' < $run_tpl > $folder/run_traj_i.sh
+        envsubst '$rip_program $rip_program_args $ripdpdata' < $run_tpl > $folder/run_"$trajplot"_traj_i.sh
 
         # Runs rip inside singularity container
         singularity \
@@ -308,11 +312,11 @@ if [ $noTraj -eq 0 ]; then
                 --contain \
                 --cleanenv \
                 --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
-                --bind $data/:/$name/WRFData/ \
+                --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
                 --pwd /$name \
                 ripdocker_latest.sif  \
-                /bin/bash run_traj_i.sh
+                /bin/bash run_"$trajplot"_traj_i.sh
     done <"$inputsfile"
 else
     echo "Skipping trajectory computation..."
@@ -324,7 +328,7 @@ if [ $noPlot -eq 0 ]; then
     traji=0
     while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
         traji=$((traji+1))
-        Trajectory_Spec_List=$Trajectory_Spec_List"feld=arrow; ptyp=ht; tjfl=BTrajectories/traj$traji.traj; vcor=s;>"$'\n'
+        Trajectory_Spec_List=$Trajectory_Spec_List"feld=arrow; ptyp=ht; tjfl=BTrajectories/"$trajplot"_traj_$traji.traj; vcor=s;>"$'\n'
         Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; nmsg; tjst=$traj_t_f; tjen=$traj_t_0"$'\n'
         # Copies traj_plot template
         export ncarg_type Trajectory_Spec_List
@@ -343,7 +347,7 @@ if [ $noPlot -eq 0 ]; then
             --contain \
             --cleanenv \
             --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
-            --bind $data/:/$name/WRFData/ \
+            --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
             ripdocker_latest.sif  \
@@ -359,7 +363,7 @@ if [ $interactive -eq 1 ]; then
             --contain \
             --cleanenv \
             --bind /mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/$folder/:/$name/ \
-            --bind $data/:/$name/WRFData/ \
+            --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
             ripdocker_latest.sif
