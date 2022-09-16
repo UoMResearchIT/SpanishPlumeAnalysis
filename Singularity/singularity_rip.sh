@@ -16,9 +16,10 @@ usage()
     echo "    -h    --help          Print usage info."
     echo "    -od=* --outputdir=*   Path to output directory. The basename of outputdir will be used as prefix in ripdp generated files."
     echo "    -wd=* --wrfdata=*     Path to wrfout data."
-    echo "    -tp=* --trajplot=*    Option to specify a name for the trajectory plot. The default is tp."
+    echo "    -tp=* --trajplot=*    Option to specify a name for the trajectory plot. The default is tp_x, where x is the trajectory time range set in -tt."
     echo "    -ti=* --trajinputs=*  Path to trajectory inputs file."
-    echo "    -tt=* --trajtimes=*   Trajectory times specified as a range separated by a dash, e.g. '-tt=12-0'."
+    echo "    -tt=* --trajtimes=*   Trajectory times specified as a range separated by a dash (e.g. '-tt=120-80'), or a single number (the tracking particle release time)."
+    echo "                            If a single number is specified, a default backwards interval of 30 hours will be used, that is, '-tt=120' is equivalent to '-tt=120-90'"
     echo "                            *Note that this option will generate a .inputs file from the template, overriding the file specified with -ti."
     echo "                            You may also want to change the default values of traj_dt, file_dt, traj_x, traj_y and hydrometeor."
     echo "    -pd=* --ripdpdata=*   Path to ripdp input file used to preprocess the data ( which should be the prefix of the ripdp data files)."
@@ -82,7 +83,7 @@ usage()
         wrfdata=""
         trajtimes=""
         ripdpdata=""
-        trajplot="tp"
+        trajplot=""
         noRDP=0
         noTraj=0
         noPlot=0
@@ -112,6 +113,9 @@ for i in "$@"; do       #cycles through arguments
             ;;
         -tt=*|--trajtimes=*)
             trajtimes="${i#*=}"
+            if [ "$trajplot" = "" ]; then
+                trajplot="tp_$trajtimes"
+            fi
             cwdti=0
             ;;
         -pd=*|--ripdpdata=*)
@@ -207,6 +211,9 @@ else
         ripdpdata=$(basename -- "$ripdpdata")
     fi
 fi
+if [ "$trajplot" = "" ]; then
+    trajplot="tp_"
+fi
 
 #####
 
@@ -257,15 +264,22 @@ if [ $((noTraj+noPlot)) -lt 2 ]; then
     if [ $cwdti -eq 1 ]; then
         inputsfile=$name.inputs     # Looks for inputs file in cwd
     fi
-    if [ $trajtimes = "" ]; then    # Inputs file was either specified or should be in cwd.
+    if [ "$trajtimes" = "" ]; then  # Inputs file was either specified or should be in cwd.
         if [ ! -f "$inputsfile" ]; then
             echo "ERROR: Cannot find $inputsfile."
+            echo "You need to either specify the path to another inputs file with -ti, or set the trajectory time interval with -tt."
             exit 1
         fi
         cp $inputsfile $folder/BTrajectories/"$trajplot"_traj_inputs    
     else                            # Inputs file will be generated from template
         traj_t_0=${trajtimes%-*}        # Read first number (everything before -)
         traj_t_f=${trajtimes#*-}        # Read second number (everything after -)
+        if [ "$traj_t_f" = "$traj_t_0" ] || [ "$traj_t_f" = "" ]; then
+            traj_t_f=$((traj_t_0-30))
+            if [ $traj_t_f -lt 0 ]; then
+                traj_t_f=0
+            fi
+        fi
         export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y hydrometeor
         envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $hydrometeor' < $tinp_tpl > $folder/BTrajectories/"$trajplot"_traj_inputs
     fi
