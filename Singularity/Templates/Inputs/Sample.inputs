@@ -1,0 +1,7 @@
+#traj_t_0   traj_t_f    traj_dt     file_dt     traj_x  traj_y  traj_p  hydrometeor     color
+12          0           600         10800       55      40      950      0               red
+12          0           600         10800       55      40      850      0               orange
+12          0           600         10800       55      40      750      0               mustard
+12          0           600         10800       55      40      650      0               green
+12          0           600         10800       55      40      550      0               dark.green
+12          0           600         10800       55      40      450      0               blue

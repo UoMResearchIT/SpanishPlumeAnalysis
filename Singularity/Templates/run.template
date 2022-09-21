@@ -1,0 +1,5 @@
+#/bin/bash
+
+source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable
+
+$rip_program RIPDP/$ripdpdata $rip_program_args

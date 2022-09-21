@@ -1,0 +1,15 @@
+&userin
+ itrajcalc=1
+ /
+ &trajcalc
+ rtim=$traj_t_0,ctim=$traj_t_f,dtfile=$file_dt.,dttraj=$traj_dt.,vctraj='p',
+ xjtraj=$traj_x,
+ yitraj=$traj_y,
+ zktraj=$traj_z,
+ ihydrometeor=$hydrometeor
+ /
+===========================================================================
+----------------------    Plot Specification Table    ---------------------
+===========================================================================
+feld=rhu
+===========================================================================
