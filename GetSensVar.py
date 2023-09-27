@@ -1,5 +1,6 @@
 from wrf import (to_np, getvar,g_geoht,interplevel)
 import SensibleVariables as sv
+import numpy as np
 
 def GetSensVar(ncfile,svariable,windbarbs=0,time=0,varprevv=None):
 	u=v=varv=None
@@ -35,6 +36,30 @@ def GetSensVar(ncfile,svariable,windbarbs=0,time=0,varprevv=None):
 			d4var=g_geoht.get_height(ncfile, timeidx=time)
 		var = interplevel(d4var, interpvar, svariable.interpvalue)
 		#Special variable computation
+		if svariable in {sv.AirTemp850Dif6h,sv.AirTemp700Dif6h,sv.AirTemp500Dif6h}:
+			#Temperature difference in 6h
+			if varprevv is None:
+				varv=[var.values]
+				var=None
+			else:
+				if len(varprevv)<6:
+					varv=np.append(varprevv,[var.values], axis=0)
+					var=None
+				else:
+					varv=np.append(varprevv[1:],[var.values], axis=0)
+					var.values=var.values-varprevv[0]
+		if svariable in {sv.AirTemp850Dif12h,sv.AirTemp700Dif12h,sv.AirTemp500Dif12h}:
+			#Temperature difference in 12h
+			if varprevv is None:
+				varv=[var.values]
+				var=None
+			else:
+				if len(varprevv)<12:
+					varv=np.append(varprevv,[var.values], axis=0)
+					var=None
+				else:
+					varv=np.append(varprevv[1:],[var.values], axis=0)
+					var.values=var.values-varprevv[0]
 		if svariable==sv.StaticStability700500:
 			#Static stability computed as air temperature difference
 			var2=interplevel(d4var, interpvar, 500)

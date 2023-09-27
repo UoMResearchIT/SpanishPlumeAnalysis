@@ -53,11 +53,12 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,
         timerange=ncfile.variables['Times'].shape[0]
 #        if timerange>1:timerange=1                              ## For tests only
         for ti in range(timerange):
-            of=tmp_dir+outfile+wrf_fn+"_t_"+str(ti)+".png"
-            PNGfiles.append(of)
             print("Processing:",ti+1,"/",timerange, end = '\r')
             var,u,v,vpv=GetSensVar(ncfile,svariable,windbarbs,ti,vpv)
-            Plot2DField(var,svariable,windbarbs,of,u,v,smooth,domain=domain)
+            if var is not None:
+                of=tmp_dir+outfile+wrf_fn+"_t_"+str(ti)+".png"
+                Plot2DField(var,svariable,windbarbs,of,u,v,smooth,domain=domain)
+                PNGfiles.append(of)
         print("Processed successfully.")
 
     # Build GIF
