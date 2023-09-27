@@ -31,21 +31,24 @@ if __name__ == '__main__':
                         type=str,
                         default="DewpointTemp2m",
                         help="Sensible variable to work with.",
-                        choices=["SeaLevelPressure",
-                                 "AirTemp2m",
-                                 "DewpointTemp2m",
-                                 "RelativeHumidity2m",
-                                 "CAPE",
-                                 "CIN",
-                                 "Rain",
-                                 "SimRadarReflectivityMax",
-                                 "AirTemp850",
-                                 "DewpointTemp850",
-                                 "RelativeHumidity700",
-                                 "GeoPotHeight500",
-                                 "StaticStability700500",
-                                 "StaticStability850700",
-                                 "SimRadarReflectivity1km"])
+                        choices=[
+                            "TerrainElevation",
+                            "SeaLevelPressure",
+                            "AirTemp2m",
+                            "DewpointTemp2m",
+                            "RelativeHumidity2m",
+                            "CAPE",
+                            "CIN",
+                            "Rain",
+                            "SimRadarReflectivityMax",
+                            "AirTemp850",
+                            "DewpointTemp850",
+                            "RelativeHumidity700",
+                            "GeoPotHeight500",
+                            "StaticStability700500",
+                            "StaticStability850700",
+                            "SimRadarReflectivity1km",
+                        ])
     parser.add_argument('--windbarbs',
                         type=str2bool,
                         default=None,
@@ -130,13 +133,31 @@ match args.task:
     case "diagnostic":
         if dirs[0]=="": dir=args.dir_path
         else: dir=dirs[0]
-        Animate(dir,wvar,
-                windbarbs=windbarbs,
-                outfile=wvar.outfile,
-                outdir=args.outdir,
-                smooth=args.smooth,
-                domain=args.domain,
-                cleanpng=args.clean)
+        if wvar==sv.TerrainElevation:
+            if dir[-1]!="/":dir=dir+"/"
+            outdir=args.outdir
+            if outdir[-1]!="/":outdir=outdir+"/"
+            WRFfiles=[]
+            for file in os.listdir(dir):
+                if file.startswith('wrfout'):
+                    WRFfiles.append(file)
+            WRFfiles.sort()
+            var,_,_,_=GetSensVar(Dataset(dir+WRFfiles[0]),wvar)
+            of=outdir+wvar.outfile+".png"
+            print("Generating diagnostic for",wvar.outfile)
+            print("Source wrfout files:",dir)
+            print("Using:\n\tdomain=",args.domain,
+                        "\n\tsmooth=",args.smooth)
+            print("Output will be saved as ",of,"\n")
+            Plot2DField(var,wvar,0,of,smooth=args.smooth,domain=args.domain)
+        else:
+            Animate(dir,wvar,
+                    windbarbs=windbarbs,
+                    outfile=wvar.outfile,
+                    outdir=args.outdir,
+                    smooth=args.smooth,
+                    domain=args.domain,
+                    cleanpng=args.clean)
     case "mp4diff":
         if len(dirs)<2:
             dir1=args.dir1

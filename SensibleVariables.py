@@ -20,6 +20,12 @@ class svariable:
 		self.bounds=bounds
 
 # 2D + Field
+TerrainElevation = svariable(wrfname="ter",
+						   ptitle="Terrain elevation [m]",
+						   outfile="TerrainElevation",
+						   range_min=0,
+						   range_max=2000,
+						   colormap=get_cmap("terrain"))
 SeaLevelPressure = svariable(wrfname="slp",
 						   ptitle="Sea level pressure [hPa]",
 						   outfile="SeaLevelPressure",
