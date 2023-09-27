@@ -9,6 +9,15 @@ from MP4Compare import *
 from WRFCompare import *
 
 import argparse
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return 1
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return 0
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--task',
@@ -38,15 +47,15 @@ if __name__ == '__main__':
                                  "StaticStability850700",
                                  "SimRadarReflectivity1km"])
     parser.add_argument('--windbarbs',
-                        type=bool,
+                        type=str2bool,
                         default=None,
                         help="Default behaviour is set by sensible variable.")
     parser.add_argument('--smooth',
-                        type=bool,
+                        type=str2bool,
                         default=0,
                         help="Set to 1 for conical smoothing of wrf variables.")
     parser.add_argument('--clean',
-                        type=bool,
+                        type=str2bool,
                         default=1,
                         help="Set to 0 to conserve png or mp4 temp files generated during the task")
     parser.add_argument('--domain',
