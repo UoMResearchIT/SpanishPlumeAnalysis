@@ -127,7 +127,15 @@ AirTemp850 = svariable(dim=4,
 					 range_min=270,range_max=314,
 					 interpvar="pressure",
 					 interpvalue=850,
-			   		 colormap=get_cmap("Reds"))
+					 colormap=get_cmap("Reds"))
+AirTemp500 = svariable(dim=4,
+					 wrfname="temp",
+					 ptitle="Temperature at 500 hPa [K]",
+					 outfile="AirTemp500",
+					 range_min=240,range_max=280,
+					 interpvar="pressure",
+					 interpvalue=500,
+					 colormap=get_cmap("Reds"))
 DewpointTemp850 = svariable(dim=4,
 						  wrfname="td",
 						  ptitle="Dewpoint Temperature at 850hPa [C]",
