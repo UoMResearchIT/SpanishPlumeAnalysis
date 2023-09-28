@@ -125,6 +125,10 @@ if __name__ == '__main__':
                         type=str,
                         default="./",
                         help="Path to the directory in which outputs will be saved.")
+    parser.add_argument('--file_tag',
+                        type=str,
+                        default="",
+                        help="Tag appended at the end of the output file name to prevent replacement.")
    
     args = parser.parse_args()
 
@@ -135,6 +139,7 @@ if args.windbarbs is None:
 files=args.files.split(',')
 dirs=args.dirs.split(',')
 labels=args.labels.split(',')
+outfile=wvar.outfile+args.file_tag
 
 match args.task:
     case "diagnostic":
@@ -150,7 +155,7 @@ match args.task:
                     WRFfiles.append(file)
             WRFfiles.sort()
             var,_,_,_=GetSensVar(Dataset(dir+WRFfiles[0]),wvar)
-            of=outdir+wvar.outfile+".png"
+            of=outdir+outfile+".png"
             print("Generating diagnostic for",wvar.outfile)
             print("Source wrfout files:",dir)
             print("Using:\n\tdomain=",args.domain,
@@ -160,7 +165,7 @@ match args.task:
         else:
             Animate(dir,wvar,
                     windbarbs=windbarbs,
-                    outfile=wvar.outfile,
+                    outfile=outfile,
                     outdir=args.outdir,
                     smooth=args.smooth,
                     domain=args.domain,
@@ -188,7 +193,7 @@ match args.task:
                     label1=l1,
                     label2=l2,
                     difflabel=dl,
-                    outfile=wvar.outfile,
+                    outfile=outfile,
                     outdir=args.outdir,
                     cleandiff=args.clean)
     case "mp4stitch":
@@ -211,7 +216,7 @@ match args.task:
                       windbarbs=windbarbs,
                       difflabel=dl,
                       colormap=args.colormap,
-                      outfile=wvar.outfile,
+                      outfile=outfile,
                       outdir=args.outdir,
                       smooth=args.smooth,
                       domain=args.domain,
