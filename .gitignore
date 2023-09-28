@@ -3,4 +3,5 @@ Results/*
 Results
 tests/*
 tests
+!tests/test.py
 __pycache__/*

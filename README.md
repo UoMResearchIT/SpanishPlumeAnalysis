@@ -98,6 +98,61 @@ It gets the difference directly from the wrfout files, and then animates the res
 If the flag ***smooth*** is set to 1, it smooths the data before making the diff, so that slight positional changes are not as strongly reflected in the output.
 
 
+# Generating new diagnostics
+
+The workflow to generate new results involves using the csf.
+
+## File transfer
+
+Transfering files to and from the csf is simpler if using sshfs,
+which mounts a folder from the csf to your computer.
+So, create an empty folder to host the contents from the CSF:
+```
+mkdir sshfs_to_csf
+```
+Then, use sshfs as sshfs `user@dest:/path/to/folder local/path`,
+```
+sshfs mbcxpfh2@csf3.itservices.manchester.ac.uk:/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis sshfs_to_csf/
+```
+You should see everything in that folder, and so copy to and from that folder.
+
+## Submitting jobs to csf
+The `CSF/Submit.sh` does most of the heavy lifting.
+
+All the commands below asume you are in the base folder (`.../mbcxpfh2/SpanishPlume/Analysis`).
+
+To use it, you need a file with the inputs, e.g. `TestCSF/test.inputs`, that looks something like this:
+
+```
+--task=diagnostic --var=SeaLevelPressure --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/ --outdir=Test_SLP/
+--task=diagnostic --var=DewpointTemp2m   --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/ --outdir=Test_DewpTemp/
+```
+Note that csf.py is ommited, this is just a list of the arguments passed to the csf.py script.
+You can find some sample files in the `CSF` directory.
+
+Now you can call the submition script with:
+
+```
+./CSF/Submit.sh testCSF/test.inputs testCSF/Results
+```
+
+# Testing new code
+
+In case there is no access to the csf, but you do have access to some `wrfout` files, you can run the code directly skipping the submition script.
+
+The script `csf.py` is programmed to accept arguments, so you can call it with
+```
+python csf.py --task=diagnostic --var=SeaLevelPressure --dir_path=/my/wrfout/files/dir --outdir=Test_Control/
+```
+
+Alternatively, you can tweak and use the `tests/test.py` script.
+The script has the advantage of being able to call `csf.py` with many arguments.
+It assumes you have wrfout files in `tests/wrfdata/`, and places the results in `tests/results/`.
+
+Modify the inputs for your test in the `all_args` list, and run with
+```
+python tests/test.py
+```
 
 
 # SpanishPlumeAnalysis
