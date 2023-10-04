@@ -1,5 +1,6 @@
 from wrf import (to_np, getvar,g_geoht,interplevel)
 import SensibleVariables as sv
+import Frontogenesis
 import numpy as np
 
 def GetSensVar(ncfile,svariable,windbarbs=0,time=0,varprevv=None):
@@ -34,6 +35,10 @@ def GetSensVar(ncfile,svariable,windbarbs=0,time=0,varprevv=None):
 		#Special variable acquisition
 		elif svariable==sv.GeoPotHeight500:
 			d4var=g_geoht.get_height(ncfile, timeidx=time)
+		elif 'Frontogenesis' in svariable.outfile:
+			F3D=Frontogenesis.frontogenesis3D(ncfile,time)
+			d4var = getvar(ncfile, svariable.interpvar, timeidx=time)
+			d4var.values = F3D
 		var = interplevel(d4var, interpvar, svariable.interpvalue)
 		#Special variable computation
 		if svariable in {sv.AirTemp850Dif6h,sv.AirTemp700Dif6h,sv.AirTemp500Dif6h}:
