@@ -73,6 +73,14 @@ if __name__ == '__main__':
                         type=str,
                         default=None,
                         help="Default colormaps are defined in sensible variables or the chosen task. You can override them by choosing a different one here.")
+    parser.add_argument('--range_min',
+                        type=str,
+                        default=None,
+                        help="Minimum value used in the colormap. Default value is defined in sensible variables. You can override them by choosing a different one here.")
+    parser.add_argument('--range_max',
+                        type=str,
+                        default=None,
+                        help="Maximum value used in the colormap. Default value is defined in sensible variables. You can override them by choosing a different one here.")    
     parser.add_argument('--difflabel',
                         type=str,
                         default="",
@@ -109,6 +117,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
 wvar=eval("sv."+args.var)
+if args.range_min is not None:
+    wvar.range_min = float(args.range_min)
+if args.range_max is not None:
+    wvar.range_max = float(args.range_max)
 
 if args.windbarbs is None:
     windbarbs=wvar.windbarbs
