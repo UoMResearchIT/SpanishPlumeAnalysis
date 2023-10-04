@@ -10,7 +10,7 @@ import SensibleVariables as sv
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
 
-def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,smooth=1,domain="zoom",nlevs=10):
+def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",overlap=None,u=None,v=None,smooth=1,domain="zoom",nlevs=10):
 	#Input check
 
 	#Need to implement input check here!
@@ -74,6 +74,16 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",u=None,v=None,sm
 	plt.colorbar(ax=ax, extendfrac=[0.01,0.01],ticks=ticklevs)
 	plt.annotate("v", xy=(1.11, ((thismin-svariable.range_min)/(svariable.range_max-svariable.range_min))+.00),  xycoords='axes fraction', fontsize=10)
 	plt.annotate("ʌ", xy=(1.11, ((thismax-svariable.range_min)/(svariable.range_max-svariable.range_min))-.015),  xycoords='axes fraction', fontsize=10)
+
+	# Overlap empty contours
+	if overlap is not None:
+		z = to_np(overlap)
+		olevs=list(range(int(np.nanmin(z)), int(np.nanmax(z)),svariable.overlap_gap))
+		ov=plt.contour(x, y, z,
+				levels=olevs,
+				inewidths=0.4, cmap=svariable.overlap_cmap,
+				transform=crs.PlateCarree())
+		plt.clabel(ov,inline=True, fontsize=10,levels=olevs[0::2])
 
 	if windbarbs:
 		# Add wind barbs, only plotting every nbarbs

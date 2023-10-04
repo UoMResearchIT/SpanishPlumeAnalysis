@@ -3,6 +3,7 @@ from Plot2DField import *
 import imageio
 import os
 from GetSensVar import *
+import SensibleVariables as sv
 
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
@@ -32,6 +33,8 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,
     WRFfiles=[]
     PNGfiles=[]
     vpv=None
+    overlapsv=None
+    overlap=None
     tmp_dir=outdir+"__"+outfile
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
@@ -55,9 +58,12 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,
         for ti in range(timerange):
             print("Processing:",ti+1,"/",timerange, end = '\r')
             var,u,v,vpv=GetSensVar(ncfile,svariable,windbarbs,ti,vpv)
+            if svariable.overlap_sv is not None:
+                overlapsv=eval("sv."+svariable.overlap_sv)
+                overlap,_,_,_=GetSensVar(ncfile,overlapsv,0,ti,None)
             if var is not None:
                 of=tmp_dir+outfile+wrf_fn+"_t_"+str(ti)+".png"
-                Plot2DField(var,svariable,windbarbs,of,u,v,smooth,domain=domain)
+                Plot2DField(var,svariable,windbarbs,of,overlap,u,v,smooth,domain=domain)
                 PNGfiles.append(of)
         print("Processed successfully.")
 

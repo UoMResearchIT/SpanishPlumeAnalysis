@@ -2,7 +2,7 @@ from matplotlib.cm import get_cmap
 from matplotlib.colors import ListedColormap
 
 class svariable:
-	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0,colormap=get_cmap("jet"),scale="linear",numloglevs=10,logbase=10,bounds=None):
+	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0,colormap=get_cmap("jet"),scale="linear",numloglevs=10,logbase=10,bounds=None,overlap_sv=None,overlap_gap=None,overlap_cmap=None):
 		self.dim = dim
 		self.wrfname = wrfname
 		self.ptitle = ptitle
@@ -18,6 +18,9 @@ class svariable:
 		self.numloglevs=numloglevs
 		self.logbase=logbase
 		self.bounds=bounds
+		self.overlap_sv = overlap_sv
+		self.overlap_gap = overlap_gap
+		self.overlap_cmap = overlap_cmap
 
 # 2D + Field
 TerrainElevation = svariable(wrfname="ter",
@@ -309,6 +312,9 @@ SimRadarReflectivity1km = svariable(dim=4,
 Frontogenesis925 = svariable(dim=4,
 						ptitle="Petterssen Frontogenesis at 925 hPa [K/(100km 3h)]",
 						outfile="Frontogenesis925",
+						overlap_sv='PotentialTemp920',
+						overlap_gap=1,
+						overlap_cmap=get_cmap('coolwarm'),
 						windbarbs=1,
 						interpvar="pressure",
 						interpvalue=925,
@@ -318,6 +324,9 @@ Frontogenesis925 = svariable(dim=4,
 Frontogenesis850 = svariable(dim=4,
 						ptitle="Petterssen Frontogenesis at 850 hPa [K/(100km 3h)]",
 						outfile="Frontogenesis850",
+						overlap_sv='PotentialTemp850',
+						overlap_gap=1,
+						overlap_cmap=get_cmap('coolwarm'),
 						windbarbs=1,
 						interpvar="pressure",
 						interpvalue=850,
@@ -327,6 +336,9 @@ Frontogenesis850 = svariable(dim=4,
 Frontogenesis700 = svariable(dim=4,
 						ptitle="Petterssen Frontogenesis at 700 hPa [K/(100km 3h)]",
 						outfile="Frontogenesis700",
+						overlap_sv='PotentialTemp700',
+						overlap_gap=1,
+						overlap_cmap=get_cmap('coolwarm'),
 						windbarbs=1,
 						interpvar="pressure",
 						interpvalue=700,
@@ -336,6 +348,9 @@ Frontogenesis700 = svariable(dim=4,
 Frontogenesis500 = svariable(dim=4,
 						ptitle="Petterssen Frontogenesis at 500 hPa [K/(100km 3h)]",
 						outfile="Frontogenesis500",
+						overlap_sv='PotentialTemp500',
+						overlap_gap=1,
+						overlap_cmap=get_cmap('coolwarm'),
 						windbarbs=1,
 						interpvar="pressure",
 						interpvalue=500,

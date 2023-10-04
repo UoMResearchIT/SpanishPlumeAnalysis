@@ -137,7 +137,7 @@ match args.task:
             print("Using:\n\tdomain=",args.domain,
                         "\n\tsmooth=",args.smooth)
             print("Output will be saved as ",of,"\n")
-            Plot2DField(var,wvar,0,of,smooth=args.smooth,domain=args.domain)
+            Plot2DField(var,wvar,0,of,smooth=args.smooth,domain=args.domain,nlevs=11)
         else:
             Animate(dir,wvar,
                     windbarbs=windbarbs,
