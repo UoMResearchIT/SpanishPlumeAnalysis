@@ -41,7 +41,7 @@ def GetSensVar(ncfile,svariable,windbarbs=0,time=0,varprevv=None):
 			d4var.values = F3D
 		var = interplevel(d4var, interpvar, svariable.interpvalue)
 		#Special variable computation
-		if svariable in {sv.AirTemp850Dif6h,sv.AirTemp700Dif6h,sv.AirTemp500Dif6h}:
+		if 'AirTempDif6h' in svariable.outfile:
 			#Temperature difference in 6h
 			if varprevv is None:
 				varv=[var.values]
@@ -53,7 +53,7 @@ def GetSensVar(ncfile,svariable,windbarbs=0,time=0,varprevv=None):
 				else:
 					varv=np.append(varprevv[1:],[var.values], axis=0)
 					var.values=var.values-varprevv[0]
-		if svariable in {sv.AirTemp850Dif12h,sv.AirTemp700Dif12h,sv.AirTemp500Dif12h}:
+		elif 'AirTempDif12h' in svariable.outfile:
 			#Temperature difference in 12h
 			if varprevv is None:
 				varv=[var.values]
@@ -65,14 +65,14 @@ def GetSensVar(ncfile,svariable,windbarbs=0,time=0,varprevv=None):
 				else:
 					varv=np.append(varprevv[1:],[var.values], axis=0)
 					var.values=var.values-varprevv[0]
-		if svariable==sv.StaticStability700500:
+		elif svariable==sv.StaticStability700500:
 			#Static stability computed as air temperature difference
 			var2=interplevel(d4var, interpvar, 500)
 			var.values=var.values-var2.values
-		if svariable==sv.StaticStability850700:
+		elif svariable==sv.StaticStability850700:
 			#Static stability computed as air temperature difference
 			var2=interplevel(d4var, interpvar, 850)
-			var.values=var2.values-var.values	
+			var.values=var2.values-var.values
 		if windbarbs:
 			#Get wind speed components at interpvalue
 			ua = getvar(ncfile, "ua", timeidx=time)
