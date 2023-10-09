@@ -53,14 +53,16 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",overlap=None,u=N
 	z = to_np(smooth_var)
 	match svariable.scale:
 		case "linear":
+			nticks = svariable.nticks
+			nlevs = svariable.nlevs
 			levs = np.linspace(svariable.range_min, svariable.range_max, nlevs)
 			norm = Normalize(svariable.range_min,svariable.range_max)
-			ticklevs = np.linspace(svariable.range_min, svariable.range_max, 5)
+			ticklevs = np.linspace(svariable.range_min, svariable.range_max, nticks)
 		case "log":
-			levs = np.logspace(svariable.range_min, svariable.range_max, num=svariable.numloglevs, base=svariable.logbase)
+			levs = np.logspace(svariable.range_min, svariable.range_max, num=svariable.nlevs, base=svariable.logbase)
 			norm = LogNorm(svariable.logbase**svariable.range_min,svariable.logbase**svariable.range_max)
 			z = np.ma.masked_where(z <= 0, z)
-			ticklevs = np.logspace(svariable.range_min, svariable.range_max, num=svariable.numloglevs, base=svariable.logbase)
+			ticklevs = np.logspace(svariable.range_min, svariable.range_max, num=svariable.nlevs, base=svariable.logbase)
 		case "bounds":
 			levs = svariable.bounds
 			norm = BoundaryNorm(levs,len(levs))
@@ -81,7 +83,7 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",overlap=None,u=N
 		olevs=list(range(int(np.nanmin(z)), int(np.nanmax(z)),svariable.overlap_gap))
 		ov=plt.contour(x, y, z,
 				levels=olevs,
-				inewidths=0.4, cmap=svariable.overlap_cmap,
+				linewidths=0.4, cmap=svariable.overlap_cmap,
 				transform=crs.PlateCarree())
 		plt.clabel(ov,inline=True, fontsize=10,levels=olevs[0::2])
 
