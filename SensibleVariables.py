@@ -2,7 +2,7 @@ from matplotlib.cm import get_cmap
 from matplotlib.colors import ListedColormap
 
 class svariable:
-	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0,colormap=get_cmap("jet"),scale="linear",nticks=5,nlevs=10,logbase=10,bounds=None,overlap_sv=None,overlap_gap=None,overlap_cmap=None):
+	def __init__(self, dim=3, wrfname=None, ptitle=None, outfile=None, range_min=None, range_max=None,interpvar="pressure",interpvalue=None,windbarbs=0,isdif=0,colormap=get_cmap("jet"),scale="linear",nticks=5,nlevs=10,logbase=10,bounds=None,overlap_sv=None,overlap_gap=None,overlap_cmap=None,lat=None,lon=None):
 		self.dim = dim
 		self.wrfname = wrfname
 		self.ptitle = ptitle
@@ -22,6 +22,8 @@ class svariable:
 		self.overlap_sv = overlap_sv
 		self.overlap_gap = overlap_gap
 		self.overlap_cmap = overlap_cmap
+		self.lat = lat
+		self.lon = lon
 
 # 2D + Field
 TerrainElevation = svariable(wrfname="ter",
@@ -393,3 +395,13 @@ Frontogenesis500 = svariable(dim=4,
 						colormap = ListedColormap(["midnightblue","darkblue","blue","deepskyblue","cyan","white","yellow","darkorange","red","firebrick","darkred"]),
 						range_min=-8,
 						range_max=8)
+
+# SkewT
+SkewT = svariable(
+			ptitle="SkewT at 53.3638,-2.2764",
+			outfile="SkewT",
+			lat="53.3638",
+			lon="-2.2764",
+			range_min=-60,
+			range_max=40
+		)

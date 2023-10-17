@@ -1,5 +1,6 @@
 from netCDF4 import Dataset
 from Plot2DField import *
+from SkewT import *
 import imageio
 import os
 from GetSensVar import *
@@ -57,14 +58,19 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,
 #        if timerange>1:timerange=1                              ## For tests only
         for ti in range(timerange):
             print("Processing:",ti+1,"/",timerange, end = '\r')
-            var,u,v,vpv=GetSensVar(ncfile,svariable,windbarbs,ti,vpv)
-            if svariable.overlap_sv is not None:
-                overlapsv=eval("sv."+svariable.overlap_sv)
-                overlap,_,_,_=GetSensVar(ncfile,overlapsv,0,ti,None)
-            if var is not None:
+            if("SkewT" in svariable.outfile):
                 of=tmp_dir+outfile+wrf_fn+"_t_"+str(ti)+".png"
-                Plot2DField(var,svariable,windbarbs,of,overlap,u,v,smooth,domain=domain)
+                Plot_SkewT(ncfile,ti,svariable,of)
                 PNGfiles.append(of)
+            else:
+                var,u,v,vpv=GetSensVar(ncfile,svariable,windbarbs,ti,vpv)
+                if svariable.overlap_sv is not None:
+                    overlapsv=eval("sv."+svariable.overlap_sv)
+                    overlap,_,_,_=GetSensVar(ncfile,overlapsv,0,ti,None)
+                if var is not None:
+                    of=tmp_dir+outfile+wrf_fn+"_t_"+str(ti)+".png"
+                    Plot2DField(var,svariable,windbarbs,of,overlap,u,v,smooth,domain=domain)
+                    PNGfiles.append(of)
         print("Processed successfully.")
 
     # Build GIF

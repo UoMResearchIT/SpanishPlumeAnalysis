@@ -1,4 +1,5 @@
 import subprocess
+from datetime import datetime
 
 src="/".join(__file__.split("/")[:-2])
 wrfdata=f"{src}/tests/wrfdata"
@@ -9,7 +10,7 @@ all_args=[
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/double/          --outdir={results}/ --file_tag=_double",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/half/            --outdir={results}/ --file_tag=_half",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/zero/            --outdir={results}/ --file_tag=_zero",
-    f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/d02/            --outdir={results}/ --file_tag=_d02_full --domain=full --range_max=800",
+    # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/d02/            --outdir={results}/ --file_tag=_d02_full --domain=full --range_max=800",
     # f"--task=diagnostic   --var=AirTemp500        --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=AirTempDif6h850   --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/",
     # f"--task=diagnostic   --var=AirTempDif6h700   --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/",
@@ -28,13 +29,21 @@ all_args=[
     # f"--task=diagnostic   --var=Frontogenesis850  --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/",
     # f"--task=diagnostic   --var=Frontogenesis700  --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=Frontogenesis500  --dir_path={wrfdata}/control/ --outdir={results}/",
+    f"--task=diagnostic   --var=SkewT  --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/",
+    f"--task=diagnostic   --var=SkewT  --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/ --lat=42.9 --lon=2.43",
     ]
+
+t0=datetime.now()
 
 for args in all_args:
     outdir=args.split("--outdir=")[1]
     if " " in outdir:
         outdir = outdir.split(" ")[0]
     subprocess.run(f"mkdir -p {outdir}",shell=True)
+    ti=datetime.now()
+    print(f"\nStarted at: {ti}")
     print(f"\npython {src}/CSF/csf.py {args}")
     subprocess.run(f"python {src}/CSF/csf.py {args}",shell=True)
+    print(f"\nFinished after: {datetime.now()-ti}")
 
+print(f"\n\nTotal run time: {datetime.now()-t0}")

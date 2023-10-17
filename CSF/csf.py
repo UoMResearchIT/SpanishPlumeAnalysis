@@ -113,6 +113,14 @@ if __name__ == '__main__':
                         type=str,
                         default="",
                         help="Tag appended at the end of the output file name to prevent replacement.")
+    parser.add_argument('--lat',
+                        type=str,
+                        default=None,
+                        help="Latitude of point of interest (used for SkewT plots).")
+    parser.add_argument('--lon',
+                        type=str,
+                        default=None,
+                        help="Longitude of point of interest (used for SkewT plots).")
    
     args = parser.parse_args()
 
@@ -121,6 +129,13 @@ if args.range_min is not None:
     wvar.range_min = float(args.range_min)
 if args.range_max is not None:
     wvar.range_max = float(args.range_max)
+
+if args.lat is not None:
+    wvar.lat = float(args.lat)
+if args.lon is not None:
+    wvar.lon = float(args.lon)
+if "SkewT" in wvar.outfile and (args.lat is not None or args.lon is not None):
+    wvar.outfile = f"SkewT_at_{wvar.lat}_{wvar.lon}"
 
 if args.windbarbs is None:
     windbarbs=wvar.windbarbs
