@@ -400,6 +400,7 @@ Frontogenesis500 = svariable(dim=4,
 SkewT = svariable(
 			ptitle="SkewT at 53.3638,-2.2764",
 			outfile="SkewT",
+			windbarbs=1,
 			lat="53.3638",
 			lon="-2.2764",
 			range_min=-60,

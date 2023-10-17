@@ -25,9 +25,9 @@ def Animate(dir_path,svariable,windbarbs=0,outfile="MyMP4",outdir="./",smooth=1,
     #
     print("Generating diagnostic for",svariable.outfile)
     print("Source wrfout files:",dir_path)
-    print("Using:\n\twindbarbs=",windbarbs,
-                "\n\tsmooth=",smooth,
-                "\n\tcleanpng=",cleanpng)
+    print("Using:\n\twindbarbs =",windbarbs,
+                "\n\tsmooth    =",smooth,
+                "\n\tcleanpng  =",cleanpng)
     print("Output will be saved as ",outdir+outfile,"\n")
     
     # Initialization
