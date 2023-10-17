@@ -135,6 +135,8 @@ Now you can call the submition script with:
 ```
 ./CSF/Submit.sh testCSF/test.inputs testCSF/Results
 ```
+The script will create a jobarray and submit each line in the `.inputs` file.
+It will also make sure that the `outdir` directories exist (or it will create them) in `testCSF/Results` to save the results.
 
 # Testing new code
 
@@ -153,7 +155,22 @@ Modify the inputs for your test in the `all_args` list, and run with
 ```
 python tests/test.py
 ```
+## Conda environment
 
+Make sure you have the conda environment set up and active before you call `csf.py` or `test.py`.
+
+If you do not have the environment, make sure you have anaconda/miniconda/micromamba installed.
+This will install it with defaults:
+```
+echo | "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+source ~/.bashrc
+```
+Then you can create and activate the environment with
+```
+micromamba env create --name wrf-py-env --file environment.yml
+micromamba activate wrf-py-env
+```
+You are now set up to use the code.
 
 # SpanishPlumeAnalysis
 Visualization and comparison of WRF data on the Spanish Plume, modifying the geographical terrain and or heat/moisture flux over the spanish peninsula.
