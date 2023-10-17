@@ -1,7 +1,7 @@
 import os
 import sys
 #Adds folder to python path search
-sys.path.insert(1, '/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/')
+sys.path.insert(1, "/".join(__file__.split("/")[:-2]))
 
 from Animate import Animate;
 import SensibleVariables as sv
