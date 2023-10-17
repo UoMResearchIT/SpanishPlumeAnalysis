@@ -35,11 +35,8 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",overlap=None,u=N
 	# Get the cartopy mapping object
 	cart_proj = get_cartopy(var)
 	
-	# Create a figure								####Takes ~7s first time, but reuses preexisting figure
-	fig = plt.gcf()
-	plt.clf()
-	fig.set_size_inches(10.88,8.16)
-	fig.set_dpi(100)
+	# Create a figure
+	fig = plt.figure(figsize=(10.88,8.16), dpi=100)
 	
 	# Set the GeoAxes to the projection used by WRF
 	ax = plt.axes(projection=cart_proj)
@@ -110,3 +107,4 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",overlap=None,u=N
 	plt.annotate(dtime, xy=(.02, .02),  xycoords='axes fraction')
 	
 	plt.savefig(outfname)
+	plt.close(fig)
