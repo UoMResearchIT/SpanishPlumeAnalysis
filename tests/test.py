@@ -29,8 +29,10 @@ all_args=[
     # f"--task=diagnostic   --var=Frontogenesis850  --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/",
     # f"--task=diagnostic   --var=Frontogenesis700  --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=Frontogenesis500  --dir_path={wrfdata}/control/ --outdir={results}/",
-    f"--task=diagnostic   --var=SkewT  --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/",
-    f"--task=diagnostic   --var=SkewT  --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/ --lat=42.9 --lon=2.43",
+    # f"--task=diagnostic   --var=SkewT  --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/",
+    # f"--task=diagnostic   --var=SkewT  --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/ --lat=42.9 --lon=2.43",
+    f"--task=diagnostic   --var=SkewT_Algeria      --dir_path={wrfdata}/control/ --outdir={results}/ --clean=0",
+    # f"--task=diagnostic   --var=SkewT_GIBRALTAR    --dir_path={wrfdata}/control/ --outdir={results}/ --clean=0",
     ]
 
 t0=datetime.now()
