@@ -1,7 +1,8 @@
 import metpy as mp
 from metpy.units import units
 from metpy.plots import SkewT
-from wrf import (ll_to_xy, getvar, get_cartopy, xy_to_ll, to_np, latlon_coords)
+from wrf import (ll_to_xy, getvar)
+from wrf import ( get_cartopy, xy_to_ll, to_np, latlon_coords)
 import cartopy.feature as cfeature
 import cartopy.crs as crs
 from matplotlib.colors import Normalize
@@ -29,13 +30,6 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
     u  =  v1[:,x_y[1],x_y[0]].data  * units('m/s')
     v  =  u1[:,x_y[1],x_y[0]].data  * units('m/s')
 
-    # print(height)
-    # print(p)
-    print(f"lat,lon={svariable.lat},{svariable.lon}")
-    print(f"x_y.data={x_y.data}")
-    llll=xy_to_ll(ncfile,x_y[0],x_y[1],timeidx=ti)
-    print(f"llll.data={llll.data}")
-    print(f"h={h}")
     # Get the cartopy mapping object
     cart_proj = get_cartopy(height)
     # Create a figure
@@ -51,36 +45,23 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
     x=to_np(lons)
     y=to_np(lats)
     z=to_np(height)
-    print(f"x={x[x_y.data[1],x_y.data[0]]}")
-    print(f"y={y[x_y.data[1],x_y.data[0]]}")
-    print(f"z={z[x_y.data[1],x_y.data[0]]}")
-
-    print(f"\n lat[0,0]={y[0,0]}")
-    print(f"\n lon[0,0]={x[0,0]}")
-    print(f"\n xy_to_ll={xy_to_ll(ncfile,0,0,timeidx=ti).data}")
-
     nticks = sv.TerrainElevation.nticks
     nlevs = sv.TerrainElevation.nlevs
     levs = np.linspace(sv.TerrainElevation.range_min, sv.TerrainElevation.range_max, nlevs)
     norm = Normalize(sv.TerrainElevation.range_min,sv.TerrainElevation.range_max)
     ticklevs = np.linspace(sv.TerrainElevation.range_min, sv.TerrainElevation.range_max, nticks)
-    plt.contourf(x, y, z,
-				 levels=levs, norm=norm,
-				 transform=crs.PlateCarree(),
-				 cmap=sv.TerrainElevation.colormap,alpha=0.8,
-				 extend="both")
+    plt.contourf(x, y, z, levels=levs, norm=norm, transform=crs.PlateCarree(), cmap=sv.TerrainElevation.colormap,alpha=0.8, extend="both")
     plt.colorbar(ax=ax, extendfrac=[0.01,0.01],ticks=ticklevs)
     # Adds marker to location on map
     plt.plot(svariable.lon, svariable.lat, color='darkred', linewidth=2, marker='x', transform=crs.PlateCarree())                       # True
-    plt.plot(llll.data[1], llll.data[0], color='red', linewidth=2, marker='x', transform=crs.PlateCarree())                             # After xy
-    plt.plot(x[x_y.data[1],x_y.data[0]], y[x_y.data[1],x_y.data[0]], color='m', linewidth=2, marker='x', transform=crs.PlateCarree())   # Where i think its actually checking
+    plt.plot(x[x_y.data[1],x_y.data[0]], y[x_y.data[1],x_y.data[0]], color='m', linewidth=2, marker='x', transform=crs.PlateCarree())   # After xy
     # Set the map bounds
     ax.set_xlim([-3542499.4953854363, 942500.950843083])
     ax.set_ylim([-732499.172137629, 3642500.0773183405])
     # Add the gridlines
     ax.gridlines(color="black", linestyle="dotted")
     # Add title and frame time
-    plt.annotate(f"lat={svariable.lat}, lon={svariable.lon}, alt={round(h.magnitude,1)} m", xy=(.02, .02),  xycoords='axes fraction')
+    plt.annotate(f"lat={svariable.lat}, lon={svariable.lon}, alt={round(h.magnitude,1)} m", xy=(.02, .92),  xycoords='axes fraction')
     plt.savefig(f"{outfname}_map.png")
     plt.close(fig)
 
@@ -128,7 +109,7 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
     skew.plot(p, Td, color='green')
 
     # Add title, frame time, save and close
-    plt.title(svariable.ptitle)
+    plt.title(f"{svariable.ptitle} - {round(h.magnitude,1)} m.a.s.l.")
     plt.annotate(dtime, xy=(.01, .01),  xycoords='figure fraction')
     plt.savefig(outfname)
     plt.close(fig)
