@@ -406,3 +406,138 @@ SkewT = svariable(
 			range_min=-60,
 			range_max=40
 		)
+SkewT_Algeria = svariable(
+			ptitle="SkewT at 31.62,-2.23 (ALGERIA Bechar)",	#60571	81
+			outfile="SkewT_Algeria",
+			windbarbs=1,
+			lat="31.62",
+			lon="-2.23",
+			range_min=-60,
+			range_max=40
+		)
+SkewT_Lerwick = svariable(
+			ptitle="SkewT at 60.13,-1.18 (UK Lerwick)",	#03005	82
+			outfile="SkewT_Lerwick",
+			windbarbs=1,
+			lat="60.13",
+			lon="-1.18",
+			range_min=-60,
+			range_max=40
+		)
+SkewT_Stornoway = svariable(
+	ptitle="SkewT at 58.22,-6.32 (UK Stornoway)", #03026	9
+	outfile="SkewT_Stornoway",
+	windbarbs=1,
+	lat="58.22",
+	lon="-6.32",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_Nottingham = svariable(
+	ptitle="SkewT at 53.00,-1.25 (UK Nottingham)", #03354	117
+	outfile="SkewT_Nottingham",
+	windbarbs=1,
+	lat="53.00",
+	lon="-1.25",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_Aberporth = svariable(
+	ptitle="SkewT at 52.13,-4.57 (UK Aberporth)", #03502	133
+	outfile="SkewT_Aberporth",
+	windbarbs=1,
+	lat="52.13",
+	lon="-4.57",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_LARKHILL = svariable(
+	ptitle="SkewT at 51.20,-1.80 (UK LARKHILL)", #03743	132
+	outfile="SkewT_LARKHILL",
+	windbarbs=1,
+	lat="51.20",
+	lon="-1.80",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_Camborne = svariable(
+	ptitle="SkewT at 50.22,-5.32 (UK Camborne)", #03808	88
+	outfile="SkewT_Camborne",
+	windbarbs=1,
+	lat="50.22",
+	lon="-5.32",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_Herstmonceux  = svariable(
+	ptitle="SkewT at 50.90,0.32 (UK Herstmonceux)", #03882	52
+	outfile="SkewT_Herstmonceux",
+	windbarbs=1,
+	lat="50.90",
+	lon=".32	52",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_Trappes = svariable(
+	ptitle="SkewT at 48.77,2.02 (FRANCE Trappes)", #07145	168
+	outfile="SkewT_Trappes",
+	windbarbs=1,
+	lat="48.77",
+	lon="2.02",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_Nimes = svariable(
+	ptitle="SkewT at 43.87,4.40 (FRANCE Nimes)", #07645	60
+	outfile="SkewT_Nimes",
+	windbarbs=1,
+	lat="43.87",
+	lon="4.40 (FRANCE",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_La_Coruna = svariable(
+	ptitle="SkewT at 43.37,-8.42 (SPAIN La Coruna)", #08001	58
+	outfile="SkewT_LaCoruna",
+	windbarbs=1,
+	lat="43.37",
+	lon="-8.42",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_Santander = svariable(
+	ptitle="SkewT at 43.47,-3.82 (SPAIN Santander)", #08023	64
+	outfile="SkewT_Santander",
+	windbarbs=1,
+	lat="43.47",
+	lon="-3.82",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_Madrid = svariable(
+	ptitle="SkewT at 40.45,-3.55 (SPAIN Madrid)", #08221	633
+	outfile="SkewT_Madrid",
+	windbarbs=1,
+	lat="40.45",
+	lon="-3.55",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_Murcia = svariable(
+	ptitle="SkewT at 38.00,-1.17 (SPAIN Murcia)", #08430	62
+	outfile="SkewT_Murcia",
+	windbarbs=1,
+	lat="38.00",
+	lon="-1.17",
+	range_min=-60,
+	range_max=40,
+	)
+SkewT_GIBRALTAR  = svariable(
+	ptitle="SkewT at 36.15,-5.35 (GIBRALTAR Gibraltar)", #08495
+	outfile="SkewT_GIBRALTAR",
+	windbarbs=1,
+	lat="36.15",
+	lon="-5.35",
+	range_min=-60,
+	range_max=40,
+	)
