@@ -2,10 +2,6 @@ import metpy as mp
 from metpy.units import units
 from metpy.plots import SkewT
 from wrf import (ll_to_xy, getvar)
-from wrf import ( get_cartopy, xy_to_ll, to_np, latlon_coords)
-import cartopy.feature as cfeature
-import cartopy.crs as crs
-from matplotlib.colors import Normalize
 import matplotlib.pyplot as plt
 import numpy as np
 import SensibleVariables as sv
@@ -29,41 +25,6 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
     Td = Td1[:,x_y[1],x_y[0]].data * units.degC
     u  =  v1[:,x_y[1],x_y[0]].data  * units('m/s')
     v  =  u1[:,x_y[1],x_y[0]].data  * units('m/s')
-
-    # Get the cartopy mapping object
-    cart_proj = get_cartopy(height)
-    # Create a figure
-    fig = plt.figure(figsize=(10.88,8.16), dpi=300)
-    # Set the GeoAxes to the projection used by WRF
-    ax = plt.axes(projection=cart_proj)
-    # Download and add the borders and coastlines	####Takes ~2s
-    borders = cfeature.BORDERS.with_scale('50m')
-    ax.add_feature(borders, linewidth=.4, edgecolor="black")
-    ax.coastlines('50m', linewidth=0.8)
-    #Terrain filled contours
-    lats, lons = latlon_coords(height)
-    x=to_np(lons)
-    y=to_np(lats)
-    z=to_np(height)
-    nticks = sv.TerrainElevation.nticks
-    nlevs = sv.TerrainElevation.nlevs
-    levs = np.linspace(sv.TerrainElevation.range_min, sv.TerrainElevation.range_max, nlevs)
-    norm = Normalize(sv.TerrainElevation.range_min,sv.TerrainElevation.range_max)
-    ticklevs = np.linspace(sv.TerrainElevation.range_min, sv.TerrainElevation.range_max, nticks)
-    plt.contourf(x, y, z, levels=levs, norm=norm, transform=crs.PlateCarree(), cmap=sv.TerrainElevation.colormap,alpha=0.8, extend="both")
-    plt.colorbar(ax=ax, extendfrac=[0.01,0.01],ticks=ticklevs)
-    # Adds marker to location on map
-    plt.plot(svariable.lon, svariable.lat, color='darkred', linewidth=2, marker='x', transform=crs.PlateCarree())                       # True
-    plt.plot(x[x_y.data[1],x_y.data[0]], y[x_y.data[1],x_y.data[0]], color='m', linewidth=2, marker='x', transform=crs.PlateCarree())   # After xy
-    # Set the map bounds
-    ax.set_xlim([-3542499.4953854363, 942500.950843083])
-    ax.set_ylim([-732499.172137629, 3642500.0773183405])
-    # Add the gridlines
-    ax.gridlines(color="black", linestyle="dotted")
-    # Add title and frame time
-    plt.annotate(f"lat={svariable.lat}, lon={svariable.lon}, alt={round(h.magnitude,1)} m", xy=(.02, .92),  xycoords='axes fraction')
-    plt.savefig(f"{outfname}_map.png")
-    plt.close(fig)
 
     # Create figure
     fig = plt.figure(figsize=(10.88,8.16), dpi=100)
