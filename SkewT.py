@@ -22,12 +22,12 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
     # Extract date time for label
     dtime=str(p1.Time.values)[0:19]
     # Prepare variables for metpy
-    h = height[x_y[0],x_y[1]].data  * units.m
-    p  = p1[:,x_y[0],x_y[1]].data  * units.hPa 
-    T  = T1[:,x_y[0],x_y[1]].data  * units.degC
-    Td = Td1[:,x_y[0],x_y[1]].data * units.degC
-    u  = v1[:,x_y[0],x_y[1]].data  * units('m/s')
-    v  = u1[:,x_y[0],x_y[1]].data  * units('m/s')
+    h = height[x_y[1],x_y[0]].data  * units.m
+    p  =  p1[:,x_y[1],x_y[0]].data  * units.hPa
+    T  =  T1[:,x_y[1],x_y[0]].data  * units.degC
+    Td = Td1[:,x_y[1],x_y[0]].data * units.degC
+    u  =  v1[:,x_y[1],x_y[0]].data  * units('m/s')
+    v  =  u1[:,x_y[1],x_y[0]].data  * units('m/s')
 
     # print(height)
     # print(p)
@@ -51,9 +51,14 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
     x=to_np(lons)
     y=to_np(lats)
     z=to_np(height)
-    print(f"x={x[x_y.data[0],x_y.data[1]]}")
-    print(f"y={y[x_y.data[0],x_y.data[1]]}")
-    print(f"z={z[x_y.data[0],x_y.data[1]]}")
+    print(f"x={x[x_y.data[1],x_y.data[0]]}")
+    print(f"y={y[x_y.data[1],x_y.data[0]]}")
+    print(f"z={z[x_y.data[1],x_y.data[0]]}")
+
+    print(f"\n lat[0,0]={y[0,0]}")
+    print(f"\n lon[0,0]={x[0,0]}")
+    print(f"\n xy_to_ll={xy_to_ll(ncfile,0,0,timeidx=ti).data}")
+
     nticks = sv.TerrainElevation.nticks
     nlevs = sv.TerrainElevation.nlevs
     levs = np.linspace(sv.TerrainElevation.range_min, sv.TerrainElevation.range_max, nlevs)
@@ -66,9 +71,9 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
 				 extend="both")
     plt.colorbar(ax=ax, extendfrac=[0.01,0.01],ticks=ticklevs)
     # Adds marker to location on map
-    plt.plot(float(svariable.lon), float(svariable.lat), color='darkred', linewidth=2, marker='x', transform=crs.PlateCarree())         # True
+    plt.plot(svariable.lon, svariable.lat, color='darkred', linewidth=2, marker='x', transform=crs.PlateCarree())                       # True
     plt.plot(llll.data[1], llll.data[0], color='red', linewidth=2, marker='x', transform=crs.PlateCarree())                             # After xy
-    plt.plot(x[x_y.data[0],x_y.data[1]], y[x_y.data[0],x_y.data[1]], color='m', linewidth=2, marker='x', transform=crs.PlateCarree())   # Where i think its actually checking
+    plt.plot(x[x_y.data[1],x_y.data[0]], y[x_y.data[1],x_y.data[0]], color='m', linewidth=2, marker='x', transform=crs.PlateCarree())   # Where i think its actually checking
     # Set the map bounds
     ax.set_xlim([-3542499.4953854363, 942500.950843083])
     ax.set_ylim([-732499.172137629, 3642500.0773183405])
