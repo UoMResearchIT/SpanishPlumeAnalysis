@@ -136,7 +136,7 @@ if args.lon is not None:
     wvar.lon = float(args.lon)
 if "SkewT" in wvar.outfile and (args.lat is not None or args.lon is not None):
     wvar.outfile = f"SkewT_at_{wvar.lat}_{wvar.lon}"
-    wvar.ptitle = f"SkewT at {wvar.lat},{wvar.lon}",
+    wvar.ptitle = f"SkewT at {wvar.lat},{wvar.lon}"
 
 if args.windbarbs is None:
     windbarbs=wvar.windbarbs

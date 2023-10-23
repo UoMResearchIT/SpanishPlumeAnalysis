@@ -70,7 +70,7 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
     skew.plot(p, Td, color='green')
 
     # Add title, frame time, save and close
-    plt.title(f"{svariable.ptitle} - {round(h.magnitude,1)} m.a.s.l.")
+    plt.title(f"{svariable.ptitle} ~ {int(h.magnitude)} m.a.s.l.")
     plt.annotate(dtime, xy=(.01, .01),  xycoords='figure fraction')
     plt.savefig(outfname)
     plt.close(fig)
