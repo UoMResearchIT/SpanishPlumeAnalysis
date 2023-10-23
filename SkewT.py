@@ -10,6 +10,7 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
 
     # Load wrf variables
     x_y = ll_to_xy(ncfile, svariable.lat, svariable.lon)
+    height = getvar(ncfile,"ter",timeidx=ti)
     p1  = getvar(ncfile,"pressure",timeidx=ti)
     T1  = getvar(ncfile,"tc",timeidx=ti)
     Td1 = getvar(ncfile,"td",timeidx=ti)
@@ -18,11 +19,12 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
     # Extract date time for label
     dtime=str(p1.Time.values)[0:19]
     # Prepare variables for metpy
-    p  = p1[:,x_y[0],x_y[1]].data  * units.hPa 
-    T  = T1[:,x_y[0],x_y[1]].data  * units.degC
-    Td = Td1[:,x_y[0],x_y[1]].data * units.degC
-    u  = v1[:,x_y[0],x_y[1]].data  * units('m/s')
-    v  = u1[:,x_y[0],x_y[1]].data  * units('m/s')
+    h = height[x_y[1],x_y[0]].data  * units.m
+    p  =  p1[:,x_y[1],x_y[0]].data  * units.hPa
+    T  =  T1[:,x_y[1],x_y[0]].data  * units.degC
+    Td = Td1[:,x_y[1],x_y[0]].data * units.degC
+    u  =  v1[:,x_y[1],x_y[0]].data  * units('m/s')
+    v  =  u1[:,x_y[1],x_y[0]].data  * units('m/s')
 
     # Create figure
     fig = plt.figure(figsize=(10.88,8.16), dpi=100)
@@ -68,7 +70,7 @@ def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
     skew.plot(p, Td, color='green')
 
     # Add title, frame time, save and close
-    plt.title(svariable.ptitle)
+    plt.title(f"{svariable.ptitle} - {round(h.magnitude,1)} m.a.s.l.")
     plt.annotate(dtime, xy=(.01, .01),  xycoords='figure fraction')
     plt.savefig(outfname)
     plt.close(fig)
