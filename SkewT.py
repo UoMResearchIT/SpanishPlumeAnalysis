@@ -9,7 +9,7 @@ import SensibleVariables as sv
 def Plot_SkewT(ncfile,ti,svariable,outfname="MyPlot.png"):
 
     # Load wrf variables
-    x_y = ll_to_xy(ncfile,svariable.lat, svariable.lon)
+    x_y = ll_to_xy(ncfile, svariable.lat, svariable.lon)
     height = getvar(ncfile,"ter",timeidx=ti)
     p1  = getvar(ncfile,"pressure",timeidx=ti)
     T1  = getvar(ncfile,"tc",timeidx=ti)
