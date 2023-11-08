@@ -51,7 +51,7 @@ usage()
     echo "    ./singularity_rip.sh -od=Results/Control --noRDP -tt=68-35 -tp=Traj_68"
     echo "       The above will look in ./Results/Control/RIPDP for the ripdp pre-processed data, use the template to compute trajectories from simulation time 68 to 35 (backtrajectories), generate a plot and save it as Traj_68.pdf"
     echo ""
-    echo "    ./singularity_rip.sh -od=Results/Sample -wd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/Sample/WRFData/ -tt=12-0 --traj_dt=600 --file_dt=10800 --traj_x=55 --traj_y=40"
+    echo "    ./singularity_rip.sh -od=Results/Sample -wd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Sample/WRFData/ -tt=12-0 --traj_dt=600 --file_dt=10800 --traj_x=55 --traj_y=40"
     echo "       The above configures the trajectory inputs template to be able to use it with the sample data."
     echo ""
 }
@@ -70,16 +70,16 @@ usage()
         traj_y=410
         hydrometeor=0
     # Templates
-        swd="/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/Singularity/"
-        rdp_tpl="$swd""Templates/rdp.template"
-        run_tpl="$swd""Templates/run.template"
-        tinp_tpl="$swd""Templates/traj_inputs.template"
-        tplot_tpl="$swd""Templates/traj_plot.template"
-        traj_tpl="$swd""Templates/traj.template"
+        rip_dir="/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/"
+        rdp_tpl="$rip_dir""Templates/rdp.template"
+        run_tpl="$rip_dir""Templates/run.template"
+        tinp_tpl="$rip_dir""Templates/traj_inputs.template"
+        tplot_tpl="$rip_dir""Templates/traj_plot.template"
+        traj_tpl="$rip_dir""Templates/traj.template"
     # Script
         POSITIONAL_ARGS=()
         posod=1
-        poswd=1
+        porip_dir=1
         cwdti=1
         wrfdata=""
         trajtimes=""
@@ -103,7 +103,7 @@ for i in "$@"; do       #cycles through arguments
             ;;
         -wd=*|--wrfdata=*)
             wrfdata="${i#*=}"
-            poswd=0
+            porip_dir=0
             ;;
         -tp=*|--trajplot=*)
             trajplot="${i#*=}"
@@ -178,7 +178,7 @@ if [ $# -gt 0 ]; then
         echo "             outputdir=$folder"
         shift
     fi
-    if [ $poswd -eq 1 ]; then
+    if [ $porip_dir -eq 1 ]; then
         wrfdata=$1                  # Saves input 2 (path to wrfout files)
         echo "             wrfdata=$wrfdata"
         shift
@@ -254,7 +254,7 @@ if [ $noRDP -eq 0 ]; then
             --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
-            "$swd"ripdocker_latest.sif  \
+            "$rip_dir"ripdocker_latest.sif  \
             /bin/bash run_rdp.sh
 else
     echo "Skipping ripdp pre-processing..."
@@ -330,7 +330,7 @@ if [ $noTraj -eq 0 ]; then
                 --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
                 --pwd /$name \
-                "$swd"ripdocker_latest.sif  \
+                "$rip_dir"ripdocker_latest.sif  \
                 /bin/bash run_"$trajplot"_traj_i.sh
     done <"$inputsfile"
 else
@@ -365,7 +365,7 @@ if [ $noPlot -eq 0 ]; then
             --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
-            "$swd"ripdocker_latest.sif  \
+            "$rip_dir"ripdocker_latest.sif  \
             /bin/bash run_$trajplot.sh
 else
     echo "Skipping plot generation..."
