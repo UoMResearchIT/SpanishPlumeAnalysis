@@ -11,9 +11,10 @@
 ===========================================================================
 ----------------------    Plot Specification Table    ---------------------
 ===========================================================================
-#feld=arrow; ptyp=ht; tjfl=$trajfile_i.traj; vcor=p;> 
-#    colr=$color; nmsg; tjst=$traj_t_0; tjen=$traj_t_f
+#feld=arrow; ptyp=ht; tjfl=$trajfile_i.traj; vcor=s;> 
+#    colr=$color; nmsg; tjst=$t_0; tjen=$t_f
+#    titl=$trajectory_title
 $Trajectory_Spec_List
 feld=map; ptyp=hb 
-feld=tic; ptyp=hb 
+feld=tic; ptyp=hb; axlg=50
 ===========================================================================

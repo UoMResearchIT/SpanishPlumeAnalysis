@@ -343,8 +343,12 @@ if [ $noPlot -eq 0 ]; then
     traji=0
     while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
         traji=$((traji+1))
+        tjst=$(($traj_t_0>$traj_t_f ? $traj_t_f : $traj_t_0))   # Min of t_0 and t_f
+        tjen=$(($traj_t_0>$traj_t_f ? $traj_t_0 : $traj_t_f))   # Max of t_0 and t_f
+        trajectory_title=$traj_z"_hPa_from_hour_"$traj_t_0"_to_$traj_t_f"
         Trajectory_Spec_List=$Trajectory_Spec_List"feld=arrow; ptyp=ht; tjfl=BTrajectories/"$trajplot"_traj_$traji.traj; vcor=s;>"$'\n'
-        Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; nmsg; tjst=$traj_t_f; tjen=$traj_t_0"$'\n'
+        Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; nmsg; tjst=$tjst; tjen=$tjen;>"$'\n'
+        Trajectory_Spec_List=$Trajectory_Spec_List"    titl=$trajectory_title"$'\n'
         # Copies traj_plot template
         export ncarg_type Trajectory_Spec_List
         envsubst '$ncarg_type $Trajectory_Spec_List' < $tplot_tpl > $folder/$trajplot.in
