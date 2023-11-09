@@ -70,7 +70,7 @@ usage()
         traj_y=410
         hydrometeor=0
     # Templates
-        rip_dir="/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/"
+        rip_dir="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/"
         rdp_tpl="$rip_dir""Templates/rdp.template"
         run_tpl="$rip_dir""Templates/run.template"
         tinp_tpl="$rip_dir""Templates/traj_inputs.template"
