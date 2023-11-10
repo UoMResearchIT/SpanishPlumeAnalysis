@@ -1,6 +1,6 @@
 # About the scripts
 
-The scripts in this folder make use of a RIP singularity container to produce backward trajectories.
+The scripts in this folder make use of a RIP singularity container (apptainer) to produce backward trajectories.
 There are mainly two ways to interact with the container in these scripts.
 
 The `singularity_rip.sh` script directly invokes the container, and processes a single trajectory, so it is mostly meant for testing.
@@ -48,6 +48,16 @@ The `noRDP` flag is there to skip the pre-processing step, which we had already 
 Note that we are using the same output directory as in the pre-processing step.
 The script will try to find the `RIPDP` directory in there.
 
+Because the pre-processing step is not trajectory specific, it can make things simple to have the pre-processed data in a different location.
+We can specify the path to the pre-processed data with the `--ripdpdata` (or `-pd`) parameter, set to the location of the `rdp_*` file (the `*` will be the basename of your output directory).
+
+For example, if you pre-processed the data using --outputdir="/results/spain", the basename is "spain", and so inside the `RIPDP` directory the files have names like `rdp_spain*`. We can compute trajectories in a separate directory with
+```
+./singularity_rip.sh --ripdpdata="/results/spain/RIPDP/rdp_spain" --outputdir="/trajectories/spain/" --trajtimes=1-3
+```
+This will use the contents of `/results/spain/RIPDP`, but only create files in `/trajectories/spain/`.
+
+
 The `trajtimes` parameter specifies the times for which we want to plot a trajectory, and is specified with two numbers separated by a `-`.
  - The first number represents the "begining" of the trajectory (`traj_t_0`), that is, the time in which the particles at the specified locations will begin to be tracked, or "release time" (rtim) in rip terms.
  - The second number represents the "end" of the trajectory (`traj_t_f`), taht is, the time in which tracking stops, or completion time (ctim) in rip terms.
@@ -84,10 +94,10 @@ Note that since all the trajectory parameters need to be already specified in th
 
 Internally, the script will copy the trajectory inputs file, reformat it, and save it in `/my/output/dir/BTrajectories` as `*_traj_inputs`.
 
-Then it  create a trajectory specification file for each line in the trajectory inputs file, using the `./Templates/traj.template`, and save them in the same directory as `*_traj_x.in`.
+Then it  create a trajectory specification file for each line in the trajectory inputs file, using the `./Templates/traj.template`, and save them in the same directory as `*_traj_#.in`.
 
 Then it will create a `/my/output/dir/run_MyPlot_traj_i.sh` from the `./Templates/run.template`, which is executed inside the container to generate the trajectories.
-This script is then executed multiple times inside the container (the file is actually modified as it iterates trhough the trajectories, so in the end you will only see one file. Inside it, you should see the `_traj_x.in` with the number of the last trajectory calculated).
+This script is then executed multiple times inside the container (the file is actually modified as it iterates trhough the trajectories, so in the end you will only see one file. Inside it, you should see the `_traj_#.in` with the number of the last trajectory calculated).
 
 This generates a bunch of `.out`, `.traj` and `.diag` files in the `BTrajectories` directory, that will get used for the plotting.
 
@@ -144,7 +154,7 @@ This script is then executed inside the container to generate the plot using `My
 
 # System requirements
 
-You need to have a working installation of singularity (aptainer) for the scripts to work, and the ripdocker_latest.sif image.
+You need to have a working installation of singularity (apptainer) for the scripts to work, and the ripdocker_latest.sif image.
 
 To install apptainer see the [apptainer docs](https://apptainer.org/docs/admin/main/installation.html#install-ubuntu-packages).
 
