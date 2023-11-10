@@ -4,6 +4,7 @@ import sys
 sys.path.insert(1, "/".join(__file__.split("/")[:-2]))
 
 from Animate import Animate;
+from TerrainPlots import Terrain;
 import SensibleVariables as sv
 from MP4Compare import *
 from WRFCompare import *
@@ -150,22 +151,11 @@ match args.task:
         if dirs[0]=="": dir=args.dir_path
         else: dir=dirs[0]
         if wvar==sv.TerrainElevation:
-            if dir[-1]!="/":dir=dir+"/"
-            outdir=args.outdir
-            if outdir[-1]!="/":outdir=outdir+"/"
-            WRFfiles=[]
-            for file in os.listdir(dir):
-                if file.startswith('wrfout'):
-                    WRFfiles.append(file)
-            WRFfiles.sort()
-            var,_,_,_=GetSensVar(Dataset(dir+WRFfiles[0]),wvar)
-            of=outdir+outfile+".png"
-            print("Generating diagnostic for",wvar.outfile)
-            print("Source wrfout files:",dir)
-            print("Using:\n\tdomain=",args.domain,
-                        "\n\tsmooth=",args.smooth)
-            print("Output will be saved as ",of,"\n")
-            Plot2DField(var,wvar,0,of,smooth=args.smooth,domain=args.domain,nlevs=11)
+            Terrain(dir,wvar,
+                    outfile=outfile,
+                    outdir=args.outdir,
+                    smooth=args.smooth,
+                    domain=args.domain)
         else:
             Animate(dir,wvar,
                     windbarbs=windbarbs,
