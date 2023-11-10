@@ -62,3 +62,28 @@ for args in all_args:
     print(f"\nFinished after: {datetime.now()-ti}")
 
 print(f"\n\nTotal run time: {datetime.now()-t0}")
+
+# RIP
+# t0=datetime.now()
+# print(f"\nStarted at: {t0}")
+## Run these commands from the src directory.
+# ./RIP/singularity_rip.sh -od='tests/results/rip' -wd='tests/wrfdata/control/' -nt -np
+# ./RIP/singularity_rip.sh -od='tests/results/rip' -wd='tests/wrfdata/_zfirst_control/' -nt -np --t_0=0 --t_f=5 --dt=1
+# ./RIP/singularity_rip.sh -od='tests/results/rip' --noRDP --trajtimes=5-3 --trajplot='Traj_5'
+# ./RIP/singularity_rip.sh -od='tests/results/rip/' --noRDP --trajinputs='tests/results/rip/my_traj_inputs_file' --trajplot='tp_my_inputs' -np
+# ./RIP/singularity_rip.sh -od='tests/results/rip/' --noRDP --trajinputs='tests/results/rip/my_traj_inputs_file' --trajplot='tp_my_inputs' -nt
+# ./RIP/singularity_rip.sh -pd='tests/results/rip/RIPDP/rdp_rip' -od='tests/results/riptraj/' --trajtimes=1-3
+
+## Or you can try using these... but I think the rpdp does not work called from here for some reason...
+# subprocess.run(f"{src}/RIP/singularity_rip.sh -od='{results}/rip' -wd='{wrfdata}/control/' -nt -np",shell=True)
+# subprocess.run(f"{src}/RIP/singularity_rip.sh -od='{results}/rip' -wd='{wrfdata}/_zfirst_control/' -nt -np --t_0=0 --t_f=5 --dt=1",shell=True)
+# subprocess.run(f"{src}/RIP/singularity_rip.sh -od='{results}/rip' --noRDP --trajtimes=5-3 --trajplot='Traj_5'",shell=True)
+# with open(f"{results}/rip/my_traj_inputs_file", 'w') as file:
+#     file.write(
+#         """#traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_p hydrometeor color
+# 5         2        600     3600    190    400    900    0           red
+# 1         4        600     3600    100    250    750    0           blue
+# """)
+# subprocess.run(f"{src}/RIP/singularity_rip.sh -od='{results}/rip' --noRDP --trajinputs='{results}/rip/my_traj_inputs_file' --trajplot='tp_my_inputs' -np -i",shell=True)
+# subprocess.run(f"{src}/RIP/singularity_rip.sh -od='{results}/rip' --noRDP --trajinputs='{results}/rip/my_traj_inputs_file' --trajplot='tp_my_inputs' -nt",shell=True)
+# print(f"\n\nTotal run time: {datetime.now()-t0}")
