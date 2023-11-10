@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(1, "/".join(__file__.split("/")[:-2]))
 import subprocess
 from datetime import datetime
 
@@ -7,7 +9,9 @@ results=f"{src}/tests/results"
 
 all_args=[
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --file_tag=_control",
-    f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --domain=full --file_tag=_control_full",
+    # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --domain=full --file_tag=_control_full",
+    # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --lat=42.9 --lon=2.43 --file_tag=_point",
+    # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --lat=42.9 --lon=2.43 --domain=full --file_tag=_point_full",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/double/          --outdir={results}/ --file_tag=_double",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/half/            --outdir={results}/ --file_tag=_half",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/zero/            --outdir={results}/ --file_tag=_zero",
@@ -48,6 +52,11 @@ all_args=[
     # f"--task=diagnostic   --var=SkewT_Murcia       --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_GIBRALTAR    --dir_path={wrfdata}/control/ --outdir={results}/",
     ]
+# Append location maps to all_args
+import SensibleVariables as sv
+for place in [attr.split('_')[1] for attr in dir(sv) if attr.startswith("SkewT_")]:
+    print(place)
+    all_args.append(f"--task=diagnostic --var=TerrainElevation --dir_path={wrfdata}/control/ --outdir={results}/ --place={place} --file_tag=_{place}")
 
 t0=datetime.now()
 

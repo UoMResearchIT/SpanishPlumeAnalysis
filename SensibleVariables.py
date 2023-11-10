@@ -451,9 +451,9 @@ SkewT_Aberporth = svariable(
 			range_min=-60,
 			range_max=40,
 		)
-SkewT_LARKHILL = svariable(
-			ptitle="SkewT at 51.20,-1.80 (UK LARKHILL)", #03743	132
-			outfile="SkewT_LARKHILL",
+SkewT_Larkhill = svariable(
+			ptitle="SkewT at 51.20,-1.80 (UK Larkhill)", #03743	132
+			outfile="SkewT_Larkhill",
 			windbarbs=1,
 			lat=51.20,
 			lon=-1.80,
@@ -496,7 +496,7 @@ SkewT_Nimes = svariable(
 			range_min=-60,
 			range_max=40,
 		)
-SkewT_La_Coruna = svariable(
+SkewT_LaCoruna = svariable(
 			ptitle="SkewT at 43.37,-8.42 (SPAIN La Coruna)", #08001	58
 			outfile="SkewT_LaCoruna",
 			windbarbs=1,
@@ -532,9 +532,9 @@ SkewT_Murcia = svariable(
 			range_min=-60,
 			range_max=40,
 		)
-SkewT_GIBRALTAR  = svariable(
+SkewT_Gibraltar  = svariable(
 			ptitle="SkewT at 36.15,-5.35 (GIBRALTAR Gibraltar)", #08495
-			outfile="SkewT_GIBRALTAR",
+			outfile="SkewT_Gibraltar",
 			windbarbs=1,
 			lat=36.15,
 			lon=-5.35,

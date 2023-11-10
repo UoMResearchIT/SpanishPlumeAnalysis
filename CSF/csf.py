@@ -122,6 +122,11 @@ if __name__ == '__main__':
                         type=str,
                         default=None,
                         help="Longitude of point of interest (used for SkewT plots).")
+    parser.add_argument('--place',
+                        type=str,
+                        default=None,
+                        help="Name of place for point location on map).",
+                        choices=[attr.split('_')[1] for attr in dir(sv) if attr.startswith("SkewT_")])
    
     args = parser.parse_args()
 
@@ -131,6 +136,10 @@ if args.range_min is not None:
 if args.range_max is not None:
     wvar.range_max = float(args.range_max)
 
+if args.place is not None:
+    tmpsv=eval("sv.SkewT_"+args.place)
+    wvar.lat = tmpsv.lat
+    wvar.lon = tmpsv.lon
 if args.lat is not None:
     wvar.lat = float(args.lat)
 if args.lon is not None:

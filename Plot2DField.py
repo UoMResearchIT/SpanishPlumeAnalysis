@@ -10,7 +10,7 @@ import SensibleVariables as sv
 #from datetime import datetime      ###############################################
 #print(datetime.now())           	###############################################
 
-def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",overlap=None,u=None,v=None,smooth=1,domain="zoom",nlevs=10):
+def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",overlap=None,u=None,v=None,smooth=1,domain="zoom",nlevs=10,time_tag=1,return_fig=0,dpi=100):
 	#Input check
 
 	#Need to implement input check here!
@@ -36,7 +36,7 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",overlap=None,u=N
 	cart_proj = get_cartopy(var)
 	
 	# Create a figure
-	fig = plt.figure(figsize=(10.88,8.16), dpi=100)
+	fig = plt.figure(figsize=(10.88,8.16), dpi=dpi)
 	
 	# Set the GeoAxes to the projection used by WRF
 	ax = plt.axes(projection=cart_proj)
@@ -104,7 +104,11 @@ def Plot2DField(var,svariable,windbarbs=0,outfname="MyPlot.png",overlap=None,u=N
 
 	# Add title and frame time
 	plt.title(svariable.ptitle)
-	plt.annotate(dtime, xy=(.02, .02),  xycoords='axes fraction')
+	if time_tag:
+		plt.annotate(dtime, xy=(.02, .02),  xycoords='axes fraction')
 	
-	plt.savefig(outfname)
-	plt.close(fig)
+	if return_fig:
+		return fig
+	else:
+		plt.savefig(outfname)
+		plt.close(fig)
