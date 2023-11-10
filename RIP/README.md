@@ -168,3 +168,70 @@ You also need to have access to some `wrfout` files, to pre-process with ripdp, 
 
 You are now set to start using the scripts.
 
+
+
+# Working on the CSF
+The workflow to generate new results involves using the csf.
+
+It is very likely that the pre-processed data already exists in `/mnt/.../SpanishPlume/Analysis/RIP/Results/RIPDP/`.
+If it does, skip the ripdp jobs, and go straight to the trajectory generation, which uses the `-pd` option with one of the pre-processed data directories.
+
+## Submitting jobs to csf
+
+Working with csf submissions is very similar to the wain in which the main diagnostic code works.
+
+The `RIP/CSF/Submit.sh` does most of the heavy lifting.
+
+All the commands below asume you are in the base folder (`.../mbcxpfh2/SpanishPlume/Analysis/RIP`).
+
+To use it, you need a file with the inputs, e.g. `tests/test.inputs`.
+The contents of the inputs file are described in the sections below, depending on whether you need to pre-process the data or not.
+In both cases, it is just a list of the arguments passed to the singularity_rip.sh script, but the executable name is not in the inputs file.
+Also in both cases, there has to be an output directory specified with `--outdir` or `-od`.
+
+Now you can call the submition script with:
+```
+./CSF/Submit.sh tests/test.inputs tests/results
+```
+The script will create a jobarray and submit each line in the `.inputs` file.
+It will also make sure that the output directories set with `--outdir`exist (or it will create them).
+The jobscript info will be saved in `tests/results`.
+Note that the output directories need not be in `tests/results`, but it is a good idea that they are to keep you sane.
+
+### Pre-processing data for new simulations
+
+If you want to generate many trajectories for a simulation, it is a good idea to pre-process the data first, and compute the trajectories re-using the pre-processed data.
+
+To pre-process the wrfout files, your inputs file should look similar to this:
+```
+-wd=/mnt/.../wrfdata/sim1 -od=/mnt/.../RIP/Results/sim1 -nt -np
+-wd=/mnt/.../wrfdata/sim2 -od=/mnt/.../RIP/Results/sim2 -nt -np
+```
+
+Submit the job to the csf with, for example,
+```
+/CSF/Submit.sh rdp.inputs RIP/Results/CSF
+```
+and this will pre-process the times from 0 to 168.
+The csf jobarray/jobscript files will be saved in `RIP/Results/CSF`, and the preprocessed files will be saved in `RIP/Results/sim1` or `sim2`.
+
+When the csf is done, move the contents of the RIPDP folders to `RIP/Results/RIPDP/sim1` or `sim2`, respectively.
+
+### Generating new trajectories
+
+If the ripdp pre-processed data already exists, the inputs file you pass to the `Submit.sh` script will look similar to this:
+```
+-tt=122-82 --traj_x=195 --traj_y=410 -tp=Traj1 -od=/mnt/.../Results/Trajectories/sim1/ -pd=/mnt/.../RIP/Results/RIPDP/sim1/rdp_sim1
+-tt=68-38  --traj_x=195 --traj_y=410 -tp=Traj2 -od=/mnt/.../Results/Trajectories/sim1/ -pd=/mnt/.../RIP/Results/RIPDP/sim1/rdp_sim1
+-tt=122-82 --traj_x=195 --traj_y=410 -tp=Traj1 -od=/mnt/.../Results/Trajectories/sim2/ -pd=/mnt/.../RIP/Results/RIPDP/sim2/rdp_sim2
+-tt=68-38  --traj_x=195 --traj_y=410 -tp=Traj2 -od=/mnt/.../Results/Trajectories/sim2/ -pd=/mnt/.../RIP/Results/RIPDP/sim2/rdp_sim2
+```
+
+Submit the job to the csf with, for example,
+```
+/CSF/Submit.sh trajectories.inputs RIP/Results/CSF
+```
+and this will generate the trajectory plots.
+The csf jobarray/jobscript files will be saved in `RIP/Results/CSF`, and the trajectory plots will be saved in `Results/Trajectories/sim1` or `sim2`.
+
+In contrast with the main diagnostics code, you'll see a lot of stuff in that directory, not only the desired plots. This is because all the trajectory files are there, and they remain available to be reused (using the flag `-nt`).
