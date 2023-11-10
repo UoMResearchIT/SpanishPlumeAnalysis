@@ -198,6 +198,10 @@ It will also make sure that the output directories set with `--outdir`exist (or 
 The jobscript info will be saved in `tests/results`.
 Note that the output directories need not be in `tests/results`, but it is a good idea that they are to keep you sane.
 
+### Generating inputs files
+
+The python script `RIP/CSF/GenerateInputs.py` can be used to generate the inputs for the desired simulations/trajectories.
+
 ### Pre-processing data for new simulations
 
 If you want to generate many trajectories for a simulation, it is a good idea to pre-process the data first, and compute the trajectories re-using the pre-processed data.
@@ -210,7 +214,7 @@ To pre-process the wrfout files, your inputs file should look similar to this:
 
 Submit the job to the csf with, for example,
 ```
-/CSF/Submit.sh rdp.inputs RIP/Results/CSF
+./CSF/Submit.sh rdp.inputs Results/CSF
 ```
 and this will pre-process the times from 0 to 168.
 The csf jobarray/jobscript files will be saved in `RIP/Results/CSF`, and the preprocessed files will be saved in `RIP/Results/sim1` or `sim2`.
@@ -229,7 +233,7 @@ If the ripdp pre-processed data already exists, the inputs file you pass to the 
 
 Submit the job to the csf with, for example,
 ```
-/CSF/Submit.sh trajectories.inputs RIP/Results/CSF
+./CSF/Submit.sh trajectories.inputs Results/Trajectories/CSF
 ```
 and this will generate the trajectory plots.
 The csf jobarray/jobscript files will be saved in `RIP/Results/CSF`, and the trajectory plots will be saved in `Results/Trajectories/sim1` or `sim2`.
