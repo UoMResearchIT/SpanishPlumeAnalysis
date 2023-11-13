@@ -62,6 +62,6 @@ def TerrainPoint(ncfile,svariable,fig):
     plt.plot(svariable.lon, svariable.lat, color='r', linewidth=2, marker='x', transform=crs.PlateCarree())    # True
     # Add location label
     plt.annotate(f"lat={svariable.lat}, lon={svariable.lon}, alt={round(h,1)} m", xy=(.02, .94),  xycoords='axes fraction')
-    plt.annotate(f"x={x_y.data[1]}, y={x_y.data[0]}", xy=(.02, .92),  xycoords='axes fraction')
+    plt.annotate(f"x={x_y.data[0]}, y={x_y.data[1]}", xy=(.02, .92),  xycoords='axes fraction')
 
     return fig

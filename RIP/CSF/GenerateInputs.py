@@ -17,30 +17,32 @@ simulations = [
 # List of trajectories
 #Aberporth,Algeria,Camborne,Gibraltar,Herstmonceux,LaCoruna,Larkhill,Lerwick,Madrid,Murcia,Nimes,Nottingham,Santander,Stornoway,Trappes
 trajectory_locations = [
-    # {"name":"Aberporth",    "x":"407", "y":"179"},
-    {"name":"Algeria",      "x":"251", "y":"172"},
-    # {"name":"Camborne",     "x":"392", "y":"173"},
-    {"name":"Gibraltar",    "x":"287", "y":"158"},
-    # {"name":"Herstmonceux"  "x":"395", "y":"202"},
-    {"name":"LaCoruna",     "x":"343", "y":"149"},
-    # {"name":"Larkhill",     "x":"398", "y":"191"},
-    # {"name":"Lerwick",      "x":"470", "y":"202"},
-    {"name":"Madrid",       "x":"317", "y":"172"},
-    {"name":"Murcia",       "x":"297", "y":"184"},
-    {"name":"Nimes",        "x":"339", "y":"219"},
-    {"name":"Nottingham",   "x":"412", "y":"195"},
-    {"name":"Santander",    "x":"340", "y":"174"},
-    # {"name":"Stornoway",    "x":"457", "y":"178"},
-    {"name":"Trappes",      "x":"377", "y":"209"},
+    # {"name":"Aberporth",    "x":"179", "y":"407"},
+    {"name":"Algeria",      "x":"172", "y":"251"},
+    # {"name":"Camborne",     "x":"173", "y":"392"},
+    {"name":"Gibraltar",    "x":"158", "y":"287"},
+    # {"name":"Herstmonceux"  "x":"202", "y":"395"},
+    {"name":"LaCoruna",     "x":"149", "y":"343"},
+    # {"name":"Larkhill",     "x":"191", "y":"398"},
+    # {"name":"Lerwick",      "x":"202", "y":"470"},
+    {"name":"Madrid",       "x":"172", "y":"317"},
+    {"name":"Murcia",       "x":"184", "y":"297"},
+    {"name":"Nimes",        "x":"219", "y":"339"},
+    {"name":"Nottingham",   "x":"195", "y":"412"},
+    {"name":"Santander",    "x":"174", "y":"340"},
+    # {"name":"Stornoway",    "x":"178", "y":"457"},
+    {"name":"Trappes",      "x":"209", "y":"377"},
 
 ]
 trajectory_times = [
     #Forward
-    "75-125",
-    "20-70",
+    # "75-125",
+    # "20-70",
+    "85-115",
+    "30-60",
     #Backward
-    "125-75",
-    "70-20",
+    # "125-75",
+    # "70-20",
 ]
 #Build trajectory list
 trajectory_list=[]
