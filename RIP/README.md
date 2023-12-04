@@ -4,6 +4,7 @@ The scripts in this folder make use of a RIP singularity container (apptainer) t
 There are mainly two ways to interact with the container in these scripts.
 
 The `singularity_rip.sh` script directly invokes the container, and processes a single trajectory, so it is mostly meant for testing.
+
 The `CSF/Submit.sh` script is for submitting jobs to the csf, so it eventually calls `singularity_rip.sh` in each job.
 
 There are mainly two steps in the process: RIPDP pre-processing, and trajectory computation.
@@ -26,6 +27,11 @@ For example, this pre-processes the first 6 hours:
 ```
 ./singularity_rip.sh -od="/my/output/dir" -wd="/my/wrfout/files/dir" -nt -np --dt=1 --t_0=0 --t_f=5
 ```
+
+**Warning:** An [open issue](https://github.com/UoMResearchIT/SpanishPlumeAnalysis/issues/10)
+is that sometimes the pre-processing of the data stops without aparent reason, more often so when pre-processing long periods of time.
+The current workaround is to submit the pre-processing in batches, and then replace the contents of the `*.xtimes` file,
+which keeps track of the processed times, to include all the available times.
 
 #### Details you need not worry about unless you are debugging something
 
