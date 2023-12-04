@@ -36,13 +36,15 @@ trajectory_locations = [
 ]
 trajectory_times = [
     #Forward
-    # "75-125",
-    # "20-70",
-    "85-115",
-    "30-60",
+    # "38-68",
+    # "92-122",
+    "0-80",
+    "45-125",
     #Backward
-    # "125-75",
-    # "70-20",
+    # "68-38",
+    # "122-92",
+    "80-0",
+    "125-45",
 ]
 #Build trajectory list
 trajectory_list=[]
