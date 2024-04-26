@@ -1,13 +1,14 @@
 import sys
+
 sys.path.insert(1, "/".join(__file__.split("/")[:-2]))
 import subprocess
 from datetime import datetime
 
-src="/".join(__file__.split("/")[:-2])
-wrfdata=f"{src}/tests/wrfdata"
-results=f"{src}/tests/results"
+src = "/".join(__file__.split("/")[:-2])
+wrfdata = f"{src}/tests/wrfdata"
+results = f"{src}/tests/results"
 
-all_args=[
+all_args = [
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --file_tag=_control",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --domain=full --file_tag=_control_full",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --lat=42.9 --lon=2.43 --file_tag=_point",
@@ -39,7 +40,7 @@ all_args=[
     # f"--task=diagnostic   --var=SkewT_Algeria      --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Lerwick      --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Stornoway    --dir_path={wrfdata}/control/ --outdir={results}/",
-    # f"--task=diagnostic   --var=SkewT_Nottingham   --dir_path={wrfdata}/control/ --outdir={results}/",
+    f"--task=diagnostic   --var=SkewT_Nottingham   --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Aberporth    --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_LARKHILL     --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Camborne     --dir_path={wrfdata}/control/ --outdir={results}/",
@@ -51,24 +52,24 @@ all_args=[
     # f"--task=diagnostic   --var=SkewT_Madrid       --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Murcia       --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_GIBRALTAR    --dir_path={wrfdata}/control/ --outdir={results}/",
-    ]
+]
 # Append location maps to all_args
-import SensibleVariables as sv
-for place in [attr.split('_')[1] for attr in dir(sv) if attr.startswith("SkewT_")]:
-    print(place)
-    all_args.append(f"--task=diagnostic --var=TerrainElevation --dir_path={wrfdata}/control/ --outdir={results}/ --place={place} --file_tag=_{place}")
+# import SensibleVariables as sv
+# for place in [attr.split('_')[1] for attr in dir(sv) if attr.startswith("SkewT_")]:
+#     print(place)
+#     all_args.append(f"--task=diagnostic --var=TerrainElevation --dir_path={wrfdata}/control/ --outdir={results}/ --place={place} --file_tag=_{place}")
 
-t0=datetime.now()
+t0 = datetime.now()
 
 for args in all_args:
-    outdir=args.split("--outdir=")[1]
+    outdir = args.split("--outdir=")[1]
     if " " in outdir:
         outdir = outdir.split(" ")[0]
-    subprocess.run(f"mkdir -p {outdir}",shell=True)
-    ti=datetime.now()
+    subprocess.run(f"mkdir -p {outdir}", shell=True)
+    ti = datetime.now()
     print(f"\nStarted at: {ti}")
     print(f"\npython {src}/CSF/csf.py {args}")
-    subprocess.run(f"python {src}/CSF/csf.py {args}",shell=True)
+    subprocess.run(f"python {src}/CSF/csf.py {args}", shell=True)
     print(f"\nFinished after: {datetime.now()-ti}")
 
 print(f"\n\nTotal run time: {datetime.now()-t0}")
