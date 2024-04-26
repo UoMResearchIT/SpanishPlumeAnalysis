@@ -37,6 +37,7 @@ all_args = [
     # f"--task=diagnostic   --var=Frontogenesis500  --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT  --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT  --dir_path={wrfdata}/control/ --outdir={results}/ --lat=42.9 --lon=2.43",
+    # f"--task=diagnostic   --var=SkewT_Casablanca   --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Algeria      --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Lerwick      --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Stornoway    --dir_path={wrfdata}/control/ --outdir={results}/",
@@ -46,6 +47,7 @@ all_args = [
     # f"--task=diagnostic   --var=SkewT_Camborne     --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Herstmonceux --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Trappes      --dir_path={wrfdata}/control/ --outdir={results}/",
+    # f"--task=diagnostic   --var=SkewT_Bordeaux     --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Nimes        --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_La_Coruna    --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Santander    --dir_path={wrfdata}/control/ --outdir={results}/",
@@ -55,9 +57,12 @@ all_args = [
 ]
 # Append location maps to all_args
 # import SensibleVariables as sv
-# for place in [attr.split('_')[1] for attr in dir(sv) if attr.startswith("SkewT_")]:
+#
+# for place in [attr.split("_")[1] for attr in dir(sv) if attr.startswith("SkewT_")]:
 #     print(place)
-#     all_args.append(f"--task=diagnostic --var=TerrainElevation --dir_path={wrfdata}/control/ --outdir={results}/ --place={place} --file_tag=_{place}")
+#     all_args.append(
+#         f"--task=diagnostic --var=TerrainElevation --dir_path={wrfdata}/control/ --outdir={results}/ --place={place} --file_tag=_{place}"
+#     )
 
 t0 = datetime.now()
 
