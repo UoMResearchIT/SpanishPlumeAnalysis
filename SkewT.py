@@ -24,8 +24,8 @@ def Plot_SkewT(ncfile, ti, svariable, outfname="MyPlot.png"):
     p = p1[:, x_y[1], x_y[0]].data * units.hPa
     T = T1[:, x_y[1], x_y[0]].data * units.degC
     Td = Td1[:, x_y[1], x_y[0]].data * units.degC
-    u = v1[:, x_y[1], x_y[0]].data * units("m/s")
-    v = u1[:, x_y[1], x_y[0]].data * units("m/s")
+    u = u1[:, x_y[1], x_y[0]].data * units("m/s")
+    v = v1[:, x_y[1], x_y[0]].data * units("m/s")
 
     # Create figure
     fig = plt.figure(figsize=(10.88, 8.16), dpi=100)
