@@ -25,6 +25,7 @@ def Plot2DField(
     time_tag=1,
     return_fig=0,
     dpi=100,
+    save_pdf=0,
 ):
     # Input check
 
@@ -180,4 +181,6 @@ def Plot2DField(
         return fig
     else:
         plt.savefig(outfname)
+        if save_pdf:
+            plt.savefig(outfname.replace(".png", ".pdf"))
         plt.close(fig)

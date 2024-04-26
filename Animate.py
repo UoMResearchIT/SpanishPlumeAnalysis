@@ -23,6 +23,7 @@ def Animate(
     smooth=1,
     domain="zoom",
     cleanpng=1,
+    save_pdf=0,
 ):
     ##Input check
     # Directories
@@ -76,28 +77,35 @@ def Animate(
         for ti in range(timerange):
             print("Processing:", ti + 1, "/", timerange, end="\r")
             if "SkewT" in svariable.outfile:
-                of = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
-                Plot_SkewT(ncfile, ti, svariable, of)
-                PNGfiles.append(of)
+                outfname = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
+                Plot_SkewT(
+                    ncfile,
+                    ti,
+                    svariable,
+                    outfname,
+                    save_pdf=save_pdf,
+                )
+                PNGfiles.append(outfname)
             else:
                 var, u, v, vpv = GetSensVar(ncfile, svariable, windbarbs, ti, vpv)
                 if svariable.overlap_sv is not None:
                     overlapsv = eval("sv." + svariable.overlap_sv)
                     overlap, _, _, _ = GetSensVar(ncfile, overlapsv, 0, ti, None)
                 if var is not None:
-                    of = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
+                    outfname = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
                     Plot2DField(
                         var,
                         svariable,
                         windbarbs,
-                        of,
+                        outfname,
                         overlap,
                         u,
                         v,
                         smooth,
                         domain=domain,
+                        save_pdf=save_pdf,
                     )
-                    PNGfiles.append(of)
+                    PNGfiles.append(outfname)
         print("Processed successfully.")
 
     # Build GIF
@@ -117,5 +125,6 @@ def Animate(
         print("Deleting png files...")
         for file in PNGfiles:
             os.remove(file)
-        os.removedirs(tmp_dir)
+        if not save_pdf:
+            os.removedirs(tmp_dir)
         print("All done.")

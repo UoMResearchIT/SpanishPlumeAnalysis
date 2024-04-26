@@ -7,7 +7,7 @@ import numpy as np
 import SensibleVariables as sv
 
 
-def Plot_SkewT(ncfile, ti, svariable, outfname="MyPlot.png"):
+def Plot_SkewT(ncfile, ti, svariable, outfname="MyPlot.png", save_pdf=0):
 
     # Load wrf variables
     x_y = ll_to_xy(ncfile, svariable.lat, svariable.lon)
@@ -90,4 +90,6 @@ def Plot_SkewT(ncfile, ti, svariable, outfname="MyPlot.png"):
     plt.title(f"{svariable.ptitle} ~ {int(h.magnitude)} m.a.s.l.")
     plt.annotate(dtime, xy=(0.01, 0.01), xycoords="figure fraction")
     plt.savefig(outfname)
+    if save_pdf:
+        plt.savefig(outfname.replace(".png", ".pdf"))
     plt.close(fig)

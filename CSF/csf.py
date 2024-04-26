@@ -62,6 +62,12 @@ if __name__ == "__main__":
         help="Set to 0 to conserve png or mp4 temp files generated during the task",
     )
     parser.add_argument(
+        "--save_pdf_frames",
+        type=str2bool,
+        default=0,
+        help="Set to 1 to save pdf files of each frame generated during the task",
+    )
+    parser.add_argument(
         "--domain",
         type=str,
         default="zoom",
@@ -236,6 +242,7 @@ match args.task:
                 smooth=args.smooth,
                 domain=args.domain,
                 cleanpng=args.clean,
+                save_pdf=args.save_pdf_frames,
             )
     case "mp4diff":
         if len(dirs) < 2:
