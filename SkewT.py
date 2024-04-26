@@ -46,7 +46,7 @@ def Plot_SkewT(ncfile, ti, svariable, outfname="MyPlot.png"):
     # Plot only some windbarbs
     my_interval = np.arange(100, 1000, 50) * units("mbar")
     ix = mp.calc.resample_nn_1d(p, my_interval)
-    skew.plot_barbs(p[ix], u[ix], v[ix])
+    skew.plot_barbs(p[ix], u[ix], v[ix], plot_units=units("knots"))
 
     # Plot LCL temperature as black dot
     lcl_pressure, lcl_temperature = mp.calc.lcl(p[0], T[0], Td[0])
