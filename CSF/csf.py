@@ -300,4 +300,5 @@ match args.task:
             smooth=args.smooth,
             domain=args.domain,
             cleanpng=args.clean,
+            save_pdf=args.save_pdf_frames,
         )

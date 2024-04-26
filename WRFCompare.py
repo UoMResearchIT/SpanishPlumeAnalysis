@@ -19,6 +19,7 @@ def WRFSmoothDiff(
     outdir="./",
     domain="zoom",
     cleanpng=1,
+    save_pdf=0,
 ):
     # Input check
     # Directories
@@ -152,6 +153,7 @@ def WRFSmoothDiff(
                     smooth=0,
                     domain=domain,
                     nlevs=20,
+                    save_pdf=save_pdf,
                 )
             print("Processed", timerange, "/", timerange, "successfully.")
 
@@ -175,5 +177,6 @@ def WRFSmoothDiff(
         print("Deleting png files...")
         for file in PNGfiles:
             os.remove(file)
-        os.removedirs(tmp_dir)
+        if not save_pdf:
+            os.removedirs(tmp_dir)
         print("All done.")
