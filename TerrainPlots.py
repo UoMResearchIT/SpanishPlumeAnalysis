@@ -7,7 +7,13 @@ import matplotlib.pyplot as plt
 
 
 def Terrain(
-    dir_path, svariable, outfile="MyTerrain", outdir="./", smooth=1, domain="zoom"
+    dir_path,
+    svariable,
+    outfile="MyTerrain",
+    outdir="./",
+    out_format="pdf",
+    smooth=1,
+    domain="zoom",
 ):
 
     ##Input check
@@ -18,14 +24,20 @@ def Terrain(
         outdir = outdir + "/"
     if not os.path.exists(outdir):
         os.makedirs(outdir)
-    of = outdir + outfile + ".png"
+    # Check requested format is png or pdf only
+    out_format = out_format.replace(".", "")
+    if out_format not in ["png", "pdf"]:
+        print("Output format must be png or pdf. Using default pdf.")
+        out_format = "pdf"
+    # Output file
+    outfname = outdir + outfile + "." + out_format
     # Need to implement input check here!
 
     #
     print("Generating diagnostic for", svariable.outfile)
     print("Source wrfout files:", dir_path)
     print("Using:\n\tdomain =", domain, "\n\tsmooth    =", smooth)
-    print("Output will be saved as ", of, "\n")
+    print("Output will be saved as ", outfname, "\n")
 
     # Get list of files from directoy
     WRFfiles = []
@@ -40,7 +52,7 @@ def Terrain(
         var,
         svariable,
         0,
-        of,
+        outfname,
         smooth=smooth,
         domain=domain,
         nlevs=11,
@@ -52,7 +64,7 @@ def Terrain(
 
     if svariable.lat is not None:
         fig = TerrainPoint(ncfile, svariable, fig)
-    plt.savefig(of)
+    plt.savefig(outfname)
     plt.close(fig)
 
 
