@@ -29,9 +29,10 @@ if [ ! -z $zrek ]; then                 # Checks if option to submit at zrek is 
 fi
 
 # Address to jobarray.template and singularity_rip.sh
-rip_dir="/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/"
-jatemplate="$rip_dir""CSF/jobarray.template"
-program="$rip_dir""singularity_rip.sh"
+rip_csf_dir=$(dirname "$0")
+rip_dir=$(dirname "$rip_csf_dir")
+jatemplate="{$rip_csf_dir}/jobarray.template"
+program="{$rip_dir}/singularity_rip.sh"
 
 # Creates clean working directory
 mkdir -p $folder			            # Creates destiantion folder

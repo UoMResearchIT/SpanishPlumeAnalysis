@@ -29,8 +29,9 @@ if [ ! -z $zrek ]; then                 # Checks if option to submit at zrek is 
 fi
 
 # Address to jobarray.template and csf.py
-jatemplate="/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/CSF/jobarray.template"
-program="/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/CSF/csf.py"
+current_directory=$(dirname "$0")
+jatemplate="${current_directory}/jobarray.template"
+program="${current_directory}/csf.py"
 
 # Creates clean working directory
 mkdir -p $folder			            # Creates destiantion folder
