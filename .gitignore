@@ -1,9 +1,8 @@
-# gitignore
 Results/*
 Results
 tests/*
 tests
-!tests/test.py
+!tests/*.py
 __pycache__/*
 RIP/*.sif
 

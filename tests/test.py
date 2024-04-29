@@ -1,10 +1,11 @@
 import sys
+import os
 
-sys.path.insert(1, "/".join(__file__.split("/")[:-2]))
+src = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+sys.path.insert(1, src)
 import subprocess
 from datetime import datetime
 
-src = "/".join(__file__.split("/")[:-2])
 wrfdata = f"{src}/tests/wrfdata"
 results = f"{src}/tests/results"
 
