@@ -22,6 +22,12 @@ simulations = [
     {"output": "Dom2", "wrfout": "run-zrek.2domains"},
 ]
 
+# Options
+options = [
+    "--save_pdf_frames=1",
+]
+opts = " ".join(options)
+
 # Diagnostics
 
 import SensibleVariables as sv
@@ -61,7 +67,7 @@ with open("all_diag.inputs", "w") as file:
             outdir = f"--outdir={simulation['output']}/"
 
             file.write(
-                f"{task:<{pad_task}} {var:<{pad_var}} {dir_path:<{pad_wrf}} {outdir}\n"
+                f"{task:<{pad_task}} {var:<{pad_var}} {dir_path:<{pad_wrf}} {opts} {outdir}\n"
             )
         file.write("\n")
 
@@ -79,6 +85,6 @@ with open("all_skewt.inputs", "w") as file:
             outdir = f"--outdir={simulation['output']}/"
 
             file.write(
-                f"{task:<{pad_task}} {var:<{pad_var}} {dir_path:<{pad_wrf}} {outdir}\n"
+                f"{task:<{pad_task}} {var:<{pad_var}} {dir_path:<{pad_wrf}} {opts} {outdir}\n"
             )
         file.write("\n")
