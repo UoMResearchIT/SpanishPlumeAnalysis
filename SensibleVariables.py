@@ -70,6 +70,28 @@ SeaLevelPressure = svariable(
     windbarbs=1,
     colormap=get_cmap("Purples"),
 )
+SeaLevelPressure1hPa = svariable(
+    wrfname="slp",
+    ptitle="Sea level pressure [hPa]",
+    outfile="SeaLevelPressure1hPa",
+    range_min=1000,
+    range_max=1030,
+    nticks=7,
+    nlevs=31,
+    windbarbs=1,
+    colormap=get_cmap("Purples"),
+)
+SeaLevelPressure2hPa = svariable(
+    wrfname="slp",
+    ptitle="Sea level pressure [hPa]",
+    outfile="SeaLevelPressure2hPa",
+    range_min=1000,
+    range_max=1030,
+    nticks=6,
+    nlevs=16,
+    windbarbs=1,
+    colormap=get_cmap("Purples"),
+)
 AirTemp2m = svariable(
     wrfname="T2",
     ptitle="Temperature at 2m [K]",
