@@ -1,385 +1,385 @@
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1 --outdir=Control/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1 --outdir=G_Wave_fix/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1 --outdir=Double_hgt/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1 --outdir=Half_hgt/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1 --outdir=Zero_hgt/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --outdir=Albedo_90/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1 --outdir=Albedo_Standard/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1 --outdir=Albedo_40/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1 --outdir=Morrison/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1 --outdir=Thompson/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
 
---task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
---task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --outdir=Dom2/
+--task=diagnostic   --var=AirTemp2m                --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AirTemp500               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AirTemp850               --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AirTempDif12h500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AirTempDif12h700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AirTempDif12h850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AirTempDif6h500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AirTempDif6h700          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AirTempDif6h850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=CAPE                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=CIN                      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=DewpointTemp2m           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=DewpointTemp850          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Frontogenesis500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Frontogenesis700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Frontogenesis850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Frontogenesis925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=GeoPotHeight500          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=PotentialTemp2m          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=PotentialTemp500         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=PotentialTemp600         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=PotentialTemp700         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=PotentialTemp800         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=PotentialTemp850         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=PotentialTemp925         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Rain                     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=RelativeHumidity2m       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=RelativeHumidity700      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SeaLevelPressure         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SimRadarReflectivity1km  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SimRadarReflectivityMax  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=StaticStability700500    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=StaticStability850700    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=TerrainElevation         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
 

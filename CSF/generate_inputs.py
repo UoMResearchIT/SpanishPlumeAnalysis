@@ -51,7 +51,7 @@ pad_wrf = (
     + len(base_dir_path)
     + 13
 )
-print(pad_wrf)
+pad_opts = len(opts) + 15
 
 # Generate diagnostic inputs
 pad_var = max(len(diagnostic) for diagnostic in diagnostics) + 7
@@ -61,13 +61,13 @@ with open("all_diag.inputs", "w") as file:
             task = "--task=diagnostic"
             var = f"--var={diagnostic}"
             dir_path = f"--dir_path={base_dir_path}{simulation['wrfout']}/"
-            domain = ""
+            opts_dom = opts
             if simulation["output"] in ["Albedo_90", "Dom2"]:
-                domain = "--domain=full"
+                opts_dom = opts + " --domain=full"
             outdir = f"--outdir={simulation['output']}/"
 
             file.write(
-                f"{task:<{pad_task}} {var:<{pad_var}} {dir_path:<{pad_wrf}} {opts} {outdir}\n"
+                f"{task:<{pad_task}} {var:<{pad_var}} {dir_path:<{pad_wrf}} {opts_dom:<{pad_opts}} {outdir}\n"
             )
         file.write("\n")
 
@@ -79,12 +79,12 @@ with open("all_skewt.inputs", "w") as file:
             task = "--task=diagnostic"
             var = f"--var={skewt}"
             dir_path = f"--dir_path={base_dir_path}{simulation['wrfout']}/"
-            domain = ""
+            opts_dom = opts
             if simulation["output"] in ["Albedo_90", "Dom2"]:
-                domain = "--domain=full"
+                opts_dom = opts + " --domain=full"
             outdir = f"--outdir={simulation['output']}/"
 
             file.write(
-                f"{task:<{pad_task}} {var:<{pad_var}} {dir_path:<{pad_wrf}} {opts} {outdir}\n"
+                f"{task:<{pad_task}} {var:<{pad_var}} {dir_path:<{pad_wrf}} {opts_dom:<{pad_opts}} {outdir}\n"
             )
         file.write("\n")
