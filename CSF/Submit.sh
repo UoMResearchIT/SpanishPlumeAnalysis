@@ -29,7 +29,7 @@ if [ ! -z $zrek ]; then                 # Checks if option to submit at zrek is 
 fi
 
 # Address to jobarray.template and csf.py
-current_directory=$(dirname "$0")
+current_directory=$(realpath "$(dirname "$0")")
 jatemplate="${current_directory}/jobarray.template"
 program="${current_directory}/csf.py"
 

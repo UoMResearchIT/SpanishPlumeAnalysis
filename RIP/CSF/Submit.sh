@@ -29,8 +29,8 @@ if [ ! -z $zrek ]; then                 # Checks if option to submit at zrek is 
 fi
 
 # Address to jobarray.template and singularity_rip.sh
-rip_csf_dir=$(dirname "$0")
-rip_dir=$(dirname "$rip_csf_dir")
+rip_csf_dir=$(realpath "$(dirname "$0")")
+rip_dir=$(realpath "$(dirname "$rip_csf_dir")")
 jatemplate="{$rip_csf_dir}/jobarray.template"
 program="{$rip_dir}/singularity_rip.sh"
 
