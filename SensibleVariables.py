@@ -18,7 +18,7 @@ class svariable:
         colormap=get_cmap("jet"),
         scale="linear",
         nticks=5,
-        nlevs=10,
+        nlevs=9,
         logbase=10,
         bounds=None,
         overlap_sv=None,
@@ -58,6 +58,7 @@ TerrainElevation = svariable(
     range_min=0,
     range_max=1800,
     nticks=10,
+    nlevs=19,
     colormap=get_cmap("terrain"),
 )
 SeaLevelPressure = svariable(
