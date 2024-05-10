@@ -93,7 +93,7 @@ def Plot2DField(
             levs = svariable.bounds
             norm = BoundaryNorm(levs, len(levs))
             ticklevs = levs[1:-1]
-    plt.contourf(
+    contour_fills = plt.contourf(
         x,
         y,
         z,
@@ -104,8 +104,22 @@ def Plot2DField(
         alpha=0.8,
         extend="both",
     )
+    if svariable.contour_color is not None:
+        contour_lines = plt.contour(
+            x,
+            y,
+            z,
+            levels=levs,
+            colors=svariable.contour_color,
+            linewidths=0.4,
+            transform=crs.PlateCarree(),
+            extend="both",
+        )
+        plt.clabel(contour_lines, inline=True, fontsize=8, levels=ticklevs)
     # Add a color bar
-    plt.colorbar(ax=ax, extendfrac=[0.01, 0.01], ticks=ticklevs)
+    col_bar = plt.colorbar(contour_fills, extendfrac=[0.01, 0.01], ticks=ticklevs)
+    if svariable.contour_color is not None:
+        col_bar.add_lines(contour_lines)
     plt.annotate(
         "v",
         xy=(

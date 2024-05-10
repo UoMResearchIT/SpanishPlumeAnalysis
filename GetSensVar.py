@@ -15,7 +15,7 @@ def GetSensVar(ncfile, svariable, windbarbs=0, time=0, varprevv=None):
         # Special variable acquisition
         if svariable == sv.CAPE:
             var = var[0]
-        elif svariable == sv.CIN:
+        elif svariable == sv.CIN or svariable == sv.CIN_YlGnBu:
             var = var[1]
         # Special variable computation
         if svariable == sv.Rain:
