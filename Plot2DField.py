@@ -115,7 +115,8 @@ def Plot2DField(
             transform=crs.PlateCarree(),
             extend="both",
         )
-        plt.clabel(contour_lines, inline=True, fontsize=8, levels=ticklevs)
+        if svariable.contour_c_labels:
+            plt.clabel(contour_lines, inline=True, fontsize=8, levels=ticklevs)
     # Add a color bar
     col_bar = plt.colorbar(contour_fills, extendfrac=[0.01, 0.01], ticks=ticklevs)
     if svariable.contour_color is not None:

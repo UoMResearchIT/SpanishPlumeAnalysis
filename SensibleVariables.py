@@ -1,5 +1,6 @@
 from matplotlib.cm import get_cmap
 from matplotlib.colors import ListedColormap
+import cmasher as cmr
 
 
 class svariable:
@@ -17,6 +18,7 @@ class svariable:
         isdif=0,
         colormap=get_cmap("jet"),
         contour_color=None,
+        contour_c_labels=True,
         scale="linear",
         nticks=5,
         nlevs=9,
@@ -40,6 +42,7 @@ class svariable:
         self.isdif = isdif
         self.colormap = colormap
         self.contour_color = contour_color
+        self.contour_c_labels = contour_c_labels
         self.scale = scale
         self.nticks = nticks
         self.nlevs = nlevs
@@ -291,6 +294,18 @@ CIN_YlGnBu = svariable(
     range_min=0,
     range_max=1800,
     colormap=get_cmap("YlGnBu"),
+)
+CIN_YlGn = svariable(
+    wrfname="cape_2d",
+    ptitle="Max CIN (Convective Inhibition) [J/kg]",
+    outfile="CIN",
+    scale="bounds",
+    colormap=cmr.get_sub_cmap("YlGnBu", 0.0, 0.6, N=7),
+    contour_color="darkgreen",
+    contour_c_labels=False,
+    bounds=[-0.1, 0, 10, 50, 100, 500, 1000, 5000],
+    range_min=0,
+    range_max=3000,
 )
 Rain = svariable(
     wrfname="RAINC",
@@ -571,7 +586,7 @@ GeoPotHeight500 = svariable(
     dim=4,
     ptitle="Geopotential Height at 500hPa [m]",
     outfile="GeoPotHeight500",
-    nticks=7,
+    nticks=13,
     nlevs=13,
     range_min=5340,
     range_max=6060,
@@ -579,6 +594,8 @@ GeoPotHeight500 = svariable(
     interpvar="pressure",
     interpvalue=500,
     colormap=get_cmap("Greens"),
+    contour_color="darkslategray",
+    contour_c_labels=False,
 )
 StaticStability700500 = svariable(
     dim=4,
