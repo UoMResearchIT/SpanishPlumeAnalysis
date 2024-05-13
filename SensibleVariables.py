@@ -59,8 +59,6 @@ TerrainElevation = svariable(
     outfile="TerrainElevation",
     range_min=-200,
     range_max=2000,
-    nticks=12,
-    nlevs=45,
     colormap=ListedColormap(
         [
             "mediumblue",
@@ -76,6 +74,21 @@ TerrainElevation = svariable(
             "white",
         ]
     ),
+    scale="bounds",
+    bounds=[
+        -0.05,
+        1,
+        200,
+        400,
+        600,
+        800,
+        1000,
+        1200,
+        1400,
+        1600,
+        1800,
+        2000,
+    ],
 )
 SeaLevelPressure = svariable(
     wrfname="slp",
