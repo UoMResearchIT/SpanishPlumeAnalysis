@@ -138,11 +138,15 @@ This script is then executed inside the container to generate the plot using `My
 - `tjfl`: File name of trajectory position info.
     Set to the relevant `.traj` file.
 - `vcor`: Vertical coordinate
-    Set to `s`, which means pressure.
+    Set to `p`, which means pressure.
 - `colr`: Plot color
     Choose from the `color.tbl`.
-- `nmsg`: No message
-    Prevents legend for arrow sizes.
+- `tjar`: Arrow min and max size for trajectory plots.
+  - Set to 0.002,0.012.
+- `vwin`: Vertical window (range) for trajectory plots.
+    Set to "1000,500", which means the smallest arrow is at 1000hPa and largest at 500hPa.
+    This would need to be adjusted if `vcor` is changed.
+    If unset, it uses the min and max of the last plotted trajectory.
 - `tjst`: Start time (in forecast hour) of plotted trajectories.
     This has to be between `traj_t_0` and `traj_t_f`, and smaller than `tjen`.
     It is set to the min trajectory time.
@@ -157,6 +161,11 @@ This script is then executed inside the container to generate the plot using `My
 #### Other potentially useful options:
 - `nttl`: No plot title
     Removes the trajectory title (legend).
+- `vcor`: Vertical coordinate
+    Currentl using `p`, which is pressure, but can use `s`, for model's vertical level index (grid), `l` for log pressure, or `z` for height.
+- `nmsg`: No message
+    Prevents legend for arrow sizes.
+
 
 # System requirements
 
