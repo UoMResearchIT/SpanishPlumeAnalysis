@@ -57,11 +57,25 @@ TerrainElevation = svariable(
     wrfname="ter",
     ptitle="Terrain elevation [m]",
     outfile="TerrainElevation",
-    range_min=0,
-    range_max=1800,
-    nticks=10,
-    nlevs=19,
-    colormap=get_cmap("terrain"),
+    range_min=-200,
+    range_max=2000,
+    nticks=12,
+    nlevs=45,
+    colormap=ListedColormap(
+        [
+            "mediumblue",
+            "darkgreen",
+            "green",
+            "limegreen",
+            "lawngreen",
+            "yellow",
+            "gold",
+            "sienna",
+            "burlywood",
+            "linen",
+            "white",
+        ]
+    ),
 )
 SeaLevelPressure = svariable(
     wrfname="slp",
