@@ -90,6 +90,43 @@ TerrainElevation = svariable(
         2000,
     ],
 )
+TerrainElevation1000 = svariable(
+    wrfname="ter",
+    ptitle="Terrain elevation [m]",
+    outfile="TerrainElevation",
+    range_min=-100,
+    range_max=1000,
+    colormap=ListedColormap(
+        [
+            "mediumblue",
+            "darkgreen",
+            "green",
+            "limegreen",
+            "lawngreen",
+            "yellow",
+            "gold",
+            "sienna",
+            "burlywood",
+            "linen",
+            "white",
+        ]
+    ),
+    scale="bounds",
+    bounds=[
+        -0.05,
+        1,
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900,
+        1000,
+    ],
+)
 SeaLevelPressure = svariable(
     wrfname="slp",
     ptitle="Sea level pressure [hPa]",

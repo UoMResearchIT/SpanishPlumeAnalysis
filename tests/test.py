@@ -17,7 +17,7 @@ all_args = [
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/double/          --outdir={results}/ --file_tag=_double",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/half/            --outdir={results}/ --file_tag=_half",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/zero/            --outdir={results}/ --file_tag=_zero",
-    # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/d02/            --outdir={results}/ --file_tag=_d02_full --domain=full --range_max=800",
+    f"--task=diagnostic --var=TerrainElevation1000    --dir_path={wrfdata}/d02/            --outdir={results}/ --file_tag=_d02_full --domain=full",
     # f"--task=diagnostic   --var=DewpointTemp2m        --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=AirTemp2m        --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=AirTemp500        --dir_path={wrfdata}/control/         --outdir={results}/",
@@ -43,7 +43,7 @@ all_args = [
     # f"--task=diagnostic   --var=SeaLevelPressure1hPa --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=SeaLevelPressure2hPa --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=StaticStability700500  --dir_path={wrfdata}/control/         --outdir={results}/",
-    f"--task=diagnostic   --var=StaticStability850700  --dir_path={wrfdata}/control/         --outdir={results}/",
+    # f"--task=diagnostic   --var=StaticStability850700  --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=Frontogenesis925  --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=Frontogenesis850  --dir_path={wrfdata}/_zfirst_control/ --outdir={results}/",
     # f"--task=diagnostic   --var=Frontogenesis700  --dir_path={wrfdata}/control/         --outdir={results}/",
@@ -92,7 +92,7 @@ for args in all_args:
 
 print(f"\n\nTotal run time: {datetime.now()-t0}")
 
-# RIP
+## RIP
 # t0=datetime.now()
 # print(f"\nStarted at: {t0}")
 ## Run these commands from the src directory.

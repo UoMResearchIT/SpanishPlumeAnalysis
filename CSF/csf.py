@@ -223,7 +223,7 @@ match args.task:
             dir = args.dir_path
         else:
             dir = dirs[0]
-        if wvar == sv.TerrainElevation:
+        if wvar == sv.TerrainElevation or wvar == sv.TerrainElevation1000:
             Terrain(
                 dir,
                 wvar,
