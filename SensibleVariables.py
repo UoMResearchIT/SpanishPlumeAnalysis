@@ -24,6 +24,7 @@ class svariable:
         nlevs=9,
         logbase=10,
         bounds=None,
+        hide_edge_ticks=True,
         overlap_sv=None,
         overlap_gap=None,
         overlap_cmap=None,
@@ -48,6 +49,7 @@ class svariable:
         self.nlevs = nlevs
         self.logbase = logbase
         self.bounds = bounds
+        self.hide_edge_ticks = hide_edge_ticks
         self.overlap_sv = overlap_sv
         self.overlap_gap = overlap_gap
         self.overlap_cmap = overlap_cmap
@@ -298,12 +300,13 @@ CIN_YlGnBu = svariable(
 CIN_YlGn = svariable(
     wrfname="cape_2d",
     ptitle="Max CIN (Convective Inhibition) [J/kg]",
-    outfile="CIN",
+    outfile="CIN_YlGn",
     scale="bounds",
-    colormap=cmr.get_sub_cmap("YlGnBu", 0.0, 0.6, N=7),
+    colormap=cmr.get_sub_cmap("YlGnBu", 0.0, 0.5, N=5),
     contour_color="darkgreen",
     contour_c_labels=False,
-    bounds=[-0.1, 0, 10, 50, 100, 500, 1000, 5000],
+    bounds=[0, 10, 50, 100, 500, 1000],
+    hide_edge_ticks=False,
     range_min=0,
     range_max=3000,
 )

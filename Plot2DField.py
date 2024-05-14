@@ -92,7 +92,10 @@ def Plot2DField(
         case "bounds":
             levs = svariable.bounds
             norm = BoundaryNorm(levs, len(levs))
-            ticklevs = levs[1:-1]
+            if svariable.hide_edge_ticks:
+                ticklevs = levs[1:-1]
+            else:
+                ticklevs = levs
     contour_fills = plt.contourf(
         x,
         y,
