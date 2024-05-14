@@ -317,12 +317,12 @@ Rain = svariable(
     windbarbs=1,
     isdif=1,
     ##################### Blues
-    # scale="linear",
-    # colormap=get_cmap("Blues"),
-    # range_min=0,
-    # range_max=60,
-    # nlevs=7,
-    # nticks=7,
+    scale="linear",
+    colormap=get_cmap("Blues"),
+    range_min=0,
+    range_max=60,
+    nlevs=7,
+    nticks=7,
     #####################
     ##################### Log
     # scale="log",
@@ -373,31 +373,31 @@ Rain = svariable(
     # range_max=16,
     #####################
     ##################### Manuni-Log
-    scale="bounds",
-    colormap=ListedColormap(
-        [
-            "white",
-            "cyan",
-            "cornflowerblue",
-            "blue",
-            "lawngreen",
-            "limegreen",
-            # "green",
-            "darkgreen",
-            "yellow",
-            "gold",
-            "darkorange",
-            "red",
-            # "firebrick",
-            "darkred",
-            "magenta",
-            "darkviolet",
-            # "bisque",
-        ]
-    ),
-    bounds=[-0.1, 0.5, 1, 2, 4, 6, 8, 10, 15, 20, 25, 30, 40, 50, 60],
-    range_min=0,
-    range_max=60,
+    # scale="bounds",
+    # colormap=ListedColormap(
+    #     [
+    #         "white",
+    #         "cyan",
+    #         "cornflowerblue",
+    #         "blue",
+    #         "lawngreen",
+    #         "limegreen",
+    #         # "green",
+    #         "darkgreen",
+    #         "yellow",
+    #         "gold",
+    #         "darkorange",
+    #         "red",
+    #         # "firebrick",
+    #         "darkred",
+    #         "magenta",
+    #         "darkviolet",
+    #         # "bisque",
+    #     ]
+    # ),
+    # bounds=[-0.1, 0.5, 1, 2, 4, 6, 8, 10, 15, 20, 25, 30, 40, 50, 60],
+    # range_min=0,
+    # range_max=60,
     #####################
 )
 SimRadarReflectivityMax = svariable(
