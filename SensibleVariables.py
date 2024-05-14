@@ -925,6 +925,33 @@ SkewT_Herstmonceux = svariable(
     range_min=-60,
     range_max=40,
 )
+SkewT_Bath = svariable(
+    ptitle="SkewT at 51.38,-2.36 (UK Bath)",
+    outfile="SkewT_Bath",
+    windbarbs=1,
+    lat=51.38,
+    lon=-2.36,
+    range_min=-60,
+    range_max=40,
+)
+SkewT_Caerphilly = svariable(
+    ptitle="SkewT at 51.64,-3.30 (UK Caerphilly)",
+    outfile="SkewT_Caerphilly",
+    windbarbs=1,
+    lat=51.64,
+    lon=-3.30,
+    range_min=-60,
+    range_max=40,
+)
+SkewT_BristolChannel = svariable(
+    ptitle="SkewT at 51.02,-5.23 (UK Bristol Channel)",
+    outfile="SkewT_BristolChannel",
+    windbarbs=1,
+    lat=51.02,
+    lon=-5.23,
+    range_min=-60,
+    range_max=40,
+)
 SkewT_Trappes = svariable(
     ptitle="SkewT at 48.77,2.02 (FRANCE Trappes)",  # 07145  168
     outfile="SkewT_Trappes",
