@@ -6,6 +6,7 @@ sys.path.insert(1, "/".join(__file__.split("/")[:-2]))
 
 from Animate import Animate
 from TerrainPlots import Terrain
+from CSV_Data import CSV_Data
 import SensibleVariables as sv
 from MP4Compare import *
 from WRFCompare import *
@@ -30,18 +31,13 @@ if __name__ == "__main__":
         "--task",
         type=str,
         default="diagnostic",
-        choices=["diagnostic", "wrfcompare", "mp4diff", "mp4stitch"],
+        choices=["diagnostic", "csv", "wrfcompare", "mp4diff", "mp4stitch"],
     )
     parser.add_argument(
         "--var",
         type=str,
         default="DewpointTemp2m",
         help="Sensible variable to work with.",
-        choices=[
-            attr
-            for attr in dir(sv)
-            if not callable(getattr(sv, attr)) and not attr.startswith("__")
-        ],
     )
     parser.add_argument(
         "--windbarbs",
@@ -192,7 +188,30 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-wvar = eval("sv." + args.var)
+var_choices = [
+    attr
+    for attr in dir(sv)
+    if not callable(getattr(sv, attr)) and not attr.startswith("__")
+]
+if "," in args.var:
+    args.var = args.var.split(",")
+    incorrect_var = False
+    for var in args.var:
+        if var not in var_choices:
+            incorrect_var = True
+            print(f"Variable {var} not found in SensibleVariables.py.")
+    if incorrect_var:
+        print(f"Please choose from {var_choices}.")
+        raise ValueError("Incorrect value passed to --var.")
+    wvars = [eval("sv." + var) for var in args.var]
+    wvar = sv.SkewT
+    wvar.outfile = "CSV_Data"
+else:
+    if args.var not in var_choices:
+        print(f"Variable {args.var} not found in SensibleVariables.py.")
+        print(f"Please choose from {var_choices}.")
+        raise ValueError("Incorrect value passed to --var.")
+    wvar = eval("sv." + args.var)
 if args.range_min is not None:
     wvar.range_min = float(args.range_min)
 if args.range_max is not None:
@@ -209,6 +228,11 @@ if args.lon is not None:
 if "SkewT" in wvar.outfile and (args.lat is not None or args.lon is not None):
     wvar.outfile = f"SkewT_at_{wvar.lat}_{wvar.lon}"
     wvar.ptitle = f"SkewT at {wvar.lat},{wvar.lon}"
+if "CSV_Data" in wvar.outfile:
+    if args.place is None:
+        wvar.outfile = f"CSV_Data_at_{wvar.lat}_{wvar.lon}"
+    else:
+        wvar.outfile = f"CSV_Data_at_{args.place}"
 
 if args.windbarbs is None:
     windbarbs = wvar.windbarbs
@@ -244,6 +268,15 @@ match args.task:
                 cleanpng=args.clean,
                 save_pdf=args.save_pdf_frames,
             )
+    case "csv":
+        CSV_Data(
+            args.dir_path,
+            wvars,
+            location=wvar,
+            outfile=outfile,
+            outdir=args.outdir,
+            domain=args.domain,
+        )
     case "mp4diff":
         if len(dirs) < 2:
             dir1 = args.dir1
