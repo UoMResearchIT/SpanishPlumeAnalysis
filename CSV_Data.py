@@ -50,6 +50,7 @@ def CSV_Data(
 
     with open(tmp_dir + outfile + ".csv", "w", newline="") as f:
         # Write header
+        f.write(f"# lat:{location.lat}  lon:{location.lon}\n")
         writer = csv.writer(f)
         writer.writerow(["Timestamp"] + [svariable.outfile for svariable in svariables])
 

@@ -432,6 +432,19 @@ SimRadarReflectivityMax = svariable(
 )
 
 # 3D + Field
+AirTemp925 = svariable(
+    dim=4,
+    wrfname="temp",
+    ptitle="Temperature at 925 hPa [K]",
+    outfile="AirTemp925",
+    nticks=12,
+    nlevs=23,
+    range_min=270,
+    range_max=314,
+    interpvar="pressure",
+    interpvalue=925,
+    colormap=get_cmap("Reds"),
+)
 AirTemp850 = svariable(
     dim=4,
     wrfname="temp",
@@ -445,6 +458,19 @@ AirTemp850 = svariable(
     interpvalue=850,
     colormap=get_cmap("Reds"),
 )
+AirTemp700 = svariable(
+    dim=4,
+    wrfname="temp",
+    ptitle="Temperature at 700 hPa [K]",
+    outfile="AirTemp700",
+    nticks=12,
+    nlevs=23,
+    range_min=270,
+    range_max=314,
+    interpvar="pressure",
+    interpvalue=700,
+    colormap=get_cmap("Reds"),
+)
 AirTemp500 = svariable(
     dim=4,
     wrfname="temp",
@@ -456,6 +482,20 @@ AirTemp500 = svariable(
     range_max=280,
     interpvar="pressure",
     interpvalue=500,
+    colormap=get_cmap("Reds"),
+    contour_color="maroon",
+)
+AirTemp300 = svariable(
+    dim=4,
+    wrfname="temp",
+    ptitle="Temperature at 300 hPa [K]",
+    outfile="AirTemp300",
+    nticks=9,
+    nlevs=41,
+    range_min=240,
+    range_max=280,
+    interpvar="pressure",
+    interpvalue=300,
     colormap=get_cmap("Reds"),
     contour_color="maroon",
 )
@@ -537,6 +577,17 @@ AirTempDif12h500 = svariable(
     interpvalue=500,
     colormap=get_cmap("seismic"),
 )
+DewpointTemp925 = svariable(
+    dim=4,
+    wrfname="td",
+    ptitle="Dewpoint Temperature at 925hPa [C]",
+    outfile="DewpointTemp925",
+    range_min=-75,
+    range_max=25,
+    interpvar="pressure",
+    interpvalue=925,
+    colormap=get_cmap("BuPu"),
+)
 DewpointTemp850 = svariable(
     dim=4,
     wrfname="td",
@@ -548,6 +599,61 @@ DewpointTemp850 = svariable(
     interpvalue=850,
     colormap=get_cmap("BuPu"),
 )
+DewpointTemp700 = svariable(
+    dim=4,
+    wrfname="td",
+    ptitle="Dewpoint Temperature at 700hPa [C]",
+    outfile="DewpointTemp700",
+    range_min=-75,
+    range_max=25,
+    interpvar="pressure",
+    interpvalue=700,
+    colormap=get_cmap("BuPu"),
+)
+DewpointTemp500 = svariable(
+    dim=4,
+    wrfname="td",
+    ptitle="Dewpoint Temperature at 500hPa [C]",
+    outfile="DewpointTemp500",
+    range_min=-75,
+    range_max=25,
+    interpvar="pressure",
+    interpvalue=500,
+    colormap=get_cmap("BuPu"),
+)
+DewpointTemp300 = svariable(
+    dim=4,
+    wrfname="td",
+    ptitle="Dewpoint Temperature at 300hPa [C]",
+    outfile="DewpointTemp300",
+    range_min=-75,
+    range_max=25,
+    interpvar="pressure",
+    interpvalue=300,
+    colormap=get_cmap("BuPu"),
+)
+RelativeHumidity925 = svariable(
+    dim=4,
+    wrfname="rh",
+    ptitle="Relative Humidity at 925hPa [%]",
+    outfile="RelHum925",
+    range_min=0,
+    range_max=100,
+    interpvar="pressure",
+    interpvalue=925,
+    colormap=get_cmap("YlGnBu"),
+)
+RelativeHumidity850 = svariable(
+    dim=4,
+    wrfname="rh",
+    ptitle="Relative Humidity at 850hPa [%]",
+    outfile="RelHum850",
+    range_min=0,
+    range_max=100,
+    interpvar="pressure",
+    interpvalue=850,
+    colormap=get_cmap("YlGnBu"),
+)
 RelativeHumidity700 = svariable(
     dim=4,
     wrfname="rh",
@@ -557,6 +663,28 @@ RelativeHumidity700 = svariable(
     range_max=100,
     interpvar="pressure",
     interpvalue=700,
+    colormap=get_cmap("YlGnBu"),
+)
+RelativeHumidity500 = svariable(
+    dim=4,
+    wrfname="rh",
+    ptitle="Relative Humidity at 500hPa [%]",
+    outfile="RelHum500",
+    range_min=0,
+    range_max=100,
+    interpvar="pressure",
+    interpvalue=500,
+    colormap=get_cmap("YlGnBu"),
+)
+RelativeHumidity300 = svariable(
+    dim=4,
+    wrfname="rh",
+    ptitle="Relative Humidity at 300hPa [%]",
+    outfile="RelHum300",
+    range_min=0,
+    range_max=100,
+    interpvar="pressure",
+    interpvalue=300,
     colormap=get_cmap("YlGnBu"),
 )
 PotentialTemp925 = svariable(

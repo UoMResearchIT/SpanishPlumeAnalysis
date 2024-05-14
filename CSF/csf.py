@@ -193,6 +193,25 @@ var_choices = [
     for attr in dir(sv)
     if not callable(getattr(sv, attr)) and not attr.startswith("__")
 ]
+if "," not in args.var:
+    if "CSV_" in args.var:
+        if args.place is None and (args.lat is None or args.lon is None):
+            s = args.var.split("_")
+            if s[1]:
+                args.place = s[1]
+        csv_data_v = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
+        csv_data_p = [925, 850, 700, 500, 300]
+        csv_data_svars = ["CIN", "CAPE"] + [
+            f"{var}{height}" for var in csv_data_v for height in csv_data_p
+        ]
+        args.var = ",".join(csv_data_svars)
+        print(args.var)
+    else:
+        if args.var not in var_choices:
+            print(f"Variable {args.var} not found in SensibleVariables.py.")
+            print(f"Please choose from {var_choices}.")
+            raise ValueError("Incorrect value passed to --var.")
+        wvar = eval("sv." + args.var)
 if "," in args.var:
     args.var = args.var.split(",")
     incorrect_var = False
@@ -206,12 +225,6 @@ if "," in args.var:
     wvars = [eval("sv." + var) for var in args.var]
     wvar = sv.SkewT
     wvar.outfile = "CSV_Data"
-else:
-    if args.var not in var_choices:
-        print(f"Variable {args.var} not found in SensibleVariables.py.")
-        print(f"Please choose from {var_choices}.")
-        raise ValueError("Incorrect value passed to --var.")
-    wvar = eval("sv." + args.var)
 if args.range_min is not None:
     wvar.range_min = float(args.range_min)
 if args.range_max is not None:
@@ -230,9 +243,9 @@ if "SkewT" in wvar.outfile and (args.lat is not None or args.lon is not None):
     wvar.ptitle = f"SkewT at {wvar.lat},{wvar.lon}"
 if "CSV_Data" in wvar.outfile:
     if args.place is None:
-        wvar.outfile = f"CSV_Data_at_{wvar.lat}_{wvar.lon}"
+        wvar.outfile = f"CSV_Data_{wvar.lat},{wvar.lon}"
     else:
-        wvar.outfile = f"CSV_Data_at_{args.place}"
+        wvar.outfile = f"CSV_Data_{args.place}"
 
 if args.windbarbs is None:
     windbarbs = wvar.windbarbs

@@ -9,6 +9,12 @@ from datetime import datetime
 wrfdata = f"{src}/tests/wrfdata"
 results = f"{src}/tests/results"
 
+csv_data_v = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
+csv_data_p = [925, 850, 700, 500, 300]
+csv_data_svars = ["CIN", "CAPE"] + [
+    f"{var}{height}" for var in csv_data_v for height in csv_data_p
+]
+
 all_args = [
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --file_tag=_control",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --domain=full --file_tag=_control_full",
@@ -16,8 +22,9 @@ all_args = [
     # f"--task=diagnostic --var=TerrainElevation1000    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --lat=51.02 --lon=-5.23 --place=BristolChannel",
     # f"--task=diagnostic --var=TerrainElevation1000    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --lat=51.64  --lon=-3.30 --file_tag=_Caerphilly",
     # f"--task=csv --var=AirTemp2m,DewpointTemp2m,CIN,CAPE    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --lat=51.38  --lon=-2.36 --file_tag=_Bath",
-    f"--task=csv --var=AirTemp2m,DewpointTemp2m,CIN,CAPE    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --place=Bath",
-    # f"--task=csv --var=AirTemp2m,CIN,CAPE    --dir_path={wrfdata}/_zlast_two_control/  --domain=full  --outdir={results}/ --lat=51.38  --lon=-2.36 --file_tag=_bath",
+    f"--task=csv --var=CSV_BristolChannel    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/",
+    # f"--task=csv --var={','.join(csv_data_svars)}    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --place=Bath",
+    # f"--task=csv --var={','.join(csv_data_svars)}    --dir_path={wrfdata}/_zlast_two_control/  --domain=full  --outdir={results}/ --lat=51.38  --lon=-2.36 --file_tag=_bath",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --lat=42.9 --lon=2.43 --domain=full --file_tag=_point_full",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/double/          --outdir={results}/ --file_tag=_double",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/half/            --outdir={results}/ --file_tag=_half",
