@@ -1,198 +1,168 @@
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                          --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Aberporth       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Algeria         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Bath            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Bordeaux        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_BristolChannel  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Caerphilly      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Camborne        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Casablanca      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Gibraltar       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Herstmonceux    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_LaCoruna        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Larkhill        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Lerwick         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Madrid          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Murcia          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Nimes           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Nottingham      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Santander       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Stornoway       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=SkewT_Trappes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
 
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.gravity_wave.CON_OA_fix/  --save_pdf_frames=1                --outdir=G_Wave_fix/
+--task=diagnostic   --var=SkewT_Aberporth       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Algeria         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Bath            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Bordeaux        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_BristolChannel  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Caerphilly      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Camborne        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Casablanca      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Gibraltar       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Herstmonceux    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_LaCoruna        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Larkhill        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Lerwick         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Madrid          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Murcia          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Nimes           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Nottingham      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Santander       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Stornoway       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Trappes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
 
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/               --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=SkewT_Aberporth       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Algeria         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Bath            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Bordeaux        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_BristolChannel  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Caerphilly      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Camborne        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Casablanca      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Gibraltar       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Herstmonceux    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_LaCoruna        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Larkhill        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Lerwick         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Madrid          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Murcia          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Nimes           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Nottingham      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Santander       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Stornoway       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Trappes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
 
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/                 --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=SkewT_Aberporth       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Algeria         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Bath            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Bordeaux        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_BristolChannel  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Caerphilly      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Camborne        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Casablanca      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Gibraltar       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Herstmonceux    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_LaCoruna        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Larkhill        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Lerwick         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Madrid          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Murcia          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Nimes           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Nottingham      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Santander       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Stornoway       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Trappes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
 
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/                 --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=SkewT_Aberporth       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Algeria         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Bath            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Bordeaux        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_BristolChannel  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Caerphilly      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Camborne        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Casablanca      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Gibraltar       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Herstmonceux    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_LaCoruna        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Larkhill        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Lerwick         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Madrid          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Murcia          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Nimes           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Nottingham      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Santander       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Stornoway       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Trappes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
 
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/                --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=SkewT_Aberporth       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Algeria         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Bath            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Bordeaux        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_BristolChannel  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Caerphilly      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Camborne        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Casablanca      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Gibraltar       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Herstmonceux    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_LaCoruna        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Larkhill        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Lerwick         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Madrid          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Murcia          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Nimes           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Nottingham      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Santander       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Stornoway       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Trappes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
 
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/          --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=SkewT_Aberporth       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Algeria         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Bath            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Bordeaux        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_BristolChannel  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Caerphilly      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Camborne        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Casablanca      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Gibraltar       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Herstmonceux    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_LaCoruna        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Larkhill        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Lerwick         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Madrid          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Murcia          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Nimes           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Nottingham      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Santander       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Stornoway       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=SkewT_Trappes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
 
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/                --save_pdf_frames=1                --outdir=Albedo_40/
-
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.morrison_microphysics/    --save_pdf_frames=1                --outdir=Morrison/
-
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.thompson_microphysics/    --save_pdf_frames=1                --outdir=Thompson/
-
---task=diagnostic   --var=SkewT_Aberporth     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Algeria       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Bordeaux      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Camborne      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Casablanca    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Gibraltar     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Herstmonceux  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_LaCoruna      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Larkhill      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Lerwick       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Madrid        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Murcia        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Nimes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Nottingham    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Santander     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Stornoway     --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
---task=diagnostic   --var=SkewT_Trappes       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/                 --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Aberporth       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Algeria         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Bath            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Bordeaux        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_BristolChannel  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Caerphilly      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Camborne        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Casablanca      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Gibraltar       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Herstmonceux    --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_LaCoruna        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Larkhill        --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Lerwick         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Madrid          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Murcia          --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Nimes           --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Nottingham      --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Santander       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Stornoway       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=SkewT_Trappes         --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
 
