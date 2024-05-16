@@ -183,6 +183,9 @@ def Plot2DField(
     if domain == "full":
         ax.set_xlim(cartopy_xlim(smooth_var))
         ax.set_ylim(cartopy_ylim(smooth_var))
+    elif domain == "UK":
+        ax.set_xlim([-1550000, -450000])
+        ax.set_ylim([2000000, 3300000])
     else:
         ax.set_xlim([-3542499.4953854363, 942500.950843083])
         ax.set_ylim([-732499.172137629, 3642500.0773183405])

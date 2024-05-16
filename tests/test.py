@@ -22,7 +22,7 @@ all_args = [
     # f"--task=diagnostic --var=TerrainElevation1000    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --lat=51.02 --lon=-5.23 --place=BristolChannel",
     # f"--task=diagnostic --var=TerrainElevation1000    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --lat=51.64  --lon=-3.30 --file_tag=_Caerphilly",
     # f"--task=csv --var=AirTemp2m,DewpointTemp2m,CIN,CAPE    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --lat=51.38  --lon=-2.36 --file_tag=_Bath",
-    f"--task=csv --var=CSV_BristolChannel    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/",
+    # f"--task=csv --var=CSV_BristolChannel    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/",
     # f"--task=csv --var={','.join(csv_data_svars)}    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --place=Bath",
     # f"--task=csv --var={','.join(csv_data_svars)}    --dir_path={wrfdata}/_zlast_two_control/  --domain=full  --outdir={results}/ --lat=51.38  --lon=-2.36 --file_tag=_bath",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --lat=42.9 --lon=2.43 --domain=full --file_tag=_point_full",
@@ -81,6 +81,7 @@ all_args = [
     # f"--task=diagnostic   --var=SkewT_Madrid       --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_Murcia       --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_GIBRALTAR    --dir_path={wrfdata}/control/ --outdir={results}/",
+    f"--task=diagnostic   --var=InstRain    --dir_path={wrfdata}/control/  --domain=UK  --outdir={results}/ --save_pdf_frames=1",
 ]
 # Append location maps to all_args
 # import SensibleVariables as sv

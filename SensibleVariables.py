@@ -17,6 +17,8 @@ class svariable:
         windbarbs=0,
         isdif=0,
         colormap=get_cmap("jet"),
+        under_color=None,
+        over_color=None,
         contour_color=None,
         contour_c_labels=True,
         scale="linear",
@@ -42,6 +44,10 @@ class svariable:
         self.windbarbs = windbarbs
         self.isdif = isdif
         self.colormap = colormap
+        if under_color is not None:
+            self.colormap.set_under(under_color)
+        if over_color is not None:
+            self.colormap.set_over(over_color)
         self.contour_color = contour_color
         self.contour_c_labels = contour_c_labels
         self.scale = scale
@@ -839,6 +845,37 @@ SimRadarReflectivity1km = svariable(
     bounds=[-0.1, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
     range_min=0,
     range_max=64,
+)
+InstRain = svariable(
+    # Uses simulated radar reflectivity at 1km (Z) to calculate
+    # instantaneous precipitation rate (R) from:   Z=200R^1.6
+    dim=4,
+    wrfname="dbz",
+    ptitle="Instantaneous Precipitation Rate [mm/h]",
+    outfile="InstRain",
+    interpvar="z",
+    interpvalue=1000,
+    scale="bounds",
+    colormap=ListedColormap(
+        [
+            "indigo",
+            "royalblue",
+            "teal",
+            "lime",
+            "yellow",
+            "darkorange",
+            "red",
+            "deeppink",
+            "gainsboro",
+            "darkgray",
+            "dimgray",
+        ]
+    ),
+    under_color="white",
+    bounds=[0.1, 0.2, 0.5, 1, 2, 4, 8, 16, 32, 64, 96, 128],
+    hide_edge_ticks=False,
+    range_min=0,
+    range_max=128,
 )
 Frontogenesis925 = svariable(
     dim=4,

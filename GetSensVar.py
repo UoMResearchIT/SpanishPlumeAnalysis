@@ -78,6 +78,9 @@ def GetSensVar(ncfile, svariable, windbarbs=0, time=0, varprevv=None):
             # Static stability computed as air temperature difference
             var2 = interplevel(d4var, interpvar, 850)
             var.values = var2.values - var.values
+        elif svariable == sv.InstRain:
+            # InstRain (R) from SimRadarReflectivity1km (dBZ) using Marshall-Palmer: Z = 10^(dBZ/10) = 200*R^1.6
+            var.values = (0.005 * 10 ** (0.1 * var.values)) ** (0.625)
         if windbarbs:
             # Get wind speed components at interpvalue
             ua = getvar(ncfile, "ua", timeidx=time)

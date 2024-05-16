@@ -67,8 +67,8 @@ if __name__ == "__main__":
         "--domain",
         type=str,
         default="zoom",
-        choices=["zoom", "full"],
-        help="Area to plot, can be the full domain, which includes most of Africa and east Europe, or the zoomed domain, which focuses on North Africa, West Europe and the UK.",
+        choices=["zoom", "full", "UK"],
+        help="Area to plot, can be the full domain, which includes most of Africa and east Europe, the zoomed domain, which focuses on North Africa, West Europe and the UK, or UK, which covers the UK and Ireland.",
     )
     parser.add_argument(
         "--N",
