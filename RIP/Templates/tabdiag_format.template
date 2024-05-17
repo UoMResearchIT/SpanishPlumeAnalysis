@@ -1,0 +1,2 @@
+'Time [h],Latitude [deg],Longitude [deg],Elevation [m],Pressure [mb],Air Temperature [K],Potential Temperature [K],Equivalent Potential Temperature [K],Dewpoint Temperature [K],Relative Humidity [%]'
+'(10(3x,f9.3,3x))'

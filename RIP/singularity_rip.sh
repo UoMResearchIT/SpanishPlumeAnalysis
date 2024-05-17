@@ -76,6 +76,7 @@ usage()
         tinp_tpl="$rip_dir""Templates/traj_inputs.template"
         tplot_tpl="$rip_dir""Templates/traj_plot.template"
         traj_tpl="$rip_dir""Templates/traj.template"
+        tabdiag_tpl="$rip_dir""Templates/tabdiag_format.template"
     # Script
         POSITIONAL_ARGS=()
         posod=1
@@ -295,6 +296,11 @@ fi
 
 # Calculates trajectories
 if [ $noTraj -eq 0 ]; then
+    # Updates trajplot template
+    python3 "$rip_dir""Templates/generate_traj_template.py"
+    # Copies tabdiag template and tabdiag_to_csv script
+    cp $tabdiag_tpl $folder/tabdiag_format.in
+    cp "$rip_dir""Templates/tabdiag_to_csv.py" $folder/tabdiag_to_csv.py
     # Generates trajectory input files and trajectory plot file
     traji=0
     while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
@@ -318,8 +324,9 @@ if [ $noTraj -eq 0 ]; then
         # Copies run template
         rip_program="rip -f"
         rip_program_args="BTrajectories/"$trajplot"_traj_$traji.in"
-        export rip_program rip_program_args ripdpdata
-        envsubst '$rip_program $rip_program_args $ripdpdata' < $run_tpl > $folder/run_"$trajplot"_traj_i.sh
+        rip_diag_file="BTrajectories/"$trajplot"_traj_$traji"
+        export rip_program rip_program_args ripdpdata rip_diag_file
+        envsubst '$rip_program $rip_program_args $ripdpdata $rip_diag_file' < $run_tpl > $folder/run_"$trajplot"_traj_i.sh
 
         # Runs rip inside singularity container
         singularity \
@@ -385,5 +392,5 @@ if [ $interactive -eq 1 ]; then
             --bind $wrfdata/:/$name/WRFData/ \
             --bind $ripdpdata_dir/:/$name/RIPDP/ \
             --pwd /$name \
-            ripdocker_latest.sif
+            "$rip_dir"ripdocker_latest.sif
 fi

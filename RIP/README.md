@@ -100,12 +100,14 @@ Note that since all the trajectory parameters need to be already specified in th
 
 Internally, the script will copy the trajectory inputs file, reformat it, and save it in `/my/output/dir/BTrajectories` as `*_traj_inputs`.
 
-Then it  create a trajectory specification file for each line in the trajectory inputs file, using the `./Templates/traj.template`, and save them in the same directory as `*_traj_#.in`.
+Then it uses the `generate_traj_template.py` script to update traj.template with the diagnostics that will be saved over the trajectory. This also generates a `tabdiag_format.template` file that is used to format the trajectory diagnostics table.
+Then it  create a trajectory specification file for each line in the trajectory inputs file, using the updated `./Templates/traj.template`, and save them in the same directory as `*_traj_#.in`.
 
 Then it will create a `/my/output/dir/run_MyPlot_traj_i.sh` from the `./Templates/run.template`, which is executed inside the container to generate the trajectories.
-This script is then executed multiple times inside the container (the file is actually modified as it iterates trhough the trajectories, so in the end you will only see one file. Inside it, you should see the `_traj_#.in` with the number of the last trajectory calculated).
+This script is then executed multiple times inside the container (the file is actually modified as it iterates through the trajectories, so in the end you will only see one file. Inside it, you should see the `_traj_#.in` with the number of the last trajectory calculated).
 
-This generates a bunch of `.out`, `.traj` and `.diag` files in the `BTrajectories` directory, that will get used for the plotting.
+This generates a bunch of `.out`, `.traj`, `.diag`, and `.tabdiag` files in the `BTrajectories` directory, that will get used for the plotting, and for saving the diagnostic info over the trajectories.
+Then the `tabdiag_to_csv.py` script is used to convert the `.tabdiag` files to `MyPlot_traj_i.csv` files in the base folder, with the csv data over the trajectory.
 
 You can inspect things at this point if you use the `-np` flag, which skips the plot generation.
 
