@@ -95,6 +95,12 @@ and run
 ```
 Note that since all the trajectory parameters need to be already specified in the inputs file, we should only pass the plot name with `trajplot`.
 
+### Diagnostics over the trajectory
+
+While it computes the trajectory, rip can also save some diagnostics over the trajectory.
+The diagnostics that will be saved are specified in the `generate_traj_template.py` script, and can be modified there.
+Note that asking too many diagnostics can make the trajectory computation very slow and memory demanding
+(see note about commenting out some diagnostics for local testing inside the `generate_traj_template.py` script).
 
 #### Details you need not worry about unless you are debugging something
 
