@@ -94,3 +94,33 @@ with open(name, "w") as file:
                 f"-pd={ripdp_dir}{sim['output']}/rdp_{sim['output']} -od={traj_dir}{sim['output']}\n"
             )
         file.write("\n")
+
+# Create inputs for swarm Trajectories
+name = "SwarmTrajectories.inputs"
+sim = simulations[0]
+p_levs = [
+    "925",
+    "850",
+    "700",
+    "500",
+    "300",
+    "250",
+]
+trajectory_times = [
+    # Forward
+    # Backward
+    "60-0",
+    "66-0",
+    "114-0",
+    "120-0",
+]
+with open(name, "w") as file:
+    # Iterate through simulations
+    for tt in trajectory_times:
+        for p_lev in p_levs:
+            file.write(f"-tt={tt} -td=none --swarm --swarm_p={p_lev}")
+            file.write(f"-tp={sim['output']}_swarm_{p_lev}_{tt} ")
+            file.write(
+                f"-pd={ripdp_dir}{sim['output']}/rdp_{sim['output']} -od={traj_dir}{sim['output']}\n"
+            )
+        file.write("\n")
