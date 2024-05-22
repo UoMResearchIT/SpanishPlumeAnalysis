@@ -166,6 +166,8 @@ This script is then executed inside the container to generate the plot using `My
     It is set to the max trajectory time.
 - `titl`: Plot title
     Specifies the trajectory title (legend). Use underscore (`_`) instead of space.
+- `nolb`: No contour or trajectory labels
+    Removes the labels (small numbers at start and end of each trajectory) from the plot.
 - `axlg`: Large labeled tick increment for horizontal plots.
     Set to 50. Specifies the horizontal tick interval.
 

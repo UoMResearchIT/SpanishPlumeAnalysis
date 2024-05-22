@@ -378,7 +378,7 @@ if [ $noPlot -eq 0 ]; then
         trajectory_title=$traj_z"_hPa_from_hour_"$traj_t_0"_to_$traj_t_f"
         Trajectory_Spec_List=$Trajectory_Spec_List"feld=arrow; ptyp=ht; tjfl=BTrajectories/"$trajplot"_traj_$traji.traj; vcor=p;>"$'\n'
         Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; tjar=0.002,0.012; vwin=1000,500; tjst=$tjst; tjen=$tjen;>"$'\n'
-        Trajectory_Spec_List=$Trajectory_Spec_List"    titl=$trajectory_title"$'\n'
+        Trajectory_Spec_List=$Trajectory_Spec_List"    nolb; titl=$trajectory_title"$'\n'
         # Copies traj_plot template
         export ncarg_type Trajectory_Spec_List
         envsubst '$ncarg_type $Trajectory_Spec_List' < $tplot_tpl > $folder/$trajplot.in
