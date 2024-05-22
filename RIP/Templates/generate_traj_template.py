@@ -1,4 +1,5 @@
 import os
+import sys
 
 cwd = os.path.dirname(os.path.abspath(__file__))
 
@@ -9,6 +10,9 @@ diags = {
     "prs": "Pressure [mb]",
     "ght": "Geopotential Height [m]",
     "ghtagl": "Geopotential Height Above Ground Level [m]",
+}
+
+g1 = {
     "tmc": "Air Temperature [C]",
     "the": "Potential Temperature [K]",
     "eth": "Equivalent Potential Temperature [K]",
@@ -23,8 +27,10 @@ diags = {
     "wsp": "Wind Speed [m/s]",
     "wdr": "Horizontal Wind Direction [deg]",
     "www": "Vertical velocity [cm/s]",
-    # Note: Local simulations crash if too many diagnostics are requested (SIGSEGV),
-    #       so, for testing, comment out the following diagnostics
+}
+# Note: Local simulations crash if too many diagnostics are requested (SIGSEGV),
+#       so, for testing, do not include g2 diagnostics.
+g2 = {
     "sateth": "Saturated Equivalent Potential Temperature [K]",
     "stb": "Static Stability [K/hPa]",
     "stbe": "Equivalent Static Stability [K/hPa]",
@@ -35,6 +41,19 @@ diags = {
     "mcap": "Most Unstable Convective Available Potential Energy [J/kg]",
     "mcin": "Most Unstable Convective Inhibition [J/kg]",
 }
+
+if len(sys.argv) == 2:
+    if sys.argv[1] == "none":
+        diags = {}
+    elif sys.argv[1] == "g1":
+        diags = {**diags, **g1}
+    elif sys.argv[1] == "g2":
+        diags = {**diags, **g2}
+    elif sys.argv[1] == "all":
+        diags = {**diags, **g1, **g2}
+    else:
+        print("Invalid argument. Use 'none', 'g1', 'g2', 'all', or no argument.")
+        sys.exit(1)
 
 # Generate traj.template
 template = """&userin

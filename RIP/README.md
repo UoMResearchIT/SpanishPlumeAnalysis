@@ -102,6 +102,9 @@ The diagnostics that will be saved are specified in the `generate_traj_template.
 Note that asking too many diagnostics can make the trajectory computation very slow and memory demanding
 (see note about commenting out some diagnostics for local testing inside the `generate_traj_template.py` script).
 
+By default, only the latitude, longitude, elevation, pressure, geopotential height, and geopotential height above ground level are saved.
+If the option `-td` or `--trajdiag` is specified as "g1", "g2" or "all", the diagnostics in those groups will be saved in the trajectory csv file.
+
 #### Details you need not worry about unless you are debugging something
 
 Internally, the script will copy the trajectory inputs file, reformat it, and save it in `/my/output/dir/BTrajectories` as `*_traj_inputs`.

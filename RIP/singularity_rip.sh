@@ -22,6 +22,7 @@ usage()
     echo "                            If a single number is specified, a default backwards interval of 30 hours will be used, that is, '-tt=120' is equivalent to '-tt=120-90'"
     echo "                            *Note that this option will generate a .inputs file from the template, overriding the file specified with -ti."
     echo "                            You may also want to change the default values of traj_dt, file_dt, traj_x, traj_y and hydrometeor."
+    echo "    -td=* --trajdiag=*    Option to specify a group of diagnostics to be added to the csv file, which can be g1, g2, none, or all."
     echo "    -pd=* --ripdpdata=*   Path to ripdp input file used to preprocess the data ( which should be the prefix of the ripdp data files)."
     echo "                            This option need only be used when the preprocessed data is not in the default directory or name outputdir/RIPDP/rdp_name."
     echo "                            *Note that this option automatically enables --noRDP, as pre-processing should not be needed."
@@ -69,6 +70,7 @@ usage()
         traj_x=195
         traj_y=410
         hydrometeor=0
+        diagnostics=""
     # Templates
         rip_dir="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/"
         rdp_tpl="$rip_dir""Templates/rdp.template"
@@ -119,6 +121,9 @@ for i in "$@"; do       #cycles through arguments
                 trajplot="tp_$trajtimes"
             fi
             cwdti=0
+            ;;
+        -td=*|--trajdiag=*)
+            diagnostics="${i#*=}"
             ;;
         -pd=*|--ripdpdata=*)
             ripdpdata="${i#*=}"
@@ -297,7 +302,7 @@ fi
 # Calculates trajectories
 if [ $noTraj -eq 0 ]; then
     # Updates trajplot template
-    python3 "$rip_dir""Templates/generate_traj_template.py"
+    python3 "$rip_dir""Templates/generate_traj_template.py" $diagnostics
     # Copies tabdiag template and tabdiag_to_csv script
     cp $tabdiag_tpl $folder/tabdiag_format.in
     cp "$rip_dir""Templates/tabdiag_to_csv.py" $folder/tabdiag_to_csv.py
