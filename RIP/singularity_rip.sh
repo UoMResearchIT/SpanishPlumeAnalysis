@@ -248,8 +248,9 @@ if [ $noRDP -eq 0 ]; then
     # Copies run template
     rip_program="ripdp_wrfarw  -n RIPDP/$ripdpdata"
     rip_program_args="all WRFData/wrfout_d01_*"
-    export rip_program rip_program_args ripdpdata
-    envsubst '$rip_program $rip_program_args $ripdpdata' < $run_tpl > $folder/run_rdp.sh
+    save_to_csv=""
+    export rip_program rip_program_args ripdpdata save_to_csv
+    envsubst '$rip_program $rip_program_args $ripdpdata $save_to_csv' < $run_tpl > $folder/run_rdp.sh
 
     # Runs ripdp inside singularity container
     singularity \
@@ -304,8 +305,10 @@ if [ $noTraj -eq 0 ]; then
     # Updates trajplot template
     python3 "$rip_dir""Templates/generate_traj_template.py" $diagnostics
     # Copies tabdiag template and tabdiag_to_csv script
-    cp $tabdiag_tpl $folder/tabdiag_format.in
-    cp "$rip_dir""Templates/tabdiag_to_csv.py" $folder/tabdiag_to_csv.py
+    if [ "$diagnostics" != "none" ]; then
+        cp $tabdiag_tpl $folder/tabdiag_format.in
+        cp "$rip_dir""Templates/tabdiag_to_csv.py" $folder/tabdiag_to_csv.py
+    fi
     # Generates trajectory input files and trajectory plot file
     traji=0
     while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
@@ -330,8 +333,23 @@ if [ $noTraj -eq 0 ]; then
         rip_program="rip -f"
         rip_program_args="BTrajectories/"$trajplot"_traj_$traji.in"
         rip_diag_file="BTrajectories/"$trajplot"_traj_$traji"
-        export rip_program rip_program_args ripdpdata rip_diag_file
-        envsubst '$rip_program $rip_program_args $ripdpdata $rip_diag_file' < $run_tpl > $folder/run_"$trajplot"_traj_i.sh
+        if [ "$diagnostics" == "none" ]; then
+            save_to_csv=""
+        else
+            save_to_csv="""
+            wait
+            # Extract diagnostic data from .diag files and save to csv
+            if [ -f "$rip_diag_file.diag" ]; then
+                tabdiag $rip_diag_file.diag tabdiag_format.in
+                wait
+                python tabdiag_to_csv.py $rip_diag_file.tabdiag
+            fi
+            """
+            # Remove intendation
+            save_to_csv=$(echo "$save_to_csv" | sed 's/^            //')
+        fi
+        export rip_program rip_program_args ripdpdata save_to_csv
+        envsubst '$rip_program $rip_program_args $ripdpdata $save_to_csv' < $run_tpl > $folder/run_"$trajplot"_traj_i.sh
 
         # Runs rip inside singularity container
         singularity \
@@ -369,8 +387,9 @@ if [ $noPlot -eq 0 ]; then
     # Copies run template
     rip_program="rip -f"
     rip_program_args="$trajplot.in"
-    export rip_program rip_program_args ripdpdata
-    envsubst '$rip_program $rip_program_args $ripdpdata' < $run_tpl > $folder/run_$trajplot.sh
+    save_to_csv=""
+    export rip_program rip_program_args ripdpdata save_to_csv
+    envsubst '$rip_program $rip_program_args $ripdpdata $save_to_csv' < $run_tpl > $folder/run_$trajplot.sh
 
     # Runs rip inside singularity container
     singularity \

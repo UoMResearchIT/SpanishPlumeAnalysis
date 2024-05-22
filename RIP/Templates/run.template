@@ -4,10 +4,4 @@ source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable
 
 $rip_program RIPDP/$ripdpdata $rip_program_args
 
-wait
-# Extract diagnostic data from .diag files and save to csv
-if [ -f "$rip_diag_file.diag" ]; then
-    tabdiag $rip_diag_file.diag tabdiag_format.in
-    wait
-    python tabdiag_to_csv.py $rip_diag_file.tabdiag
-fi
+$save_to_csv
