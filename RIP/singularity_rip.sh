@@ -44,6 +44,16 @@ usage()
     echo "          --traj_y=*      Grid vertical (north-south) position for tracking particle release. The default value is 410."
     echo "          --hydrometeor   The default value is 0."
     echo ""
+    echo "      Swarm/grid plots:"
+    echo "    -s    --swarm         Option to plot trajectory points as swarms instead of arrows."
+    echo "    -sx0=* --swarm_x0=*   Specifies the swarm initial x position."
+    echo "    -sx1=* --swarm_x1=*   Specifies the swarm final x position."
+    echo "    -sxn=* --swarm_xn=*   Specifies the number of points between x0 and x1."
+    echo "    -sy0=* --swarm_y0=*   Specifies the swarm initial y position."
+    echo "    -sy1=* --swarm_y1=*   Specifies the swarm final y position."
+    echo "    -syn=* --swarm_yn=*   Specifies the number of points between y0 and y1."
+    echo "    -sp=* --swarm_p=*     Specifies the swarm pressure (height)."
+    echo ""
     echo ""
     echo "  Examples:"
     echo "    ./singularity_rip.sh Control /mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/"
@@ -71,11 +81,20 @@ usage()
         traj_y=410
         hydrometeor=0
         diagnostics=""
+        swarm=0
+        swarm_x0=170
+        swarm_x1=215
+        swarm_xn=10
+        swarm_y0=390
+        swarm_y1=435
+        swarm_yn=10
+        swarm_p=850
     # Templates
         rip_dir="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/"
         rdp_tpl="$rip_dir""Templates/rdp.template"
         run_tpl="$rip_dir""Templates/run.template"
         tinp_tpl="$rip_dir""Templates/traj_inputs.template"
+        sinp_tpl="$rip_dir""Templates/swarm_inputs.template"
         tplot_tpl="$rip_dir""Templates/traj_plot.template"
         traj_tpl="$rip_dir""Templates/traj.template"
         tabdiag_tpl="$rip_dir""Templates/tabdiag_format.template"
@@ -164,6 +183,30 @@ for i in "$@"; do       #cycles through arguments
             ;;
         --hydrometeor)
             hydrometeor=1
+            ;;
+        -s|--swarm)
+            swarm=1
+            ;;
+        -sx0=*|--swarm_x0=*)
+            swarm_x0="${i#*=}"
+            ;;
+        -sx1=*|--swarm_x1=*)
+            swarm_x1="${i#*=}"
+            ;;
+        -sxn=*|--swarm_xn=*)
+            swarm_xn="${i#*=}"
+            ;;
+        -sy0=*|--swarm_y0=*)
+            swarm_y0="${i#*=}"
+            ;;
+        -sy1=*|--swarm_y1=*)
+            swarm_y1="${i#*=}"
+            ;;
+        -syn=*|--swarm_yn=*)
+            swarm_yn="${i#*=}"
+            ;;
+        -sp=*|--swarm_p=*)
+            swarm_p="${i#*=}"
             ;;
         -*|--*)                 # If option not listed above (invalid)
             echo "ERROR: Unknown option $i."
@@ -288,8 +331,14 @@ if [ $((noTraj+noPlot)) -lt 2 ]; then
                 traj_t_f=0
             fi
         fi
-        export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y hydrometeor
-        envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $hydrometeor' < $tinp_tpl > $folder/BTrajectories/"$trajplot"_traj_inputs
+        if [ "$swarm" == "0" ]; then
+            export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y hydrometeor
+            envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $hydrometeor' < $tinp_tpl > $folder/BTrajectories/"$trajplot"_traj_inputs
+        else
+            read -r traj_x traj_y <<< $(python3 "$rip_dir""Templates//Inputs/generate_swarm_inputs.py" $swarm_x0 $swarm_x1 $swarm_xn $swarm_y0 $swarm_y1 $swarm_yn)
+            export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y hydrometeor swarm_p
+            envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $hydrometeor $swarm_p' < $sinp_tpl > $folder/BTrajectories/"$trajplot"_traj_inputs
+        fi
     fi
     inputsfile=$folder/BTrajectories/"$trajplot"_traj_inputs
     sed -i '/^#/d'  $inputsfile             # Deletes header/comment lines
@@ -376,7 +425,13 @@ if [ $noPlot -eq 0 ]; then
         tjst=$(($traj_t_0>$traj_t_f ? $traj_t_f : $traj_t_0))   # Min of t_0 and t_f
         tjen=$(($traj_t_0>$traj_t_f ? $traj_t_0 : $traj_t_f))   # Max of t_0 and t_f
         trajectory_title=$traj_z"_hPa_from_hour_"$traj_t_0"_to_$traj_t_f"
-        Trajectory_Spec_List=$Trajectory_Spec_List"feld=arrow; ptyp=ht; tjfl=BTrajectories/"$trajplot"_traj_$traji.traj; vcor=p;>"$'\n'
+        if [ "$swarm" == 1 ]; then
+            # feld="gridswarm; tjid=1,"$swarm_xn","$swarm_yn";"
+            feld="arrow;"
+        else
+            feld="arrow;"
+        fi
+        Trajectory_Spec_List=$Trajectory_Spec_List"feld="$feld" ptyp=ht; tjfl=BTrajectories/"$trajplot"_traj_$traji.traj; vcor=p;>"$'\n'
         Trajectory_Spec_List=$Trajectory_Spec_List"    colr=$color; tjar=0.002,0.012; vwin=1000,500; tjst=$tjst; tjen=$tjen;>"$'\n'
         Trajectory_Spec_List=$Trajectory_Spec_List"    nolb; titl=$trajectory_title"$'\n'
         # Copies traj_plot template
