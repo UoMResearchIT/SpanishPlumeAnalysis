@@ -1,7 +1,14 @@
 #traj_t_0   traj_t_f    traj_dt     file_dt     traj_x  traj_y  traj_p  hydrometeor     color
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 950     $hydrometeor    magenta
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 925     $hydrometeor    light.magenta
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 900     $hydrometeor    red.coral
 $traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 850     $hydrometeor    red
 $traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 800     $hydrometeor    orange
 $traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 750     $hydrometeor    mustard
 $traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 700     $hydrometeor    green
 $traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 650     $hydrometeor    dark.green
 $traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 600     $hydrometeor    blue
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 500     $hydrometeor    light.cerulean
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 400     $hydrometeor    lavender
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 300     $hydrometeor    light.blue
+$traj_t_0   $traj_t_f   $traj_dt    $file_dt    $traj_x $traj_y 250     $hydrometeor    violet
