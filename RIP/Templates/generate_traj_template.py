@@ -28,8 +28,6 @@ g1 = {
     "wdr": "Horizontal Wind Direction [deg]",
     "www": "Vertical velocity [cm/s]",
 }
-# Note: Local simulations crash if too many diagnostics are requested (SIGSEGV),
-#       so, for testing, do not include g2 diagnostics.
 g2 = {
     "sateth": "Saturated Equivalent Potential Temperature [K]",
     "stb": "Static Stability [K/hPa]",
@@ -49,10 +47,8 @@ if len(sys.argv) == 2:
         diags = {**diags, **g1}
     elif sys.argv[1] == "g2":
         diags = {**diags, **g2}
-    elif sys.argv[1] == "all":
-        diags = {**diags, **g1, **g2}
     else:
-        print("Invalid argument. Use 'none', 'g1', 'g2', 'all', or no argument.")
+        print("Invalid argument. Use 'none', 'g1', 'g2', or no argument.")
         sys.exit(1)
 
 # Generate traj.template

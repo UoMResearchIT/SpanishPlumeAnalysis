@@ -103,7 +103,7 @@ Note that asking too many diagnostics can make the trajectory computation very s
 (see note about commenting out some diagnostics for local testing inside the `generate_traj_template.py` script).
 
 By default, only the latitude, longitude, elevation, pressure, geopotential height, and geopotential height above ground level are saved.
-If the option `-td` or `--trajdiag` is specified as "g1", "g2" or "all", the diagnostics in those groups will be saved in the trajectory csv file.
+The group of diagnostics can be set using the option `-td` or `--trajdiag`, which can be set to "none", "g1", or "g2". The diagnostics in the corresponding group (see `generate_traj_template.py`) will be saved in the trajectory csv file.
 
 #### Details you need not worry about unless you are debugging something
 
