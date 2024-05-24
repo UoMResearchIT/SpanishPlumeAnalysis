@@ -67,12 +67,27 @@ if [ "${COMMAND}" == "put" ]; then
     # if dry-run option specified, just echo the commands
     if [ "${DRY_RUN}" == "true" ]; then
         echo "----- DRY RUN -----"
+        echo "(NOT) Uploading files from \""${SOURCE_DIR}"\" to \""${DEST_DIR}"\"..."
+        find "${SOURCE_DIR}" -type f -exec bash -c '
+        dir=$(dirname "${1#${2}}")
+        if [ "$dir" == "/" ]; then
+            dir=""
+        fi
+        echo -e "    dbxcli put \"$1\" \"${3}${dir}/$(basename \"$1\")"
+        ' _ {} "${SOURCE_DIR}" "${DEST_DIR}" \;
     fi
-    echo "Uploading files from \""${SOURCE_DIR}"\" to \""${DEST_DIR}"\"..."
-    find "${SOURCE_DIR}" -type f -exec bash -c 'dir=$(dirname "${1#${2}}"); if [ "$dir" == "/" ]; then dir=""; fi; echo dbxcli put \""$1"\" \""${3}${dir}/$(basename "$1")"\"' _ {} "${SOURCE_DIR}" "${DEST_DIR}" \;
+
     if [ "${DRY_RUN}" != "true" ]; then
+        echo "Uploading files from \""${SOURCE_DIR}"\" to \""${DEST_DIR}"\"..."
         # Put each file recursively
-        find "${SOURCE_DIR}" -type f -exec bash -c 'dir=$(dirname "${1#${2}}"); if [ "$dir" == "/" ]; then dir=""; fi; dbxcli put "$1" "${3}${dir}/$(basename "$1")"' _ {} "${SOURCE_DIR}" "${DEST_DIR}" \;
+        find "${SOURCE_DIR}" -type f -exec bash -c '
+        dir=$(dirname "${1#${2}}")
+        if [ "$dir" == "/" ]; then
+            dir=""
+        fi
+        echo -e "    dbxcli put \"$1\" \"${3}${dir}/$(basename \"$1\")"
+        dbxcli put "$1" "${3}${dir}/$(basename "$1")"
+        ' _ {} "${SOURCE_DIR}" "${DEST_DIR}" \;
     else
         echo "-------------------"
     fi
