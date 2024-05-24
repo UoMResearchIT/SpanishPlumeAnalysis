@@ -136,7 +136,7 @@ with open(name, "w") as file:
     # Iterate through simulations
     for tt in trajectory_times:
         for p_lev in p_levs:
-            file.write(f"-tt={tt} -td=none --swarm --swarm_p={p_lev}")
+            file.write(f"-tt={tt} -td=none --swarm --swarm_p={p_lev} ")
             file.write(f"-tp={sim['output']}_swarm_{p_lev}_{tt} ")
             file.write(
                 f"-pd={ripdp_dir}{sim['output']}/rdp_{sim['output']} -od={traj_dir}{sim['output']}\n"

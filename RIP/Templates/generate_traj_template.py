@@ -42,7 +42,10 @@ g2 = {
 
 if len(sys.argv) == 2:
     if sys.argv[1] == "none":
-        diags = {}
+        diags = {
+            "xlat": "Latitude [deg]",
+            "xlon": "Longitude [deg]",
+        }
     elif sys.argv[1] == "g1":
         diags = {**diags, **g1}
     elif sys.argv[1] == "g2":
