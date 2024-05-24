@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Check if two arguments are provided
 if [ "$#" -lt 3 ]; then
     echo """
