@@ -14,14 +14,22 @@ if [ "$#" -lt 3 ]; then
             .
             ├── Documents
             │   ├── My_Dir
-            │   │   ├── file1.txt
-            │   │   ├── file2.txt
+            │   │   ├── SubDir1
+            |   |   |   ├── file1.txt
+            |   |   |   ├── file2.txt
+            │   │   ├── SubDir2
+            |   |   |   ├── file3.txt
+            |   |   |   ├── file4.txt
         Can be uploaded to Dropbox as:
             .
             ├── Documents
             │   ├── Uploaded_Dir
-            │   │   ├── file1.txt
-            │   │   ├── file2.txt
+            │   │   ├── SubDir1
+            |   |   |   ├── file1.txt
+            |   |   |   ├── file2.txt
+            │   │   ├── SubDir2
+            |   |   |   ├── file3.txt
+            |   |   |   ├── file4.txt
         Using the command:
 
             dbxcli-r put Documents/My_Dir /Documents/Uploaded_Dir
@@ -35,8 +43,8 @@ fi
 
 # Assign arguments to variables
 COMMAND="$1"
-SOURCE_DIR="$2"
-DEST_DIR="$3"
+SOURCE_DIR="${2%/}"
+DEST_DIR="${3%/}"
 # Check for options 
 DRY_RUN="false"
 if [ "$#" == 4 ]; then
@@ -61,10 +69,10 @@ if [ "${COMMAND}" == "put" ]; then
         echo "----- DRY RUN -----"
     fi
     echo "Uploading files from \""${SOURCE_DIR}"\" to \""${DEST_DIR}"\"..."
-    find "${SOURCE_DIR}" -type f -exec bash -c 'echo dbxcli put \""$1"\" \""$2/$(basename \"$1\")"' _ {} "${DEST_DIR}" \;
+    find "${SOURCE_DIR}" -type f -exec bash -c 'dir=$(dirname "${1#${2}}"); if [ "$dir" == "/" ]; then dir=""; fi; echo dbxcli put \""$1"\" \""${3}${dir}/$(basename "$1")"\"' _ {} "${SOURCE_DIR}" "${DEST_DIR}" \;
     if [ "${DRY_RUN}" != "true" ]; then
         # Put each file recursively
-        find "${SOURCE_DIR}" -type f -exec bash -c 'dbxcli put "$1" "$2/$(basename "$1")"' _ {} "${DEST_DIR}" \;
+        find "${SOURCE_DIR}" -type f -exec bash -c 'dir=$(dirname "${1#${2}}"); if [ "$dir" == "/" ]; then dir=""; fi; dbxcli put "$1" "${3}${dir}/$(basename "$1")"' _ {} "${SOURCE_DIR}" "${DEST_DIR}" \;
     else
         echo "-------------------"
     fi
