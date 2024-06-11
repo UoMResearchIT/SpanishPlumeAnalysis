@@ -65,7 +65,23 @@ def Animate(
             WRFfiles.append(file)
     WRFfiles.sort()
 
+    if svariable.along_traj:
+        # Load trajectory CSV file
+        with open(svariable.along_traj, "r") as f:
+            print(f"Loading {svariable.along_traj}")
+            lines = f.readlines()
+            assert lines[0].startswith(
+                "Time [h],Latitude [deg],Longitude [deg],Elevation [m],Pressure [mb],"
+            ), "Invalid CSV format"
+            lines = lines[1:]
+            trajectory = [
+                {"t": float(t), "lat": float(lat), "lon": float(lon), "p": float(p)}
+                for t, lat, lon, z, p, *_ in (x.split(",") for x in lines)
+            ]
+
     # Plot each time frame in each file
+    sim_ti = 0
+    traj_ti = 0
     for wrf_fn in WRFfiles:
         # Open the NetCDF file
         print("Loading ", wrf_fn)
@@ -78,14 +94,30 @@ def Animate(
             print("Processing:", ti + 1, "/", timerange, end="\r")
             if "SkewT" in svariable.outfile:
                 outfname = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
-                Plot_SkewT(
-                    ncfile,
-                    ti,
-                    svariable,
-                    outfname,
-                    save_pdf=save_pdf,
-                )
-                PNGfiles.append(outfname)
+                skip = 0
+                if svariable.along_traj:
+
+                    if sim_ti >= trajectory[0]["t"] and sim_ti <= trajectory[-1]["t"]:
+                        assert sim_ti == trajectory[traj_ti]["t"], "Invalid time index"
+                        svariable.lat = trajectory[traj_ti]["lat"]
+                        svariable.lon = trajectory[traj_ti]["lon"]
+                        svariable.interpvalue = trajectory[traj_ti]["p"]
+                        svariable.ptitle = (
+                            f"SkewT along trajectory  ({svariable.lat},{svariable.lon})"
+                        )
+                        traj_ti += 1
+                    else:
+                        skip = 1
+                if not skip:
+                    Plot_SkewT(
+                        ncfile,
+                        ti,
+                        svariable,
+                        outfname,
+                        save_pdf=save_pdf,
+                    )
+                    PNGfiles.append(outfname)
+                sim_ti = sim_ti + 1
             else:
                 var, u, v, vpv = GetSensVar(ncfile, svariable, windbarbs, ti, vpv)
                 if svariable.overlap_sv is not None:

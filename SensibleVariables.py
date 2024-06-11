@@ -32,6 +32,7 @@ class svariable:
         overlap_cmap=None,
         lat=None,
         lon=None,
+        along_traj=None,
     ):
         self.dim = dim
         self.wrfname = wrfname
@@ -61,6 +62,7 @@ class svariable:
         self.overlap_cmap = overlap_cmap
         self.lat = lat
         self.lon = lon
+        self.along_traj = along_traj
 
 
 # 2D + Field
@@ -1003,6 +1005,16 @@ Frontogenesis500 = svariable(
 SkewT = svariable(
     ptitle="SkewT at 53.3638,-2.2764",  # WMO_code  Alt[m]
     outfile="SkewT",
+    windbarbs=1,
+    lat=53.3638,
+    lon=-2.2764,
+    range_min=-60,
+    range_max=40,
+)
+SkewT_Trajectory = svariable(
+    ptitle="SkewT along trajectory",
+    outfile="SkewT_Traj",
+    along_traj="/traj/csv/path",
     windbarbs=1,
     lat=53.3638,
     lon=-2.2764,

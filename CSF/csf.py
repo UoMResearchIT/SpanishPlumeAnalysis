@@ -185,6 +185,12 @@ if __name__ == "__main__":
         help="Name of place for point location on map).",
         choices=[attr.split("_")[1] for attr in dir(sv) if attr.startswith("SkewT_")],
     )
+    parser.add_argument(
+        "--traj",
+        type=str,
+        default=None,
+        help="Path to the trajectory CSV file.",
+    )
 
     args = parser.parse_args()
 
@@ -238,6 +244,10 @@ if args.lat is not None:
     wvar.lat = float(args.lat)
 if args.lon is not None:
     wvar.lon = float(args.lon)
+if args.traj is not None:
+    wvar.along_traj = args.traj
+    trajname = os.path.splitext(os.path.basename(args.traj))[0]
+    wvar.outfile = f"SkewT_Traj_{trajname}"
 if "SkewT" in wvar.outfile and (args.lat is not None or args.lon is not None):
     wvar.outfile = f"SkewT_at_{wvar.lat}_{wvar.lon}"
     wvar.ptitle = f"SkewT at {wvar.lat},{wvar.lon}"

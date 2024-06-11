@@ -89,6 +89,12 @@ def Plot_SkewT(ncfile, ti, svariable, outfname="MyPlot.png", save_pdf=0):
     # Add title, frame time, save and close
     plt.title(f"{svariable.ptitle} ~ {int(h.magnitude)} m.a.s.l.")
     plt.annotate(dtime, xy=(0.01, 0.01), xycoords="figure fraction")
+    if svariable.interpvalue:
+        plt.annotate(
+            f"Trajectory at ~ {int(svariable.interpvalue)}hPa",
+            xy=(0.8, 0.01),
+            xycoords="figure fraction",
+        )
     plt.savefig(outfname)
     if save_pdf:
         plt.savefig(outfname.replace(".png", ".pdf"))
