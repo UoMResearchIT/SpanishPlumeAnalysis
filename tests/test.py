@@ -82,7 +82,7 @@ all_args = [
     # f"--task=diagnostic   --var=SkewT_Murcia       --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=SkewT_GIBRALTAR    --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=InstRain    --dir_path={wrfdata}/control/  --domain=UK  --outdir={results}/ --save_pdf_frames=1",
-    f"--task=diagnostic   --var=SkewT_Trajectory --traj='tests/results/rip/Traj_5_traj_1.csv'   --dir_path={wrfdata}/_zlast_two_control/ --outdir={results}/ --save_pdf_frames=1",
+    f"--task=diagnostic   --var=SkewT_Trajectory --traj='tests/results/rip/Notin_850hPa.csv'   --dir_path={wrfdata}/_zlast_two_control/ --outdir={results}/ --save_pdf_frames=1",
 ]
 # Append location maps to all_args
 # import SensibleVariables as sv

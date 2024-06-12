@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 
 
 def tabdiag_to_csv(cwd, tabdiag_file):
@@ -26,6 +27,7 @@ def tabdiag_to_csv(cwd, tabdiag_file):
 
     # Write to csv
     csv_file = f"{cwd}/{os.path.basename(tabdiag_file).replace('.tabdiag', '.csv')}"
+    csv_file = re.sub(r"_traj_\d+", f"_{int(float(data[0][4]))}hPa", csv_file)
     with open(csv_file, "w") as f:
         f.write(header + "\n")
         for row in data:
