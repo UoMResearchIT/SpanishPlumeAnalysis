@@ -3,9 +3,9 @@ import sys
 import re
 
 
-def tabdiag_to_csv(cwd, tabdiag_file):
+def tabdiag_to_csv(cwd, tabdiag_file, tabdiag_format="tabdiag_format.in"):
     # Get full header
-    with open(f"{cwd}/tabdiag_format.in", "r") as f:
+    with open(f"{cwd}/{tabdiag_format}", "r") as f:
         lines = f.readlines()
         header = lines[0].strip().replace("'", "")
 
@@ -48,17 +48,28 @@ def convert_all_tabdiag_to_csv(cwd, path_to_diag_files="BTrajectories"):
             if file.endswith(".tabdiag"):
                 tabdiag_files.append(os.path.join(root, file))
     for tabdiag_file in tabdiag_files:
-        tabdiag_to_csv(cwd, tabdiag_file)
+        trajplot = re.sub(r"traj_\d+\.tabdiag$", "", tabdiag_file)
+        if trajplot != tabdiag_file:
+            tabdiag_format = f"{trajplot}tabdiag_format.in"
+        else:
+            tabdiag_format = "tabdiag_format.in"
+        tabdiag_to_csv(cwd, tabdiag_file, tabdiag_format)
 
 
 if __name__ == "__main__":
     cwd = os.path.dirname(os.path.abspath(__file__))
-    if len(sys.argv) == 2:
+    if len(sys.argv) in [2, 3]:
         if sys.argv[1] == "all":
             convert_all_tabdiag_to_csv(cwd)
         else:
             if os.path.exists(sys.argv[1]):
-                tabdiag_to_csv(cwd, sys.argv[1])
+                if len(sys.argv) == 3:
+                    if os.path.exists(sys.argv[2]):
+                        tabdiag_to_csv(cwd, sys.argv[1], sys.argv[2])
+                    else:
+                        print(f"File {sys.argv[2]} does not exist")
+                else:
+                    tabdiag_to_csv(cwd, sys.argv[1])
             else:
                 print(f"File {sys.argv[1]} does not exist")
     else:
@@ -66,4 +77,6 @@ if __name__ == "__main__":
         print("  To convert all tabdiag files in BTrajectories, use:")
         print("    python tabdiag_to_csv.py all")
         print("  To convert a single tabdiag file, use:")
-        print("    python tabdiag_to_csv.py <path_to_tabdiag_file>")
+        print(
+            "    python tabdiag_to_csv.py <path_to_tabdiag_file> <path_to_tabdiag_format_file>"
+        )

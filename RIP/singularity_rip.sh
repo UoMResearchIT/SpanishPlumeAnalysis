@@ -391,7 +391,7 @@ if [ $noTraj -eq 0 ]; then
             if [ -f "$rip_diag_file.diag" ]; then
                 tabdiag $rip_diag_file.diag "$trajplot"_tabdiag_format.in
                 wait
-                python "$trajplot"_tabdiag_to_csv.py $rip_diag_file.tabdiag
+                python "$trajplot"_tabdiag_to_csv.py $rip_diag_file.tabdiag "$trajplot"_tabdiag_format.in
             fi
             """
             # Remove intendation
