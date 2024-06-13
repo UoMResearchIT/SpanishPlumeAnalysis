@@ -179,6 +179,12 @@ This script is then executed inside the container to generate the plot using `My
 - `nmsg`: No message
     Prevents legend for arrow sizes.
 
+##### These I only suspect might be useful later... but have not tested them
+- tslb: Text size for labels
+- outy: Map outline type
+- tjid: ID numbers of trajectories to be plotted.
+- tjti: Time interval for plotted trajectories, in hours.
+- ptyp=vt: for cross sections (vertical traj).
 
 # System requirements
 
