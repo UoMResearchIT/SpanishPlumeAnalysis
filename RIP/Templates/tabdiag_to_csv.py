@@ -27,7 +27,14 @@ def tabdiag_to_csv(cwd, tabdiag_file):
 
     # Write to csv
     csv_file = f"{cwd}/{os.path.basename(tabdiag_file).replace('.tabdiag', '.csv')}"
-    csv_file = re.sub(r"_traj_\d+", f"_{int(float(data[0][4]))}hPa", csv_file)
+    d0 = 0
+    try:
+        # Check if the trajectory is backward, and set d0 accordingly
+        tt0, ttf = re.search(r"_(\d+-\d+)", csv_file).group(1).split("-")
+        d0 = -1 if int(tt0) > int(ttf) else 0
+    except (ValueError, AttributeError):
+        pass
+    csv_file = re.sub(r"_traj_\d+", f"_{int(float(data[d0][4]))}hPa", csv_file)
     with open(csv_file, "w") as f:
         f.write(header + "\n")
         for row in data:
