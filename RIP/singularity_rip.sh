@@ -355,8 +355,8 @@ if [ $noTraj -eq 0 ]; then
     python3 "$rip_dir""Templates/generate_traj_template.py" $diagnostics
     # Copies tabdiag template and tabdiag_to_csv script
     if [ "$diagnostics" != "none" ]; then
-        cp $tabdiag_tpl $folder/tabdiag_format.in
-        cp "$rip_dir""Templates/tabdiag_to_csv.py" $folder/tabdiag_to_csv.py
+        cp $tabdiag_tpl $folder/"$trajplot"_tabdiag_format.in
+        cp "$rip_dir""Templates/tabdiag_to_csv.py" $folder/"$trajplot"_tabdiag_to_csv.py
     fi
     # Generates trajectory input files and trajectory plot file
     traji=0
@@ -389,9 +389,9 @@ if [ $noTraj -eq 0 ]; then
             wait
             # Extract diagnostic data from .diag files and save to csv
             if [ -f "$rip_diag_file.diag" ]; then
-                tabdiag $rip_diag_file.diag tabdiag_format.in
+                tabdiag $rip_diag_file.diag "$trajplot"_tabdiag_format.in
                 wait
-                python tabdiag_to_csv.py $rip_diag_file.tabdiag
+                python "$trajplot"_tabdiag_to_csv.py $rip_diag_file.tabdiag
             fi
             """
             # Remove intendation
