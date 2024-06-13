@@ -1,4 +1,13 @@
-# python script to create input files for all simulations
+# python script to create input files for skewT animations along trajectories
+# The script generates two files, one for the generation of the trajectories and another for the skewT plots:
+#   - rip_skewT_trajectories.inputs
+#   - skewT_trajectories.inputs
+# From the base directory, the following commands will generate the skewT animations.
+#   $ conda activate wrf-py-env
+#   $ python3 CSF/generate_skewT_traj_inputs.py
+#   $ RIP/CSF/Submit.sh rip_skewT_trajectories.inputs Results/SkewT_Trajectories/
+#   $ ./CSF/Submit.sh Results/skewT_trajectories.inputs Results/SkewT_Trajectories/
+# However, make sure that you wait for the trajectory generation to finish before running the skewT generation.
 
 import sys, os
 
@@ -148,7 +157,7 @@ with open("skewT_trajectories.inputs", "w") as file:
             for tcpwp in tcp:
                 task = "--task=diagnostic"
                 var = f"--var=SkewT_Trajectory"
-                traj = f"--traj={tcpwp}"
+                traj = f"--traj={tcpwp}.csv"
                 dir_path = f"--dir_path={base_dir_path}{simulation['wrfout']}/"
                 opts_dom = opts
                 if simulation["output"] in ["Albedo_90", "Dom2"]:
