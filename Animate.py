@@ -6,13 +6,6 @@ import os
 from GetSensVar import *
 import SensibleVariables as sv
 
-# from datetime import datetime      ###############################################
-# print(datetime.now())              ###############################################
-
-# python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",985,1035,"slp","Sea level pressure [hPa]","slp",1)'
-# python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",270,330,"T2","Temperature at 2m [K]","T2",1)'
-# python -c 'from Animate import Animate; Animate("/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",-20,35,"td2","Dewpoint Temperature at 2m [C?]","td2",1)'
-
 
 def Animate(
     dir_path,
@@ -74,10 +67,24 @@ def Animate(
                 "Time [h],Latitude [deg],Longitude [deg],Elevation [m],Pressure [mb],"
             ), "Invalid CSV format"
             lines = lines[1:]
-            trajectory = [
-                {"t": float(t), "lat": float(lat), "lon": float(lon), "p": float(p)}
-                for t, lat, lon, z, p, *_ in (x.split(",") for x in lines)
-            ]
+            trajectory = []
+            for x in lines:
+                try:
+                    t, lat, lon, z, p, *_ = x.split(",")
+                    trajectory.append(
+                        {
+                            "t": float(t),
+                            "lat": float(lat),
+                            "lon": float(lon),
+                            "p": float(p),
+                        }
+                    )
+                except ValueError as e:
+                    # Skip line if there is an error reading the line and converting to right type
+                    print(f"WARNING: Skipping line with invalid data:")
+                    print(f"  {x}")
+                    print(f"  {e}")
+                    continue
 
     # Plot each time frame in each file
     sim_ti = 0
@@ -89,7 +96,6 @@ def Animate(
 
         # Get number of time frames and plot them
         timerange = ncfile.variables["Times"].shape[0]
-        #        if timerange>1:timerange=1                              ## For tests only
         for ti in range(timerange):
             print("Processing:", ti + 1, "/", timerange, end="\r")
             if "SkewT" in svariable.outfile:
