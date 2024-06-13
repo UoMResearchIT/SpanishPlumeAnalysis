@@ -102,13 +102,15 @@ with open(name, "w") as file:
         for sim in simulations:
             for diag in diags:
                 file.write(
-                    f"-tt={trajectory['times']} --traj_x={trajectory['x']} --traj_y={trajectory['y']} -td={diag} "
+                    f"-tt={trajectory['times']} --traj_x={trajectory['x']} --traj_y={trajectory['y']} "
                 )
                 file.write(
-                    f"-tp={sim['output']}_{trajectory['name']}_{trajectory['times']}_{diag} "
+                    f"-tp={sim['output']}_{trajectory['name']}_{trajectory['times']}"
                 )
+                if diag:
+                    file.write(f"_{diag} -td={diag} ")
                 file.write(
-                    f"-pd={ripdp_dir}{sim['output']}/rdp_{sim['output']} -od={traj_dir}{sim['output']}\n"
+                    f" -pd={ripdp_dir}{sim['output']}/rdp_{sim['output']} -od={traj_dir}{sim['output']}\n"
                 )
         file.write("\n")
 
