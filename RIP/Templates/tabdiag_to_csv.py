@@ -34,7 +34,10 @@ def tabdiag_to_csv(cwd, tabdiag_file, tabdiag_format="tabdiag_format.in"):
         d0 = -1 if int(tt0) > int(ttf) else 0
     except (ValueError, AttributeError):
         pass
-    csv_file = re.sub(r"_traj_\d+", f"_{int(float(data[d0][4]))}hPa", csv_file)
+    try:
+        csv_file = re.sub(r"_traj_\d+", f"_{int(float(data[d0][4]))}hPa", csv_file)
+    except (IndexError, ValueError):
+        pass
     with open(csv_file, "w") as f:
         f.write(header + "\n")
         for row in data:
