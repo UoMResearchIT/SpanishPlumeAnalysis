@@ -154,7 +154,13 @@ def Plot2DField(
     # Overlap empty contours
     if overlap is not None:
         z = to_np(overlap)
-        olevs = list(range(int(np.nanmin(z)), int(np.nanmax(z)), svariable.overlap_gap))
+        min_z = np.nanmin(z)
+        max_z = np.nanmax(z)
+        gap = svariable.overlap_gap
+        # Adjusts to the nearest multiple of overlap_gap
+        adjusted_min_z = int(min_z - (min_z % gap))
+        adjusted_max_z = int(max_z + (gap - (max_z % gap)) % gap)
+        olevs = list(range(adjusted_min_z, adjusted_max_z, gap))
         ov = plt.contour(
             x,
             y,
