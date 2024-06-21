@@ -773,21 +773,33 @@ PotentialTemp500 = svariable(
     interpvalue=500,
     colormap=get_cmap("Reds"),
 )
-GeoPotHeight500 = svariable(
-    dim=4,
-    ptitle="Geopotential Height at 500hPa [m]",
-    outfile="GeoPotHeight500",
-    nticks=13,
-    nlevs=13,
-    range_min=5340,
-    range_max=6060,
-    windbarbs=1,
-    interpvar="pressure",
-    interpvalue=500,
-    colormap=get_cmap("Greens"),
-    contour_color="darkslategray",
-    contour_c_labels=False,
-)
+
+
+def create_GeoPotHeight_at(
+    interpvalue, range_min=5340, range_max=6060, nticks=13, nlevs=13
+):
+    return svariable(
+        dim=4,
+        ptitle=f"Geopotential Height at {interpvalue}hPa [m]",
+        outfile=f"GeoPotHeight{interpvalue}",
+        nticks=nticks,
+        nlevs=nlevs,
+        range_min=range_min,
+        range_max=range_max,
+        windbarbs=1,
+        interpvar="pressure",
+        interpvalue=interpvalue,
+        colormap=get_cmap("Greens"),
+        contour_color="darkslategray",
+        contour_c_labels=False,
+    )
+
+
+GeoPotHeight850 = create_GeoPotHeight_at(850)
+GeoPotHeight700 = create_GeoPotHeight_at(700)
+GeoPotHeight500 = create_GeoPotHeight_at(500)
+GeoPotHeight300 = create_GeoPotHeight_at(300)
+
 StaticStability700500 = svariable(
     dim=4,
     wrfname="temp",
@@ -999,6 +1011,35 @@ Frontogenesis500 = svariable(
     range_min=-8,
     range_max=8,
 )
+
+
+def create_AbsoluteVorticity_at(
+    interpvalue, overlap_gap=30, range_min=-150, range_max=200, nticks=8, nlevs=15
+):
+    max_frac = 0.55 + min(0.45, (range_max / (range_max - range_min)))
+    min_frac = 0.55 + min(0, (range_min / (range_max - range_min)))
+    return svariable(
+        dim=4,
+        wrfname="avo",
+        ptitle=f"Absolute Vorticity at {interpvalue} hPa [10-5/s]",
+        outfile=f"AbsVorticity{interpvalue}",
+        overlap_sv=f"GeoPotHeight{interpvalue}",
+        overlap_gap=overlap_gap,
+        overlap_cmap=get_cmap("coolwarm"),
+        interpvar="pressure",
+        interpvalue=interpvalue,
+        colormap=cmr.get_sub_cmap("PuOr", min_frac, max_frac, N=nlevs),
+        nticks=nticks,
+        nlevs=nlevs,
+        range_min=range_min,
+        range_max=range_max,
+    )
+
+
+AbsoluteVorticity850 = create_AbsoluteVorticity_at(850)
+AbsoluteVorticity700 = create_AbsoluteVorticity_at(700)
+AbsoluteVorticity500 = create_AbsoluteVorticity_at(500, overlap_gap=60)
+AbsoluteVorticity300 = create_AbsoluteVorticity_at(300, overlap_gap=120)
 
 # SkewT
 # https://www.umr-cnrm.fr/dbfastex/datasets/rsc_data.html

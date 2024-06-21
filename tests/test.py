@@ -53,7 +53,7 @@ all_args = [
     # f"--task=diagnostic   --var=PotentialTemp700  --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=PotentialTemp600  --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=PotentialTemp500  --dir_path={wrfdata}/control/         --outdir={results}/",
-    f"--task=diagnostic   --var=SeaLevelPressure     --dir_path={wrfdata}/control/         --outdir={results}/ --save_pdf_frames=1 --windbarbs=0",
+    # f"--task=diagnostic   --var=SeaLevelPressure     --dir_path={wrfdata}/control/         --outdir={results}/ --save_pdf_frames=1 --windbarbs=0",
     # f"--task=diagnostic   --var=SeaLevelPressure1hPa --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=SeaLevelPressure2hPa --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=StaticStability700500  --dir_path={wrfdata}/control/         --outdir={results}/",
@@ -83,6 +83,7 @@ all_args = [
     # f"--task=diagnostic   --var=SkewT_GIBRALTAR    --dir_path={wrfdata}/control/ --outdir={results}/",
     # f"--task=diagnostic   --var=InstRain    --dir_path={wrfdata}/control/  --domain=UK  --outdir={results}/ --save_pdf_frames=1",
     # f"--task=diagnostic   --var=SkewT_Trajectory --traj='tests/results/rip/Notin_850hPa.csv'   --dir_path={wrfdata}/_zlast_two_control/ --outdir={results}/ --save_pdf_frames=1",
+    f"--task=diagnostic   --var=AbsoluteVorticity850     --dir_path={wrfdata}/control/         --outdir={results}/ --save_pdf_frames=1",
 ]
 # Append location maps to all_args
 # import SensibleVariables as sv
