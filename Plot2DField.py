@@ -201,7 +201,7 @@ def Plot2DField(
     # Add title and frame time
     plt.title(svariable.ptitle)
     if time_tag:
-        plt.annotate(dtime, xy=(0.02, 0.02), xycoords="axes fraction")
+        plt.annotate(dtime, xy=(0.02, -0.03), xycoords="axes fraction")
 
     if return_fig:
         return fig
