@@ -259,6 +259,8 @@ if "CSV_Data" in wvar.outfile:
 
 if args.windbarbs is None:
     windbarbs = wvar.windbarbs
+else:
+    windbarbs = args.windbarbs
 files = args.files.split(",")
 dirs = args.dirs.split(",")
 labels = args.labels.split(",")

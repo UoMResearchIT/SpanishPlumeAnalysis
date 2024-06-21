@@ -35,7 +35,7 @@ import SensibleVariables as sv
 sens_vars = [
     attr
     for attr in dir(sv)
-    if not callable(getattr(sv, attr)) and not attr.startswith("__")
+    if not callable(getattr(sv, attr)) and not attr.startswith("__") and attr != "cmr"
 ]
 
 # all sens_vars that dont start with skewt
@@ -44,8 +44,9 @@ diagnostics = [var for var in sens_vars if not var.startswith("SkewT")]
 skewts = [var for var in sens_vars if var.startswith("SkewT")]
 skewts.remove("SkewT")  # remove generic SkewT
 
-# # Filter diagnostics (keep only starting with ...)
+# # Filter diagnostics (keep only starting with ... or with property equal to ...)
 # diagnostics = [var for var in diagnostics if var.startswith("AirTemp")]
+# diagnostics = [var for var in diagnostics if getattr(sv, var).windbarbs == 1]
 
 # Padding for task and wrf data paths
 pad_task = 19
