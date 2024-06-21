@@ -167,16 +167,21 @@ def Plot2DField(
         plt.clabel(ov, inline=True, fontsize=10, levels=olevs[0::2])
 
     if windbarbs:
+        # Convert u and v components to knots
+        u = to_np(u)
+        v = to_np(v)
+        u = u * 1.94384
+        v = v * 1.94384
         # Add wind barbs, only plotting every nbarbs
-        nbarbs = 20
+        nbarbs = 25
         ax.barbs(
             x[::nbarbs, ::nbarbs],
             y[::nbarbs, ::nbarbs],
             u[::nbarbs, ::nbarbs],
             v[::nbarbs, ::nbarbs],
             transform=crs.PlateCarree(),
-            length=4,
-            linewidth=0.3,
+            length=7,
+            linewidth=1.0,
         )
 
     # Set the map bounds
