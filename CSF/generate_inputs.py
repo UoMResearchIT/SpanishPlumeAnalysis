@@ -45,7 +45,13 @@ skewts = [var for var in sens_vars if var.startswith("SkewT")]
 skewts.remove("SkewT")  # remove generic SkewT
 
 # # Filter diagnostics (keep only starting with ... or with property equal to ...)
-# diagnostics = [var for var in diagnostics if var.startswith("AirTemp")]
+# diagnostics = [
+#     var
+#     for var in diagnostics
+#     if var.startswith("GeoPotHeight")
+#     or var.startswith("AbsoluteVorticity")
+#     or var.startswith("Wetbulb")
+# ]
 # diagnostics = [var for var in diagnostics if getattr(sv, var).windbarbs == 1]
 
 # Padding for task and wrf data paths
