@@ -795,6 +795,7 @@ def create_GeoPotHeight_at(
     )
 
 
+GeoPotHeight925 = create_GeoPotHeight_at(925)
 GeoPotHeight850 = create_GeoPotHeight_at(850)
 GeoPotHeight700 = create_GeoPotHeight_at(700)
 GeoPotHeight500 = create_GeoPotHeight_at(500)
@@ -1036,10 +1037,40 @@ def create_AbsoluteVorticity_at(
     )
 
 
+AbsoluteVorticity925 = create_AbsoluteVorticity_at(925)
 AbsoluteVorticity850 = create_AbsoluteVorticity_at(850)
 AbsoluteVorticity700 = create_AbsoluteVorticity_at(700)
 AbsoluteVorticity500 = create_AbsoluteVorticity_at(500, overlap_gap=60)
 AbsoluteVorticity300 = create_AbsoluteVorticity_at(300, overlap_gap=120)
+
+
+def create_Wetbulb_at(
+    interpvalue, overlap_gap=30, range_min=264, range_max=304, nticks=11, nlevs=21
+):
+    return svariable(
+        dim=4,
+        wrfname="twb",
+        ptitle=f"Wetbulb Temperature at {interpvalue} hPa [K]",
+        outfile=f"Wetbulb{interpvalue}",
+        overlap_sv=f"GeoPotHeight{interpvalue}",
+        overlap_gap=overlap_gap,
+        overlap_cmap=cmr.get_sub_cmap("bone", 0.0, 0.5),
+        interpvar="pressure",
+        interpvalue=interpvalue,
+        colormap=cmr.get_sub_cmap("Reds", 0.0, 0.8),
+        contour_color="chocolate",
+        nticks=nticks,
+        nlevs=nlevs,
+        range_min=range_min,
+        range_max=range_max,
+    )
+
+
+Wetbulb925 = create_Wetbulb_at(925)
+Wetbulb850 = create_Wetbulb_at(850)
+Wetbulb700 = create_Wetbulb_at(700, range_min=254, range_max=294)
+Wetbulb500 = create_Wetbulb_at(500, range_min=240, range_max=280, overlap_gap=60)
+Wetbulb300 = create_Wetbulb_at(300, range_min=216, range_max=256, overlap_gap=120)
 
 # SkewT
 # https://www.umr-cnrm.fr/dbfastex/datasets/rsc_data.html
