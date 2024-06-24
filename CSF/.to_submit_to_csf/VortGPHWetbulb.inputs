@@ -1,0 +1,128 @@
+--task=diagnostic   --var=AbsoluteVorticity300  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AbsoluteVorticity500  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AbsoluteVorticity700  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AbsoluteVorticity850  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=AbsoluteVorticity925  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=GeoPotHeight300       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=GeoPotHeight500       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=GeoPotHeight700       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=GeoPotHeight850       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=GeoPotHeight925       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Wetbulb300            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Wetbulb500            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Wetbulb700            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Wetbulb850            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+--task=diagnostic   --var=Wetbulb925            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/                  --save_pdf_frames=1                --outdir=Control/
+
+--task=diagnostic   --var=AbsoluteVorticity300  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AbsoluteVorticity500  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AbsoluteVorticity700  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AbsoluteVorticity850  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=AbsoluteVorticity925  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=GeoPotHeight300       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=GeoPotHeight500       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=GeoPotHeight700       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=GeoPotHeight850       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=GeoPotHeight925       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Wetbulb300            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Wetbulb500            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Wetbulb700            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Wetbulb850            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+--task=diagnostic   --var=Wetbulb925            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.double_hgt/       --save_pdf_frames=1                --outdir=Double_hgt/
+
+--task=diagnostic   --var=AbsoluteVorticity300  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AbsoluteVorticity500  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AbsoluteVorticity700  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AbsoluteVorticity850  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=AbsoluteVorticity925  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=GeoPotHeight300       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=GeoPotHeight500       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=GeoPotHeight700       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=GeoPotHeight850       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=GeoPotHeight925       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Wetbulb300            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Wetbulb500            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Wetbulb700            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Wetbulb850            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+--task=diagnostic   --var=Wetbulb925            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.half_hgt/         --save_pdf_frames=1                --outdir=Half_hgt/
+
+--task=diagnostic   --var=AbsoluteVorticity300  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AbsoluteVorticity500  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AbsoluteVorticity700  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AbsoluteVorticity850  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=AbsoluteVorticity925  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=GeoPotHeight300       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=GeoPotHeight500       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=GeoPotHeight700       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=GeoPotHeight850       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=GeoPotHeight925       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Wetbulb300            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Wetbulb500            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Wetbulb700            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Wetbulb850            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+--task=diagnostic   --var=Wetbulb925            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.zero_hgt/         --save_pdf_frames=1                --outdir=Zero_hgt/
+
+--task=diagnostic   --var=AbsoluteVorticity300  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AbsoluteVorticity500  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AbsoluteVorticity700  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AbsoluteVorticity850  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=AbsoluteVorticity925  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=GeoPotHeight300       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=GeoPotHeight500       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=GeoPotHeight700       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=GeoPotHeight850       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=GeoPotHeight925       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Wetbulb300            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Wetbulb500            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Wetbulb700            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Wetbulb850            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+--task=diagnostic   --var=Wetbulb925            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_90/        --save_pdf_frames=1 --domain=full  --outdir=Albedo_90/
+
+--task=diagnostic   --var=AbsoluteVorticity300  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AbsoluteVorticity500  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AbsoluteVorticity700  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AbsoluteVorticity850  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=AbsoluteVorticity925  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=GeoPotHeight300       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=GeoPotHeight500       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=GeoPotHeight700       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=GeoPotHeight850       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=GeoPotHeight925       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Wetbulb300            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Wetbulb500            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Wetbulb700            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Wetbulb850            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+--task=diagnostic   --var=Wetbulb925            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_standard/  --save_pdf_frames=1                --outdir=Albedo_Standard/
+
+--task=diagnostic   --var=AbsoluteVorticity300  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AbsoluteVorticity500  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AbsoluteVorticity700  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AbsoluteVorticity850  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=AbsoluteVorticity925  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=GeoPotHeight300       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=GeoPotHeight500       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=GeoPotHeight700       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=GeoPotHeight850       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=GeoPotHeight925       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Wetbulb300            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Wetbulb500            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Wetbulb700            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Wetbulb850            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+--task=diagnostic   --var=Wetbulb925            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.albedo_40/        --save_pdf_frames=1                --outdir=Albedo_40/
+
+--task=diagnostic   --var=AbsoluteVorticity300  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AbsoluteVorticity500  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AbsoluteVorticity700  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AbsoluteVorticity850  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=AbsoluteVorticity925  --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=GeoPotHeight300       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=GeoPotHeight500       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=GeoPotHeight700       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=GeoPotHeight850       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=GeoPotHeight925       --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Wetbulb300            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Wetbulb500            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Wetbulb700            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Wetbulb850            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+--task=diagnostic   --var=Wetbulb925            --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek.2domains/         --save_pdf_frames=1 --domain=full  --outdir=Dom2/
+
