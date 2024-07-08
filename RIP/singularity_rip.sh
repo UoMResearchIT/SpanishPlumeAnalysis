@@ -421,15 +421,23 @@ fi
 if [ $noPlot -eq 0 ]; then
     Trajectory_Spec_List=""
     traji=0
+    swarm_title=1
     while IFS='|' read -r traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor color; do    #Reads inputs file line by line
         traji=$((traji+1))
         tjst=$(($traj_t_0>$traj_t_f ? $traj_t_f : $traj_t_0))   # Min of t_0 and t_f
         tjen=$(($traj_t_0>$traj_t_f ? $traj_t_0 : $traj_t_f))   # Max of t_0 and t_f
-        trajectory_title=$traj_z"_hPa_from_hour_"$traj_t_0"_to_$traj_t_f"
         if [ "$swarm" == 1 ]; then
+            if [ "$swarm_title" == 3 ]; then
+                first_p=$(echo $traj_z | cut -d',' -f1)
+                trajectory_title=$first_p"_hPa_from_hour_"$traj_t_0"_to_$traj_t_f"
+            else
+                trajectory_title=" "
+            fi
+            ((swarm_title++))
             # feld="gridswarm; tjid=1,"$swarm_xn","$swarm_yn";"
             feld="arrow;"
         else
+            trajectory_title=$traj_z"_hPa_from_hour_"$traj_t_0"_to_$traj_t_f"
             feld="arrow;"
         fi
         Trajectory_Spec_List=$Trajectory_Spec_List"feld="$feld" ptyp=ht; tjfl=BTrajectories/"$trajplot"_traj_$traji.traj; vcor=p;>"$'\n'
