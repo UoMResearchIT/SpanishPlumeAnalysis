@@ -335,9 +335,10 @@ if [ $((noTraj+noPlot)) -lt 2 ]; then
             export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y hydrometeor
             envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $hydrometeor' < $tinp_tpl > $folder/BTrajectories/"$trajplot"_traj_inputs
         else
-            read -r traj_x traj_y traj_z <<< $(python3 "$rip_dir""Templates//Inputs/generate_swarm_inputs.py" $swarm_x0 $swarm_x1 $swarm_xn $swarm_y0 $swarm_y1 $swarm_yn $swarm_p)
-            export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y hydrometeor swarm_p
-            envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $hydrometeor $swarm_p' < $sinp_tpl > $folder/BTrajectories/"$trajplot"_traj_inputs
+            python3 "$rip_dir""Templates/Inputs/generate_swarm_inputs_colour.py" $folder/BTrajectories/"$trajplot"_traj_inputs $swarm_x0 $swarm_x1 $swarm_xn $swarm_y0 $swarm_y1 $swarm_yn $swarm_p $traj_t_0 $traj_t_f $traj_dt $file_dt $hydrometeor
+            # read -r traj_x traj_y traj_z <<< $(python3 "$rip_dir""Templates//Inputs/generate_swarm_inputs.py" $swarm_x0 $swarm_x1 $swarm_xn $swarm_y0 $swarm_y1 $swarm_yn $swarm_p)
+            # export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y hydrometeor swarm_p
+            # envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $hydrometeor $swarm_p' < $sinp_tpl > $folder/BTrajectories/"$trajplot"_traj_inputs
         fi
     fi
     inputsfile=$folder/BTrajectories/"$trajplot"_traj_inputs
