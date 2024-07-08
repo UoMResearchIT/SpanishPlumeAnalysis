@@ -46,16 +46,16 @@ fdt = int(sys.argv[12])
 hydrometeor = int(sys.argv[13])
 
 colours = [
-    "violet",
-    "magenta",
-    "red",
-    "orange",
-    "mustard",
-    "green",
-    "dark.green",
-    "blue",
-    "light.blue",
     "cyan",
+    "light.blue",
+    "blue",
+    "dark.green",
+    "green",
+    "mustard",
+    "orange",
+    "red",
+    "magenta",
+    "violet",
 ]
 x = [x0 + i * (x1 - x0) / (xn - 1) for i in range(xn)]
 y = [y1 - i * (y1 - y0) / (yn - 1) for i in range(yn)]
