@@ -25,6 +25,7 @@ simulations = [
 # Options
 options = [
     "--save_pdf_frames=1",
+    # "--windbarbs=0",
 ]
 opts = " ".join(options)
 

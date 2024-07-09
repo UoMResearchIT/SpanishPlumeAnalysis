@@ -795,11 +795,41 @@ def create_GeoPotHeight_at(
     )
 
 
-GeoPotHeight925 = create_GeoPotHeight_at(925)
-GeoPotHeight850 = create_GeoPotHeight_at(850)
-GeoPotHeight700 = create_GeoPotHeight_at(700)
-GeoPotHeight500 = create_GeoPotHeight_at(500)
-GeoPotHeight300 = create_GeoPotHeight_at(300)
+GeoPotHeight925 = create_GeoPotHeight_at(
+    925,
+    range_min=480,
+    range_max=1020,
+    nticks=10,
+    nlevs=10,
+)
+GeoPotHeight850 = create_GeoPotHeight_at(
+    850,
+    range_min=1080,
+    range_max=1800,
+    nticks=7,
+    nlevs=13,
+)
+GeoPotHeight700 = create_GeoPotHeight_at(
+    700,
+    range_min=2700,
+    range_max=3420,
+    nticks=7,
+    nlevs=13,
+)
+GeoPotHeight500 = create_GeoPotHeight_at(
+    500,
+    range_min=5280,
+    range_max=6120,
+    nticks=8,
+    nlevs=15,
+)
+GeoPotHeight300 = create_GeoPotHeight_at(
+    300,
+    range_min=8700,
+    range_max=10020,
+    nticks=12,
+    nlevs=12,
+)
 
 StaticStability700500 = svariable(
     dim=4,
