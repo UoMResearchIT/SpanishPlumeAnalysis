@@ -160,7 +160,7 @@ with open("skewT_trajectories.inputs", "w") as file:
                 traj = f"--traj={tcpwp}.csv"
                 dir_path = f"--dir_path={base_dir_path}{simulation['wrfout']}/"
                 opts_dom = opts
-                if simulation["output"] in ["Albedo_90", "Dom2"]:
+                if simulation["output"] in ["Dom2"]:
                     opts_dom = opts + " --domain=full"
                 od = os.path.dirname(tcpwp)
                 outdir = f"--outdir={od}/SkewTs/"

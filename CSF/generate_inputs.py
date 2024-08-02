@@ -73,7 +73,7 @@ with open("all_diag.inputs", "w") as file:
             var = f"--var={diagnostic}"
             dir_path = f"--dir_path={base_dir_path}{simulation['wrfout']}/"
             opts_dom = opts
-            if simulation["output"] in ["Albedo_90", "Dom2"]:
+            if simulation["output"] in ["Dom2"]:
                 opts_dom = opts + " --domain=full"
             outdir = f"--outdir={simulation['output']}/"
 
@@ -91,7 +91,7 @@ with open("all_skewt.inputs", "w") as file:
             var = f"--var={skewt}"
             dir_path = f"--dir_path={base_dir_path}{simulation['wrfout']}/"
             opts_dom = opts
-            if simulation["output"] in ["Albedo_90", "Dom2"]:
+            if simulation["output"] in ["Dom2"]:
                 opts_dom = opts + " --domain=full"
             outdir = f"--outdir={simulation['output']}/"
 
@@ -116,7 +116,7 @@ with open("all_csv.inputs", "w") as file:
             var = f"--var=CSV_{location}"
             dir_path = f"--dir_path={base_dir_path}{simulation['wrfout']}/"
             opts_dom = opts
-            if simulation["output"] in ["Albedo_90", "Dom2"]:
+            if simulation["output"] in ["Dom2"]:
                 opts_dom = opts + " --domain=full"
             outdir = f"--outdir={simulation['output']}/"
 
