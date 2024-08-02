@@ -120,7 +120,11 @@ print(f"\n\nTotal run time: {datetime.now()-t0}")
 # ./RIP/singularity_rip.sh -od='tests/results/rip' --noRDP --trajtimes=5-3 --trajplot='Traj_5'
 # ./RIP/singularity_rip.sh -od='tests/results/rip/' --noRDP --trajinputs='tests/results/rip/my_traj_inputs_file' --trajplot='tp_my_inputs' -np
 # ./RIP/singularity_rip.sh -od='tests/results/rip/' --noRDP --trajinputs='tests/results/rip/my_traj_inputs_file' --trajplot='tp_my_inputs' -nt
-# ./RIP/singularity_rip.sh -pd='tests/results/rip/RIPDP/rdp_rip' -od='tests/results/riptraj/' --trajtimes=1-3
+# ./RIP/singularity_rip.sh -pd='tests/results/rip/RIPDP/rdp_rip' -od='tests/results/rip/' --trajtimes=1-3
+# ./RIP/singularity_rip.sh -pd='tests/results/rip/RIPDP/rdp_rip' -od='tests/results/rip/results/' --trajtimes=1-3 -tp=Control_1-3_none -td=none
+# ./RIP/singularity_rip.sh -pd='tests/results/rip/RIPDP/rdp_rip' -od='tests/results/rip/results/' --trajtimes=1-3 -tp=Control_1-3
+# ./RIP/singularity_rip.sh -pd='tests/results/rip/RIPDP/rdp_rip' -od='tests/results/rip/results/' --trajtimes=1-3 -tp=Control_1-3_g1   -td=g1
+# ./RIP/singularity_rip.sh -pd='tests/results/rip/RIPDP/rdp_rip' -od='tests/results/rip/results/' --trajtimes=1-3 -tp=Control_1-3_g2   -td=g2
 
 ## Or you can try using these... but I think the rpdp does not work called from here for some reason...
 # subprocess.run(f"{src}/RIP/singularity_rip.sh -od='{results}/rip' -wd='{wrfdata}/control/' -nt -np",shell=True)

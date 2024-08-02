@@ -96,7 +96,6 @@ usage()
         tinp_tpl="$rip_dir""Templates/traj_inputs.template"
         sinp_tpl="$rip_dir""Templates/swarm_inputs.template"
         tplot_tpl="$rip_dir""Templates/traj_plot.template"
-        traj_tpl="$rip_dir""Templates/traj.template"
         tabdiag_tpl="$rip_dir""Templates/tabdiag_format.template"
     # Script
         POSITIONAL_ARGS=()
@@ -352,12 +351,12 @@ fi
 
 # Calculates trajectories
 if [ $noTraj -eq 0 ]; then
-    # Updates trajplot template
-    python3 "$rip_dir""Templates/generate_traj_template.py" $diagnostics
-    # Copies tabdiag template and tabdiag_to_csv script
+    # Generates trajplot and tabdiag templates
+    python3 "$rip_dir""Templates/generate_traj_template.py" $folder/"$trajplot" $diagnostics
     if [ "$diagnostics" != "none" ]; then
-        cp $tabdiag_tpl $folder/"$trajplot"_tabdiag_format.in
         cp "$rip_dir""Templates/tabdiag_to_csv.py" $folder/"$trajplot"_tabdiag_to_csv.py
+    else
+        rm $folder/"$trajplot"_tabdiag_format.in
     fi
     # Generates trajectory input files and trajectory plot file
     traji=0
@@ -365,7 +364,7 @@ if [ $noTraj -eq 0 ]; then
         traji=$((traji+1))
         # Copies traj template
         export traj_t_0 traj_t_f traj_dt file_dt traj_x traj_y traj_z hydrometeor
-        envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor' < $traj_tpl > $folder/BTrajectories/"$trajplot"_traj_$traji.in
+        envsubst '$traj_t_0 $traj_t_f $traj_dt $file_dt $traj_x $traj_y $traj_z $hydrometeor' < $folder/"$trajplot"_traj.template > $folder/BTrajectories/"$trajplot"_traj_$traji.in
     done <"$inputsfile"
     # Checks that all lines were read
     if [ $traji -ne $npoints ]; then

@@ -40,15 +40,29 @@ g2 = {
     "mcin": "Most Unstable Convective Inhibition [J/kg]",
 }
 
-if len(sys.argv) == 2:
-    if sys.argv[1] == "none":
+if len(sys.argv) < 2:
+    print(
+        """ERROR - No arguments provided.
+
+        Usage:
+
+          generate_traj_template output_to [diagnostics]
+
+        where diagnostics is optional and can be 'none', 'g1', or 'g2'"""
+    )
+    sys.exit(1)
+
+output_to = sys.argv[1]
+
+if len(sys.argv) == 3:
+    if sys.argv[2] == "none":
         diags = {
             "xlat": "Latitude [deg]",
             "xlon": "Longitude [deg]",
         }
-    elif sys.argv[1] == "g1":
+    elif sys.argv[2] == "g1":
         diags = {**diags, **g1}
-    elif sys.argv[1] == "g2":
+    elif sys.argv[2] == "g2":
         diags = {**diags, **g2}
     else:
         print("Invalid argument. Use 'none', 'g1', 'g2', or no argument.")
@@ -77,10 +91,11 @@ for diag, label in diags.items():
     )
     header += f"{label},"
 header = header[:-1]
-with open(f"{cwd}/traj.template", "w") as f:
+# this is modifying the same file for any call, so multiple calls overwrite the file...
+with open(f"{output_to}_traj.template", "w") as f:
     f.write(template)
 
 # Generate tabdiag_format.template
-with open(f"{cwd}/tabdiag_format.template", "w") as f:
+with open(f"{output_to}_tabdiag_format.in", "w") as f:
     f.write(f"'{header}'\n")
     f.write(f"'({len(diags)+1}(3x,f9.3,3x))'\n")
