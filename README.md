@@ -1,14 +1,199 @@
+# Generating new diagnostics
+
+The workflow to generate new results involves using the csf.
+
+## Submitting jobs to csf
+
+If this is the first time you are using the csf, you will need to:
+
+<details>
+<summary>Get the code.</summary>
+
+- Move to a node with internet connection with
+    ```
+    qrsh -l short
+    ```
+
+- Make sure you have git installed and that you are signed in to your github account.
+    <details>
+    <summary>How do I set up git?</summary>
+
+    </details>
+
+- Clone the repository with:
+
+    ```
+    git clone git@github.com:UoMResearchIT/SpanishPlumeAnalysis.git SpanishPlumeAnalysis
+    cd SpanishPlumeAnalysis
+    ```
+
+</details>
+
+<details>
+<summary>Set up your conda environment.</summary>
+
+- See [conda environment](#conda-environment) for instructions on how to set up the conda environment.
+
+</details>
+
+<details>
+<summary>Get the RIP container image.</summary>
+
+If you want to be able to generate diagnostics using RIP, you need the container to run them.
+Since the CSF only allows apptainer (singularity) and not docker, you need to convert the image.
+
+- Pull the container image with
+  ```
+  apptainer pull docker://fcoherreazcue/ripdocker:latest
+  ```
+- Move the image to the `RIP` folder with
+  ```
+  mv ripdocker_latest.sif RIP/ripdocker_latest.sif
+  ```
+
+</details>
+
+<details>
+<summary>Set up the result packaging and uploading utilities.</summary>
+
+- See the [packaging results and uploading to dropbox](#packaging-results-and-uploading-to-dropbox) section for instructions on how to do this.
+
+</details>
+
+All the commands below work if you are in the base folder that you cloned, i.e. `.../SpanishPlumeAnalysis`.
+
+If you want to follow the examples, create a folder to save the results with `mkdir Diagnostics`.
+
+### WRF diagnostics
+
+The `CSF/Submit.sh` is a bash script that does most of the heavy lifting.
+
+
+To use it, you need a file with the inputs, e.g. `Diagnostics/test.inputs`, that looks something like this:
+
+```
+--task=diagnostic --var=SeaLevelPressure --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/ --outdir=Test_SLP/
+--task=diagnostic --var=DewpointTemp2m   --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/ --save_pdf_frames=1 --outdir=Test_DewpTemp/
+```
+
+**Note** The inputs file is a list of the arguments passed to the `csf.py` script, one per line.
+You can find some sample files in the `CSF` directory. The program being called (`csf.py`) has to be omitted.
+
+Now you can submit the jobs with:
+
+```
+./CSF/Submit.sh Diagnostics/test.inputs Diagnostics/TestWRF
+```
+
+The script will create a jobarray and submit each line in the `.inputs` file.
+It will also make sure that the `outdir` directories exist (or it will create them) in `Diagnostics/TestWRF` to save the results.
+
+### RIP diagnostics
+
+Generating diagnostics for RIP can be a bit confusing, so it is best that you look at the dedicated [readme](RIP/README.md), but a quick reference is provided here for convenience.
+
+In a similar way, the `CSF/SubmitRIP.sh` does most of the heavy lifting.
+
+To use it, you need a file with the inputs, e.g. `Diagnostics/test_rip.inputs`, that looks something like this:
+
+```
+-tt=110-90 --traj_x=412 --traj_y=195 -tp=Test_RIP_CSF_back -pd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/RIPDP/Control/rdp_Control -od=Test_RIP_CSF_back
+-tt=90-110 --traj_x=412 --traj_y=195 -tp=Test_RIP_CSF_forward -pd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/RIPDP/Control/rdp_Control -od=Test_RIP_CSF_forward
+```
+
+**Note** The inputs file is a list of the arguments passed to the `singularity_rip.sh` script, one per line. You can find some sample files in the `RIP/CSF` directory. The program being called (`singularity_rip.sh`) has to be omitted.
+
+
+Now you can submit the jobs with:
+
+```
+RIP/CSF/Submit.sh Diagnostics/test_rip.inputs Diagnostics/TestRIP
+```
+
+The script will create a jobarray and submit each line in the `.inputs` file.
+It will also make sure that the `od` directories exist (or it will create them) in `Diagnostics/TestRIP` to save the results.
+
+
+## Packaging results and uploading to dropbox
+
+The repo has a few utility scripts to help you package the results and upload them to dropbox.
+
+To be able to use them, you need to copy the scripts to ~/bin, and make them executable:
+```
+cp utilities/dbxcli-r.sh ~/bin/
+cp utilities/zip_pdf_frames.sh ~/bin/zip-frames.sh
+cp utilities/zip_traj_files.sh ~/bin/zip-traj-files.sh
+chmod +x ~/bin/dbxcli-r.sh
+chmod +x ~/bin/zip-frames.sh
+chmod +x ~/bin/zip-traj-files.sh
+```
+You will also need to install the `dbxcli` package, which can be found [here](https://github.com/dropbox/dbxcli).
+
+### zip_pdf_frames
+
+This script looks for all the pdf files that were generated for the animations, and zips them into a single file. It is important to run this script before uploading to dropbox, so that they are not uploaded as individual files.
+This is particularly important when the save_pdf_frames flag is set to 1.
+You can run it with:
+```
+zip-frames <dir>
+```
+for example:
+```
+zip-frames ./Diagnostics/TestWRF/Test_DewpTemp/
+```
+
+### zip_traj_files
+
+This script looks for all the files that are not csv or pdf files recursively, and zips them into a single file. Since the pdf and csv files are usually the only files you want as ouputs from a RIP diagnostic, this is a good way to package the results.
+You can run it with:
+```
+zip_traj_files <dir>
+```
+for example:
+```
+zip-traj-files Diagnostics/TestRIP/Test_RIP_CSF_forward/
+```
+or even at a higher level:
+```
+zip-traj-files Diagnostics/TestRIP/
+```
+
+### dbxcli-r
+
+This is a wrapper for the `dbxcli` command, which allows you to upload files recursively to dropbox.
+Once you have it set up, you can use it with:
+```
+dbxcli-r put <source> <destination> [--dry-run]
+```
+for example:
+```
+dbxcli-r put "./Diagnostics/TestRIP" "/Spanish Plume/testDiagnostics/TestRIP" --dry-run
+```
+The `--dry-run` flag makes it so that it does not actually push anything to dropbox, but tells you what it would do.
+If you are sure you want to go ahead and push to dropbox, remove the `--dry-run` flag and run it again.
+
+
+## File transfer
+
+If you prefer to transfer files directly, skipping dropbox, you can do so.
+
+Transfering files to and from the csf is simpler if using sshfs,
+which mounts a folder from the csf to your computer.
+So, create an empty folder to host the contents from the CSF:
+```
+mkdir sshfs_to_csf
+```
+Then, use sshfs as sshfs `user@dest:/path/to/folder local/path`,
+```
+sshfs mbcxpfh2@csf3.itservices.manchester.ac.uk:/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis sshfs_to_csf/
+```
+You should see everything in that folder, and so copy to and from that folder.
+
+
 # About the scripts
 
-## Run
-This is hopefully the only script you will have to tweak to obtain the animations you are looking for.
-
-It consist on a simple call to **Animate**, with all the sensible variables for which diagnostics are required.
-
-These should simply be put in ***wvarlist***, and the directory path to your wrfout files should be set in ***dir_path***.
-
 ## csf
-This should in time replace the "Run" script, as it parses the arguments from the command line, and is able to do everything from a single line of code.
+This script parses the arguments from the command line, and is able to generate a WRF diagnostic from a single line of code.
 The main arguments to use include:
 
 **task**, which can be *diagnostic*, *wrfcompare*, *mp4diff* or *mp4stitch*.
@@ -71,6 +256,8 @@ The object is basically composed of metadata for the diagnostics that are of int
 
 The information in each object is used as instructions in the extraction of the variable from netcdf files and during plotting.
 
+Each of the variables has the attributes that describe the way the variable should be plotted, including the colour scale, units, title, range, type of plot, annotations (like wind-barbs or contour-lines), and potentially overlapping variables.
+
 See the description of each predefined **svariable** inside the file.
 
 ## GetSensVar
@@ -83,7 +270,31 @@ During this process, it also takes care of some variable computation, which is n
 
 The outputs are the processed variable ***var***, the wind velocity components ***u*** and ***v*** (if windbarbs=0 these will be None), and the raw variable values ***varv*** (for use in *isdif* **svariable** computation).
 
-## ConcatNDiff
+
+## Special diagnostics
+
+The following diagnostics have special functions to deal with them, but the diagnostic generation is still done through the csf script.
+
+### TerrainPlots
+These do not require animation nor the whole of the wrfout files, so they have a special function to deal with them.
+They use the same **Plot2DField** function, and add annotations to the plot.
+
+### Frontogenesis
+This is a special diagnostic that requires a bit of extra computation. The function is called from within GetSensVar, and passed to Animate as the other diagnostics.
+
+### SkewT
+SkewTs are a completely different plotting style, and so they have a special function to deal with them,
+which uses the [metpy](https://unidata.github.io/MetPy/latest/api/index.html) library.
+They also combine a lot of wrf variables, so they are not generated in the same way as the other diagnostics.
+The function is called from Animate, as an alternative to the standard Plot2DField for other diagnostics.
+
+
+## Direct comparison of outputs
+
+The `MP4Compare` and `WRFCompare` files contain functions to compare two sets of data directly.
+They are not part of the standard workflow, but are useful for quick comparisons.
+
+### ConcatNDiff
 This function is a very quick way to compare mp4 files. 
 
 It  gets the absolute value pixel to pixel difference of each frame, and concatenates it to the two original videos side by side.
@@ -91,52 +302,24 @@ It  gets the absolute value pixel to pixel difference of each frame, and concate
 ## ConcatNxM
 This function simply stitches videos on a grid with ***N*** rows and ***M*** columns.
 
-## WRFSmoothDiff
+### WRFSmoothDiff
 This is a slightly more advanced way of comparing two sets of data.
 
 It gets the difference directly from the wrfout files, and then animates the result using a divergent colourscale.
 If the flag ***smooth*** is set to 1, it smooths the data before making the diff, so that slight positional changes are not as strongly reflected in the output.
 
 
-# Generating new diagnostics
+## Run
 
-The workflow to generate new results involves using the csf.
+This is now deprecated, and should not be used... everything is done through the csf script.
+<details><summary>The old readme is kept here for reference.</summary>
+This is hopefully the only script you will have to tweak to obtain the animations you are looking for.
 
-## File transfer
+It consist on a simple call to **Animate**, with all the sensible variables for which diagnostics are required.
 
-Transfering files to and from the csf is simpler if using sshfs,
-which mounts a folder from the csf to your computer.
-So, create an empty folder to host the contents from the CSF:
-```
-mkdir sshfs_to_csf
-```
-Then, use sshfs as sshfs `user@dest:/path/to/folder local/path`,
-```
-sshfs mbcxpfh2@csf3.itservices.manchester.ac.uk:/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis sshfs_to_csf/
-```
-You should see everything in that folder, and so copy to and from that folder.
+These should simply be put in ***wvarlist***, and the directory path to your wrfout files should be set in ***dir_path***.
+</details>
 
-## Submitting jobs to csf
-The `CSF/Submit.sh` does most of the heavy lifting.
-
-All the commands below asume you are in the base folder (`.../mbcxpfh2/SpanishPlume/Analysis`).
-
-To use it, you need a file with the inputs, e.g. `TestCSF/test.inputs`, that looks something like this:
-
-```
---task=diagnostic --var=SeaLevelPressure --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/ --outdir=Test_SLP/
---task=diagnostic --var=DewpointTemp2m   --dir_path=/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/ --outdir=Test_DewpTemp/
-```
-Note that csf.py is ommited, this is just a list of the arguments passed to the csf.py script.
-You can find some sample files in the `CSF` directory.
-
-Now you can call the submition script with:
-
-```
-./CSF/Submit.sh testCSF/test.inputs testCSF/Results
-```
-The script will create a jobarray and submit each line in the `.inputs` file.
-It will also make sure that the `outdir` directories exist (or it will create them) in `testCSF/Results` to save the results.
 
 # Testing new code
 
@@ -155,7 +338,9 @@ Modify the inputs for your test in the `all_args` list, and run with
 ```
 python tests/test.py
 ```
-## Conda environment
+
+
+# Conda environment
 
 Make sure you have the conda environment set up and active before you call `csf.py` or `test.py`.
 
@@ -171,37 +356,3 @@ micromamba env create --name wrf-py-env --file environment.yml
 micromamba activate wrf-py-env
 ```
 You are now set up to use the code.
-
-# SpanishPlumeAnalysis
-Visualization and comparison of WRF data on the Spanish Plume, modifying the geographical terrain and or heat/moisture flux over the spanish peninsula.
-
-## Discussion with Dave Shultz (2022-07-21)
-Spanish Plume -- Weather patter usually favourable to light thunderstorm and heavy rains
-
-Historically, Spain's high regions were thought to warm the air up, and add moisture
-
-David: That doesnt seem to be true, It most likely originated in North Africa and was not affected as much over Spain.
-
-Preliminar results show that it is related to the plateou, but because it descends (therefore increases P and T), not because it was warmed up over spain.
-
-A way to proove it would be to check whether wiping out the spanish plateu would change anything.
-
-- Get rid of heights.
-- Get rid of the heat/moisture flux and check whether spain did add heat or not.
-
-
-## Expected outcomes
-Interest in how to display info to be able to diagnose.
-
-### Diagnostics
-
-- 1,2 -> Air temperature and dewpoint temperature at the surface and 850 hPa
-- 3,4 -> Static stability (difference in air temperature) T(700 hPa) – T(500 hPa) and T(850 hPa) – T(700 hPa)
-- 5 ->   Sea-level pressure and Precipitation at surface and wind barbs
-- 5/6?   500-hPa geopotential height (wind barbs)
-- 7 ->   CAPE (convective available potential energy), CIN (convective inhibition)
-
-
-## Questions
-Is static stability really just Temp1-Temp2? Implementations elsewhere suggest otherwise...
-Rain was computed as the sum of RAINC and RAINNC.. is that correct? Fussy literature...
