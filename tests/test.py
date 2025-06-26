@@ -32,6 +32,8 @@ all_args = [
     # f"--task=diagnostic --var=TerrainElevation1000    --dir_path={wrfdata}/d02/            --outdir={results}/ --file_tag=_d02_full --domain=full",
     # f"--task=diagnostic   --var=DewpointTemp2m        --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=Rain        --dir_path={wrfdata}/control/         --outdir={results}/ --save_pdf_frames=1",
+    f"--task=diagnostic   --var=CAPE        --dir_path={wrfdata}/control/         --outdir={results}/ --save_pdf_frames=1",
+    f"--task=diagnostic   --var=CIN        --dir_path={wrfdata}/control/         --outdir={results}/ --save_pdf_frames=1",
     # f"--task=diagnostic   --var=AirTemp2m        --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=AirTemp500        --dir_path={wrfdata}/control/         --outdir={results}/",
     # f"--task=diagnostic   --var=AirTemp850        --dir_path={wrfdata}/control/         --outdir={results}/",
@@ -85,7 +87,7 @@ all_args = [
     # f"--task=diagnostic   --var=SkewT_Trajectory --traj='tests/results/rip/Notin_850hPa.csv'   --dir_path={wrfdata}/_zlast_two_control/ --outdir={results}/ --save_pdf_frames=1",
     # f"--task=diagnostic   --var=AbsoluteVorticity850     --dir_path={wrfdata}/control/         --outdir={results}/ --save_pdf_frames=1",
     # f"--task=diagnostic   --var=Wetbulb850     --dir_path={wrfdata}/control         --outdir={results}/ --save_pdf_frames=1",
-    f"--task=diagnostic   --var=GeoPotHeight300     --dir_path={wrfdata}/control         --outdir={results}/ --save_pdf_frames=1",
+    # f"--task=diagnostic   --var=GeoPotHeight300     --dir_path={wrfdata}/control         --outdir={results}/ --save_pdf_frames=1",
 ]
 # Append location maps to all_args
 # import SensibleVariables as sv
