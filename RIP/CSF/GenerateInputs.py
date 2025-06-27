@@ -75,13 +75,14 @@ diags = [
 ]
 
 wrfout_dir = "/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/"
-rip_dir = "/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/"
-results_dir = f"{rip_dir}Results/"
-ripdp_dir = f"{results_dir}RIPDP/"
-traj_dir = f"{rip_dir}Results/Trajectories/"
+base_dir = "/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/"
+rip_dir = f"{base_dir}Analysis/RIP/"
+rip_results_dir = f"{base_dir}Analysis/RIP/Results/"
+ripdp_dir = f"{rip_results_dir}RIPDP/"
+traj_results_dir = f"{base_dir}SpanishPlumeAnalysis/Results/Trajectories/"
 # For local tests called from src directory
 # ripdp_dir="tests/results/rip/RIPDP/"
-# traj_dir=f"tests/results/rip/"
+# traj_results_dir=f"tests/results/rip/"
 
 
 # Create inputs for RIPDP pre-processing
@@ -90,7 +91,7 @@ with open(name, "w") as file:
     # Iterate through simulations
     for sim in simulations:
         file.write(
-            f"-wd={wrfout_dir}{sim['wrfout']} -od={results_dir}{sim['output']} -nt -np\n"
+            f"-wd={wrfout_dir}{sim['wrfout']} -od={rip_results_dir}{sim['output']} -nt -np\n"
         )
 
 
@@ -110,7 +111,7 @@ with open(name, "w") as file:
                 if diag:
                     file.write(f"_{diag} -td={diag} ")
                 file.write(
-                    f" -pd={ripdp_dir}{sim['output']}/rdp_{sim['output']} -od={traj_dir}{sim['output']}\n"
+                    f" -pd={ripdp_dir}{sim['output']}/rdp_{sim['output']} -od={traj_results_dir}{sim['output']}\n"
                 )
         file.write("\n")
 
@@ -141,6 +142,6 @@ with open(name, "w") as file:
             file.write(f"-tt={tt} -td=none --swarm --swarm_p={p_lev} ")
             file.write(f"-tp={sim['output']}_swarm_{p_lev}_{tt} ")
             file.write(
-                f"-pd={ripdp_dir}{sim['output']}/rdp_{sim['output']} -od={traj_dir}{sim['output']}\n"
+                f"-pd={ripdp_dir}{sim['output']}/rdp_{sim['output']} -od={traj_results_dir}{sim['output']}\n"
             )
         file.write("\n")
