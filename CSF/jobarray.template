@@ -5,11 +5,10 @@
 #SBATCH --chdir=.                 # Job runs in current directory
 #SBATCH --export=ALL              # Job inherits environment
 
+#SBATCH --array=1-$counter        # Array of $counter jobs
+PARAM=$(sed -n "${SLURM_ARRAY_TASK_ID}p" $inputsfile)
+
 conda activate wrf-py-env         # Activates conda environment
 export LIBGL_ALWAYS_INDIRECT=1    # Makes sure graphics are exported correctly
-
-#SBATCH --array=1-$counter        # Array of $counter jobs
-
-PARAM=$(sed -n "${SLURM_ARRAY_TASK_ID}p" $inputs_file)
 
 python $program $PARAM
