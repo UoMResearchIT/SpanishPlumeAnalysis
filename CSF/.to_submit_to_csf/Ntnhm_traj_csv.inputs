@@ -1,6 +1,0 @@
--tt=54-0 --traj_x=195 --traj_y=412 -tp=Control_Nottingham_54-0_g1 -td=g1  -pd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/RIPDP/Control/rdp_Control -od=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/Trajectories/Control
--tt=54-0 --traj_x=195 --traj_y=412 -tp=Control_Nottingham_54-0_g2 -td=g2  -pd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/RIPDP/Control/rdp_Control -od=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/Trajectories/Control
-
--tt=57-0 --traj_x=195 --traj_y=412 -tp=Control_Nottingham_57-0_g1 -td=g1  -pd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/RIPDP/Control/rdp_Control -od=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/Trajectories/Control
--tt=57-0 --traj_x=195 --traj_y=412 -tp=Control_Nottingham_57-0_g2 -td=g2  -pd=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/RIPDP/Control/rdp_Control -od=/mnt/seaes01-data01/dmg/dmg/mbcxpfh2/SpanishPlume/Analysis/RIP/Results/Trajectories/Control
-
