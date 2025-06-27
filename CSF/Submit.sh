@@ -14,19 +14,6 @@ fi
 # Gets inputs
 inputsfile=$1				            # Saves input 1 (inputs file)
 folder=$2				                # Saves input 2 (folder in which to run the program)
-zrek=$3                                 # Saves input 3 (option to submit in zrek)
-
-short="-l short"                        # Short job option used for cleanup jobs in csf
-if [ ! -z $zrek ]; then                 # Checks if option to submit at zrek is not empty
-    if [ $zrek == "zrek" ]; then            # Checks if it is the correct flag
-        echo "Submit to zrek atmos-c.q"
-        z1="#$ -S /bin/bash"                    # Saves additional jobscript lines needed for zrek
-        z2="#$ -q atmos-c.q"
-        short=""                                # Removes short job option, not available in zrek
-    else
-        echo "Third argument is not zrek. I will submit to csf normally."
-    fi
-fi
 
 # Address to jobarray.template and csf.py
 current_directory=$(realpath "$(dirname "$0")")
@@ -34,17 +21,17 @@ jatemplate="${current_directory}/jobarray.template"
 program="${current_directory}/csf.py"
 
 # Creates clean working directory
-mkdir -p $folder			            # Creates destiantion folder
-rm -f $folder/*.inputs		            # Makes sure there is no input files inside
-rm -f $folder/*.jobarray		        # Makes sure there is no other jobarray files inside
+mkdir -p ${folder}			            # Creates destiantion folder
+rm -f ${folder}/*.inputs		        # Makes sure there is no input files inside
+rm -f ${folder}/*.jobarray		        # Makes sure there is no other jobarray files inside
 
 #Prepares inputs file
-cp $inputsfile $folder                  # Copies inputs file to destination folder
-cd $folder                              # Moves to results folder
+cp $inputsfile ${folder}                # Copies inputs file to destination folder
+cd ${folder}                            # Moves to results folder
 folder=$(basename ${folder})            # Strips directory from folder
 inputsfile=$(basename $inputsfile)      # Strips directory from inputsfile
-mv $inputsfile $folder.inputs		    # Renames inputs file to match folder name
-inputsfile=$folder.inputs               # Updates variable to match file name
+mv $inputsfile ${folder}.inputs		    # Renames inputs file to match folder name
+inputsfile=${folder}.inputs             # Updates variable to match file name
 wait				                    # Makes sure it has finished doing previous instructions
 sed -i '/^[[:space:]]*$/d' $inputsfile  # Deletes empty lines
 sed -i '$a\' $inputsfile                # Makes sure there's an empty line at the end
@@ -59,21 +46,18 @@ chmod +x deduplicated_dirs.sh                                       # Makes fold
 rm dirs.sh deduplicated_dirs.sh                                     # Removes temp files
 
 # Generates jobarray file
-jafile=$folder.jobarray                                                     # Defines jobarray filename
-export counter inputsfile program z1 z2                                     # Exports variables to environment
-envsubst '$z1 $z2 $counter $inputsfile $program' < $jatemplate > $jafile    # Substites environment variables into jatemplate and saves as jafile
-
+jafile=${folder}.jobarray                                           # Defines jobarray filename
+export counter inputsfile program                                   # Exports variables to environment
+envsubst '$counter $inputsfile $program' < $jatemplate > $jafile    # Substites environment variables into jatemplate and saves as jafile
 wait
 # Submits job array and saves the confirmation of submission string
-JOBID1=$(qsub -j y "$jafile")
-echo $JOBID1				                # Prints confirmation of submission (e.g. "Your job-array 1392990.1-10:1 ("dummy.jobarray") has been submitted")
+JOBID=$(sbatch --parsable "$jafile")
+echo "Submitted batch job ${JOBID}"             # Prints confirmation of job array submission
 wait
-JOBID2=$(echo $JOBID1 | cut -d' ' -f 3 )	# Cuts JOBID1 with delimiter ' ', and saves third element in JOBID2 (e.g. "1392990.1-10:1")
+# Submits a job called zip_${folder} which only runs when the jobarray finishes. The job zips all the .o files and sends an e-mail when finished.
+ZIPID=$(sbatch --parsable --dependency=afterany:${JOBID} --job-name=zip_${folder} -p serial -t 0-12 --mail-type=END --mail-user=francisco.herreriasazcue@manchester.ac.uk --wrap="zip ${folder}.o.zip ${folder}.inputs ${folder}.jobarray slurm-${JOBID}*")
+echo "Submitted zipping job ${ZIPID}"           # Prints confirmation of zip job submission
 wait
-JOBID3=$(echo $JOBID2 | cut -d'.' -f 1 )	# Cuts JOBID2 with delimiter '.', and saves first element in JOBID3 (e.g. "1392990")
-wait
-
-# Submits a job called zip_$folder which only runs when the jobarray finishes. The job zips all the .o files and sends an e-mail when finished.
-qsub -b y -j y -hold_jid $JOBID3 -N zip_$folder -cwd $short -m e -M francisco.herreriasazcue@manchester.ac.uk zip $folder.o.zip $folder.inputs $folder.jobarray $folder.jobarray.o$JOBID3.*
-# Submits a job called delo_$folder which only runs when the zip_* finishes. The job deletes all the .o files.
-qsub -b y -j y -hold_jid zip_$folder -N delo_$folder -cwd $short rm $folder.inputs $folder.jobarray $folder.jobarray.o$JOBID3.* zip_$folder* delo_$folder* 
+# Submits a job called delo_${folder} which only runs when the zip_* finishes. The job deletes all the .o files.
+DELOID=$(sbatch --parsable --dependency=afterok:${ZIPID} --job-name=delo_${folder} -p serial -t 0-12 --wrap="rm ${folder}.inputs ${folder}.jobarray slurm-${JOBID}* slurm-${ZIPID}* slurm-${SLURM_JOB_ID}*")
+echo "Submitted cleanup job ${DELOID}"          # Prints confirmation of cleanup job submission

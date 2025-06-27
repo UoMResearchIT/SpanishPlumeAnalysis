@@ -1,15 +1,15 @@
 #!/bin/bash --login
-#$ -cwd                           # Job runs in current directory
-#$ -V                             # Job inherits environment
-#$ -j y                           # Joins error and output files
-$z1
-$z2
+
+#SBATCH -p serial                 # Partition to submit the job
+#SBATCH -t 7-0                    # Time limit for the job (days-hours:minutes:seconds)
+#SBATCH --chdir=.                 # Job runs in current directory
+#SBATCH --export=ALL              # Job inherits environment
 
 conda activate wrf-py-env         # Activates conda environment
-export LIBGL_ALWAYS_INDIRECT=1    # Makes susre graphics are exported correctly
+export LIBGL_ALWAYS_INDIRECT=1    # Makes sure graphics are exported correctly
 
-#$ -t 1-$counter                     # Array of $counter jobs
+#SBATCH --array=1-$counter        # Array of $counter jobs
 
-PARAM=`sed -n "${SGE_TASK_ID}p" $inputsfile`
+PARAM=$(sed -n "${SLURM_ARRAY_TASK_ID}p" $inputs_file)
 
 python $program $PARAM
