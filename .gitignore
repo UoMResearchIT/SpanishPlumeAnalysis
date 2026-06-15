@@ -5,4 +5,4 @@ tests
 !tests/*.py
 __pycache__/*
 RIP/*.sif
-
+.devcontainer/devcontainer-lock.json
