@@ -16,6 +16,9 @@ t0_s = t0.strftime("%Y-%m-%d_%H-%M-%S")
 results = f"{results}/tsiad_{t0_s}"
 output_file = f"{results}/test_single_image_all_diags{t0_s}.pdf"
 
+big_div = "\n" + "=" * 80 + "\n"
+print(big_div)
+
 # Get all diagnostic variables
 sens_vars = [
     attr
@@ -29,15 +32,31 @@ for diag in diagnostics:
     print(f"  - {diag}")
 
 # Run each diagnostic variable
+print(big_div)
+diag_status = {d: {"exit": "Not Run", "runtime": "---"} for d in diagnostics}
 subprocess.run(f"mkdir -p {results}", shell=True)
 for diag in diagnostics:
     args = f"--task=diagnostic --var={diag} --dir_path={wrfdata}/ --save_pdf_frames=1 --outdir={results}/"
     ti = datetime.now()
-    print(f"\nStarted at: {ti}")
-    print(f"\nFinished after: {datetime.now()-ti}")
-print(f"\n\nTotal run time: {datetime.now()-t0}")
+    print(f"\n----- {diag} ---------- Started at: {ti}")
     print(f"\npython {src}/main.py {args}")
     result = subprocess.run(f"python {src}/main.py {args}", shell=True)
+    runtime = datetime.now() - ti
+    print(f"\n----- {diag} ---------- Finished after: {runtime}")
+    diag_status[diag] = {
+        "exit": "OK" if result.returncode == 0 else "ERROR",
+        "runtime": runtime,
+    }
+
+print(big_div)
+print("\n\nDiagnostic generation done. Status summary:")
+diag_label_width = max(len(diag) for diag in diagnostics) + 4
+exit_label_width = max(len(status["exit"]) for status in diag_status.values()) + 2
+for diag, status in diag_status.items():
+    print(
+        f"  - {diag.ljust(diag_label_width)}{status['exit'].ljust(exit_label_width)} finished in   {status['runtime']}"
+    )
+print(f"\n\n  Total run time: {datetime.now()-t0}")
 
 # Combine all PDFs into a single PDF file
 print("\n\nCombining all PDFs into a single PDF file")
@@ -63,3 +82,4 @@ if os.path.exists(f"{results}/output.p"):
 
 
 print("\n\nDone!")
+print(big_div)
