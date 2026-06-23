@@ -3,6 +3,6 @@ Results
 tests/*
 tests
 !tests/*.py
-__pycache__/*
+__pycache__
 RIP/*.sif
 .devcontainer/devcontainer-lock.json
