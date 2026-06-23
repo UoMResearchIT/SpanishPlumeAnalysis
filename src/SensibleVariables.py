@@ -65,6 +65,12 @@ class svariable:
         self.along_traj = along_traj
 
 
+def get_sv_names():
+    """Return names of declared sensible variables in this module."""
+    names = [name for name, value in globals().items() if isinstance(value, svariable)]
+    return sorted(names)
+
+
 # 2D + Field
 TerrainElevation = svariable(
     wrfname="ter",

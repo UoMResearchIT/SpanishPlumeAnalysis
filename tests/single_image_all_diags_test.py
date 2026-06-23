@@ -20,11 +20,7 @@ big_div = "\n" + "=" * 80 + "\n"
 print(big_div)
 
 # Get all diagnostic variables
-sens_vars = [
-    attr
-    for attr in dir(sv)
-    if not callable(getattr(sv, attr)) and not attr.startswith("__")
-]
+sens_vars = sv.get_sv_names()
 diagnostics = [var for var in sens_vars if not var.startswith("SkewT")]
 diagnostics.append("SkewT")
 print(f"\nGenerating pdf with single image of each diagnostic variable:")

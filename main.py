@@ -183,7 +183,11 @@ if __name__ == "__main__":
         type=str,
         default=None,
         help="Name of place for point location on map).",
-        choices=[attr.split("_")[1] for attr in dir(sv) if attr.startswith("SkewT_")],
+        choices=[
+            attr.split("_")[1]
+            for attr in sv.get_sv_names()
+            if attr.startswith("SkewT_")
+        ],
     )
     parser.add_argument(
         "--traj",
@@ -194,11 +198,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-var_choices = [
-    attr
-    for attr in dir(sv)
-    if not callable(getattr(sv, attr)) and not attr.startswith("__")
-]
+var_choices = sv.get_sv_names()
 if "," not in args.var:
     if "CSV_" in args.var:
         if args.place is None and (args.lat is None or args.lon is None):
