@@ -7,9 +7,9 @@ sys.path.insert(1, src)
 import subprocess
 from datetime import datetime
 
-import SensibleVariables as sv
+import src.SensibleVariables as sv
 
-wrfdata = f"{src}/tests/wrfdata/control"
+wrfdata = f"/home/ubuntu/SpanishPlume/tests/wrfdata/control"
 results = f"{src}/tests/results"
 t0 = datetime.now()
 t0_s = t0.strftime("%Y-%m-%d_%H-%M-%S")
@@ -34,10 +34,10 @@ for diag in diagnostics:
     args = f"--task=diagnostic --var={diag} --dir_path={wrfdata}/ --save_pdf_frames=1 --outdir={results}/"
     ti = datetime.now()
     print(f"\nStarted at: {ti}")
-    print(f"\npython {src}/CSF/csf.py {args}")
-    subprocess.run(f"python {src}/CSF/csf.py {args}", shell=True)
     print(f"\nFinished after: {datetime.now()-ti}")
 print(f"\n\nTotal run time: {datetime.now()-t0}")
+    print(f"\npython {src}/main.py {args}")
+    result = subprocess.run(f"python {src}/main.py {args}", shell=True)
 
 # Combine all PDFs into a single PDF file
 print("\n\nCombining all PDFs into a single PDF file")
