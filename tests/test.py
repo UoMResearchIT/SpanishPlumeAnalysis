@@ -30,19 +30,50 @@ all_args = [
 big_div = "\n" + "=" * 80 + "\n"
 print(big_div)
 
+tasks = []
+for arg in all_args:
+    t = arg.split("--task=")[1].split(" ")[0]
+    var = arg.split("--var=")[1].split(" ")[0]
+    var = var[:30] + "..." if len(var) > 30 else var
+    tag = arg.split("--file_tag=")[1].split(" ")[0] if "--file_tag=" in arg else ""
+    if t == "diagnostic":
+        task = f"diag_{var}{tag}"
+    if t == "csv":
+        task = f"csv_{var}{tag}"
+    task = task.replace(",", "-")
+    tasks.append(task)
+
+task_status = {d: {"exit": "Not Run", "runtime": "---"} for d in tasks}
+print(f"\nTasks:")
+for task in tasks:
+    print(f"  - {task}")
+
 t0 = datetime.now()
 
-for args in all_args:
+for args, task in zip(all_args, tasks):
     outdir = args.split("--outdir=")[1]
     if " " in outdir:
         outdir = outdir.split(" ")[0]
     subprocess.run(f"mkdir -p {outdir}", shell=True)
     ti = datetime.now()
-    print(f"\n--------------- Started at: {ti}")
+    print(f"\n----- {task} ---------- Started at: {ti}")
     print(f"\npython {base_dir}/main.py {args}")
-    subprocess.run(f"python {base_dir}/main.py {args}", shell=True)
-    print(f"\n--------------- Finished after: {datetime.now()-ti}")
+    result = subprocess.run(f"python {base_dir}/main.py {args}", shell=True)
+    runtime = datetime.now() - ti
+    print(f"\n----- {task} ---------- Finished after: {runtime}")
+    task_status[task] = {
+        "exit": "OK" if result.returncode == 0 else "ERROR",
+        "runtime": runtime,
+    }
 
-print(f"\n\nTotal run time: {datetime.now()-t0}")
+print(big_div)
+print("\n\nDiagnostic generation done. Status summary:")
+task_label_width = max(len(task) for task in tasks) + 4
+exit_label_width = max(len(status["exit"]) for status in task_status.values()) + 2
+for task, status in task_status.items():
+    print(
+        f"  - {task.ljust(task_label_width)}{status['exit'].ljust(exit_label_width)} finished in   {status['runtime']}"
+    )
+print(f"\n\n  Total run time: {datetime.now()-t0}")
 
 print(big_div)
