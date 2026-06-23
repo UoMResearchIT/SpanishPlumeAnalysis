@@ -2,15 +2,15 @@ import sys
 import os
 import glob
 
-src = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-sys.path.insert(1, src)
+base_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+sys.path.insert(1, base_dir)
 import subprocess
 from datetime import datetime
 
 import src.SensibleVariables as sv
 
 wrfdata = f"/home/ubuntu/SpanishPlume/tests/wrfdata/control"
-results = f"{src}/tests/results"
+results = f"{base_dir}/tests/results"
 t0 = datetime.now()
 t0_s = t0.strftime("%Y-%m-%d_%H-%M-%S")
 results = f"{results}/tsiad_{t0_s}"
@@ -39,8 +39,8 @@ for diag in diagnostics:
     args = f"--task=diagnostic --var={diag} --dir_path={wrfdata}/ --save_pdf_frames=1 --outdir={results}/"
     ti = datetime.now()
     print(f"\n----- {diag} ---------- Started at: {ti}")
-    print(f"\npython {src}/main.py {args}")
-    result = subprocess.run(f"python {src}/main.py {args}", shell=True)
+    print(f"\npython {base_dir}/main.py {args}")
+    result = subprocess.run(f"python {base_dir}/main.py {args}", shell=True)
     runtime = datetime.now() - ti
     print(f"\n----- {diag} ---------- Finished after: {runtime}")
     diag_status[diag] = {
