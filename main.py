@@ -4,12 +4,12 @@ import sys
 # Adds folder to python path search
 sys.path.insert(1, "/".join(__file__.split("/")[:-2]))
 
-from Animate import Animate
-from TerrainPlots import Terrain
-from CSV_Data import CSV_Data
-import SensibleVariables as sv
-from MP4Compare import *
-from WRFCompare import *
+from src.Animate import Animate
+from src.TerrainPlots import Terrain
+from src.CSV_Data import CSV_Data
+import src.SensibleVariables as sv
+from src.MP4Compare import *
+from src.WRFCompare import *
 
 import argparse
 

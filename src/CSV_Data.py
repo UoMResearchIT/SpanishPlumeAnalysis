@@ -2,8 +2,9 @@ from netCDF4 import Dataset
 from wrf import ll_to_xy
 import os
 import csv
-from GetSensVar import *
-import SensibleVariables as sv
+
+from src.GetSensVar import *
+import src.SensibleVariables as sv
 
 
 def CSV_Data(

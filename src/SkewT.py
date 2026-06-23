@@ -4,7 +4,8 @@ from metpy.plots import SkewT
 from wrf import ll_to_xy, getvar
 import matplotlib.pyplot as plt
 import numpy as np
-import SensibleVariables as sv
+
+import src.SensibleVariables as sv
 
 
 def Plot_SkewT(ncfile, ti, svariable, outfname="MyPlot.png", save_pdf=0):

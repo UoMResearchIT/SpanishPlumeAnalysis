@@ -1,10 +1,11 @@
 from netCDF4 import Dataset
-from Plot2DField import *
-from SkewT import *
 import imageio
 import os
-from GetSensVar import *
-import SensibleVariables as sv
+
+from src.Plot2DField import *
+from src.SkewT import *
+from src.GetSensVar import *
+import src.SensibleVariables as sv
 
 
 def Animate(

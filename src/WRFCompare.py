@@ -1,10 +1,11 @@
 import os
 from netCDF4 import Dataset
-from GetSensVar import *
 from wrf import smooth2d
-from Plot2DField import *
 import imageio
 from PIL import Image, ImageDraw
+
+from src.GetSensVar import *
+from src.Plot2DField import *
 
 
 def WRFSmoothDiff(

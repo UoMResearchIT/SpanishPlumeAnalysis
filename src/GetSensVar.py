@@ -1,7 +1,8 @@
 from wrf import to_np, getvar, g_geoht, interplevel
-import SensibleVariables as sv
-import Frontogenesis
 import numpy as np
+
+import src.SensibleVariables as sv
+import src.Frontogenesis as Frontogenesis
 
 
 def GetSensVar(ncfile, svariable, windbarbs=0, time=0, varprevv=None):
