@@ -1,13 +1,13 @@
 import sys
 import os
 
-base_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 sys.path.insert(1, base_dir)
 import subprocess
 from datetime import datetime
 
 wrfdata_path = f"/home/ubuntu/SpanishPlume/tests/wrfdata/"
-res_path = f"{base_dir}/tests/results"
+res_path = f"{base_dir}/tests/human_checks/results"
 
 csv_data_v = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
 csv_data_p = [925, 850, 700, 500, 300]

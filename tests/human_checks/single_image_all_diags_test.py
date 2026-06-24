@@ -2,7 +2,7 @@ import sys
 import os
 import glob
 
-base_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 sys.path.insert(1, base_dir)
 import subprocess
 from datetime import datetime
@@ -10,7 +10,7 @@ from datetime import datetime
 import src.SensibleVariables as sv
 
 wrfdata = f"/home/ubuntu/SpanishPlume/tests/wrfdata/control"
-results = f"{base_dir}/tests/results"
+results = f"{base_dir}/tests/human_checks/results"
 t0 = datetime.now()
 t0_s = t0.strftime("%Y-%m-%d_%H-%M-%S")
 results = f"{results}/tsiad_{t0_s}"
