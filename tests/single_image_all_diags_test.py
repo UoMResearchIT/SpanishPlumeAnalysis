@@ -16,6 +16,20 @@ t0_s = t0.strftime("%Y-%m-%d_%H-%M-%S")
 results = f"{results}/tsiad_{t0_s}"
 output_file = f"{results}/test_single_image_all_diags{t0_s}.pdf"
 
+pdfunite_available = subprocess.run(
+    ["which", "pdfunite"], capture_output=True
+).returncode == 0
+
+if not pdfunite_available:
+    print("\n\nWarning: pdfunite is not available; PDF merge will be skipped.")
+
+    print("You can install 'pdfunite' with (e.g.):")
+    print("  macOS:  brew install poppler")
+    print("  Ubuntu: sudo apt install poppler-utils")
+    print("  Fedora: sudo dnf install poppler-utils")
+
+    print(f"Individual PDFs will be saved to {results}/")
+
 # Get all diagnostic variables
 sens_vars = [
     attr
@@ -39,27 +53,28 @@ for diag in diagnostics:
     print(f"\nFinished after: {datetime.now()-ti}")
 print(f"\n\nTotal run time: {datetime.now()-t0}")
 
-# Combine all PDFs into a single PDF file
-print("\n\nCombining all PDFs into a single PDF file")
-subprocess.run(["rm", "-f"] + glob.glob(f"{results}/*.mp4"), check=True)
-for pdf_file in glob.glob(f"{results}/__*/*.pdf"):
-    subprocess.run(["mv", pdf_file, results], check=True)
-for dir in glob.glob(f"{results}/__*"):
-    subprocess.run(["rm", "-d", dir], check=True)
-subprocess.run(
-    ["pdfunite"] + glob.glob(f"{results}/*.pdf") + [f"{results}/output.p"], check=True
-)
-if os.path.exists(f"{results}/output.p"):
-    subprocess.run(["rm"] + glob.glob(f"{results}/*.pdf"), check=True)
+if pdfunite_available:
+    # Combine all PDFs into a single PDF file
+    print("\n\nCombining all PDFs into a single PDF file")
+    subprocess.run(["rm", "-f"] + glob.glob(f"{results}/*.mp4"), check=True)
+    for pdf_file in glob.glob(f"{results}/__*/*.pdf"):
+        subprocess.run(["mv", pdf_file, results], check=True)
+    for dir in glob.glob(f"{results}/__*"):
+        subprocess.run(["rm", "-d", dir], check=True)
     subprocess.run(
-        ["mv", f"{results}/output.p", output_file],
-        check=True,
+        ["pdfunite"] + glob.glob(f"{results}/*.pdf") + [f"{results}/output.p"], check=True
     )
-    subprocess.run(
-        ["mv", output_file, f"{results}/.."],
-        check=True,
-    )
-    subprocess.run(["rm", "-d", results], check=True)
+    if os.path.exists(f"{results}/output.p"):
+        subprocess.run(["rm"] + glob.glob(f"{results}/*.pdf"), check=True)
+        subprocess.run(
+            ["mv", f"{results}/output.p", output_file],
+            check=True,
+        )
+        subprocess.run(
+            ["mv", output_file, f"{results}/.."],
+            check=True,
+        )
+        subprocess.run(["rm", "-d", results], check=True)
 
 
 print("\n\nDone!")
