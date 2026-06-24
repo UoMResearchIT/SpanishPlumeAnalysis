@@ -310,8 +310,8 @@ match args.task:
             dir1 = dirs[0]
             dir2 = dirs[1]
         if len(labels) < 2:
-            l1 = (args.label1,)
-            l2 = (args.label2,)
+            l1 = args.label1
+            l2 = args.label2
         else:
             l1 = labels[0]
             l2 = labels[1]
@@ -332,8 +332,15 @@ match args.task:
             cleandiff=args.clean,
         )
     case "mp4stitch":
+        outfile = f"{args.N}x{args.M}_{'-'.join({f for f in files})}" + args.file_tag
         ConcatNxM(
-            files, dirs=dirs, labels=labels, N=args.N, M=args.M, outdir=args.outdir
+            files,
+            dirs=dirs,
+            labels=labels,
+            N=args.N,
+            M=args.M,
+            outfile=outfile,
+            outdir=args.outdir,
         )
     case "wrfcompare":
         if len(dirs) < 2:
