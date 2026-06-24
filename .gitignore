@@ -1,8 +1,6 @@
-Results/*
-Results
-tests/*
-tests
-!tests/*.py
 __pycache__
-RIP/*.sif
+
+Results/
+results/
+
 .devcontainer/devcontainer-lock.json
