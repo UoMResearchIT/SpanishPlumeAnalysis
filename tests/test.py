@@ -6,7 +6,7 @@ sys.path.insert(1, base_dir)
 import subprocess
 from datetime import datetime
 
-wrfdata_path = f"/home/ubuntu/SpanishPlume/tests/wrfdata/control"
+wrfdata_path = f"/home/ubuntu/SpanishPlume/tests/wrfdata/"
 res_path = f"{base_dir}/tests/results"
 
 csv_data_v = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
@@ -16,14 +16,16 @@ csv_data_svars = ["CIN", "CAPE"] + [
 ]
 
 all_args = [
-    f"--task=diagnostic   --var=DewpointTemp2m              --dir_path={wrfdata_path}/      --outdir={res_path}/",
-    f"--task=diagnostic   --var=CAPE                        --dir_path={wrfdata_path}/      --outdir={res_path}/ --save_pdf_frames=1",
-    f"--task=diagnostic   --var=TerrainElevation1000        --dir_path={wrfdata_path}/      --outdir={res_path}/ --file_tag=_full --domain=full",
-    f"--task=diagnostic   --var=TerrainElevation            --dir_path={wrfdata_path}/      --outdir={res_path}/ --lat=42.9 --lon=2.43 --domain=full --file_tag=_point_full",
-    f"--task=diagnostic   --var=TerrainElevation1000        --dir_path={wrfdata_path}/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1",
-    f"--task=csv          --var=CSV_BristolChannel          --dir_path={wrfdata_path}/      --outdir={res_path}/ --domain=full",
-    f"--task=csv          --var={','.join(csv_data_svars)}  --dir_path={wrfdata_path}/      --outdir={res_path}/ --domain=full --place=Bath",
-    f"--task=csv          --var={','.join(csv_data_svars)}  --dir_path={wrfdata_path}/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_bath",
+    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata_path}/control/      --outdir={res_path}/control/",
+    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata_path}/zero/         --outdir={res_path}/zero/",
+    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata_path}/control/      --outdir={res_path}/control/ --save_pdf_frames=1",
+    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata_path}/control/      --outdir={res_path}/zero/",
+    f"--task=diagnostic   --var=TerrainElevation1000        --dir_path={wrfdata_path}/control/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1",
+    f"--task=csv          --var=CSV_BristolChannel          --dir_path={wrfdata_path}/control/      --outdir={res_path}/ --domain=full",
+    f"--task=csv          --var={','.join(csv_data_svars)}  --dir_path={wrfdata_path}/control/      --outdir={res_path}/ --domain=full --place=Bath",
+    f"--task=wrfcompare   --var=DewpointTemp925  --dir1={wrfdata_path}/control/ --dir2={wrfdata_path}/zero/ --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_wrf_diff_control-zero",
+    f"--task=mp4diff      --var=DewpointTemp925  --dir1={res_path}/control/ --dir2={res_path}/zero/ --label1=control --label2=zero --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_mp4_diff_control-zero",
+    f"--task=mp4stitch    --files=DewpointTemp925,DewpointTemp925,CAPE,CAPE --dirs={res_path}/control/,{res_path}/zero/,{res_path}/control/,{res_path}/zero/ --M=2 --N=2 --labels=control,zero,control,zero --outdir={res_path}/ --file_tag=_mp4_stitch_control-zero",
 ]
 
 
@@ -33,13 +35,10 @@ print(big_div)
 tasks = []
 for arg in all_args:
     t = arg.split("--task=")[1].split(" ")[0]
-    var = arg.split("--var=")[1].split(" ")[0]
+    var = arg.split("--var=")[1].split(" ")[0] if "--var=" in arg else ""
     var = var[:30] + "..." if len(var) > 30 else var
     tag = arg.split("--file_tag=")[1].split(" ")[0] if "--file_tag=" in arg else ""
-    if t == "diagnostic":
-        task = f"diag_{var}{tag}"
-    if t == "csv":
-        task = f"csv_{var}{tag}"
+    task = f"{t}_{var}{tag}"
     task = task.replace(",", "-")
     tasks.append(task)
 
