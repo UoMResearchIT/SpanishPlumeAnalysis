@@ -1,6 +1,10 @@
-from matplotlib.cm import get_cmap
+from matplotlib import pyplot
 from matplotlib.colors import ListedColormap
 import cmasher as cmr
+
+# Define a shim for compatibility until code is updated
+# TODO: Remove this shim and update code to use pyplot.get_cmap directly
+get_cmap = pyplot.get_cmap
 
 
 class svariable:
