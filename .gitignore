@@ -10,3 +10,6 @@ RIP/*.sif
 .DS_Store
 
 .vscode/settings.json
+
+tests/wrf_data/
+tests/results/
