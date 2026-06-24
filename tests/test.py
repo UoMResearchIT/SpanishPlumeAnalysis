@@ -16,6 +16,11 @@ csv_data_svars = ["CIN", "CAPE"] + [
 ]
 
 all_args = [
+    f"--task=csv --var=AirTemp2m,DewpointTemp2m,CIN,CAPE    --dir_path={wrfdata}/control/  --domain=full  --outdir={results}/ --lat=51.38  --lon=-2.36 --file_tag=_Bath",
+    f"--task=diagnostic   --var=DewpointTemp2m        --dir_path={wrfdata}/control/         --outdir={results}/",
+]
+
+all_args_example = [
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --file_tag=_control",
     # f"--task=diagnostic --var=TerrainElevation    --dir_path={wrfdata}/control/         --outdir={results}/ --domain=full --file_tag=_control_full",
     # f"--task=diagnostic --var=TerrainElevation1000    --dir_path={wrfdata}/d02/  --domain=full  --outdir={results}/ --lat=51.38  --lon=-2.36 --file_tag=_Bath",
