@@ -6,3 +6,7 @@ tests
 __pycache__/*
 RIP/*.sif
 .devcontainer/devcontainer-lock.json
+
+.DS_Store
+
+.vscode/settings.json
