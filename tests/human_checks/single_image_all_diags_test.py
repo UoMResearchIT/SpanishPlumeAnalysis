@@ -1,3 +1,11 @@
+# This script runs main in a cli and generates a single pdf with one frame for each diagnostic variable.
+# It is meant to generate sample outputs, for a human to check.
+# Run this script with:
+# ```
+# export WRF_DATA_PATH=/path/to/wrfdata
+# python ./single_image_all_diags_test.py
+# ```
+
 import sys
 import os
 import glob
@@ -9,7 +17,9 @@ from datetime import datetime
 
 import src.SensibleVariables as sv
 
-wrfdata = f"/home/ubuntu/SpanishPlume/tests/wrfdata/control"
+wrfdata = os.getenv("WRF_DATA_PATH", "/wrfdata")
+wrfdata = wrfdata[:-1] if wrfdata.endswith("/") else wrfdata
+wrfdata = wrfdata + "/control"
 results = f"{base_dir}/tests/human_checks/results"
 t0 = datetime.now()
 t0_s = t0.strftime("%Y-%m-%d_%H-%M-%S")

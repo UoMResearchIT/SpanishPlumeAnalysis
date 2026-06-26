@@ -6,6 +6,11 @@ RUN micromamba create -y -n wrf-py-env -f /tmp/environment.yml \
     && micromamba run -n wrf-py-env python -m pip install --no-cache-dir pytest coverage \
     && micromamba clean --all --yes
 
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends poppler-utils \
+    && rm -rf /var/lib/apt/lists/*
+
 # Ensure container commands execute inside the project environment.
 ENV ENV_NAME=wrf-py-env
 

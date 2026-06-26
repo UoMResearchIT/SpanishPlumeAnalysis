@@ -28,5 +28,33 @@ services:
       coverage report &&
       coverage html -d /memory/htmlcov"
 
+  human-checks:
+    ## This service runs the human checks tests, which generate a set of plots for manual inspection.
+    ## You may then explore the results in the /memory/human_checks_results directory.
+    ## To only run this service and inspect the results, execute:
+    ## ```
+    ## docker compose up --build human-checks
+    ## xdg-open $(docker volume inspect wrf-analysis_memory -f '{{ .Mountpoint }}')/human_checks_results
+    ## ```
+    image: wrf-analysis:testing
+    tty: true
+    stdin_open: true
+    build:
+      context: ../
+      dockerfile: tests/Dockerfile
+    container_name: wrf-analysis-human-checks
+    volumes:
+      - memory:/memory  # Used to persist pytest cache between runs
+      - $WRF_DATA_PATH:/wrfdata:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >-
+      bash -c "
+        python -u tests/human_checks/single_image_all_diags_test.py &&
+        python -u tests/human_checks/test.py &&
+        rm -rf /memory/human_checks_results &&
+        cp -r tests/human_checks/results /memory/human_checks_results
+      "
+
 volumes:
   memory:

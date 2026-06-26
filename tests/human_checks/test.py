@@ -1,3 +1,11 @@
+# This script runs main in a cli and passes the arguments in all_args.
+# It is meant to generate sample outputs, for a human to check.
+# Run this script with:
+# ```
+# export WRF_DATA_PATH=/path/to/wrfdata
+# python ./test.py
+# ```
+
 import sys
 import os
 
@@ -6,7 +14,8 @@ sys.path.insert(1, base_dir)
 import subprocess
 from datetime import datetime
 
-wrfdata_path = f"/home/ubuntu/SpanishPlume/tests/wrfdata/"
+wrfdata = os.getenv("WRF_DATA_PATH", "/wrfdata")
+wrfdata = wrfdata[:-1] if wrfdata.endswith("/") else wrfdata
 res_path = f"{base_dir}/tests/human_checks/results"
 
 csv_data_v = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
@@ -16,14 +25,14 @@ csv_data_svars = ["CIN", "CAPE"] + [
 ]
 
 all_args = [
-    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata_path}/control/      --outdir={res_path}/control/",
-    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata_path}/zero/         --outdir={res_path}/zero/",
-    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata_path}/control/      --outdir={res_path}/control/ --save_pdf_frames=1",
-    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata_path}/control/      --outdir={res_path}/zero/",
-    f"--task=diagnostic   --var=TerrainElevation1000        --dir_path={wrfdata_path}/control/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1",
-    f"--task=csv          --var=CSV_BristolChannel          --dir_path={wrfdata_path}/control/      --outdir={res_path}/ --domain=full",
-    f"--task=csv          --var={','.join(csv_data_svars)}  --dir_path={wrfdata_path}/control/      --outdir={res_path}/ --domain=full --place=Bath",
-    f"--task=wrfcompare   --var=DewpointTemp925  --dir1={wrfdata_path}/control/ --dir2={wrfdata_path}/zero/ --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_wrf_diff_control-zero",
+    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata}/control/      --outdir={res_path}/control/",
+    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata}/zero/         --outdir={res_path}/zero/",
+    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/control/ --save_pdf_frames=1",
+    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/zero/",
+    f"--task=diagnostic   --var=TerrainElevation1000        --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1",
+    f"--task=csv          --var=CSV_BristolChannel          --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full",
+    f"--task=csv          --var={','.join(csv_data_svars)}  --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=Bath",
+    f"--task=wrfcompare   --var=DewpointTemp925  --dir1={wrfdata}/control/ --dir2={wrfdata}/zero/ --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_wrf_diff_control-zero",
     f"--task=mp4diff      --var=DewpointTemp925  --dir1={res_path}/control/ --dir2={res_path}/zero/ --label1=control --label2=zero --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_mp4_diff_control-zero",
     f"--task=mp4stitch    --files=DewpointTemp925,DewpointTemp925,CAPE,CAPE --dirs={res_path}/control/,{res_path}/zero/,{res_path}/control/,{res_path}/zero/ --M=2 --N=2 --labels=control,zero,control,zero --outdir={res_path}/ --file_tag=_mp4_stitch_control-zero",
 ]
