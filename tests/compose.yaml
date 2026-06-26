@@ -1,0 +1,32 @@
+
+# This compose file runs the tests for the wrf-analysis-toolkit and exits when done.
+# To run the tests, cd into tests/ and execute:
+#   docker compose up --build
+
+name: wrf-analysis
+services:
+  pytest-coverage:
+    ## This service runs pytest within coverage, which generates a report.
+    ## You may then explore the results in /htmlcov/class_index.html.
+    ## To only run this service and inspect the results, execute:
+    ## ```
+    ## docker compose up --build pytest-coverage
+    ## xdg-open $(docker volume inspect wrf-analysis_memory -f '{{ .Mountpoint }}')/htmlcov/class_index.html
+    ## ```
+    image: wrf-analysis:testing
+    build:
+      context: ../
+      dockerfile: tests/Dockerfile
+    container_name: wrf-analysis-pytest-coverage
+    volumes:
+      - memory:/memory  # Used to persist pytest cache between runs
+      - $WRF_DATA_PATH:/wrfdata:ro
+    command: >-
+      bash -c "coverage erase &&
+      coverage run -m pytest -s -vv tests/ --ignore=tests/human_checks &&
+      coverage combine &&
+      coverage report &&
+      coverage html -d /memory/htmlcov"
+
+volumes:
+  memory:

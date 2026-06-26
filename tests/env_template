@@ -1,0 +1,5 @@
+# Save this file as .env in the tests directory before running the tests.
+# The WRF_DATA_PATH variable should point to the directory containing the WRF output files (wrfout*).
+# It expects two subdirectories: control, and zero.
+
+WRF_DATA_PATH=<absolute_path_to_your_wrf_data_directory>

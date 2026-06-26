@@ -1,0 +1,19 @@
+FROM mambaorg/micromamba:1.5.8
+
+COPY environment.yml /tmp/environment.yml
+
+RUN micromamba create -y -n wrf-py-env -f /tmp/environment.yml \
+    && micromamba run -n wrf-py-env python -m pip install --no-cache-dir pytest coverage \
+    && micromamba clean --all --yes
+
+# Ensure container commands execute inside the project environment.
+ENV ENV_NAME=wrf-py-env
+
+WORKDIR /memory
+WORKDIR /wrf-analysis
+COPY main.py /wrf-analysis/main.py
+COPY src /wrf-analysis/src
+COPY tests /wrf-analysis/tests
+COPY pytest.ini /wrf-analysis/pytest.ini
+
+CMD ["python", "-u", "main.py"]

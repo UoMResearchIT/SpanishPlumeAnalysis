@@ -3,4 +3,6 @@ __pycache__
 Results/
 results/
 
+.env
+
 .devcontainer/devcontainer-lock.json
