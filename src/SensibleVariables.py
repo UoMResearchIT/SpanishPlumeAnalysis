@@ -1,4 +1,4 @@
-from matplotlib.cm import get_cmap
+from matplotlib.pyplot import get_cmap
 from matplotlib.colors import ListedColormap
 import cmasher as cmr
 
