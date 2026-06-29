@@ -1,7 +1,10 @@
 
 # This compose file runs the tests for the wrf-analysis-toolkit and exits when done.
-# To run the tests, cd into tests/ and execute:
-#   docker compose up --build
+# To run the tests, cd into tests/ and execute either:
+#   docker compose up --build pytest-coverage
+# or
+#   docker compose up --build human-checks
+#
 
 name: wrf-analysis
 services:
@@ -48,12 +51,12 @@ services:
       - $WRF_DATA_PATH:/wrfdata:ro
     environment:
       - PYTHONUNBUFFERED=1
+      - RESULTS_PATH=/memory/human_checks_results # Human checks tests save outputs here for inspection
     command: >-
       bash -c "
+        rm -rf /memory/human_checks_results/* &&
         python -u tests/human_checks/single_image_all_diags_test.py &&
-        python -u tests/human_checks/test.py &&
-        rm -rf /memory/human_checks_results &&
-        cp -r tests/human_checks/results /memory/human_checks_results
+        python -u tests/human_checks/test.py
       "
 
 volumes:

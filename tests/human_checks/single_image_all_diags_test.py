@@ -20,7 +20,7 @@ import src.SensibleVariables as sv
 wrfdata = os.getenv("WRF_DATA_PATH", "/wrfdata")
 wrfdata = wrfdata[:-1] if wrfdata.endswith("/") else wrfdata
 wrfdata = wrfdata + "/control"
-results = f"{base_dir}/tests/human_checks/results"
+results = os.getenv("RESULTS_PATH", f"{base_dir}/tests/human_checks/results")
 t0 = datetime.now()
 t0_s = t0.strftime("%Y-%m-%d_%H-%M-%S")
 results = f"{results}/tsiad_{t0_s}"

@@ -1,0 +1,10 @@
+tests/human_checks/results/
+
+# Test orchestration files are not needed inside the runtime image.
+tests/compose.yaml
+tests/env_template
+tests/.env
+tests/Dockerfile
+
+# Caches and reports.
+**/__pycache__/

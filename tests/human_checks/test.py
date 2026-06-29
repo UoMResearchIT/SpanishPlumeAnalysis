@@ -16,7 +16,7 @@ from datetime import datetime
 
 wrfdata = os.getenv("WRF_DATA_PATH", "/wrfdata")
 wrfdata = wrfdata[:-1] if wrfdata.endswith("/") else wrfdata
-res_path = f"{base_dir}/tests/human_checks/results"
+res_path = os.getenv("RESULTS_PATH", f"{base_dir}/tests/human_checks/results")
 
 csv_data_v = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
 csv_data_p = [925, 850, 700, 500, 300]
