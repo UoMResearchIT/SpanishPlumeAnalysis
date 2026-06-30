@@ -45,10 +45,45 @@ diagnostic_args = [
         "wrfout_dir": f"{wrfdata}/control/",
         "output_dir": f"{res_path}/zero/",
     },
+    {
+        "variable_name": "TerrainElevation1000",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/",
+        "domain": "full",
+        "lat": 51.38,
+        "lon": -2.36,
+        "file_tag": "_Bath1000",
+    },
+    {
+        "variable_name": "TerrainElevation",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/",
+        "domain": "full",
+        "place": "Bath",
+        "range_min": 0,
+        "range_max": 1000,
+        "file_tag": "_Bath_range_0-1000",
+    },
+]
+terrain_args = [
+    {
+        "variable_name": "TerrainElevation",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/",
+    },
+    {
+        "variable_name": "TerrainElevation",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/",
+        "place": "Bath",
+        "range_min": 0,
+        "range_max": 1500,
+        "file_tag": "_Bath_range_0-1500",
+    },
 ]
 
 tasks = []
-for arg in diagnostic_args:
+for arg in diagnostic_args + terrain_args:
     var = arg["variable_name"]
     var = var[:30] + "..." if len(var) > 30 else var
     tag = arg.get("file_tag", "")
@@ -65,13 +100,19 @@ for task in tasks:
 
 t0 = datetime.now()
 
-for args, task in zip(diagnostic_args, tasks):
+for args, task in zip(diagnostic_args + terrain_args, tasks):
     ti = datetime.now()
     print(f"\n----- {task} ---------- Started at: {ti}")
     args_str = ",".join([f"{k}={v}" for k, v in args.items()])
-    print(f"\nwat.diagnostic({args_str})")
     try:
-        result = wat.diagnostic(**args)
+        if args in diagnostic_args:
+            print(f"\nwat.diagnostic({args_str})")
+            result = wat.diagnostic(**args)
+        elif args in terrain_args:
+            print(f"\nwat.terrain({args_str})")
+            result = wat.terrain(**args)
+        else:
+            raise ValueError(f"Unknown task type for args: {args}")
     except Exception as e:
         print(f"Error occurred while running diagnostic: {e}")
         result = None

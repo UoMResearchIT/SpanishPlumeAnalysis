@@ -29,7 +29,7 @@ all_args = [
     f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata}/zero/         --outdir={res_path}/zero/",
     f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/control/ --save_pdf_frames=1",
     f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/zero/",
-    f"--task=diagnostic   --var=TerrainElevation1000        --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1",
+    f"--task=diagnostic   --var=TerrainElevation1000        --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1000",
     f"--task=csv          --var=CSV_BristolChannel          --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full",
     f"--task=csv          --var={','.join(csv_data_svars)}  --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=Bath",
     f"--task=wrfcompare   --var=DewpointTemp925  --dir1={wrfdata}/control/ --dir2={wrfdata}/zero/ --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_wrf_diff_control-zero",
