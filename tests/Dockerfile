@@ -18,6 +18,8 @@ WORKDIR /memory
 WORKDIR /wrf-analysis
 COPY wrf_analysis_toolkit_cli.py /wrf-analysis/wrf_analysis_toolkit_cli.py
 COPY wrf_analysis_toolkit /wrf-analysis/wrf_analysis_toolkit
+COPY pyproject.toml /wrf-analysis/pyproject.toml
+RUN micromamba run -n wrf-py-env python -m pip install .
 COPY tests /wrf-analysis/tests
 COPY pytest.ini /wrf-analysis/pytest.ini
 

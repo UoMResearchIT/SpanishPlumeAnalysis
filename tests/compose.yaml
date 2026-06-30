@@ -59,5 +59,32 @@ services:
         python -u tests/human_checks/test.py
       "
 
+  library-tests:
+    ## This service runs the library tests, which generate a set of plots for manual inspection.
+    ## You may then explore the results in the /memory/library_tests_results directory.
+    ## To only run this service and inspect the results, execute:
+    ## ```
+    ## docker compose up --build library-tests
+    ## xdg-open $(docker volume inspect wrf-analysis_memory -f '{{ .Mountpoint }}')/library_tests_results
+    ## ```
+    image: wrf-analysis:testing
+    tty: true
+    stdin_open: true
+    build:
+      context: ../
+      dockerfile: tests/Dockerfile
+    container_name: wrf-analysis-library-tests
+    volumes:
+      - memory:/memory  # Used to persist pytest cache between runs
+      - $WRF_DATA_PATH:/wrfdata:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      - RESULTS_PATH=/memory/library_tests_results # Library tests save outputs here for inspection
+    command: >-
+      bash -c "
+        rm -rf /memory/library_tests_results/* &&
+        python -u tests/library/tests.py
+      "
+
 volumes:
   memory:

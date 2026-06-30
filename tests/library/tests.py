@@ -1,0 +1,95 @@
+# This script calls the wrf_analysis_toolkit as a library, which must be previously installed from the base directory with `pip install .`.
+# It is meant to replicate tests/human_checks/test.py, so it generate sample outputs, for a human to check.
+# Run this script with:
+# ```
+# export WRF_DATA_PATH=/path/to/wrfdata
+# python ./test.py
+# ```
+
+import sys
+import os
+
+import wrf_analysis_toolkit.api as wat
+
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+sys.path.insert(1, base_dir)
+import subprocess
+from datetime import datetime
+
+wrfdata = os.getenv("WRF_DATA_PATH", "/wrfdata")
+wrfdata = wrfdata[:-1] if wrfdata.endswith("/") else wrfdata
+res_path = os.getenv("RESULTS_PATH", f"{base_dir}/tests/library/results")
+
+big_div = "\n" + "=" * 80 + "\n"
+print(big_div)
+
+diagnostic_args = [
+    {
+        "variable_name": "DewpointTemp925",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/control/",
+    },
+    {
+        "variable_name": "DewpointTemp925",
+        "wrfout_dir": f"{wrfdata}/zero/",
+        "output_dir": f"{res_path}/zero/",
+    },
+    {
+        "variable_name": "CAPE",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/control/",
+        "save_pdf_frames": True,
+    },
+    {
+        "variable_name": "CAPE",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/zero/",
+    },
+]
+
+tasks = []
+for arg in diagnostic_args:
+    var = arg["variable_name"]
+    var = var[:30] + "..." if len(var) > 30 else var
+    tag = arg.get("file_tag", "")
+    task = f"{var}{tag}"
+    task = task.replace(",", "-")
+    if task in tasks:
+        task += f"_{len([t for t in tasks if t.startswith(task)])+1}"
+    tasks.append(task)
+
+task_status = {task: {"exit": "Not Run", "runtime": "---"} for task in tasks}
+print(f"\nTasks:")
+for task in tasks:
+    print(f"  - {task}")
+
+t0 = datetime.now()
+
+for args, task in zip(diagnostic_args, tasks):
+    ti = datetime.now()
+    print(f"\n----- {task} ---------- Started at: {ti}")
+    args_str = ",".join([f"{k}={v}" for k, v in args.items()])
+    print(f"\nwat.diagnostic({args_str})")
+    try:
+        result = wat.diagnostic(**args)
+    except Exception as e:
+        print(f"Error occurred while running diagnostic: {e}")
+        result = None
+    runtime = datetime.now() - ti
+    print(f"\n----- {task} ---------- Finished after: {runtime}")
+    task_status[task] = {
+        "exit": "OK" if result is not None else "ERROR",
+        "runtime": runtime,
+    }
+
+print(big_div)
+print("\n\nDiagnostic generation done. Status summary:")
+task_label_width = max(len(task) for task in tasks) + 4
+exit_label_width = max(len(status["exit"]) for status in task_status.values()) + 2
+for task, status in task_status.items():
+    print(
+        f"  - {task.ljust(task_label_width)}{status['exit'].ljust(exit_label_width)} finished in   {status['runtime']}"
+    )
+print(f"\n\n  Total run time: {datetime.now()-t0}")
+
+print(big_div)
