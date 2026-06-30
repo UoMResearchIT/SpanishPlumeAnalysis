@@ -9,7 +9,7 @@
 import sys
 import os
 
-import wrf_analysis_toolkit.api as wat
+import wrf_analysis_toolkit as wat
 
 base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 sys.path.insert(1, base_dir)
