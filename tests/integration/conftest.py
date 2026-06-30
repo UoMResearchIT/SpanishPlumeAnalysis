@@ -6,9 +6,8 @@ from pathlib import Path
 import pytest
 from netCDF4 import Dataset
 
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
-MAIN_PY = REPO_ROOT / "main.py"
+MAIN_PY = REPO_ROOT / "wrf_analysis_toolkit_cli.py"
 
 
 def has_wrfout_files(path: Path) -> bool:
@@ -75,7 +74,7 @@ def count_total_timesteps(wrf_dir: Path) -> int:
 
 
 def diagnostic_variables() -> list[str]:
-    from src import SensibleVariables as sv
+    from wrf_analysis_toolkit import SensibleVariables as sv
 
     sens_vars = sv.get_sv_names()
     diagnostics = [var for var in sens_vars if not var.startswith("SkewT")]

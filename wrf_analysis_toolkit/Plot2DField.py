@@ -6,7 +6,7 @@ import cartopy.crs as crs
 import cartopy.feature as cfeature
 from wrf import to_np, smooth2d, get_cartopy, cartopy_xlim, cartopy_ylim, latlon_coords
 
-import src.SensibleVariables as sv
+import wrf_analysis_toolkit.SensibleVariables as sv
 
 # from datetime import datetime      ###############################################
 # print(datetime.now())              ###############################################

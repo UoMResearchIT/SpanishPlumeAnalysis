@@ -65,8 +65,10 @@ for args, task in zip(all_args, tasks):
     subprocess.run(f"mkdir -p {outdir}", shell=True)
     ti = datetime.now()
     print(f"\n----- {task} ---------- Started at: {ti}")
-    print(f"\npython {base_dir}/main.py {args}")
-    result = subprocess.run(f"python {base_dir}/main.py {args}", shell=True)
+    print(f"\npython {base_dir}/wrf_analysis_toolkit_cli.py {args}")
+    result = subprocess.run(
+        f"python {base_dir}/wrf_analysis_toolkit_cli.py {args}", shell=True
+    )
     runtime = datetime.now() - ti
     print(f"\n----- {task} ---------- Finished after: {runtime}")
     task_status[task] = {

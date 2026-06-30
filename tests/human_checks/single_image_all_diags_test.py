@@ -15,7 +15,7 @@ sys.path.insert(1, base_dir)
 import subprocess
 from datetime import datetime
 
-import src.SensibleVariables as sv
+import wrf_analysis_toolkit.SensibleVariables as sv
 
 wrfdata = os.getenv("WRF_DATA_PATH", "/wrfdata")
 wrfdata = wrfdata[:-1] if wrfdata.endswith("/") else wrfdata
@@ -45,8 +45,10 @@ for diag in diagnostics:
     args = f"--task=diagnostic --var={diag} --dir_path={wrfdata}/ --save_pdf_frames=1 --outdir={results}/"
     ti = datetime.now()
     print(f"\n----- {diag} ---------- Started at: {ti}")
-    print(f"\npython {base_dir}/main.py {args}")
-    result = subprocess.run(f"python {base_dir}/main.py {args}", shell=True)
+    print(f"\npython {base_dir}/wrf_analysis_toolkit_cli.py {args}")
+    result = subprocess.run(
+        f"python {base_dir}/wrf_analysis_toolkit_cli.py {args}", shell=True
+    )
     runtime = datetime.now() - ti
     print(f"\n----- {diag} ---------- Finished after: {runtime}")
     diag_status[diag] = {

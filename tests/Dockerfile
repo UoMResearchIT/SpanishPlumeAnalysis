@@ -16,9 +16,9 @@ ENV ENV_NAME=wrf-py-env
 
 WORKDIR /memory
 WORKDIR /wrf-analysis
-COPY main.py /wrf-analysis/main.py
-COPY src /wrf-analysis/src
+COPY wrf_analysis_toolkit_cli.py /wrf-analysis/wrf_analysis_toolkit_cli.py
+COPY wrf_analysis_toolkit /wrf-analysis/wrf_analysis_toolkit
 COPY tests /wrf-analysis/tests
 COPY pytest.ini /wrf-analysis/pytest.ini
 
-CMD ["python", "-u", "main.py"]
+CMD ["python", "-u", "wrf_analysis_toolkit_cli.py"]

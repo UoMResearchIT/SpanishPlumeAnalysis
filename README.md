@@ -34,7 +34,7 @@ This repo contains a set of scripts to generate diagnostics from WRF outputs, an
 
 ## Generating diagnostics
 
-The `main.py` file is designed to be called as a cli.
+The `wrf_analysis_toolkit_cli.py` file is designed to be called as a cli.
 You *always* have to pass these arguments:
 - **task**, which can be *diagnostic*, *wrfcompare*, *mp4diff* or *mp4stitch*.
 - **var**, which can be any of the predefined **SensibleVariables**.
@@ -48,12 +48,12 @@ In some cases, you will also need to pass:
 
 The following are sample calls for this function:
 
-*python main.py --task=diagnostic --var=Rain --dir_path=./MyData/ --outdir=./*
+*python wrf_analysis_toolkit_cli.py --task=diagnostic --var=Rain --dir_path=./MyData/ --outdir=./*
 
-*python main.py --task=wrfcompare --var=SeaLevelPressure --dirs="Data1,Data2" --outdir=./ --difflabel=Data2-Data1*
+*python wrf_analysis_toolkit_cli.py --task=wrfcompare --var=SeaLevelPressure --dirs="Data1,Data2" --outdir=./ --difflabel=Data2-Data1*
 
-*python main.py --task=mp4diff --var=DewpointTemp850 --dirs="./MP4_1,./MP4_2/" --labels="MP4_1,MP4_2,MP4Diff"*
-*python main.py --task=mp4stitch --dirs="MyVideos" --files="f1,f2,f3,f4" --N=2 --M=2*
+*python wrf_analysis_toolkit_cli.py --task=mp4diff --var=DewpointTemp850 --dirs="./MP4_1,./MP4_2/" --labels="MP4_1,MP4_2,MP4Diff"*
+*python wrf_analysis_toolkit_cli.py --task=mp4stitch --dirs="MyVideos" --files="f1,f2,f3,f4" --N=2 --M=2*
 
 ## About the source code
 
@@ -98,7 +98,7 @@ The outputs are the processed variable ***var***, the wind velocity components *
 
 ### Special diagnostics
 
-The following diagnostics have special functions to deal with them, but the diagnostic generation is still done through the main.py script.
+The following diagnostics have special functions to deal with them, but the diagnostic generation is still done through the wrf_analysis_toolkit_cli.py script.
 
 #### TerrainPlots
 These do not require animation nor the whole of the wrfout files, so they have a special function to deal with them.
@@ -157,7 +157,7 @@ You'll find further information in the compose file.
 
 ## Conda environment
 
-If you are using this code directly on your machine (as opposed to using the container described in [tests](#tests)), make sure you have the conda environment set up and active before you call `main.py` or `test.py`.
+If you are using this code directly on your machine (as opposed to using the container described in [tests](#tests)), make sure you have the conda environment set up and active before you call `wrf_analysis_toolkit_cli.py` or `test.py`.
 
 If you do not have the environment, make sure you have anaconda/miniconda/micromamba installed.
 This will install it with defaults:

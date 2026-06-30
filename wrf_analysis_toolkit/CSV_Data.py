@@ -3,8 +3,8 @@ from wrf import ll_to_xy
 import os
 import csv
 
-from src.GetSensVar import *
-import src.SensibleVariables as sv
+from wrf_analysis_toolkit.GetSensVar import *
+import wrf_analysis_toolkit.SensibleVariables as sv
 
 
 def CSV_Data(

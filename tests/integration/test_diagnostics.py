@@ -14,6 +14,7 @@ from tests.integration.conftest import (
 # EXPECTED_DIAGNOSTICS = ["DewpointTemp925", "CAPE", "SkewT"]
 EXPECTED_DIAGNOSTICS: list[str] = []
 
+
 def _selected_diagnostics() -> list[str]:
     diagnostics = non_terrain_diagnostic_variables()
     if not EXPECTED_DIAGNOSTICS:
@@ -25,12 +26,14 @@ def _selected_diagnostics() -> list[str]:
     )
     return EXPECTED_DIAGNOSTICS
 
+
 def _diag_needs_timesteps(diag: str) -> int:
     if "AirTempDif12h" in diag:
         return 13
     if "AirTempDif6h" in diag:
         return 7
     return 1
+
 
 @pytest.mark.integration
 @pytest.mark.slow
@@ -67,7 +70,7 @@ def test_generate_single_image_for_diagnostic(
         f"STDERR:\n{result.stderr}"
     )
 
-    from src import SensibleVariables as sv
+    from wrf_analysis_toolkit import SensibleVariables as sv
 
     outfile_stem = getattr(sv, diag).outfile
 

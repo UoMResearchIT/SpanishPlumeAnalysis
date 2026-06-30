@@ -4,8 +4,8 @@ from wrf import smooth2d
 import imageio
 from PIL import Image, ImageDraw
 
-from src.GetSensVar import *
-from src.Plot2DField import *
+from wrf_analysis_toolkit.GetSensVar import *
+from wrf_analysis_toolkit.Plot2DField import *
 
 
 def WRFSmoothDiff(

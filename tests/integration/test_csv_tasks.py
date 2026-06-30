@@ -11,10 +11,13 @@ CSV_DATA_SVARS = ["CIN", "CAPE"] + [
 
 
 def _expected_csv_columns() -> list[str]:
-    from src import SensibleVariables as sv
+    from wrf_analysis_toolkit import SensibleVariables as sv
 
     # CSV columns are based on each sensible variable's outfile name.
-    return ["Timestamp"] + [getattr(sv, var_name).outfile for var_name in CSV_DATA_SVARS]
+    return ["Timestamp"] + [
+        getattr(sv, var_name).outfile for var_name in CSV_DATA_SVARS
+    ]
+
 
 def _assert_valid_csv(csv_file: Path, expected_columns: list[str]) -> None:
     assert csv_file.exists(), f"Expected CSV file was not created: {csv_file}"
@@ -22,9 +25,9 @@ def _assert_valid_csv(csv_file: Path, expected_columns: list[str]) -> None:
 
     with csv_file.open("r", newline="") as f:
         metadata = f.readline().strip()
-        assert metadata.startswith("# lat:"), (
-            f"CSV metadata header is missing/invalid in {csv_file}: {metadata}"
-        )
+        assert metadata.startswith(
+            "# lat:"
+        ), f"CSV metadata header is missing/invalid in {csv_file}: {metadata}"
 
         reader = csv.reader(f)
         header = next(reader)
@@ -40,6 +43,7 @@ def _assert_valid_csv(csv_file: Path, expected_columns: list[str]) -> None:
             f"CSV first data row has wrong width in {csv_file}.\n"
             f"Expected {len(expected_columns)} fields, got {len(first_data_row)}"
         )
+
 
 @pytest.mark.integration
 @pytest.mark.slow

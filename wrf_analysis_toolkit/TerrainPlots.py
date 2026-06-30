@@ -3,8 +3,8 @@ from wrf import ll_to_xy, to_np, latlon_coords, getvar
 import cartopy.crs as crs
 import matplotlib.pyplot as plt
 
-from src.GetSensVar import *
-from src.Plot2DField import *
+from wrf_analysis_toolkit.GetSensVar import *
+from wrf_analysis_toolkit.Plot2DField import *
 
 
 def Terrain(
