@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "wrf_analysis_toolkit"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "netCDF4>=1.7",
+    "matplotlib>=3.11",
+    "cmasher>=1.9",
+    "cartopy>=0.25",
+    "imageio>=2.37",
+    "imageio-ffmpeg>=0.6",
+    "metpy>=1.7",
+]
+
+[project.scripts]
+wrf_analysis_toolkit_cli = "wrf_analysis_toolkit_cli:main"
