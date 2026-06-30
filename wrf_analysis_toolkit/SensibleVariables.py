@@ -71,6 +71,14 @@ def get_sv_names():
     return sorted(names)
 
 
+def get_sv_places():
+    """Return names of declared locations (SkewT) in this module."""
+    names = get_sv_names()
+    places = [name.replace("SkewT_", "") for name in names if name.startswith("SkewT_")]
+    places = [place for place in places if place not in ["Trajectory"]]
+    return sorted(places)
+
+
 # 2D + Field
 TerrainElevation = svariable(
     wrfname="ter",
