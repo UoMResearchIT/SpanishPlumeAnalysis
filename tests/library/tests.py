@@ -81,10 +81,24 @@ terrain_args = [
         "file_tag": "_Bath_range_0-1500",
     },
 ]
+csv_args = [
+    {
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/",
+        "lat": 51.38,
+        "lon": -2.36,
+    },
+    {
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/",
+        "variable_names": ["CIN", "CAPE", "AirTemp500", "AirTemp300"],
+        "place": "Bath",
+    },
+]
 
 tasks = []
-for arg in diagnostic_args + terrain_args:
-    var = arg["variable_name"]
+for arg in diagnostic_args + terrain_args + csv_args:
+    var = arg.get("variable_name", "csv")
     var = var[:30] + "..." if len(var) > 30 else var
     tag = arg.get("file_tag", "")
     task = f"{var}{tag}"
@@ -100,7 +114,7 @@ for task in tasks:
 
 t0 = datetime.now()
 
-for args, task in zip(diagnostic_args + terrain_args, tasks):
+for args, task in zip(diagnostic_args + terrain_args + csv_args, tasks):
     ti = datetime.now()
     print(f"\n----- {task} ---------- Started at: {ti}")
     args_str = ",".join([f"{k}={v}" for k, v in args.items()])
@@ -111,6 +125,9 @@ for args, task in zip(diagnostic_args + terrain_args, tasks):
         elif args in terrain_args:
             print(f"\nwat.terrain({args_str})")
             result = wat.terrain(**args)
+        elif args in csv_args:
+            print(f"\nwat.csv({args_str})")
+            result = wat.csv(**args)
         else:
             raise ValueError(f"Unknown task type for args: {args}")
     except Exception as e:

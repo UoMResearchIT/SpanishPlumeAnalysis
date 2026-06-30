@@ -1,10 +1,13 @@
 import os
 from copy import deepcopy
+from typing import List
 
 from wrf_analysis_toolkit.utils import set_variable
 
+import wrf_analysis_toolkit.SensibleVariables as sv
 from wrf_analysis_toolkit.Animate import Animate
 from wrf_analysis_toolkit.TerrainPlots import Terrain
+from wrf_analysis_toolkit.CSV_Data import CSV_Data
 
 
 def diagnostic(
@@ -158,6 +161,80 @@ def terrain(
         outdir=output_dir,
         out_format=output_format,
         smooth=smooth,
+        domain=domain,
+    )
+
+    return outfile
+
+
+def csv(
+    wrfout_dir: str,
+    output_dir: str,
+    variable_names: List[str] = None,
+    place=None,
+    lat=None,
+    lon=None,
+    file_tag: str = "",
+    domain: str = "zoom",
+):
+    """
+    Generates a CSV file with the values of the specified variables at a given location and saves it to the output directory.
+    The variables default to AirTemp, DewpointTemp, and RelativeHumidity at 925, 850, 700, 500, and 300 hPa, as well as CIN, CAPE, if not specified.
+
+    Inputs:
+    - wrfout_dir: Directory containing WRF output files.
+    - output_dir: Directory where the CSV file will be saved.
+    - variable_names: List of variable names to include in the CSV file (optional).
+    - place: Predefined location name (optional -- lat and lon may be provided instead).
+    - lat: Latitude for the location (optional -- place may be provided instead).
+    - lon: Longitude for the location (optional -- place may be provided instead).
+    - file_tag: String to append to the output filename (optional).
+    - domain: Domain for the plots (default is "zoom").
+
+    Returns: The name of the output file saved in the output directory.
+    """
+    if all(v is None for v in [place, lat, lon]):
+        raise ValueError(
+            "Either 'place' or both 'lat' and 'lon' must be provided to specify the location for the CSV output."
+        )
+
+    if variable_names is None:
+        csv_data_v = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
+        csv_data_p = [925, 850, 700, 500, 300]
+        variable_names = ["CIN", "CAPE"] + [
+            f"{var}{height}" for var in csv_data_v for height in csv_data_p
+        ]
+
+    defined_variables = sv.get_sv_names()
+    undefined_variables = [
+        var for var in variable_names if var not in defined_variables
+    ]
+    if undefined_variables:
+        raise ValueError(
+            f"Variable(s) '{', '.join(undefined_variables)}' are not defined in SensibleVariables."
+            f"Options are: {', '.join(defined_variables)}"
+        )
+    csv_vars = [set_variable(variable_name=var) for var in variable_names]
+
+    svar = set_variable(
+        variable_name="SkewT",  # Placeholder SV for CSV output
+        place=place,
+        lat=lat,
+        lon=lon,
+    )
+    if place is not None:
+        svar.outfile = f"CSV_Data_{place}"
+    else:
+        svar.outfile = f"CSV_Data_{svar.lat},{svar.lon}"
+
+    outfile = svar.outfile + file_tag
+
+    CSV_Data(
+        dir_path=wrfout_dir,
+        svariables=csv_vars,
+        location=svar,
+        outfile=outfile,
+        outdir=output_dir,
         domain=domain,
     )
 
