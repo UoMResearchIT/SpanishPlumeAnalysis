@@ -14,16 +14,12 @@ def GetSensVar(ncfile, svariable, windbarbs=0, time=0, varprevv=None):
             # Get wind speed components at 10m
             u, v = to_np(getvar(ncfile, "uvmet10", timeidx=time))
         # Special variable acquisition
-        if svariable == sv.CAPE:
+        if svariable.outfile in ["CAPE"]:
             var = var[0]
-        elif (
-            svariable == sv.CIN
-            or svariable == sv.CIN_YlGnBu
-            or svariable == sv.CIN_YlGn
-        ):
+        elif svariable.outfile in ["CIN", "CIN_YlGnBu", "CIN_YlGn"]:
             var = var[1]
         # Special variable computation
-        if svariable == sv.Rain:
+        if svariable.outfile in ["Rain"]:
             # Adds RAINC and RAINNC to get total accumulated precipitation
             rnc = getvar(ncfile, "RAINNC", timeidx=time)
             var.values = var.values + rnc.values
@@ -71,15 +67,15 @@ def GetSensVar(ncfile, svariable, windbarbs=0, time=0, varprevv=None):
                 else:
                     varv = np.append(varprevv[1:], [var.values], axis=0)
                     var.values = var.values - varprevv[0]
-        elif svariable == sv.StaticStability700500:
+        elif svariable.outfile in ["StaticStability700500"]:
             # Static stability computed as air temperature difference
             var2 = interplevel(d4var, interpvar, 500)
             var.values = var.values - var2.values
-        elif svariable == sv.StaticStability850700:
+        elif svariable.outfile in ["StaticStability850700"]:
             # Static stability computed as air temperature difference
             var2 = interplevel(d4var, interpvar, 850)
             var.values = var2.values - var.values
-        elif svariable == sv.InstRain:
+        elif svariable.outfile in ["InstRain"]:
             # InstRain (R) from SimRadarReflectivity1km (dBZ) using Marshall-Palmer: Z = 10^(dBZ/10) = 200*R^1.6
             var.values = (0.005 * 10 ** (0.1 * var.values)) ** (0.625)
         if windbarbs:
