@@ -8,6 +8,7 @@ import wrf_analysis_toolkit.SensibleVariables as sv
 from wrf_analysis_toolkit.Animate import Animate
 from wrf_analysis_toolkit.TerrainPlots import Terrain
 from wrf_analysis_toolkit.CSV_Data import CSV_Data
+from wrf_analysis_toolkit.MP4Compare import ConcatNDiff
 
 
 def diagnostic(
@@ -236,6 +237,68 @@ def csv(
         outfile=outfile,
         outdir=output_dir,
         domain=domain,
+    )
+
+    return outfile
+
+
+def mp4diff(
+    file_A,
+    file_B,
+    outdir,
+    file_tag="",
+    label_A="",
+    label_B="",
+    label_diff="",
+    clean=True,
+):
+    """
+    Performs a pixel-wise difference between two mp4 files.
+    The output is a new mp4 file that shows three videos in 1 row and 3 columns: A, B and A-B.
+    Both input files must have the same size and number of frames and be in mp4 format.
+
+    Inputs:
+    - file_A: Full path to the first mp4 file.
+    - file_B: Full path to the second mp4 file.
+    - outdir: Directory where the output file will be saved.
+    - file_tag: String to append to the output filename (optional).
+    - label_A: Label to be added at the top left corner of video A in the output (optional).
+    - label_B: Label to be added at the top left corner of video B in the output (optional).
+    - label_diff: Label to be added at the top left corner of the difference video in the output (optional).
+    - clean: Whether to clean up temporary files after processing (optional).
+
+    Returns: The name of the output file saved in the output directory.
+    """
+    # Check if the input files exist and are mp4 files
+    if not file_A.endswith(".mp4") or not file_B.endswith(".mp4"):
+        raise ValueError(
+            f"Both files need to be mp4 files."
+            f" Make sure to include the .mp4 extension in the file name."
+        )
+    if not os.path.isfile(file_A):
+        raise FileNotFoundError(f"File '{file_A}' does not exist.")
+    if not os.path.isfile(file_B):
+        raise FileNotFoundError(f"File '{file_B}' does not exist.")
+    # separate the directories and file names
+    dir1, file1 = os.path.split(file_A)
+    dir2, file2 = os.path.split(file_B)
+
+    outfile = f"mp4diff_{file1.replace('.mp4', '')}"
+    if file1 != file2:
+        outfile = outfile + f"_{file2.replace('.mp4', '')}"
+    outfile = outfile + file_tag
+
+    ConcatNDiff(
+        file1=file1,
+        file2=file2,
+        dir1=dir1,
+        dir2=dir2,
+        label1=label_A,
+        label2=label_B,
+        difflabel=label_diff,
+        outfile=outfile,
+        outdir=outdir,
+        cleandiff=clean,
     )
 
     return outfile

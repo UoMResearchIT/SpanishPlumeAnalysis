@@ -95,10 +95,26 @@ csv_args = [
         "place": "Bath",
     },
 ]
+mp4diff_args = [
+    {
+        "file_A": f"{res_path}/control/DewpointTemp925.mp4",
+        "file_B": f"{res_path}/zero/DewpointTemp925.mp4",
+        "outdir": f"{res_path}/",
+        "label_A": "Control",
+        "label_B": "Zero",
+        "label_diff": "Control-Zero",
+        "file_tag": "_Control-Zero",
+    },
+]
 
 tasks = []
-for arg in diagnostic_args + terrain_args + csv_args:
-    var = arg.get("variable_name", "csv")
+for arg in diagnostic_args + terrain_args + csv_args + mp4diff_args:
+    var = arg.get("variable_name")
+    if var is None:
+        if arg in csv_args:
+            var = "CSV"
+        elif arg in mp4diff_args:
+            var = "MP4Diff"
     var = var[:30] + "..." if len(var) > 30 else var
     tag = arg.get("file_tag", "")
     task = f"{var}{tag}"
@@ -114,7 +130,7 @@ for task in tasks:
 
 t0 = datetime.now()
 
-for args, task in zip(diagnostic_args + terrain_args + csv_args, tasks):
+for args, task in zip(diagnostic_args + terrain_args + csv_args + mp4diff_args, tasks):
     ti = datetime.now()
     print(f"\n----- {task} ---------- Started at: {ti}")
     args_str = ",".join([f"{k}={v}" for k, v in args.items()])
@@ -128,6 +144,9 @@ for args, task in zip(diagnostic_args + terrain_args + csv_args, tasks):
         elif args in csv_args:
             print(f"\nwat.csv({args_str})")
             result = wat.csv(**args)
+        elif args in mp4diff_args:
+            print(f"\nwat.mp4diff({args_str})")
+            result = wat.mp4diff(**args)
         else:
             raise ValueError(f"Unknown task type for args: {args}")
     except Exception as e:
