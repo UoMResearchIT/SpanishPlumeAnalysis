@@ -8,7 +8,7 @@ import wrf_analysis_toolkit.SensibleVariables as sv
 from wrf_analysis_toolkit.Animate import Animate
 from wrf_analysis_toolkit.TerrainPlots import Terrain
 from wrf_analysis_toolkit.CSV_Data import CSV_Data
-from wrf_analysis_toolkit.MP4Compare import ConcatNDiff
+from wrf_analysis_toolkit.MP4Compare import ConcatNDiff, ConcatNxM
 from wrf_analysis_toolkit.WRFCompare import WRFSmoothDiff
 
 
@@ -364,6 +364,52 @@ def mp4diff(
         outfile=outfile,
         outdir=outdir,
         cleandiff=clean,
+    )
+
+    return outfile
+
+
+def mp4stitch(
+    file_paths: List[str],
+    output_dir: str,
+    file_tag: str = "",
+    labels: List[str] = [],
+    rows: int = 1,
+    cols: int = 1,
+):
+    """
+    Stitches multiple mp4 files into a single mp4 file arranged in the specified rows and columns.
+
+    Inputs:
+    - file_paths: List of full paths to the mp4 files to be stitched.
+    - output_dir: Directory where the output file will be saved.
+    - file_tag: String to append to the output filename (optional).
+    - labels: List of labels to be added at the top left corner of each video in the output (optional).
+    - rows: Number of rows in the output video (optional, defaults to 1).
+    - cols: Number of columns in the output video (optional, will increase to fit all files, if necessary).
+    """
+    # Check if the input files exist and are mp4 files
+    for file_path in file_paths:
+        if not file_path.endswith(".mp4"):
+            raise ValueError(
+                f"File '{file_path}' is not an mp4 file."
+                f" Make sure to include the .mp4 extension in the file names."
+            )
+        if not os.path.isfile(file_path):
+            raise FileNotFoundError(f"File '{file_path}' does not exist.")
+    # Separate the directories and file names
+    dirs = [os.path.dirname(file_path) for file_path in file_paths]
+    files = [os.path.basename(file_path) for file_path in file_paths]
+
+    outfile = f"mp4stitch_{rows}x{cols}{file_tag}.mp4"
+    ConcatNxM(
+        files,
+        dirs=dirs,
+        labels=labels,
+        M=cols,
+        N=rows,
+        outfile=outfile,
+        outdir=output_dir,
     )
 
     return outfile

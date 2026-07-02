@@ -116,9 +116,33 @@ wrfdiff_args = [
         "file_tag": "_Control-Zero",
     },
 ]
+mp4stitch_args = [
+    {
+        "file_paths": [
+            f"{res_path}/control/DewpointTemp925.mp4",
+            f"{res_path}/zero/DewpointTemp925.mp4",
+            f"{res_path}/control/CAPE.mp4",
+            f"{res_path}/zero/CAPE.mp4",
+        ],
+        "labels": ["control", "zero", "control", "zero"],
+        "output_dir": f"{res_path}/",
+        "rows": 2,
+        "cols": 2,
+        "file_tag": "_control-zero",
+    },
+]
+
+all_args = (
+    diagnostic_args
+    + terrain_args
+    + csv_args
+    + wrfdiff_args
+    + mp4diff_args
+    + mp4stitch_args
+)
 
 tasks = []
-for arg in diagnostic_args + terrain_args + csv_args + wrfdiff_args + mp4diff_args:
+for arg in all_args:
     var = arg.get("variable_name")
     if var is None:
         if arg in csv_args:
@@ -127,6 +151,8 @@ for arg in diagnostic_args + terrain_args + csv_args + wrfdiff_args + mp4diff_ar
             var = "WRFCompare"
         elif arg in mp4diff_args:
             var = "MP4Diff"
+        elif arg in mp4stitch_args:
+            var = "MP4Stitch"
     var = var[:30] + "..." if len(var) > 30 else var
     tag = arg.get("file_tag", "")
     task = f"{var}{tag}"
@@ -142,9 +168,7 @@ for task in tasks:
 
 t0 = datetime.now()
 
-for args, task in zip(
-    diagnostic_args + terrain_args + csv_args + wrfdiff_args + mp4diff_args, tasks
-):
+for args, task in zip(all_args, tasks):
     ti = datetime.now()
     print(f"\n----- {task} ---------- Started at: {ti}")
     args_str = ",".join([f"{k}={v}" for k, v in args.items()])
@@ -164,6 +188,9 @@ for args, task in zip(
         elif args in mp4diff_args:
             print(f"\nwat.mp4diff({args_str})")
             result = wat.mp4diff(**args)
+        elif args in mp4stitch_args:
+            print(f"\nwat.mp4stitch({args_str})")
+            result = wat.mp4stitch(**args)
         else:
             raise ValueError(f"Unknown task type for args: {args}")
     except Exception as e:

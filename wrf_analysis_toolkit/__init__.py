@@ -8,6 +8,7 @@ from .api import (
     csv,
     wrfdiff,
     mp4diff,
+    mp4stitch,
 )
 
 __all__ = [
@@ -16,6 +17,7 @@ __all__ = [
     "csv",
     "wrfdiff",
     "mp4diff",
+    "mp4stitch",
 ]
 
 __version__ = version("wrf_analysis_toolkit")
