@@ -18,23 +18,19 @@ wrfdata = os.getenv("WRF_DATA_PATH", "/wrfdata")
 wrfdata = wrfdata[:-1] if wrfdata.endswith("/") else wrfdata
 res_path = os.getenv("RESULTS_PATH", f"{base_dir}/tests/human_checks/results")
 
-csv_data_v = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
-csv_data_p = [925, 850, 700, 500, 300]
-csv_data_svars = ["CIN", "CAPE"] + [
-    f"{var}{height}" for var in csv_data_v for height in csv_data_p
-]
-
 all_args = [
     f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata}/control/      --outdir={res_path}/control/",
     f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata}/zero/         --outdir={res_path}/zero/",
     f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/control/ --save_pdf_frames=1",
     f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/zero/",
-    f"--task=diagnostic   --var=TerrainElevation1000        --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1000",
-    f"--task=csv          --var=CSV_BristolChannel          --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full",
-    f"--task=csv          --var={','.join(csv_data_svars)}  --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=Bath",
-    f"--task=wrfcompare   --var=DewpointTemp925  --dir1={wrfdata}/control/ --dir2={wrfdata}/zero/ --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_wrf_diff_control-zero",
-    f"--task=mp4diff      --var=DewpointTemp925  --dir1={res_path}/control/ --dir2={res_path}/zero/ --label1=control --label2=zero --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_mp4_diff_control-zero",
-    f"--task=mp4stitch    --files=DewpointTemp925,DewpointTemp925,CAPE,CAPE --dirs={res_path}/control/,{res_path}/zero/,{res_path}/control/,{res_path}/zero/ --M=2 --N=2 --labels=control,zero,control,zero --outdir={res_path}/ --file_tag=_mp4_stitch_control-zero",
+    f"--task=diagnostic   --var=TerrainEl evation1000        --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1000",
+    f"--task=terrain      --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=Bath --file_tag=_Bath",
+    f"--task=csv          --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=BristolChannel",
+    f"--task=csv          --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=Bath --csv_vars=CIN,CAPE,AirTemp500,AirTemp300",
+    f"--task=wrfdiff   --var=DewpointTemp925  --dirs={wrfdata}/control/,{wrfdata}/zero/ --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_wrf_diff_control-zero",
+    f"--task=mp4diff      --var=DewpointTemp925  --dirs={res_path}/control/,{res_path}/zero/ --labels=control,zero --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_mp4_diff_control-zero",
+    f"--task=mp4diff      --files={res_path}/control/DewpointTemp925.mp4,{res_path}/zero/DewpointTemp925.mp4 --labels=control,zero,Control-Zero --outdir={res_path}/ --file_tag=_mp4_diff_control-zero_2",
+    f"--task=mp4stitch    --files={res_path}/control/DewpointTemp925.mp4,{res_path}/zero/DewpointTemp925.mp4,{res_path}/control/CAPE.mp4,{res_path}/zero/CAPE.mp4 --rows=2 --cols=2 --labels=control,zero,control,zero --outdir={res_path}/ --file_tag=_mp4_stitch_control-zero",
 ]
 
 
