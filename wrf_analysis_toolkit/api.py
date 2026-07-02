@@ -9,6 +9,7 @@ from wrf_analysis_toolkit.Animate import Animate
 from wrf_analysis_toolkit.TerrainPlots import Terrain
 from wrf_analysis_toolkit.CSV_Data import CSV_Data
 from wrf_analysis_toolkit.MP4Compare import ConcatNDiff
+from wrf_analysis_toolkit.WRFCompare import WRFSmoothDiff
 
 
 def diagnostic(
@@ -242,6 +243,70 @@ def csv(
     return outfile
 
 
+def wrfdiff(
+    wrfout_dir_A: str,
+    wrfout_dir_B: str,
+    variable_name: str,
+    output_dir: str,
+    file_tag: str = "",
+    label_diff: str = "",
+    range_min=None,
+    range_max=None,
+    windbarbs=None,
+    colormap=None,
+    domain: str = "zoom",
+    smooth: bool = False,
+    clean_png_frames: bool = True,
+    save_pdf_frames: bool = False,
+):
+    """
+    Performs a difference of the WRF output files (A-B), and generates a diagnostic from the resulting difference.
+    Both wrf output directories must have the same number of time steps.
+
+    Inputs:
+    - wrfout_dir_A: Full path to the first WRF output directory.
+    - wrfout_dir_B: Full path to the second WRF output directory.
+    - variable_name: Name of the variable to analyze (must be defined in SensibleVariables).
+    - output_dir: Directory where the output file(s) will be saved.
+    - file_tag: String to append to the output filename (optional).
+    - label_diff: Label to be added at the top left corner of the resulting diagnostic (optional).
+    - range_min: Minimum value for the variable range (optional).
+    - range_max: Maximum value for the variable range (optional).
+    - windbarbs: Boolean indicating whether to include wind barbs in the plots (optional).
+    - colormap: Colormap to use for the plots (optional).
+    - domain: Domain for the plots (default is "zoom").
+    - smooth: Boolean indicating whether to apply smoothing to the plots (default is False).
+    - clean_png_frames: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
+    - save_pdf_frames: Boolean indicating whether to save each frame as a PDF (default is False).
+
+    Returns: The name of the output file saved in the output directory.
+    """
+    svar = set_variable(
+        variable_name=variable_name,
+        range_min=range_min,
+        range_max=range_max,
+    )
+
+    outfile = f"wrf_diff_{svar.outfile}{file_tag}"
+
+    WRFSmoothDiff(
+        wrfout_dir_A,
+        wrfout_dir_B,
+        svar,
+        windbarbs=windbarbs,
+        difflabel=label_diff,
+        colormap=colormap,
+        outfile=outfile,
+        outdir=output_dir,
+        smooth=smooth,
+        domain=domain,
+        cleanpng=clean_png_frames,
+        save_pdf=save_pdf_frames,
+    )
+
+    return outfile
+
+
 def mp4diff(
     file_A,
     file_B,
@@ -283,7 +348,7 @@ def mp4diff(
     dir1, file1 = os.path.split(file_A)
     dir2, file2 = os.path.split(file_B)
 
-    outfile = f"mp4diff_{file1.replace('.mp4', '')}"
+    outfile = f"mp4_diff_{file1.replace('.mp4', '')}"
     if file1 != file2:
         outfile = outfile + f"_{file2.replace('.mp4', '')}"
     outfile = outfile + file_tag

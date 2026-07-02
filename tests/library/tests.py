@@ -106,13 +106,25 @@ mp4diff_args = [
         "file_tag": "_Control-Zero",
     },
 ]
+wrfdiff_args = [
+    {
+        "wrfout_dir_A": f"{wrfdata}/control/",
+        "wrfout_dir_B": f"{wrfdata}/zero/",
+        "variable_name": "DewpointTemp925",
+        "output_dir": f"{res_path}/",
+        "label_diff": "Control-Zero",
+        "file_tag": "_Control-Zero",
+    },
+]
 
 tasks = []
-for arg in diagnostic_args + terrain_args + csv_args + mp4diff_args:
+for arg in diagnostic_args + terrain_args + csv_args + wrfdiff_args + mp4diff_args:
     var = arg.get("variable_name")
     if var is None:
         if arg in csv_args:
             var = "CSV"
+        elif arg in wrfdiff_args:
+            var = "WRFCompare"
         elif arg in mp4diff_args:
             var = "MP4Diff"
     var = var[:30] + "..." if len(var) > 30 else var
@@ -130,7 +142,9 @@ for task in tasks:
 
 t0 = datetime.now()
 
-for args, task in zip(diagnostic_args + terrain_args + csv_args + mp4diff_args, tasks):
+for args, task in zip(
+    diagnostic_args + terrain_args + csv_args + wrfdiff_args + mp4diff_args, tasks
+):
     ti = datetime.now()
     print(f"\n----- {task} ---------- Started at: {ti}")
     args_str = ",".join([f"{k}={v}" for k, v in args.items()])
@@ -144,6 +158,9 @@ for args, task in zip(diagnostic_args + terrain_args + csv_args + mp4diff_args, 
         elif args in csv_args:
             print(f"\nwat.csv({args_str})")
             result = wat.csv(**args)
+        elif args in wrfdiff_args:
+            print(f"\nwat.wrfdiff({args_str})")
+            result = wat.wrfdiff(**args)
         elif args in mp4diff_args:
             print(f"\nwat.mp4diff({args_str})")
             result = wat.mp4diff(**args)
