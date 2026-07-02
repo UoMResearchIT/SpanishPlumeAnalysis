@@ -99,7 +99,7 @@ mp4diff_args = [
     {
         "file_A": f"{res_path}/control/DewpointTemp925.mp4",
         "file_B": f"{res_path}/zero/DewpointTemp925.mp4",
-        "outdir": f"{res_path}/",
+        "output_dir": f"{res_path}/",
         "label_A": "Control",
         "label_B": "Zero",
         "label_diff": "Control-Zero",

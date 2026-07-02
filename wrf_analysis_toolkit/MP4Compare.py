@@ -117,6 +117,7 @@ def ConcatNxM(
             dirs[0],
         )
         dirs = dirs + [dirs[0]] * (nfiles - len(dirs))
+    labels = labels or []
     if len(labels) < nfiles:
         print(
             f"WARNING: Length of labels ({len(labels)}) does not match length of files ({len(files)})."
