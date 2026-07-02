@@ -130,6 +130,17 @@ mp4stitch_args = [
         "cols": 2,
         "file_tag": "_control-zero",
     },
+    {
+        "file_paths": [
+            f"{res_path}/control/DewpointTemp925.mp4",
+            f"{res_path}/zero/DewpointTemp925.mp4",
+            f"{res_path}/control/CAPE.mp4",
+            f"{res_path}/zero/CAPE.mp4",
+        ],
+        "output_dir": f"{res_path}/",
+        "rows": 3,
+        "file_tag": "_control-zero",
+    },
 ]
 
 all_args = (

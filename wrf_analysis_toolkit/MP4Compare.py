@@ -80,7 +80,7 @@ def ConcatNDiff(
         ConcatNxM(
             files,
             dirs=dirs,
-            labels=labels[0:-1],
+            labels=labels,
             N=1,
             M=3,
             outfile=outfile,
