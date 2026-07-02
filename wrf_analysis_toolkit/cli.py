@@ -8,7 +8,8 @@ import argparse
 from wrf_analysis_toolkit.utils import str2bool
 import wrf_analysis_toolkit as wat
 
-if __name__ == "__main__":
+
+def cli():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--task",
@@ -164,104 +165,107 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-if args.task not in wat.__all__:
-    print(
-        f"Task '{args.task}' is not defined in wrf_analysis_toolkit."
-        f"Options are: {', '.join(wat.__all__)}"
-    )
-    exit(1)
+    if args.task not in wat.__all__:
+        print(
+            f"Task '{args.task}' is not defined in wrf_analysis_toolkit."
+            f"Options are: {', '.join(wat.__all__)}"
+        )
+        exit(1)
 
-files = args.files.split(",")
-print(f"---fhadb--- files: {files}")
-dirs = args.dirs.split(",") if args.dirs else [args.dir_path]
-labels = args.labels.split(",")
+    files = args.files.split(",")
+    dirs = args.dirs.split(",") if args.dirs else [args.dir_path]
+    labels = args.labels.split(",")
 
-match args.task:
-    case "terrain":
-        wat.terrain(
-            wrfout_dir=dirs[0],
-            output_dir=args.outdir,
-            variable_name=args.var,
-            file_tag=args.file_tag,
-            range_min=args.range_min,
-            range_max=args.range_max,
-            place=args.place,
-            lat=args.lat,
-            lon=args.lon,
-            domain=args.domain,
-            smooth=args.smooth,
-        )
+    match args.task:
+        case "terrain":
+            wat.terrain(
+                wrfout_dir=dirs[0],
+                output_dir=args.outdir,
+                variable_name=args.var,
+                file_tag=args.file_tag,
+                range_min=args.range_min,
+                range_max=args.range_max,
+                place=args.place,
+                lat=args.lat,
+                lon=args.lon,
+                domain=args.domain,
+                smooth=args.smooth,
+            )
 
-    case "diagnostic":
-        wat.diagnostic(
-            wrfout_dir=dirs[0],
-            output_dir=args.outdir,
-            variable_name=args.var,
-            file_tag=args.file_tag,
-            range_min=args.range_min,
-            range_max=args.range_max,
-            windbarbs=args.windbarbs,
-            place=args.place,
-            lat=args.lat,
-            lon=args.lon,
-            trajectory=args.traj,
-            domain=args.domain,
-            smooth=args.smooth,
-            clean_png_frames=args.clean,
-            save_pdf_frames=args.save_pdf_frames,
-        )
-    case "csv":
-        wat.csv(
-            wrfout_dir=dirs[0],
-            output_dir=args.outdir,
-            variable_names=args.csv_vars.split(",") if args.csv_vars else None,
-            place=args.place,
-            lat=args.lat,
-            lon=args.lon,
-            file_tag=args.file_tag,
-            domain=args.domain,
-        )
-    case "wrfcompare":
-        wat.wrfdiff(
-            wrfout_dir_A=dirs[0],
-            wrfout_dir_B=dirs[1],
-            variable_name=args.var,
-            output_dir=args.outdir,
-            file_tag=args.file_tag,
-            label_diff=args.difflabel or (labels[0] or None),
-            range_min=args.range_min,
-            range_max=args.range_max,
-            windbarbs=args.windbarbs,
-            colormap=args.colormap,
-            domain=args.domain,
-            smooth=args.smooth,
-            clean_png_frames=args.clean,
-            save_pdf_frames=args.save_pdf_frames,
-        )
-    case "mp4diff":
-        if len(files) != 2:
-            if args.var and len(dirs) == 2:
-                files = [f"{dirs[0]}/{args.var}.mp4", f"{dirs[1]}/{args.var}.mp4"]
-            else:
-                raise ValueError(
-                    "mp4diff requires exactly 2 files or a variable name with 2 directories."
-                )
-        wat.mp4diff(
-            file_A=files[0],
-            file_B=files[1],
-            output_dir=args.outdir,
-            file_tag=args.file_tag,
-            label_A=labels[0],
-            label_B=labels[1],
-            label_diff=args.difflabel or (labels[2] or None),
-            clean_png_frames=args.clean,
-        )
-    case "mp4stitch":
-        wat.mp4stitch(
-            file_paths=files,
-            output_dir=args.outdir,
-            file_tag=args.file_tag,
-            labels=labels,
-            rows=args.rows,
-            cols=args.cols,
-        )
+        case "diagnostic":
+            wat.diagnostic(
+                wrfout_dir=dirs[0],
+                output_dir=args.outdir,
+                variable_name=args.var,
+                file_tag=args.file_tag,
+                range_min=args.range_min,
+                range_max=args.range_max,
+                windbarbs=args.windbarbs,
+                place=args.place,
+                lat=args.lat,
+                lon=args.lon,
+                trajectory=args.traj,
+                domain=args.domain,
+                smooth=args.smooth,
+                clean_png_frames=args.clean,
+                save_pdf_frames=args.save_pdf_frames,
+            )
+        case "csv":
+            wat.csv(
+                wrfout_dir=dirs[0],
+                output_dir=args.outdir,
+                variable_names=args.csv_vars.split(",") if args.csv_vars else None,
+                place=args.place,
+                lat=args.lat,
+                lon=args.lon,
+                file_tag=args.file_tag,
+                domain=args.domain,
+            )
+        case "wrfcompare":
+            wat.wrfdiff(
+                wrfout_dir_A=dirs[0],
+                wrfout_dir_B=dirs[1],
+                variable_name=args.var,
+                output_dir=args.outdir,
+                file_tag=args.file_tag,
+                label_diff=args.difflabel or (labels[0] or None),
+                range_min=args.range_min,
+                range_max=args.range_max,
+                windbarbs=args.windbarbs,
+                colormap=args.colormap,
+                domain=args.domain,
+                smooth=args.smooth,
+                clean_png_frames=args.clean,
+                save_pdf_frames=args.save_pdf_frames,
+            )
+        case "mp4diff":
+            if len(files) != 2:
+                if args.var and len(dirs) == 2:
+                    files = [f"{dirs[0]}/{args.var}.mp4", f"{dirs[1]}/{args.var}.mp4"]
+                else:
+                    raise ValueError(
+                        "mp4diff requires exactly 2 files or a variable name with 2 directories."
+                    )
+            wat.mp4diff(
+                file_A=files[0],
+                file_B=files[1],
+                output_dir=args.outdir,
+                file_tag=args.file_tag,
+                label_A=labels[0],
+                label_B=labels[1],
+                label_diff=args.difflabel or (labels[2] or None),
+                clean_png_frames=args.clean,
+            )
+        case "mp4stitch":
+            wat.mp4stitch(
+                file_paths=files,
+                output_dir=args.outdir,
+                file_tag=args.file_tag,
+                labels=labels,
+                rows=args.rows,
+                cols=args.cols,
+            )
+
+
+if __name__ == "__main__":
+    cli()

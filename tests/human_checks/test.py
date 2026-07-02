@@ -46,6 +46,8 @@ for arg in all_args:
     task = f"{t}_{var}{tag}"
     task = task.replace(",", "-")
     tasks.append(task)
+tasks.append("installed_script_call_help")
+tasks.append("installed_script_call_diag")
 
 task_status = {d: {"exit": "Not Run", "runtime": "---"} for d in tasks}
 print(f"\nTasks:")
@@ -54,17 +56,34 @@ for task in tasks:
 
 t0 = datetime.now()
 
-for args, task in zip(all_args, tasks):
+for args, task in zip(all_args, tasks[:-2]):
     outdir = args.split("--outdir=")[1]
     if " " in outdir:
         outdir = outdir.split(" ")[0]
     subprocess.run(f"mkdir -p {outdir}", shell=True)
     ti = datetime.now()
     print(f"\n----- {task} ---------- Started at: {ti}")
-    print(f"\npython {base_dir}/wrf_analysis_toolkit_cli.py {args}")
+    print(f"\npython {base_dir}/wrf_analysis_toolkit/cli.py {args}")
     result = subprocess.run(
-        f"python {base_dir}/wrf_analysis_toolkit_cli.py {args}", shell=True
+        f"python {base_dir}/wrf_analysis_toolkit/cli.py {args}", shell=True
     )
+    runtime = datetime.now() - ti
+    print(f"\n----- {task} ---------- Finished after: {runtime}")
+    task_status[task] = {
+        "exit": "OK" if result.returncode == 0 else "ERROR",
+        "runtime": runtime,
+    }
+for args, task in zip(
+    [
+        " -h",
+        f" --task=diagnostic --var=AirTemp2m --dir_path={wrfdata}/control/ --outdir={res_path}/control/",
+    ],
+    tasks[-2:],
+):
+    ti = datetime.now()
+    print(f"\n----- {task} ---------- Started at: {ti}")
+    print(f"\nwrf_analysis_toolkit_cli {args}")
+    result = subprocess.run(f"wrf_analysis_toolkit_cli {args}", shell=True)
     runtime = datetime.now() - ti
     print(f"\n----- {task} ---------- Finished after: {runtime}")
     task_status[task] = {

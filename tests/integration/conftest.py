@@ -7,7 +7,7 @@ import pytest
 from netCDF4 import Dataset
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-MAIN_PY = REPO_ROOT / "wrf_analysis_toolkit_cli.py"
+MAIN_PY = REPO_ROOT / "wrf_analysis_toolkit" / "cli.py"
 
 
 def has_wrfout_files(path: Path) -> bool:

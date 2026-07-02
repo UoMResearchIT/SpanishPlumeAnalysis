@@ -17,4 +17,4 @@ dependencies = [
 ]
 
 [project.scripts]
-wrf_analysis_toolkit_cli = "wrf_analysis_toolkit_cli:main"
+wrf_analysis_toolkit_cli = "wrf_analysis_toolkit.cli:cli"

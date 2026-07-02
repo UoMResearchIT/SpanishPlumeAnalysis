@@ -45,9 +45,9 @@ for diag in diagnostics:
     args = f"--task=diagnostic --var={diag} --dir_path={wrfdata}/ --save_pdf_frames=1 --outdir={results}/"
     ti = datetime.now()
     print(f"\n----- {diag} ---------- Started at: {ti}")
-    print(f"\npython {base_dir}/wrf_analysis_toolkit_cli.py {args}")
+    print(f"\npython {base_dir}/wrf_analysis_toolkit/cli.py {args}")
     result = subprocess.run(
-        f"python {base_dir}/wrf_analysis_toolkit_cli.py {args}", shell=True
+        f"python {base_dir}/wrf_analysis_toolkit/cli.py {args}", shell=True
     )
     runtime = datetime.now() - ti
     print(f"\n----- {diag} ---------- Finished after: {runtime}")
