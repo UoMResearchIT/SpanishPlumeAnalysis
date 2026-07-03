@@ -9,8 +9,8 @@ def _run_diagnostic(var_name: str, wrf_dir: Path, out_dir: Path, run_cli) -> Non
         [
             "--task=diagnostic",
             f"--var={var_name}",
-            f"--dir_path={wrf_dir}",
-            f"--outdir={out_dir}",
+            f"--wrfout_dir={wrf_dir}",
+            f"--output_dir={out_dir}",
         ]
     )
     assert result.returncode == 0, (
@@ -18,6 +18,7 @@ def _run_diagnostic(var_name: str, wrf_dir: Path, out_dir: Path, run_cli) -> Non
         f"STDOUT:\n{result.stdout}\n"
         f"STDERR:\n{result.stderr}"
     )
+
 
 @pytest.fixture()
 def prepared_compare_inputs(
@@ -51,8 +52,8 @@ def test_wrfcompare_generates_diff_mp4(
             "--var=DewpointTemp925",
             f"--dir1={control_wrf_dir}",
             f"--dir2={zero_wrf_dir}",
-            "--difflabel=Control-Zero",
-            f"--outdir={out_dir}",
+            "--label_diff=Control-Zero",
+            f"--output_dir={out_dir}",
             "--file_tag=_wrf_diff_control-zero",
         ]
     )
@@ -83,8 +84,8 @@ def test_mp4diff_generates_comparison_mp4(
             f"--dir2={zero_out}",
             "--label1=control",
             "--label2=zero",
-            "--difflabel=Control-Zero",
-            f"--outdir={out_dir}",
+            "--label_diff=Control-Zero",
+            f"--output_dir={out_dir}",
             "--file_tag=_mp4_diff_control-zero",
         ]
     )
@@ -115,7 +116,7 @@ def test_mp4stitch_generates_stitched_mp4(
             "--M=2",
             "--N=2",
             "--labels=control,zero,control,zero",
-            f"--outdir={out_dir}",
+            f"--output_dir={out_dir}",
             "--file_tag=_mp4_stitch_control-zero",
         ]
     )

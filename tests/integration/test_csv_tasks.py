@@ -54,8 +54,8 @@ def test_csv_task_from_csv_place_shortcut(
         [
             "--task=csv",
             "--var=CSV_BristolChannel",
-            f"--dir_path={wrf_control_dir}",
-            f"--outdir={tmp_path}",
+            f"--wrfout_dir={wrf_control_dir}",
+            f"--output_dir={tmp_path}",
             "--domain=full",
         ]
     )
@@ -79,8 +79,8 @@ def test_csv_task_from_explicit_variable_list(
         [
             "--task=csv",
             f"--var={','.join(CSV_DATA_SVARS)}",
-            f"--dir_path={wrf_control_dir}",
-            f"--outdir={tmp_path}",
+            f"--wrfout_dir={wrf_control_dir}",
+            f"--output_dir={tmp_path}",
             "--domain=full",
             "--place=Bath",
         ]

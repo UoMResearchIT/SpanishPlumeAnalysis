@@ -42,7 +42,7 @@ print(big_div)
 diag_status = {d: {"exit": "Not Run", "runtime": "---"} for d in diagnostics}
 subprocess.run(f"mkdir -p {results}", shell=True)
 for diag in diagnostics:
-    args = f"--task=diagnostic --var={diag} --dir_path={wrfdata}/ --save_pdf_frames=1 --outdir={results}/"
+    args = f"--task=diagnostic --var={diag} --wrfout_dir={wrfdata}/ --save_pdf_frames=1 --output_dir={results}/"
     ti = datetime.now()
     print(f"\n----- {diag} ---------- Started at: {ti}")
     print(f"\npython {base_dir}/wrf_analysis_toolkit/cli.py {args}")

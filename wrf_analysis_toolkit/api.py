@@ -325,7 +325,7 @@ def mp4diff(
     Inputs:
     - file_A: Full path to the first mp4 file.
     - file_B: Full path to the second mp4 file.
-    - outdir: Directory where the output file will be saved.
+    - output_dir: Directory where the output file will be saved.
     - file_tag: String to append to the output filename (optional).
     - label_A: Label to be added at the top left corner of video A in the output (optional).
     - label_B: Label to be added at the top left corner of video B in the output (optional).

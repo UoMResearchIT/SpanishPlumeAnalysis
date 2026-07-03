@@ -19,6 +19,8 @@ def cli():
     )
     parser.add_argument(
         "--var",
+        "--variable_name",
+        dest="var",
         type=str,
         default="DewpointTemp2m",
         help="Sensible variable to work with.",
@@ -26,6 +28,8 @@ def cli():
     )
     parser.add_argument(
         "--csv_vars",
+        "--variable_names",
+        dest="csv_vars",
         type=str,
         default="",
         help="Comma separated variables to include in csv.",
@@ -44,6 +48,8 @@ def cli():
     )
     parser.add_argument(
         "--clean",
+        "--clean_png_frames",
+        dest="clean",
         type=str2bool,
         default=1,
         help="Set to 0 to conserve png or mp4 temp files generated during the task",
@@ -75,6 +81,8 @@ def cli():
     )
     parser.add_argument(
         "--files",
+        "--file_paths",
+        dest="files",
         type=str,
         default="",
         help="List of file names used for mp4stitch. Provide a list in quotes separated by commas.",
@@ -110,19 +118,18 @@ def cli():
         help="Maximum value used in the colormap. Default value is defined in sensible variables. You can override them by choosing a different one here.",
     )
     parser.add_argument(
-        "--difflabel",
+        "--label_diff",
         type=str,
         default="",
         help="Label added in top corner of diff image",
     )
     parser.add_argument(
-        "--dir_path",
+        "--wrfout_dir",
         type=str,
-        default="/mnt/seaes01-data01/dmg/dmg/mbessdl2/Spanish_Plume/WRF/run-zrek/",
         help="Path to the directory with your wrfout files.",
     )
     parser.add_argument(
-        "--outdir",
+        "--output_dir",
         type=str,
         default="./",
         help="Path to the directory in which outputs will be saved.",
@@ -158,6 +165,8 @@ def cli():
     )
     parser.add_argument(
         "--traj",
+        "--trajectory",
+        dest="traj",
         type=str,
         default=None,
         help="Path to the trajectory CSV file.",
@@ -173,14 +182,14 @@ def cli():
         exit(1)
 
     files = args.files.split(",")
-    dirs = args.dirs.split(",") if args.dirs else [args.dir_path]
+    dirs = args.dirs.split(",") if args.dirs else [args.wrfout_dir]
     labels = args.labels.split(",")
 
     match args.task:
         case "terrain":
             wat.terrain(
                 wrfout_dir=dirs[0],
-                output_dir=args.outdir,
+                output_dir=args.output_dir,
                 variable_name=args.var,
                 file_tag=args.file_tag,
                 range_min=args.range_min,
@@ -195,7 +204,7 @@ def cli():
         case "diagnostic":
             wat.diagnostic(
                 wrfout_dir=dirs[0],
-                output_dir=args.outdir,
+                output_dir=args.output_dir,
                 variable_name=args.var,
                 file_tag=args.file_tag,
                 range_min=args.range_min,
@@ -213,7 +222,7 @@ def cli():
         case "csv":
             wat.csv(
                 wrfout_dir=dirs[0],
-                output_dir=args.outdir,
+                output_dir=args.output_dir,
                 variable_names=args.csv_vars.split(",") if args.csv_vars else None,
                 place=args.place,
                 lat=args.lat,
@@ -221,14 +230,14 @@ def cli():
                 file_tag=args.file_tag,
                 domain=args.domain,
             )
-        case "wrfcompare":
+        case "wrfdiff":
             wat.wrfdiff(
                 wrfout_dir_A=dirs[0],
                 wrfout_dir_B=dirs[1],
                 variable_name=args.var,
-                output_dir=args.outdir,
+                output_dir=args.output_dir,
                 file_tag=args.file_tag,
-                label_diff=args.difflabel or (labels[0] or None),
+                label_diff=args.label_diff or (labels[0] or None),
                 range_min=args.range_min,
                 range_max=args.range_max,
                 windbarbs=args.windbarbs,
@@ -249,17 +258,17 @@ def cli():
             wat.mp4diff(
                 file_A=files[0],
                 file_B=files[1],
-                output_dir=args.outdir,
+                output_dir=args.output_dir,
                 file_tag=args.file_tag,
                 label_A=labels[0],
                 label_B=labels[1],
-                label_diff=args.difflabel or (labels[2] or None),
+                label_diff=args.label_diff or (labels[2] or None),
                 clean_png_frames=args.clean,
             )
         case "mp4stitch":
             wat.mp4stitch(
                 file_paths=files,
-                output_dir=args.outdir,
+                output_dir=args.output_dir,
                 file_tag=args.file_tag,
                 labels=labels,
                 rows=args.rows,

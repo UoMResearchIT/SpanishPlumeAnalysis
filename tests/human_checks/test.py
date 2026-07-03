@@ -19,18 +19,18 @@ wrfdata = wrfdata[:-1] if wrfdata.endswith("/") else wrfdata
 res_path = os.getenv("RESULTS_PATH", f"{base_dir}/tests/human_checks/results")
 
 all_args = [
-    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata}/control/      --outdir={res_path}/control/",
-    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata}/zero/         --outdir={res_path}/zero/",
-    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/control/ --save_pdf_frames=1",
-    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/zero/",
-    f"--task=diagnostic   --var=TerrainEl evation1000        --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1000",
-    f"--task=terrain      --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=Bath --file_tag=_Bath",
-    f"--task=csv          --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=BristolChannel",
-    f"--task=csv          --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=Bath --csv_vars=CIN,CAPE,AirTemp500,AirTemp300",
-    f"--task=wrfdiff   --var=DewpointTemp925  --dirs={wrfdata}/control/,{wrfdata}/zero/ --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_wrf_diff_control-zero",
-    f"--task=mp4diff      --var=DewpointTemp925  --dirs={res_path}/control/,{res_path}/zero/ --labels=control,zero --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_mp4_diff_control-zero",
-    f"--task=mp4diff      --files={res_path}/control/DewpointTemp925.mp4,{res_path}/zero/DewpointTemp925.mp4 --labels=control,zero,Control-Zero --outdir={res_path}/ --file_tag=_mp4_diff_control-zero_2",
-    f"--task=mp4stitch    --files={res_path}/control/DewpointTemp925.mp4,{res_path}/zero/DewpointTemp925.mp4,{res_path}/control/CAPE.mp4,{res_path}/zero/CAPE.mp4 --rows=2 --cols=2 --labels=control,zero,control,zero --outdir={res_path}/ --file_tag=_mp4_stitch_control-zero",
+    f"--task=diagnostic   --var=DewpointTemp925              --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/control/",
+    f"--task=diagnostic   --var=DewpointTemp925              --wrfout_dir={wrfdata}/zero/         --output_dir={res_path}/zero/",
+    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/control/ --save_pdf_frames=1",
+    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/zero/",
+    f"--task=diagnostic   --var=TerrainEl evation1000        --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1000",
+    f"--task=terrain      --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --domain=full --place=Bath --file_tag=_Bath",
+    f"--task=csv          --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --domain=full --place=BristolChannel",
+    f"--task=csv          --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --domain=full --place=Bath --csv_vars=CIN,CAPE,AirTemp500,AirTemp300",
+    f"--task=wrfdiff   --var=DewpointTemp925  --dirs={wrfdata}/control/,{wrfdata}/zero/ --label_diff=Control-Zero --output_dir={res_path}/ --file_tag=_wrf_diff_control-zero",
+    f"--task=mp4diff      --var=DewpointTemp925  --dirs={res_path}/control/,{res_path}/zero/ --labels=control,zero --label_diff=Control-Zero --output_dir={res_path}/ --file_tag=_mp4_diff_control-zero",
+    f"--task=mp4diff      --files={res_path}/control/DewpointTemp925.mp4,{res_path}/zero/DewpointTemp925.mp4 --labels=control,zero,Control-Zero --output_dir={res_path}/ --file_tag=_mp4_diff_control-zero_2",
+    f"--task=mp4stitch    --files={res_path}/control/DewpointTemp925.mp4,{res_path}/zero/DewpointTemp925.mp4,{res_path}/control/CAPE.mp4,{res_path}/zero/CAPE.mp4 --rows=2 --cols=2 --labels=control,zero,control,zero --output_dir={res_path}/ --file_tag=_mp4_stitch_control-zero",
 ]
 
 
@@ -57,10 +57,10 @@ for task in tasks:
 t0 = datetime.now()
 
 for args, task in zip(all_args, tasks[:-2]):
-    outdir = args.split("--outdir=")[1]
-    if " " in outdir:
-        outdir = outdir.split(" ")[0]
-    subprocess.run(f"mkdir -p {outdir}", shell=True)
+    output_dir = args.split("--output_dir=")[1]
+    if " " in output_dir:
+        output_dir = output_dir.split(" ")[0]
+    subprocess.run(f"mkdir -p {output_dir}", shell=True)
     ti = datetime.now()
     print(f"\n----- {task} ---------- Started at: {ti}")
     print(f"\npython {base_dir}/wrf_analysis_toolkit/cli.py {args}")
@@ -76,7 +76,7 @@ for args, task in zip(all_args, tasks[:-2]):
 for args, task in zip(
     [
         " -h",
-        f" --task=diagnostic --var=AirTemp2m --dir_path={wrfdata}/control/ --outdir={res_path}/control/",
+        f" --task=diagnostic --var=AirTemp2m --wrfout_dir={wrfdata}/control/ --output_dir={res_path}/control/",
     ],
     tasks[-2:],
 ):

@@ -6,7 +6,13 @@ This repo contains a set of scripts to generate diagnostics from WRF outputs, an
 - [WRF Analysis Toolkit](#wrf-analysis-toolkit)
   - [Table of contents](#table-of-contents)
   - [Setup](#setup)
-  - [Generating diagnostics](#generating-diagnostics)
+  - [Usage](#usage)
+    - [As a module](#as-a-module)
+    - [As a CLI](#as-a-cli)
+    - [Parameters](#parameters)
+      - [CLI only](#cli-only)
+    - [Variables](#variables)
+    - [Locations](#locations)
   - [About the source code](#about-the-source-code)
     - [Animate](#animate)
     - [Plot2DField](#plot2dfield)
@@ -29,31 +35,205 @@ This repo contains a set of scripts to generate diagnostics from WRF outputs, an
 <summary>Set up your conda environment to meet the requirements.</summary>
 
 - See [conda environment](#conda-environment) for instructions on how to set up the conda environment.
+- Make sure you have installed this package too, so that you can call the cli script from anywhere and cleanly import the modules from your own scripts.
 
 </details>
 
-## Generating diagnostics
+## Usage
+Once installed, this package can be imported as a [module](#as-a-module) in your python code, or called directly as as a [cli](#as-a-cli).
+The tasks that you will normally want to use are:
+ - **diagnostic**, which generates animated plots of a given variable.
+    - Requires: `wrfout_dir`, `variable_name`, and `output_dir`.
+ - **terrain**, which generates a terrain elevation plot.
+   - Requires: `wrfout_dir`, and `output_dir`.
+ - **csv**, which generates a csv file with the values of the given variables at a given location.
+   - Requires: `wrfout_dir`, `output_dir`, and either `place` or both `lat` and `lon`.
+ - **wrfdiff**, which generates a diagnostic of the difference of two WRF output files.
+   - Requires: `wrfout_dir_A`, `wrfout_dir_B`, `variable_name`, and `output_dir`.
+ - **mp4diff**, which generates a video of the pixel difference of two mp4 files.
+   - Requires: `file_A`, `file_B`, and `output_dir`.
+ - **mp4stitch**, which generates a video that stitches together a set of mp4 files in a grid.
+   - Requires: `file_paths` and `output_dir`.
 
-The `wrf_analysis_toolkit_cli.py` file is designed to be called as a cli.
-You *always* have to pass these arguments:
-- **task**, which can be *diagnostic*, *wrfcompare*, *mp4diff* or *mp4stitch*.
-- **var**, which can be any of the predefined **SensibleVariables**.
-- **dir_path**, which is the directory of the source files.
-- **outdir**, which is the directory where outputs will be saved.
+### As a module
+You can import the package and call the main tasks as members of `wrf_analysis_toolkit`.
 
-In some cases, you will also need to pass:
-- **dirs**, which is the list of directories, when being compared.
-- **files**, which is the list of names of files, when being compared.
-- **labels**, which is the list of labels added when files are being compared or stitched.
+For example:
 
-The following are sample calls for this function:
+```python
+import wrf_analysis_toolkit as wat
 
-*python wrf_analysis_toolkit_cli.py --task=diagnostic --var=Rain --dir_path=./MyData/ --outdir=./*
+wat.diagnostic(variable_name="AirTemp2m", wrfout_dir="/my/data/", output_dir="/my/results/")
+wat.terrain(wrfout_dir="/my/data/", output_dir="/my/results/")
+wat.csv(variable_names=["AirTemp2m", "CAPE"], wrfout_dir="/my/data/", output_dir="/my/results/", lat=40.0, lon=-105.0)
+wat.wrfdiff(variable_name="AirTemp2m", wrfout_dir_A="/my/data1/", wrfout_dir_B="/my/data2/", output_dir="/my/results/")
+wat.mp4diff(file_A="/my/data1/diagnostic.mp4", file_B="/my/data2/diagnostic.mp4", output_dir="/my/results/")
+wat.mp4stitch(file_paths=["/my/data1/diagnostic.mp4", "/my/data2/diagnostic.mp4"], output_dir="/my/results/", rows=1, cols=2)
+```
 
-*python wrf_analysis_toolkit_cli.py --task=wrfcompare --var=SeaLevelPressure --dirs="Data1,Data2" --outdir=./ --difflabel=Data2-Data1*
+You may access the full documentation of each of these functions by calling, for example:
+```
+help(wat.diagnostic)
+```
 
-*python wrf_analysis_toolkit_cli.py --task=mp4diff --var=DewpointTemp850 --dirs="./MP4_1,./MP4_2/" --labels="MP4_1,MP4_2,MP4Diff"*
-*python wrf_analysis_toolkit_cli.py --task=mp4stitch --dirs="MyVideos" --files="f1,f2,f3,f4" --N=2 --M=2*
+### As a CLI
+When being used as a cli, you *always* have to pass arguments as `--key=value` pairs, and a **task** key is always needed. This can be any of the listed above.
+
+Example calls for this function are (to be run within the active conda environment):
+```
+wrf_analysis_toolkit_cli --task=diagnostic --var=AirTemp2m --wrfout_dir=/my/data/ --output_dir=/my/results/
+wrf_analysis_toolkit_cli --task=terrain --var=TerrainElevation --wrfout_dir=/my/data/ --output_dir=/my/results/
+wrf_analysis_toolkit_cli --task=csv --csv_vars=AirTemp2m,CAPE --wrfout_dir=/my/data/ --output_dir=/my/results/ --lat=40.0 --lon=-105.0
+wrf_analysis_toolkit_cli --task=wrfdiff --var=AirTemp2m --dirs=/my/data1/,/my/data2/ --output_dir=/my/results/
+wrf_analysis_toolkit_cli --task=mp4diff --files=/my/data1/diagnostic.mp4,/my/data2/diagnostic.mp4 --output_dir=/my/results/
+wrf_analysis_toolkit_cli --task=mp4stitch --files=/my/data1/diagnostic.mp4,/my/data2/diagnostic.mp4 --output_dir=/my/results/ --rows=1 --cols=2
+```
+
+You may access the full cli documentation with the -h flag:
+```
+wrf_analysis_toolkit_cli -h
+```
+
+### Parameters
+The parameters for each of the tasks are described in each of the functions.
+This is a (hopefully) complete list of the parameters that can be passed, but not all of them are needed for each task:
+- `output_dir`: Directory where the output file(s) will be saved.
+- `wrfout_dir`: Directory containing WRF output files.
+- `variable_name`: Name of the variable to analyze (see the list of available [variables](#variables)).
+- `file_tag`: String to append to the output filename.
+- `range_min`: Minimum value for the variable range .
+- `range_max`: Maximum value for the variable range .
+- `windbarbs`: Boolean indicating whether to include wind barbs in the plots.
+- `place`: Predefined location name (see the list of available [locations](#locations)).
+- `lat`: Latitude for the variable. If provided, `lon` must also be provided.
+- `lon`: Longitude for the variable. If provided, `lat` must also be provided.
+- `trajectory`: Path to a trajectory file for SkewT plots animated along a trajectory.
+- `domain`: Domain for the plots (default is "zoom").
+- `smooth`: Boolean indicating whether to apply smoothing to the plots (default is False).
+- `clean_png_frames`: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
+- `save_pdf_frames`: Boolean indicating whether to save each frame as a PDF (default is False).
+- `output_format`: (`terrain` task only) Format of the output file (default is "pdf"; can be "png").
+- `variable_names`: (`csv` task only) List of variable names to include in the CSV file.
+- `wrfout_dir_A`: (`wrfdiff` task only) Full path to the first WRF output directory.
+- `wrfout_dir_B`: (`wrfdiff` task only) Full path to the second WRF output directory.
+- `colormap`: (`wrfdiff` task only) Colormap to use for the plots.
+- `label_diff`: (`wrfdiff` and `mp4diff` tasks only) Label to be added at the top left corner of the resulting diagnostic.
+- `file_A`: (`mp4diff` task only) Full path to the first mp4 file.
+- `file_B`: (`mp4diff` task only) Full path to the second mp4 file.
+- `label_A`: (`mp4diff` task only) Label to be added at the top left corner of video A in the output.
+- `label_B`: (`mp4diff` task only) Label to be added at the top left corner of video B in the output.
+- `file_paths`: (`mp4stitch` task only) List of full paths to the mp4 files to be stitched together.
+- `labels`: (`mp4stitch` task only) List of labels to be added at the top left corner of each video in the output.
+- `rows`: (`mp4stitch` task only) Number of rows in the output video (defaults to 1).
+- `cols`: (`mp4stitch` task only) Number of columns in the output video (will increase to fit all files, if necessary).
+
+#### CLI only
+On top of the parameters listed above, the CLI has a few additional parameters or synonyms that are only used for the CLI interface:
+- `task`: (required) The task to be performed.
+- `var`: synonym of `variable_name`, for the cli.
+- `csv_vars`: synonym of `variable_names`, for the cli.
+- `clean`: synonym of `clean_png_frames`, for the cli.
+- `files`: Comma-separated list of files. Synonym of `file_paths`, for the cli, and replaces `file_A` and `file_B` for the `mp4diff` task.
+- `dirs`: Comma-separated list of directories. Replaces of `wrfout_dir_A` and `wrfout_dir_B`, for the cli.
+- `labels`: Comma-separated list of labels. Replaces of `label_A` and `label_B`, for the cli. May include `label_diff` as the third label for the `mp4diff` task.
+- `traj`: synonym of `trajectory`, for the cli.
+
+### Variables
+
+This is a list of the variables that are currently defined in the code, and can be used as `variable_name` parameters.
+
+- AbsoluteVorticity300
+- AbsoluteVorticity500
+- AbsoluteVorticity700
+- AbsoluteVorticity850
+- AbsoluteVorticity925
+- AirTemp2m
+- AirTemp300
+- AirTemp500
+- AirTemp700
+- AirTemp850
+- AirTemp925
+- AirTempDif12h500
+- AirTempDif12h700
+- AirTempDif12h850
+- AirTempDif6h500
+- AirTempDif6h700
+- AirTempDif6h850
+- CAPE
+- CIN
+- CIN_YlGn
+- CIN_YlGnBu
+- DewpointTemp2m
+- DewpointTemp300
+- DewpointTemp500
+- DewpointTemp700
+- DewpointTemp850
+- DewpointTemp925
+- Frontogenesis500
+- Frontogenesis700
+- Frontogenesis850
+- Frontogenesis925
+- GeoPotHeight300
+- GeoPotHeight500
+- GeoPotHeight700
+- GeoPotHeight850
+- GeoPotHeight925
+- InstRain
+- PotentialTemp2m
+- PotentialTemp500
+- PotentialTemp600
+- PotentialTemp700
+- PotentialTemp800
+- PotentialTemp850
+- PotentialTemp925
+- Rain
+- RelativeHumidity2m
+- RelativeHumidity300
+- RelativeHumidity500
+- RelativeHumidity700
+- RelativeHumidity850
+- RelativeHumidity925
+- SeaLevelPressure
+- SeaLevelPressure1hPa
+- SeaLevelPressure2hPa
+- SimRadarReflectivity1km
+- SimRadarReflectivityMax
+- SkewT
+- StaticStability700500
+- StaticStability850700
+- TerrainElevation
+- TerrainElevation1000
+- Wetbulb300
+- Wetbulb500
+- Wetbulb700
+- Wetbulb850
+- Wetbulb925
+
+### Locations
+
+This locations are currently defined in the code, and can be used as `place` parameters.
+
+- Aberporth
+- Algeria
+- Bath
+- Bordeaux
+- BristolChannel
+- Caerphilly
+- Camborne
+- Casablanca
+- Gibraltar
+- Herstmonceux
+- LaCoruna
+- Larkhill
+- Lerwick
+- Madrid
+- Murcia
+- Nimes
+- Nottingham
+- Santander
+- Stornoway
+- Trajectory
+- Trappes
 
 ## About the source code
 
@@ -61,7 +241,7 @@ The following are sample calls for this function:
 This is the core of the diagnostic generation.
 In this function all your wrfout files are loaded, the variables are extracted using **GetSensVar**, plotted using **Plot2DField**, and combined into an mp4.
 
-*All* the files in ***dir_path*** will be loaded and combined, so make sure you want that.
+*All* the files in ***wrfout_dir*** will be loaded and combined, so make sure you want that.
 
 The information on the diagnostic being generated should be provided in an ***svariable*** object, as defined in **SensibleVariables**.
 
@@ -169,5 +349,9 @@ Then you can create and activate the environment with
 ```
 micromamba env create --name wrf-py-env --file environment.yml
 micromamba activate wrf-py-env
+```
+Finally, install the package in editable mode with
+```
+pip install -e .
 ```
 You are now set up to use the code.

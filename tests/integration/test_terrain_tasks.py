@@ -67,8 +67,8 @@ def test_terrain_diagnostics_generate_expected_pdf(
     result = run_cli(
         [
             *cli_args,
-            f"--dir_path={wrf_control_dir}",
-            f"--outdir={tmp_path}",
+            f"--wrfout_dir={wrf_control_dir}",
+            f"--output_dir={tmp_path}",
         ]
     )
 

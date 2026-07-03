@@ -58,8 +58,8 @@ def test_generate_single_image_for_diagnostic(
         [
             "--task=diagnostic",
             f"--var={diag}",
-            f"--dir_path={wrf_control_dir}",
-            f"--outdir={tmp_path}",
+            f"--wrfout_dir={wrf_control_dir}",
+            f"--output_dir={tmp_path}",
             "--save_pdf_frames=1",
         ]
     )
