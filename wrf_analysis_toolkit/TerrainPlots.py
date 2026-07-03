@@ -14,7 +14,7 @@ def Terrain(
     outdir="./",
     out_format="pdf",
     smooth=1,
-    domain="zoom",
+    domain="full",
 ):
 
     ##Input check

@@ -15,7 +15,7 @@ def Animate(
     outfile="MyMP4",
     outdir="./",
     smooth=1,
-    domain="zoom",
+    domain="full",
     cleanpng=1,
     save_pdf=0,
 ):

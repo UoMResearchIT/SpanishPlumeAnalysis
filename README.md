@@ -12,6 +12,7 @@ This repo contains a set of scripts to generate diagnostics from WRF outputs, an
     - [Parameters](#parameters)
       - [CLI only](#cli-only)
     - [Variables](#variables)
+    - [Domains](#domains)
     - [Locations](#locations)
   - [About the source code](#about-the-source-code)
     - [Animate](#animate)
@@ -108,7 +109,8 @@ This is a (hopefully) complete list of the parameters that can be passed, but no
 - `lat`: Latitude for the variable. If provided, `lon` must also be provided.
 - `lon`: Longitude for the variable. If provided, `lat` must also be provided.
 - `trajectory`: Path to a trajectory file for SkewT plots animated along a trajectory.
-- `domain`: Domain for the plots (default is "zoom").
+- `domain`: Area covered by the plots, set by a comma-separated string of bounding box coordinates as "min_lon,max_lon,min_lat,max_lat".
+    (default is "full", which uses all the domain covered by the wrf data). See [domains](#domains) for pre-defined options.
 - `smooth`: Boolean indicating whether to apply smoothing to the plots (default is False).
 - `clean_png_frames`: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
 - `save_pdf_frames`: Boolean indicating whether to save each frame as a PDF (default is False).
@@ -208,6 +210,15 @@ This is a list of the variables that are currently defined in the code, and can 
 - Wetbulb700
 - Wetbulb850
 - Wetbulb925
+
+### Domains
+
+The domain can be specified as a bounding box with the `domain` parameter as "min_lon,max_lon,min_lat,max_lat".
+Alternatively, the following pre-defined domains are available for use:
+
+- `full`: Uses all the domain covered by the WRF data (this is the default).
+- `UK`: Covers the United Kingdom and Ireland. Values: "-1550000,-450000,2000000,3300000"
+- `UE_SW+NA`: Covers the south west of the EU, and North Africa. Values: "-3542500,942500,-732500,3642500"
 
 ### Locations
 

@@ -63,9 +63,8 @@ def cli():
     parser.add_argument(
         "--domain",
         type=str,
-        default="zoom",
-        choices=["zoom", "full", "UK"],
-        help="Area to plot, can be the full domain, which includes most of Africa and east Europe, the zoomed domain, which focuses on North Africa, West Europe and the UK, or UK, which covers the UK and Ireland.",
+        default="full",
+        help="Area to plot, can be the 'full' domain in the WRF simulation, 'UK', which covers the UK and Ireland, or comma separated specified bounding box coordinates: 'min_lon,max_lon,min_lat,max_lat'.",
     )
     parser.add_argument(
         "--rows",
@@ -228,7 +227,6 @@ def cli():
                 lat=args.lat,
                 lon=args.lon,
                 file_tag=args.file_tag,
-                domain=args.domain,
             )
         case "wrfdiff":
             wat.wrfdiff(

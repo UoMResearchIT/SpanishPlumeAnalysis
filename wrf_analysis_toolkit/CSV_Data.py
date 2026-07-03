@@ -13,7 +13,6 @@ def CSV_Data(
     location,
     outfile="MyCSV",
     outdir="./",
-    domain="zoom",
 ):
     ##Input check
     # Directories
@@ -31,7 +30,6 @@ def CSV_Data(
     for svariable in svariables:
         print("    - ", svariable.outfile)
     print("Source wrfout files:", dir_path)
-    print("Using:\n\tdomain =", domain)
     print("Output will be saved as ", outdir + outfile, "\n")
 
     # Initialization
