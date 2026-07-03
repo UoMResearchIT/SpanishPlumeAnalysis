@@ -2,10 +2,10 @@ from netCDF4 import Dataset
 import imageio
 import os
 
-from src.Plot2DField import *
-from src.SkewT import *
-from src.GetSensVar import *
-import src.SensibleVariables as sv
+from wrf_analysis_toolkit.Plot2DField import *
+from wrf_analysis_toolkit.SkewT import *
+from wrf_analysis_toolkit.GetSensVar import *
+import wrf_analysis_toolkit.SensibleVariables as sv
 
 
 def Animate(
@@ -15,7 +15,7 @@ def Animate(
     outfile="MyMP4",
     outdir="./",
     smooth=1,
-    domain="zoom",
+    domain="full",
     cleanpng=1,
     save_pdf=0,
 ):

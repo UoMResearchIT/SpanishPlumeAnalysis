@@ -80,7 +80,7 @@ def ConcatNDiff(
         ConcatNxM(
             files,
             dirs=dirs,
-            labels=labels[0:-1],
+            labels=labels,
             N=1,
             M=3,
             outfile=outfile,
@@ -106,7 +106,10 @@ def ConcatNxM(
     ##Input check
     nfiles = len(files)
     if N * M < nfiles:
-        print("Number of files is greater than NxM space. Changing M to fit files.")
+        print(
+            f"Number of files ({nfiles}) is greater than {N}x{M} space."
+            f" Increasing columns to fit files."
+        )
         M = int((nfiles + N - 1) / N)
     if len(dirs) < nfiles:
         print(
@@ -114,7 +117,12 @@ def ConcatNxM(
             dirs[0],
         )
         dirs = dirs + [dirs[0]] * (nfiles - len(dirs))
+    labels = labels or []
     if len(labels) < nfiles:
+        print(
+            f"WARNING: Length of labels ({len(labels)}) does not match length of files ({len(files)})."
+            f" Labels will be used for the first {len(labels)} files, and the rest will be unlabelled."
+        )
         labels = labels + [""] * (nfiles - len(labels))
 
     # Directories and file extensions
@@ -163,14 +171,15 @@ def ConcatNxM(
         ) as writer:
             for idx in range(frames[0]):
                 # Stitches MP4 files in NxM grid
-                for r in range(N):
-                    R = MP4files[r * M][idx]
-                    for c in range(1, M):
-                        if r * M + c < nfiles:
-                            R = np.concatenate((R, MP4files[r * M + c][idx]), axis=1)
+                for row in range(N):
+                    R = MP4files[row * M][idx] if row * M < nfiles else blankfile
+                    for col in range(1, M):
+                        file = row * M + col
+                        if file < nfiles:
+                            R = np.concatenate((R, MP4files[file][idx]), axis=1)
                         else:
                             R = np.concatenate((R, blankfile), axis=1)
-                    if r == 0:
+                    if row == 0:
                         Sframe = R
                     else:
                         Sframe = np.concatenate((Sframe, R), axis=0)
@@ -179,12 +188,12 @@ def ConcatNxM(
                 if "".join(labels) != "":
                     imS = Image.fromarray(Sframe)
                     draw = ImageDraw.Draw(imS)
-                    for r in range(N):
-                        for c in range(M):
-                            if r * M + c < nfiles:
+                    for row in range(N):
+                        for col in range(M):
+                            if row * M + col < nfiles:
                                 draw.text(
-                                    (10 + c * width, 10 + r * height),
-                                    labels[r * M + c],
+                                    (10 + col * width, 10 + row * height),
+                                    labels[row * M + col],
                                     fill=(0, 0, 0),
                                 )
                     Sframe = np.array(imS)

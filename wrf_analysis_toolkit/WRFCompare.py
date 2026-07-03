@@ -4,8 +4,8 @@ from wrf import smooth2d
 import imageio
 from PIL import Image, ImageDraw
 
-from src.GetSensVar import *
-from src.Plot2DField import *
+from wrf_analysis_toolkit.GetSensVar import *
+from wrf_analysis_toolkit.Plot2DField import *
 
 
 def WRFSmoothDiff(
@@ -18,7 +18,7 @@ def WRFSmoothDiff(
     colormap="seismic",
     outfile="MyMP4",
     outdir="./",
-    domain="zoom",
+    domain="full",
     cleanpng=1,
     save_pdf=0,
 ):

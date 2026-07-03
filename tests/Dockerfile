@@ -16,9 +16,11 @@ ENV ENV_NAME=wrf-py-env
 
 WORKDIR /memory
 WORKDIR /wrf-analysis
-COPY main.py /wrf-analysis/main.py
-COPY src /wrf-analysis/src
+COPY wrf_analysis_toolkit /wrf-analysis/wrf_analysis_toolkit
+COPY pyproject.toml /wrf-analysis/pyproject.toml
+RUN micromamba run -n wrf-py-env python -m pip install .
 COPY tests /wrf-analysis/tests
 COPY pytest.ini /wrf-analysis/pytest.ini
+COPY .coveragerc /wrf-analysis/.coveragerc
 
-CMD ["python", "-u", "main.py"]
+CMD ["python", "-u", "wrf_analysis_toolkit/cli.py"]

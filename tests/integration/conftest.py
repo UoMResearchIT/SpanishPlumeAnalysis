@@ -6,9 +6,8 @@ from pathlib import Path
 import pytest
 from netCDF4 import Dataset
 
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
-MAIN_PY = REPO_ROOT / "main.py"
+MAIN_PY = REPO_ROOT / "wrf_analysis_toolkit" / "cli.py"
 
 
 def has_wrfout_files(path: Path) -> bool:
@@ -75,7 +74,7 @@ def count_total_timesteps(wrf_dir: Path) -> int:
 
 
 def diagnostic_variables() -> list[str]:
-    from src import SensibleVariables as sv
+    from wrf_analysis_toolkit import SensibleVariables as sv
 
     sens_vars = sv.get_sv_names()
     diagnostics = [var for var in sens_vars if not var.startswith("SkewT")]
@@ -103,27 +102,6 @@ def assert_valid_mp4(mp4_file: Path) -> None:
     assert mp4_file.stat().st_size > 0, f"MP4 file is empty: {mp4_file}"
 
 
-@pytest.fixture
-def run_cli():
-    def _run_cli(args: list[str]) -> subprocess.CompletedProcess[str]:
-        return subprocess.run(
-            [
-                sys.executable,
-                "-m",
-                "coverage",
-                "run",
-                "--parallel-mode",
-                str(MAIN_PY),
-                *args,
-            ],
-            cwd=str(REPO_ROOT),
-            text=True,
-            capture_output=True,
-        )
-
-    return _run_cli
-
-
 @pytest.fixture(scope="session")
 def wrf_control_dir() -> Path:
     wrf_dir = resolve_wrf_control_dir()
@@ -149,3 +127,29 @@ def wrf_input_dirs() -> tuple[Path, Path]:
 @pytest.fixture(scope="session")
 def total_timesteps(wrf_control_dir: Path) -> int:
     return count_total_timesteps(wrf_control_dir)
+
+
+def run_diagnostic(var_name, wrf_dir, out_dir):
+    import wrf_analysis_toolkit as wat
+
+    outfile = wat.diagnostic(
+        variable_name=var_name,
+        wrfout_dir=str(wrf_dir),
+        output_dir=str(out_dir),
+    )
+    assert_valid_mp4(out_dir / f"{outfile}.mp4")
+
+
+@pytest.fixture()
+def prepared_compare_inputs(tmp_path, wrf_input_dirs):
+    control_wrf_dir, zero_wrf_dir = wrf_input_dirs
+    control_out = tmp_path / "control"
+    zero_out = tmp_path / "zero"
+    control_out.mkdir(parents=True, exist_ok=True)
+    zero_out.mkdir(parents=True, exist_ok=True)
+
+    for var_name in ("DewpointTemp925", "CAPE"):
+        run_diagnostic(var_name, control_wrf_dir, control_out)
+        run_diagnostic(var_name, zero_wrf_dir, zero_out)
+
+    return control_out, zero_out

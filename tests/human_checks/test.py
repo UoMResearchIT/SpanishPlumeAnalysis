@@ -18,23 +18,20 @@ wrfdata = os.getenv("WRF_DATA_PATH", "/wrfdata")
 wrfdata = wrfdata[:-1] if wrfdata.endswith("/") else wrfdata
 res_path = os.getenv("RESULTS_PATH", f"{base_dir}/tests/human_checks/results")
 
-csv_data_v = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
-csv_data_p = [925, 850, 700, 500, 300]
-csv_data_svars = ["CIN", "CAPE"] + [
-    f"{var}{height}" for var in csv_data_v for height in csv_data_p
-]
-
 all_args = [
-    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata}/control/      --outdir={res_path}/control/",
-    f"--task=diagnostic   --var=DewpointTemp925              --dir_path={wrfdata}/zero/         --outdir={res_path}/zero/",
-    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/control/ --save_pdf_frames=1",
-    f"--task=diagnostic   --var=CAPE                         --dir_path={wrfdata}/control/      --outdir={res_path}/zero/",
-    f"--task=diagnostic   --var=TerrainElevation1000        --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --lat=51.38  --lon=-2.36 --file_tag=_Bath1",
-    f"--task=csv          --var=CSV_BristolChannel          --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full",
-    f"--task=csv          --var={','.join(csv_data_svars)}  --dir_path={wrfdata}/control/      --outdir={res_path}/ --domain=full --place=Bath",
-    f"--task=wrfcompare   --var=DewpointTemp925  --dir1={wrfdata}/control/ --dir2={wrfdata}/zero/ --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_wrf_diff_control-zero",
-    f"--task=mp4diff      --var=DewpointTemp925  --dir1={res_path}/control/ --dir2={res_path}/zero/ --label1=control --label2=zero --difflabel=Control-Zero --outdir={res_path}/ --file_tag=_mp4_diff_control-zero",
-    f"--task=mp4stitch    --files=DewpointTemp925,DewpointTemp925,CAPE,CAPE --dirs={res_path}/control/,{res_path}/zero/,{res_path}/control/,{res_path}/zero/ --M=2 --N=2 --labels=control,zero,control,zero --outdir={res_path}/ --file_tag=_mp4_stitch_control-zero",
+    f"--task=diagnostic   --var=DewpointTemp925              --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/control/",
+    f"--task=diagnostic   --var=DewpointTemp925              --wrfout_dir={wrfdata}/zero/         --output_dir={res_path}/zero/",
+    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/control/ --domain=UK --save_pdf_frames=1",
+    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/zero/  --domain=-1550000,-450000,2000000,3300000",
+    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/zero/  --domain=UE_SW+NA",
+    f"--task=diagnostic   --var=TerrainElevation1000        --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --lat=51.38  --lon=-2.36 --file_tag=_Bath1000",
+    f"--task=terrain      --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --place=Bath --file_tag=_Bath",
+    f"--task=csv          --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --place=BristolChannel",
+    f"--task=csv          --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --place=Bath --csv_vars=CIN,CAPE,AirTemp500,AirTemp300",
+    f"--task=wrfdiff   --var=DewpointTemp925  --dirs={wrfdata}/control/,{wrfdata}/zero/ --label_diff=Control-Zero --output_dir={res_path}/ --file_tag=_wrf_diff_control-zero",
+    f"--task=mp4diff      --var=DewpointTemp925  --dirs={res_path}/control/,{res_path}/zero/ --labels=control,zero --label_diff=Control-Zero --output_dir={res_path}/ --file_tag=_mp4_diff_control-zero",
+    f"--task=mp4diff      --files={res_path}/control/DewpointTemp925.mp4,{res_path}/zero/DewpointTemp925.mp4 --labels=control,zero,Control-Zero --output_dir={res_path}/ --file_tag=_mp4_diff_control-zero_2",
+    f"--task=mp4stitch    --files={res_path}/control/DewpointTemp925.mp4,{res_path}/zero/DewpointTemp925.mp4,{res_path}/control/CAPE.mp4,{res_path}/zero/CAPE.mp4 --rows=2 --cols=2 --labels=control,zero,control,zero --output_dir={res_path}/ --file_tag=_mp4_stitch_control-zero",
 ]
 
 
@@ -50,6 +47,8 @@ for arg in all_args:
     task = f"{t}_{var}{tag}"
     task = task.replace(",", "-")
     tasks.append(task)
+tasks.append("installed_script_call_help")
+tasks.append("installed_script_call_diag")
 
 task_status = {d: {"exit": "Not Run", "runtime": "---"} for d in tasks}
 print(f"\nTasks:")
@@ -58,15 +57,34 @@ for task in tasks:
 
 t0 = datetime.now()
 
-for args, task in zip(all_args, tasks):
-    outdir = args.split("--outdir=")[1]
-    if " " in outdir:
-        outdir = outdir.split(" ")[0]
-    subprocess.run(f"mkdir -p {outdir}", shell=True)
+for args, task in zip(all_args, tasks[:-2]):
+    output_dir = args.split("--output_dir=")[1]
+    if " " in output_dir:
+        output_dir = output_dir.split(" ")[0]
+    subprocess.run(f"mkdir -p {output_dir}", shell=True)
     ti = datetime.now()
     print(f"\n----- {task} ---------- Started at: {ti}")
-    print(f"\npython {base_dir}/main.py {args}")
-    result = subprocess.run(f"python {base_dir}/main.py {args}", shell=True)
+    print(f"\npython {base_dir}/wrf_analysis_toolkit/cli.py {args}")
+    result = subprocess.run(
+        f"python {base_dir}/wrf_analysis_toolkit/cli.py {args}", shell=True
+    )
+    runtime = datetime.now() - ti
+    print(f"\n----- {task} ---------- Finished after: {runtime}")
+    task_status[task] = {
+        "exit": "OK" if result.returncode == 0 else "ERROR",
+        "runtime": runtime,
+    }
+for args, task in zip(
+    [
+        " -h",
+        f" --task=diagnostic --var=AirTemp2m --wrfout_dir={wrfdata}/control/ --output_dir={res_path}/control/",
+    ],
+    tasks[-2:],
+):
+    ti = datetime.now()
+    print(f"\n----- {task} ---------- Started at: {ti}")
+    print(f"\nwrf_analysis_toolkit_cli {args}")
+    result = subprocess.run(f"wrf_analysis_toolkit_cli {args}", shell=True)
     runtime = datetime.now() - ti
     print(f"\n----- {task} ---------- Finished after: {runtime}")
     task_status[task] = {

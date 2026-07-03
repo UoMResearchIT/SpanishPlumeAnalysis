@@ -3,8 +3,8 @@ from wrf import ll_to_xy
 import os
 import csv
 
-from src.GetSensVar import *
-import src.SensibleVariables as sv
+from wrf_analysis_toolkit.GetSensVar import *
+import wrf_analysis_toolkit.SensibleVariables as sv
 
 
 def CSV_Data(
@@ -13,7 +13,6 @@ def CSV_Data(
     location,
     outfile="MyCSV",
     outdir="./",
-    domain="zoom",
 ):
     ##Input check
     # Directories
@@ -31,7 +30,6 @@ def CSV_Data(
     for svariable in svariables:
         print("    - ", svariable.outfile)
     print("Source wrfout files:", dir_path)
-    print("Using:\n\tdomain =", domain)
     print("Output will be saved as ", outdir + outfile, "\n")
 
     # Initialization

@@ -6,7 +6,7 @@ import cartopy.crs as crs
 import cartopy.feature as cfeature
 from wrf import to_np, smooth2d, get_cartopy, cartopy_xlim, cartopy_ylim, latlon_coords
 
-import src.SensibleVariables as sv
+import wrf_analysis_toolkit.SensibleVariables as sv
 
 # from datetime import datetime      ###############################################
 # print(datetime.now())              ###############################################
@@ -21,7 +21,7 @@ def Plot2DField(
     u=None,
     v=None,
     smooth=1,
-    domain="zoom",
+    domain="full",
     nlevs=10,
     time_tag=1,
     return_fig=0,
@@ -192,15 +192,26 @@ def Plot2DField(
         )
 
     # Set the map bounds
-    if domain == "full":
+    if domain == "full":  # Get limits from the WRF data
         ax.set_xlim(cartopy_xlim(smooth_var))
         ax.set_ylim(cartopy_ylim(smooth_var))
-    elif domain == "UK":
+    elif domain == "UK":  # Covers the UK and Ireland
         ax.set_xlim([-1550000, -450000])
         ax.set_ylim([2000000, 3300000])
-    else:
-        ax.set_xlim([-3542499.4953854363, 942500.950843083])
-        ax.set_ylim([-732499.172137629, 3642500.0773183405])
+    elif domain == "UE_SW+NA":  # Covers the south west of the EU, and North Africa
+        ax.set_xlim([-3542500, 942500])
+        ax.set_ylim([-732500, 3642500])
+    else:  # expect string of 4 comma-separated floats: "min_lon,max_lon,min_lat,max_lat"
+        dom_split = domain.split(",")
+        if len(dom_split) == 4:
+            bounds = [float(b) for b in dom_split]
+            ax.set_xlim([bounds[0], bounds[1]])
+            ax.set_ylim([bounds[2], bounds[3]])
+        else:
+            raise ValueError(
+                f"Invalid domain specification: {domain}."
+                " Expected 'full', 'UK', 'UE_SW+NA', or 'min_lon,max_lon,min_lat,max_lat'"
+            )
 
     # Add the gridlines
     ax.gridlines(color="black", linestyle="dotted")
