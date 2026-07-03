@@ -25,7 +25,7 @@ services:
       - memory:/memory  # Used to persist pytest cache between runs
       - $WRF_DATA_PATH:/wrfdata:ro
     command: >-
-      bash -c "coverage run -m pytest -s -vv tests/integration &&
+      bash -c "coverage run -m pytest -vv tests/integration &&
       coverage report &&
       coverage html -d /memory/htmlcov"
 

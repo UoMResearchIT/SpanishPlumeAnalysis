@@ -21,5 +21,6 @@ COPY pyproject.toml /wrf-analysis/pyproject.toml
 RUN micromamba run -n wrf-py-env python -m pip install .
 COPY tests /wrf-analysis/tests
 COPY pytest.ini /wrf-analysis/pytest.ini
+COPY .coveragerc /wrf-analysis/.coveragerc
 
 CMD ["python", "-u", "wrf_analysis_toolkit/cli.py"]
