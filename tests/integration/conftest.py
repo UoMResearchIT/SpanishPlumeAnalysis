@@ -127,3 +127,29 @@ def wrf_input_dirs() -> tuple[Path, Path]:
 @pytest.fixture(scope="session")
 def total_timesteps(wrf_control_dir: Path) -> int:
     return count_total_timesteps(wrf_control_dir)
+
+
+def run_diagnostic(var_name, wrf_dir, out_dir):
+    import wrf_analysis_toolkit as wat
+
+    outfile = wat.diagnostic(
+        variable_name=var_name,
+        wrfout_dir=str(wrf_dir),
+        output_dir=str(out_dir),
+    )
+    assert_valid_mp4(out_dir / f"{outfile}.mp4")
+
+
+@pytest.fixture()
+def prepared_compare_inputs(tmp_path, wrf_input_dirs):
+    control_wrf_dir, zero_wrf_dir = wrf_input_dirs
+    control_out = tmp_path / "control"
+    zero_out = tmp_path / "zero"
+    control_out.mkdir(parents=True, exist_ok=True)
+    zero_out.mkdir(parents=True, exist_ok=True)
+
+    for var_name in ("DewpointTemp925", "CAPE"):
+        run_diagnostic(var_name, control_wrf_dir, control_out)
+        run_diagnostic(var_name, zero_wrf_dir, zero_out)
+
+    return control_out, zero_out

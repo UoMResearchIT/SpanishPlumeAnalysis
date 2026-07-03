@@ -326,13 +326,15 @@ If the flag ***smooth*** is set to 1, it smooths the data before making the diff
 
 
 ## Tests
-There are two ways in which the code can be currently tested, with slightly different objectives.
+There are three ways in which the code can be currently tested, with slightly different objectives.
 
 The tests inside the `tests/integration` folder are designed to run independently, and detect both coverage and code errors. They are run using pytest, and assert the existence of the output files, but do not check their content.
 
-The tests inside the `tests/human_checks` folder are designed to produce outputs that can be visually checked by a human.
+The tests inside the `tests/human_checks` folder are designed to produce outputs that can be visually checked by a human. These run by calling the cli.
 
-Both sets of tests are only integration tests, and do not check the individual functions. They are designed to be run inside a container, which is built using the Dockerfile in the root of this repo.
+The tests inside the `tests/library` folder are of the same spirit as the human checks, but are run directly calling the library, rather than the cli.
+
+All sets of tests are only integration tests, and do not check the individual functions. They are designed to be run inside a container, which is built using the Dockerfile in the root of this repo.
 A compose file is provided for convenience, which will build the container and run the tests inside it.
 You may run the tests by first mounting into the test directory (`cd tests/`) and then running:
 ```
@@ -341,6 +343,10 @@ docker compose up --build pytest-coverage
 or
 ```
 docker compose up --build human-checks
+```
+or
+```
+docker compose up --build library-tests
 ```
 
 You'll find further information in the compose file.
