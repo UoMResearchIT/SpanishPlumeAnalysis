@@ -102,27 +102,6 @@ def assert_valid_mp4(mp4_file: Path) -> None:
     assert mp4_file.stat().st_size > 0, f"MP4 file is empty: {mp4_file}"
 
 
-@pytest.fixture
-def run_cli():
-    def _run_cli(args: list[str]) -> subprocess.CompletedProcess[str]:
-        return subprocess.run(
-            [
-                sys.executable,
-                "-m",
-                "coverage",
-                "run",
-                "--parallel-mode",
-                str(MAIN_PY),
-                *args,
-            ],
-            cwd=str(REPO_ROOT),
-            text=True,
-            capture_output=True,
-        )
-
-    return _run_cli
-
-
 @pytest.fixture(scope="session")
 def wrf_control_dir() -> Path:
     wrf_dir = resolve_wrf_control_dir()

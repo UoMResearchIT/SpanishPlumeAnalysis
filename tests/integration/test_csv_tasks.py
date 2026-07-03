@@ -2,6 +2,7 @@ import csv
 from pathlib import Path
 
 import pytest
+import wrf_analysis_toolkit as wat
 
 CSV_DATA_V = ["AirTemp", "DewpointTemp", "RelativeHumidity"]
 CSV_DATA_P = [925, 850, 700, 500, 300]
@@ -48,23 +49,14 @@ def _assert_valid_csv(csv_file: Path, expected_columns: list[str]) -> None:
 @pytest.mark.integration
 @pytest.mark.slow
 def test_csv_task_from_csv_place_shortcut(
-    tmp_path: Path, wrf_control_dir: Path, run_cli
+    tmp_path: Path, wrf_control_dir: Path
 ) -> None:
-    result = run_cli(
-        [
-            "--task=csv",
-            "--var=CSV_BristolChannel",
-            f"--wrfout_dir={wrf_control_dir}",
-            f"--output_dir={tmp_path}",
-            "--domain=full",
-        ]
+    produced_name = wat.csv(
+        place="BristolChannel",
+        wrfout_dir=str(wrf_control_dir),
+        output_dir=str(tmp_path),
     )
-
-    assert result.returncode == 0, (
-        "csv task failed for CSV_BristolChannel.\n"
-        f"STDOUT:\n{result.stdout}\n"
-        f"STDERR:\n{result.stderr}"
-    )
+    assert produced_name == "CSV_Data_BristolChannel"
 
     expected_columns = _expected_csv_columns()
     _assert_valid_csv(tmp_path / "CSV_Data_BristolChannel.csv", expected_columns)
@@ -73,24 +65,15 @@ def test_csv_task_from_csv_place_shortcut(
 @pytest.mark.integration
 @pytest.mark.slow
 def test_csv_task_from_explicit_variable_list(
-    tmp_path: Path, wrf_control_dir: Path, run_cli
+    tmp_path: Path, wrf_control_dir: Path
 ) -> None:
-    result = run_cli(
-        [
-            "--task=csv",
-            f"--var={','.join(CSV_DATA_SVARS)}",
-            f"--wrfout_dir={wrf_control_dir}",
-            f"--output_dir={tmp_path}",
-            "--domain=full",
-            "--place=Bath",
-        ]
+    produced_name = wat.csv(
+        variable_names=CSV_DATA_SVARS,
+        wrfout_dir=str(wrf_control_dir),
+        output_dir=str(tmp_path),
+        place="Bath",
     )
-
-    assert result.returncode == 0, (
-        "csv task failed for explicit variable list with place=Bath.\n"
-        f"STDOUT:\n{result.stdout}\n"
-        f"STDERR:\n{result.stderr}"
-    )
+    assert produced_name == "CSV_Data_Bath"
 
     expected_columns = _expected_csv_columns()
     _assert_valid_csv(tmp_path / "CSV_Data_Bath.csv", expected_columns)

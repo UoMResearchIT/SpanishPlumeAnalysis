@@ -8,6 +8,8 @@ from tests.integration.conftest import (
     non_terrain_diagnostic_variables,
 )
 
+import wrf_analysis_toolkit as wat
+
 # Optional manual curation template.
 # Leave empty to test all available diagnostics discovered from SensibleVariables.
 # Example:
@@ -38,12 +40,8 @@ def _diag_needs_timesteps(diag: str) -> int:
 @pytest.mark.integration
 @pytest.mark.slow
 @pytest.mark.parametrize("diag", _selected_diagnostics(), ids=lambda d: f"{d}")
-def test_generate_single_image_for_diagnostic(
-    diag: str,
-    tmp_path: Path,
-    wrf_control_dir: Path,
-    total_timesteps: int,
-    run_cli,
+def test_diagnostic(
+    diag: str, tmp_path: Path, wrf_control_dir: Path, total_timesteps: int
 ) -> None:
     min_timesteps = _diag_needs_timesteps(diag)
     if total_timesteps < min_timesteps:
@@ -54,38 +52,48 @@ def test_generate_single_image_for_diagnostic(
     print(f"...", flush=True)
     print(f"    ", end="")
 
-    result = run_cli(
-        [
-            "--task=diagnostic",
-            f"--var={diag}",
-            f"--wrfout_dir={wrf_control_dir}",
-            f"--output_dir={tmp_path}",
-            "--save_pdf_frames=1",
-        ]
-    )
-
-    assert result.returncode == 0, (
-        f"Diagnostic run failed for {diag}\n"
-        f"STDOUT:\n{result.stdout}\n"
-        f"STDERR:\n{result.stderr}"
+    produced_name = wat.diagnostic(
+        variable_name=diag,
+        wrfout_dir=str(wrf_control_dir),
+        output_dir=str(tmp_path),
+        save_pdf_frames=True,
     )
 
     from wrf_analysis_toolkit import SensibleVariables as sv
 
     outfile_stem = getattr(sv, diag).outfile
+    assert produced_name == outfile_stem
 
     mp4_file = tmp_path / f"{outfile_stem}.mp4"
     assert_valid_mp4(mp4_file)
 
     pdf_dir = tmp_path / f"__{outfile_stem}"
     pdf_files = sorted(pdf_dir.glob("*.pdf"))
-    assert pdf_files, (
-        f"No PDF frames generated for {diag}. Expected files in {pdf_dir}.\n"
-        f"STDOUT:\n{result.stdout}\n"
-        f"STDERR:\n{result.stderr}"
-    )
+    assert (
+        pdf_files
+    ), f"No PDF frames generated for {diag}. Expected files in {pdf_dir}."
     assert_valid_pdf(pdf_files[0])
 
     # Keep resource usage bounded across many parametrized diagnostics.
     mp4_file.unlink(missing_ok=True)
     shutil.rmtree(pdf_dir, ignore_errors=True)
+
+
+def test_terrain_diagnostic_redirects(wrf_control_dir: Path, tmp_path: Path) -> None:
+    diag = "TerrainElevation"
+    produced_name = wat.diagnostic(
+        variable_name=diag,
+        wrfout_dir=str(wrf_control_dir),
+        output_dir=str(tmp_path),
+    )
+
+    from wrf_analysis_toolkit import SensibleVariables as sv
+
+    outfile_stem = getattr(sv, diag).outfile
+    assert produced_name == outfile_stem
+
+    assert_valid_pdf(tmp_path / f"{outfile_stem}.pdf")
+
+    # Terrain diagnostics should be redirected and not produce mp4/pdf frame dir artifacts.
+    assert not (tmp_path / f"{outfile_stem}.mp4").exists()
+    assert not (tmp_path / f"__{outfile_stem}").exists()
