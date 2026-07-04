@@ -33,7 +33,7 @@ def Plot_SkewT(ncfile, ti, svariable, outfname="MyPlot.png", save_pdf=0):
     skew = SkewT(fig=fig)
     skew.ax.set_ylim(1000, 100)
     skew.ax.set_xlim(svariable.range_min, svariable.range_max)
-    skew.ax.set_xlabel("Temperature [$^\circ$C]")
+    skew.ax.set_xlabel(r"Temperature [$^\circ$C]")
     skew.ax.set_ylabel("Pressure [hPa]")
 
     # Shade every other isotherm

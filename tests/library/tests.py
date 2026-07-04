@@ -46,6 +46,12 @@ diagnostic_args = [
         "output_dir": f"{res_path}/zero/",
     },
     {
+        "variable_name": "SkewT",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/control/",
+        "place": "Bath",
+    },
+    {
         "variable_name": "TerrainElevation1000",
         "wrfout_dir": f"{wrfdata}/control/",
         "output_dir": f"{res_path}/",
