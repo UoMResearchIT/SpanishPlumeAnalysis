@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wrf_analysis_toolkit"
-version = "1.2.3"
+version = "1.3.0"
 requires-python = ">=3.10"
 dependencies = [
     "netCDF4>=1.7",
@@ -18,3 +18,8 @@ dependencies = [
 
 [project.scripts]
 wrf_analysis_toolkit_cli = "wrf_analysis_toolkit.cli:cli"
+
+[tool.setuptools.package-data]
+wrf_analysis_toolkit = [
+    "cartopy_data/**/*"
+]

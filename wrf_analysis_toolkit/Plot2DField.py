@@ -2,9 +2,13 @@ from netCDF4 import Dataset
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize, LogNorm, BoundaryNorm
 import numpy as np
-import cartopy.crs as crs
-import cartopy.feature as cfeature
+from pathlib import Path
+import cartopy
 from wrf import to_np, smooth2d, get_cartopy, cartopy_xlim, cartopy_ylim, latlon_coords
+
+_pkg_data_dir = Path(__file__).resolve().parent / "cartopy_data"
+if _pkg_data_dir.exists():
+    cartopy.config["data_dir"] = str(_pkg_data_dir)
 
 import wrf_analysis_toolkit.SensibleVariables as sv
 
@@ -59,7 +63,7 @@ def Plot2DField(
     ax = plt.axes(projection=cart_proj)
 
     # Download and add the borders and coastlines	####Takes ~2s
-    borders = cfeature.BORDERS.with_scale("50m")
+    borders = cartopy.feature.BORDERS.with_scale("50m")
     ax.add_feature(borders, linewidth=0.4, edgecolor="black")
     ax.coastlines("50m", linewidth=0.8)
 
@@ -103,7 +107,7 @@ def Plot2DField(
         z,
         levels=levs,
         norm=norm,
-        transform=crs.PlateCarree(),
+        transform=cartopy.crs.PlateCarree(),
         cmap=svariable.colormap,
         alpha=0.8,
         extend="both",
@@ -116,7 +120,7 @@ def Plot2DField(
             levels=levs,
             colors=svariable.contour_color,
             linewidths=0.4,
-            transform=crs.PlateCarree(),
+            transform=cartopy.crs.PlateCarree(),
             extend="both",
         )
         if svariable.contour_c_labels:
@@ -169,7 +173,7 @@ def Plot2DField(
             levels=olevs,
             linewidths=0.4,
             cmap=svariable.overlap_cmap,
-            transform=crs.PlateCarree(),
+            transform=cartopy.crs.PlateCarree(),
         )
         plt.clabel(ov, inline=True, fontsize=10, levels=olevs[0::2])
 
@@ -186,7 +190,7 @@ def Plot2DField(
             y[::nbarbs, ::nbarbs],
             u[::nbarbs, ::nbarbs],
             v[::nbarbs, ::nbarbs],
-            transform=crs.PlateCarree(),
+            transform=cartopy.crs.PlateCarree(),
             length=7,
             linewidth=1.0,
         )
