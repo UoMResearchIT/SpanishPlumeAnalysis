@@ -128,6 +128,18 @@ def cli():
         help="Path to the directory with your wrfout files.",
     )
     parser.add_argument(
+        "--time_from",
+        type=str,
+        default=None,
+        help="Only use wrfout files from this time onward (inclusive). Expects format 'YYYY-MM-DD_HH:MM:SS' (optional).",
+    )
+    parser.add_argument(
+        "--time_to",
+        type=str,
+        default=None,
+        help="Only use wrfout files up to this time (inclusive). Expects format 'YYYY-MM-DD_HH:MM:SS' (optional).",
+    )
+    parser.add_argument(
         "--output_dir",
         type=str,
         default="./",
@@ -206,6 +218,8 @@ def cli():
                 output_dir=args.output_dir,
                 variable_name=args.var,
                 file_tag=args.file_tag,
+                time_from=args.time_from,
+                time_to=args.time_to,
                 range_min=args.range_min,
                 range_max=args.range_max,
                 windbarbs=args.windbarbs,
@@ -227,6 +241,8 @@ def cli():
                 lat=args.lat,
                 lon=args.lon,
                 file_tag=args.file_tag,
+                time_from=args.time_from,
+                time_to=args.time_to,
             )
         case "wrfdiff":
             wat.wrfdiff(
@@ -235,6 +251,8 @@ def cli():
                 variable_name=args.var,
                 output_dir=args.output_dir,
                 file_tag=args.file_tag,
+                time_from=args.time_from,
+                time_to=args.time_to,
                 label_diff=args.label_diff or (labels[0] or None),
                 range_min=args.range_min,
                 range_max=args.range_max,

@@ -17,6 +17,8 @@ def diagnostic(
     output_dir: str,
     variable_name: str,
     file_tag: str = "",
+    time_from: str | None = None,
+    time_to: str | None = None,
     range_min: float | None = None,
     range_max: float | None = None,
     windbarbs: bool | None = None,
@@ -39,6 +41,8 @@ def diagnostic(
     - output_dir: Directory where the output file(s) will be saved.
     - variable_name: Name of the variable to analyze (must be defined in SensibleVariables).
     - file_tag: String to append to the output filename (optional).
+    - time_from: Only use wrfout files from this time onward (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
+    - time_to: Only use wrfout files up to this time (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
     - range_min: Minimum value for the variable range (optional).
     - range_max: Maximum value for the variable range (optional).
     - windbarbs: Boolean indicating whether to include wind barbs in the plots (optional).
@@ -88,6 +92,8 @@ def diagnostic(
     Animate(
         dir_path=wrfout_dir,
         svariable=svar,
+        time_from=time_from,
+        time_to=time_to,
         windbarbs=svar.windbarbs,
         outfile=outfile,
         outdir=output_dir,
@@ -179,6 +185,8 @@ def csv(
     lat: float | None = None,
     lon: float | None = None,
     file_tag: str = "",
+    time_from: str | None = None,
+    time_to: str | None = None,
 ):
     """
     Generates a CSV file with the values of the specified variables at a given location and saves it to the output directory.
@@ -192,6 +200,8 @@ def csv(
     - lat: Latitude for the location (optional -- place may be provided instead).
     - lon: Longitude for the location (optional -- place may be provided instead).
     - file_tag: String to append to the output filename (optional).
+    - time_from: Only use wrfout files from this time onward (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
+    - time_to: Only use wrfout files up to this time (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
 
     Returns: The name of the output file saved in the output directory.
     """
@@ -237,6 +247,8 @@ def csv(
         location=svar,
         outfile=outfile,
         outdir=output_dir,
+        time_from=time_from,
+        time_to=time_to,
     )
 
     return outfile
@@ -248,6 +260,8 @@ def wrfdiff(
     variable_name: str,
     output_dir: str,
     file_tag: str = "",
+    time_from: str | None = None,
+    time_to: str | None = None,
     label_diff: str = "",
     range_min: float | None = None,
     range_max: float | None = None,
@@ -268,6 +282,8 @@ def wrfdiff(
     - variable_name: Name of the variable to analyze (must be defined in SensibleVariables).
     - output_dir: Directory where the output file(s) will be saved.
     - file_tag: String to append to the output filename (optional).
+    - time_from: Only use wrfout files from this time onward (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
+    - time_to: Only use wrfout files up to this time (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
     - label_diff: Label to be added at the top left corner of the resulting diagnostic (optional).
     - range_min: Minimum value for the variable range (optional).
     - range_max: Maximum value for the variable range (optional).
@@ -293,6 +309,8 @@ def wrfdiff(
         wrfout_dir_A,
         wrfout_dir_B,
         svar,
+        time_from=time_from,
+        time_to=time_to,
         windbarbs=windbarbs,
         difflabel=label_diff,
         colormap=colormap,

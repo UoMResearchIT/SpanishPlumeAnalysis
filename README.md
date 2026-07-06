@@ -102,6 +102,8 @@ This is a (hopefully) complete list of the parameters that can be passed, but no
 - `wrfout_dir`: Directory containing WRF output files.
 - `variable_name`: Name of the variable to analyze (see the list of available [variables](#variables)).
 - `file_tag`: String to append to the output filename.
+- `time_from`: Only use wrfout files from this time onward (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS".
+- `time_to`: Only use wrfout files up to this time (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS".
 - `range_min`: Minimum value for the variable range .
 - `range_max`: Maximum value for the variable range .
 - `windbarbs`: Boolean indicating whether to include wind barbs in the plots.

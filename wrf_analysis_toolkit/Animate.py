@@ -2,6 +2,7 @@ from netCDF4 import Dataset
 import imageio
 import os
 
+from wrf_analysis_toolkit.utils import select_wrfout_files
 from wrf_analysis_toolkit.Plot2DField import *
 from wrf_analysis_toolkit.SkewT import *
 from wrf_analysis_toolkit.GetSensVar import *
@@ -11,6 +12,8 @@ import wrf_analysis_toolkit.SensibleVariables as sv
 def Animate(
     dir_path,
     svariable,
+    time_from=None,
+    time_to=None,
     windbarbs=0,
     outfile="MyMP4",
     outdir="./",
@@ -31,7 +34,10 @@ def Animate(
 
     #
     print("Generating diagnostic for", svariable.outfile)
+    WRFfiles = select_wrfout_files(dir_path, time_from, time_to)
     print("Source wrfout files:", dir_path)
+    for f in WRFfiles:
+        print("  ", f)
     print(
         "Using:\n\twindbarbs =",
         windbarbs,
@@ -43,7 +49,6 @@ def Animate(
     print("Output will be saved as ", outdir + outfile, "\n")
 
     # Initialization
-    WRFfiles = []
     PNGfiles = []
     vpv = None
     overlapsv = None
@@ -52,12 +57,6 @@ def Animate(
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
     tmp_dir = tmp_dir + "/"
-
-    # Get list of files from directoy
-    for file in os.listdir(dir_path):
-        if file.startswith("wrfout"):
-            WRFfiles.append(file)
-    WRFfiles.sort()
 
     if svariable.along_traj:
         # Load trajectory CSV file

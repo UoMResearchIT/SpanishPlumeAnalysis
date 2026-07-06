@@ -4,6 +4,7 @@ from wrf import smooth2d
 import imageio
 from PIL import Image, ImageDraw
 
+from wrf_analysis_toolkit.utils import select_wrfout_files
 from wrf_analysis_toolkit.GetSensVar import *
 from wrf_analysis_toolkit.Plot2DField import *
 
@@ -12,6 +13,8 @@ def WRFSmoothDiff(
     dir1,
     dir2,
     svariable,
+    time_from=None,
+    time_to=None,
     windbarbs=0,
     smooth=1,
     difflabel="",
@@ -37,6 +40,14 @@ def WRFSmoothDiff(
     #
     print("Comparing WRF files for.", svariable.outfile)
     print("Source wrfout files:", dir1, " & ", dir2)
+    WRFfiles1 = select_wrfout_files(dir1, time_from, time_to)
+    WRFfiles2 = select_wrfout_files(dir2, time_from, time_to)
+    print("Source wrfout files:\n  ", dir1)
+    for f in WRFfiles1:
+        print("    ", f)
+    print("Source wrfout files:\n  ", dir2)
+    for f in WRFfiles2:
+        print("    ", f)
     print(
         "Using:\n\tdifflabel=",
         difflabel,
@@ -68,26 +79,12 @@ def WRFSmoothDiff(
         svariable.colormap = colormap
 
     # Initialization
-    WRFfiles1 = []
-    WRFfiles2 = []
     PNGfiles = []
     vpv1 = vpv2 = u = v = None
     tmp_dir = outdir + "__" + outfile
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
     tmp_dir = tmp_dir + "/"
-
-    # Get list of files from directoy 1
-    for file in os.listdir(dir1):
-        if file.startswith("wrfout"):
-            WRFfiles1.append(file)
-    WRFfiles1.sort()
-
-    # Get list of files from directoy 2
-    for file in os.listdir(dir2):
-        if file.startswith("wrfout"):
-            WRFfiles2.append(file)
-    WRFfiles2.sort()
 
     # Compares list of files
     nfiles = min(len(WRFfiles1), len(WRFfiles2))

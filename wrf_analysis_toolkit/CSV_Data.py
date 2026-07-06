@@ -3,6 +3,7 @@ from wrf import ll_to_xy
 import os
 import csv
 
+from wrf_analysis_toolkit.utils import select_wrfout_files
 from wrf_analysis_toolkit.GetSensVar import *
 import wrf_analysis_toolkit.SensibleVariables as sv
 
@@ -13,6 +14,8 @@ def CSV_Data(
     location,
     outfile="MyCSV",
     outdir="./",
+    time_from=None,
+    time_to=None,
 ):
     ##Input check
     # Directories
@@ -29,21 +32,17 @@ def CSV_Data(
     print("Variables to extract:")
     for svariable in svariables:
         print("    - ", svariable.outfile)
+    WRFfiles = select_wrfout_files(dir_path, time_from, time_to)
     print("Source wrfout files:", dir_path)
+    for f in WRFfiles:
+        print("  ", f)
     print("Output will be saved as ", outdir + outfile, "\n")
 
     # Initialization
-    WRFfiles = []
     tmp_dir = outdir + "__" + outfile
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
     tmp_dir = tmp_dir + "/"
-
-    # Get list of files from directoy
-    for file in os.listdir(dir_path):
-        if file.startswith("wrfout"):
-            WRFfiles.append(file)
-    WRFfiles.sort()
 
     ################## Continue editing here!!!!
 
