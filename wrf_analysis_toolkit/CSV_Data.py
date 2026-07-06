@@ -14,6 +14,8 @@ def CSV_Data(
     location,
     outfile="MyCSV",
     outdir="./",
+    time_from=None,
+    time_to=None,
 ):
     ##Input check
     # Directories
@@ -30,7 +32,7 @@ def CSV_Data(
     print("Variables to extract:")
     for svariable in svariables:
         print("    - ", svariable.outfile)
-    WRFfiles = select_wrfout_files(dir_path)
+    WRFfiles = select_wrfout_files(dir_path, time_from, time_to)
     print("Source wrfout files:", dir_path)
     for f in WRFfiles:
         print("  ", f)

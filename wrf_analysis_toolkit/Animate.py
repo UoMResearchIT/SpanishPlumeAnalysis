@@ -12,6 +12,8 @@ import wrf_analysis_toolkit.SensibleVariables as sv
 def Animate(
     dir_path,
     svariable,
+    time_from=None,
+    time_to=None,
     windbarbs=0,
     outfile="MyMP4",
     outdir="./",
@@ -32,7 +34,7 @@ def Animate(
 
     #
     print("Generating diagnostic for", svariable.outfile)
-    WRFfiles = select_wrfout_files(dir_path)
+    WRFfiles = select_wrfout_files(dir_path, time_from, time_to)
     print("Source wrfout files:", dir_path)
     for f in WRFfiles:
         print("  ", f)

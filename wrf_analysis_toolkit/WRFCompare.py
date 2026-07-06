@@ -13,6 +13,8 @@ def WRFSmoothDiff(
     dir1,
     dir2,
     svariable,
+    time_from=None,
+    time_to=None,
     windbarbs=0,
     smooth=1,
     difflabel="",
@@ -38,8 +40,8 @@ def WRFSmoothDiff(
     #
     print("Comparing WRF files for.", svariable.outfile)
     print("Source wrfout files:", dir1, " & ", dir2)
-    WRFfiles1 = select_wrfout_files(dir1)
-    WRFfiles2 = select_wrfout_files(dir2)
+    WRFfiles1 = select_wrfout_files(dir1, time_from, time_to)
+    WRFfiles2 = select_wrfout_files(dir2, time_from, time_to)
     print("Source wrfout files:\n  ", dir1)
     for f in WRFfiles1:
         print("    ", f)
