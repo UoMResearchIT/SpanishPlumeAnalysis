@@ -18,7 +18,7 @@ def WRFSmoothDiff(
     colormap="seismic",
     outfile="MyMP4",
     outdir="./",
-    domain="full",
+    region="full",
     cleanpng=1,
     save_pdf=0,
 ):
@@ -152,7 +152,7 @@ def WRFSmoothDiff(
                     u,
                     v,
                     smooth=0,
-                    domain=domain,
+                    region=region,
                     nlevs=20,
                     save_pdf=save_pdf,
                 )

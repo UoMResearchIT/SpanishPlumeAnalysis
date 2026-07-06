@@ -33,7 +33,7 @@ def test_cli_csv_task(tmp_path: Path, wrf_control_dir: Path) -> None:
             f"--wrfout_dir={wrf_control_dir}",
             f"--output_dir={tmp_path}",
             "--place=Bath",
-            "--domain=full",
+            "--region=full",
         ]
     )
 

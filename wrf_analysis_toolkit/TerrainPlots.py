@@ -14,7 +14,7 @@ def Terrain(
     outdir="./",
     out_format="pdf",
     smooth=1,
-    domain="full",
+    region="full",
 ):
 
     ##Input check
@@ -37,7 +37,7 @@ def Terrain(
     #
     print("Generating diagnostic for", svariable.outfile)
     print("Source wrfout files:", dir_path)
-    print("Using:\n\tdomain =", domain, "\n\tsmooth    =", smooth)
+    print("Using:\n\tregion =", region, "\n\tsmooth    =", smooth)
     print("Output will be saved as ", outfname, "\n")
 
     # Get list of files from directoy
@@ -55,7 +55,7 @@ def Terrain(
         0,
         outfname,
         smooth=smooth,
-        domain=domain,
+        region=region,
         nlevs=11,
         time_tag=0,
         return_fig=1,

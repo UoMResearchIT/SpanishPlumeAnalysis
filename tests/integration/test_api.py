@@ -112,7 +112,7 @@ class TestTerrain:
         produced_name = wat.terrain(
             wrfout_dir=str(wrf_control_dir),
             output_dir=str(tmp_path),
-            domain="full",
+            region="full",
         )
 
         assert f"{produced_name}" == "TerrainElevation"
@@ -122,7 +122,7 @@ class TestTerrain:
         produced_name = wat.terrain(
             wrfout_dir=str(wrf_control_dir),
             output_dir=str(tmp_path),
-            domain="UK",
+            region="UK",
             place="Bath",
             file_tag="_Bath",
         )

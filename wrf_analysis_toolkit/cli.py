@@ -61,10 +61,10 @@ def cli():
         help="Set to 1 to save pdf files of each frame generated during the task",
     )
     parser.add_argument(
-        "--domain",
+        "--region",
         type=str,
         default="full",
-        help="Area to plot, can be the 'full' domain in the WRF simulation, 'UK', which covers the UK and Ireland, or comma separated specified bounding box coordinates: 'min_lon,max_lon,min_lat,max_lat'.",
+        help="Area to plot, can be the 'full' area in the WRF simulation, 'UK', which covers the UK and Ireland, or comma separated specified bounding box coordinates: 'min_lon,max_lon,min_lat,max_lat'.",
     )
     parser.add_argument(
         "--rows",
@@ -196,7 +196,7 @@ def cli():
                 place=args.place,
                 lat=args.lat,
                 lon=args.lon,
-                domain=args.domain,
+                region=args.region,
                 smooth=args.smooth,
             )
 
@@ -213,7 +213,7 @@ def cli():
                 lat=args.lat,
                 lon=args.lon,
                 trajectory=args.traj,
-                domain=args.domain,
+                region=args.region,
                 smooth=args.smooth,
                 clean_png_frames=args.clean,
                 save_pdf_frames=args.save_pdf_frames,
@@ -240,7 +240,7 @@ def cli():
                 range_max=args.range_max,
                 windbarbs=args.windbarbs,
                 colormap=args.colormap,
-                domain=args.domain,
+                region=args.region,
                 smooth=args.smooth,
                 clean_png_frames=args.clean,
                 save_pdf_frames=args.save_pdf_frames,

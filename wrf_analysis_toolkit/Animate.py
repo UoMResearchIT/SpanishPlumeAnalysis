@@ -15,7 +15,7 @@ def Animate(
     outfile="MyMP4",
     outdir="./",
     smooth=1,
-    domain="full",
+    region="full",
     cleanpng=1,
     save_pdf=0,
 ):
@@ -141,7 +141,7 @@ def Animate(
                         u,
                         v,
                         smooth,
-                        domain=domain,
+                        region=region,
                         save_pdf=save_pdf,
                     )
                     PNGfiles.append(outfname)
