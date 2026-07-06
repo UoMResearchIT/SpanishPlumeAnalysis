@@ -3,6 +3,7 @@ from wrf import ll_to_xy, to_np, latlon_coords, getvar
 import cartopy.crs as crs
 import matplotlib.pyplot as plt
 
+from wrf_analysis_toolkit.utils import select_wrfout_files
 from wrf_analysis_toolkit.GetSensVar import *
 from wrf_analysis_toolkit.Plot2DField import *
 
@@ -41,11 +42,7 @@ def Terrain(
     print("Output will be saved as ", outfname, "\n")
 
     # Get list of files from directoy
-    WRFfiles = []
-    for file in os.listdir(dir_path):
-        if file.startswith("wrfout"):
-            WRFfiles.append(file)
-    WRFfiles.sort()
+    WRFfiles = select_wrfout_files(dir_path)
     ncfile = Dataset(dir_path + WRFfiles[0])
     var, _, _, _ = GetSensVar(ncfile, svariable)
 

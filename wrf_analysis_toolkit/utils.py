@@ -72,3 +72,40 @@ def set_variable(
         svar.ptitle = f"SkewT at {svar.lat},{svar.lon}"
 
     return svar
+
+
+def check_timestamp(timestamp: str):
+    """
+    Checks if the timestamp is in the format YYYY-MM-DD_HH:MM:SS.
+    Raises a ValueError if the format is invalid.
+    """
+    import re
+
+    pattern = r"^\d{4}-\d{2}-\d{2}_\d{2}:\d{2}:\d{2}$"
+    if not re.match(pattern, timestamp):
+        raise ValueError(
+            f"Invalid timestamp format: {timestamp}. Expected format is YYYY-MM-DD_HH:MM:SS."
+        )
+    return timestamp
+
+
+def select_wrfout_files(wrfout_dir: str, time_from: str = None, time_to: str = None):
+    """
+    Returns a list of WRF output files in the specified directory, optionally filtered by time range.
+    Expect the files to be named in the format "wrfout_*_YYYY-MM-DD_HH:MM:SS", where * is a wildcard.
+
+    By default, all files starting with "wrfout_" are included.
+
+    If time_from is provided, only files with timestamps >= time_from are included.
+    If time_to is provided, only files with timestamps <= time_to are included.
+    """
+    WRFfiles = sorted(f for f in os.listdir(wrfout_dir) if f.startswith("wrfout_"))
+
+    if time_from is not None:
+        check_timestamp(time_from)
+        WRFfiles = [f for f in WRFfiles if check_timestamp(f[-19:]) >= time_from]
+    if time_to is not None:
+        check_timestamp(time_to)
+        WRFfiles = [f for f in WRFfiles if check_timestamp(f[-19:]) <= time_to]
+
+    return WRFfiles
