@@ -3,15 +3,21 @@ import matplotlib.pyplot as plt
 import ipywidgets as widgets
 import numpy as np
 
-def view_wrf_3d(da: xr.DataArray, cmap="viridis"):
+def view_wrf_3d(
+        da: xr.DataArray,
+        vmax=None,
+        vmin=None,
+        cmap="viridis"
+    ):
     """
-    Quick tool for viewing a 3D field from a wrfout file
+    Quick tool for viewing a 3D field from a WRF NetCDF file
     """
     if len(da.dims) != 3:
         raise ValueError(f"Input DA must have 3 dimensions, has {len(da.dims)}")
-
-    vmin = np.nanmin(da)
-    vmax = np.nanmax(da)
+    if vmin is None:
+        vmin = np.nanmin(da)
+    if vmax is None:
+        vmax = np.nanmax(da)
     zdim = da.dims[0]
     @widgets.interact(level=(0, da.sizes[zdim] - 1))
     def view(level=0):
@@ -29,15 +35,23 @@ def view_wrf_3d(da: xr.DataArray, cmap="viridis"):
         plt.title(f"{da.description} Level {level}")
         plt.show()
 
-def view_wrf_2d(da: xr.DataArray, cmap="viridis"):
+def view_wrf_2d(
+        da: xr.DataArray,
+        vmax=None,
+        vmin=None,
+        cmap="viridis"
+    ):
     """
-    Quick tool for viewing a 3D field from a wrfout file
+    Quick tool for viewing a 2D field from a WRF NetCDF file
     """
     if len(da.dims) != 2:
         raise ValueError(f"Input DA must have 2 dimensions, has {len(da.dims)}")
 
-    vmin = np.nanmin(da)
-    vmax = np.nanmax(da)
+    if vmin is None:
+        vmin = np.nanmin(da)
+    if vmax is None:
+        vmax = np.nanmax(da)
+
     fig, ax = plt.subplots(figsize=(9, 5))
     im = ax.imshow(
         da,
