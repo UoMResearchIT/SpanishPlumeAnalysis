@@ -4,7 +4,12 @@ import ipywidgets as widgets
 import numpy as np
 
 
-def view_wrf_3d(da: xr.DataArray, vmax=None, vmin=None, cmap="viridis"):
+def view_wrf_3d(
+    da: xr.DataArray,
+    vmax=None,
+    vmin=None,
+    cmap="viridis",
+):
     """
     Quick tool for viewing a 3D field from a WRF NetCDF file
     """
@@ -33,7 +38,12 @@ def view_wrf_3d(da: xr.DataArray, vmax=None, vmin=None, cmap="viridis"):
         plt.show()
 
 
-def view_wrf_2d(da: xr.DataArray, vmax=None, vmin=None, cmap="viridis"):
+def view_wrf_2d(
+    da: xr.DataArray,
+    vmax=None,
+    vmin=None,
+    cmap="viridis",
+):
     """
     Quick tool for viewing a 2D field from a WRF NetCDF file
     """
@@ -46,7 +56,14 @@ def view_wrf_2d(da: xr.DataArray, vmax=None, vmin=None, cmap="viridis"):
         vmax = np.nanmax(da)
 
     fig, ax = plt.subplots(figsize=(9, 5))
-    im = ax.imshow(da, origin="lower", cmap=cmap, aspect="auto", vmin=vmin, vmax=vmax)
+    im = ax.imshow(
+        da,
+        origin="lower",
+        cmap=cmap,
+        aspect="auto",
+        vmin=vmin,
+        vmax=vmax,
+    )
     cbar = plt.colorbar(im, shrink=0.8, aspect=40)
     cbar.set_label(f"{da.name} [{da.units}]")
     plt.title(f"{da.description}")
