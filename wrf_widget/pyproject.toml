@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=82"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wrf_widget"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "matplotlib>=3.11",
+    "numpy>=2.5",
+    "xarray==2025.12.0",
+    "dask==2025.11.0",
+    "ipywidgets==8.1.7",
+    "ipykernel==6.30.1",
+]
+
+[tool.setuptools.packages.find]
+include = ["wrf_widget*"]

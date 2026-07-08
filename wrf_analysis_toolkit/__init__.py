@@ -1,6 +1,4 @@
-from importlib.metadata import version
-
-from numpy import diff
+from importlib.metadata import PackageNotFoundError, version
 
 from .api import (
     diagnostic,
@@ -20,4 +18,7 @@ __all__ = [
     "mp4stitch",
 ]
 
-__version__ = version("wrf_analysis_toolkit")
+try:
+    __version__ = version("wrf_analysis_toolkit")
+except PackageNotFoundError:
+    __version__ = "dev_local_install"

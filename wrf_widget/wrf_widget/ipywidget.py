@@ -3,12 +3,13 @@ import matplotlib.pyplot as plt
 import ipywidgets as widgets
 import numpy as np
 
+
 def view_wrf_3d(
-        da: xr.DataArray,
-        vmax=None,
-        vmin=None,
-        cmap="viridis"
-    ):
+    da: xr.DataArray,
+    vmax=None,
+    vmin=None,
+    cmap="viridis",
+):
     """
     Quick tool for viewing a 3D field from a WRF NetCDF file
     """
@@ -19,6 +20,7 @@ def view_wrf_3d(
     if vmax is None:
         vmax = np.nanmax(da)
     zdim = da.dims[0]
+
     @widgets.interact(level=(0, da.sizes[zdim] - 1))
     def view(level=0):
         fig, ax = plt.subplots(figsize=(9, 5))
@@ -28,19 +30,20 @@ def view_wrf_3d(
             cmap=cmap,
             aspect="auto",
             vmin=vmin,
-            vmax=vmax
+            vmax=vmax,
         )
         cbar = plt.colorbar(im, shrink=0.8, aspect=40)
         cbar.set_label(f"{da.name} [{da.units}]")
         plt.title(f"{da.description} Level {level}")
         plt.show()
 
+
 def view_wrf_2d(
-        da: xr.DataArray,
-        vmax=None,
-        vmin=None,
-        cmap="viridis"
-    ):
+    da: xr.DataArray,
+    vmax=None,
+    vmin=None,
+    cmap="viridis",
+):
     """
     Quick tool for viewing a 2D field from a WRF NetCDF file
     """
@@ -59,7 +62,7 @@ def view_wrf_2d(
         cmap=cmap,
         aspect="auto",
         vmin=vmin,
-        vmax=vmax
+        vmax=vmax,
     )
     cbar = plt.colorbar(im, shrink=0.8, aspect=40)
     cbar.set_label(f"{da.name} [{da.units}]")
