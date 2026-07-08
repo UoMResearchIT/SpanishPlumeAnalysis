@@ -19,6 +19,10 @@ dependencies = [
 [project.scripts]
 wrf_analysis_toolkit_cli = "wrf_analysis_toolkit.cli:cli"
 
+[tool.setuptools.packages.find]
+include = ["wrf_analysis_toolkit*"]
+exclude = ["wrf_widget*"]
+
 [tool.setuptools.package-data]
 wrf_analysis_toolkit = [
     "cartopy_data/**/*"
