@@ -24,17 +24,21 @@ def set_variable(
     lat=None,
     lon=None,
     trajectory=None,
+    sens_var=None,
 ):
     """
     Returns a SensibleVariable with the specified properties.
     """
-    try:
-        svar = deepcopy(getattr(sv, variable_name))
-    except AttributeError:
-        raise ValueError(
-            f"Variable '{variable_name}' is not defined in SensibleVariables."
-            f"Options are: {', '.join(sv.get_sv_names())}"
-        )
+    if sens_var is None:
+        try:
+            svar = deepcopy(getattr(sv, variable_name))
+        except AttributeError:
+            raise ValueError(
+                f"Variable '{variable_name}' is not defined in SensibleVariables."
+                f"Options are: {', '.join(sv.get_sv_names())}"
+            )
+    else:
+        svar = deepcopy(sens_var)
 
     if range_min is not None:
         svar.range_min = float(range_min)

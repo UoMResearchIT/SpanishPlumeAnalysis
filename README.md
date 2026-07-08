@@ -10,6 +10,7 @@ This repo contains a set of scripts to generate diagnostics from WRF outputs, an
     - [As a module](#as-a-module)
     - [As a CLI](#as-a-cli)
     - [Parameters](#parameters)
+      - [Module only](#module-only)
       - [CLI only](#cli-only)
     - [Variables](#variables)
     - [Plotting Regions](#plotting-regions)
@@ -130,6 +131,11 @@ This is a (hopefully) complete list of the parameters that can be passed, but no
 - `labels`: (`mp4stitch` task only) List of labels to be added at the top left corner of each video in the output.
 - `rows`: (`mp4stitch` task only) Number of rows in the output video (defaults to 1).
 - `cols`: (`mp4stitch` task only) Number of columns in the output video (will increase to fit all files, if necessary).
+
+#### Module only
+When used as a library, a full `svariable` object can be passed to the `diagnostic` and `wrfdiff` tasks, instead of a named variable from the available list. This allows for more control over the plotting of the variable, including the colour scale, units, title, range, type of plot, annotations (like wind-barbs or contour-lines), and potentially overlapping variables. If it is something that you find yourself using a lot, please consider adding it to the list of [variables](#variables) in the code.
+
+- `sens_var`: (`diagnostic` and `wrfdiff` tasks only) This must be an `svariable` object and it is recommended that it is only used if existing [variables](#variables) cannot be used.
 
 #### CLI only
 On top of the parameters listed above, the CLI has a few additional parameters or synonyms that are only used for the CLI interface:

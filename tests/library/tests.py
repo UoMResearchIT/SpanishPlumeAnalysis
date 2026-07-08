@@ -11,6 +11,8 @@ import os
 
 import wrf_analysis_toolkit as wat
 
+from matplotlib.pyplot import get_cmap
+
 base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 sys.path.insert(1, base_dir)
 import subprocess
@@ -70,6 +72,26 @@ diagnostic_args = [
         "range_max": 1000,
         "file_tag": "_Bath_range_0-1000",
     },
+    {
+        "variable_name": "AirTemp950",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/",
+        "sens_var": wat.SensibleVariables.svariable(
+            dim=4,
+            wrfname="temp",
+            ptitle="Temperature at 950 hPa [K]",
+            outfile="AirTemp950",
+            nticks=12,
+            nlevs=23,
+            range_min=270,
+            range_max=314,
+            interpvar="pressure",
+            interpvalue=950,
+            colormap=get_cmap("Reds"),
+        ),
+        "range_min": 290,
+        "range_max": 310,
+    },
 ]
 terrain_args = [
     {
@@ -120,6 +142,26 @@ wrfdiff_args = [
         "output_dir": f"{res_path}/",
         "label_diff": "Control-Zero",
         "file_tag": "_Control-Zero",
+    },
+    {
+        "wrfout_dir_A": f"{wrfdata}/control/",
+        "wrfout_dir_B": f"{wrfdata}/zero/",
+        "variable_name": "AirTemp950",
+        "output_dir": f"{res_path}/",
+        "sens_var": wat.SensibleVariables.svariable(
+            dim=4,
+            wrfname="temp",
+            ptitle="Temperature at 950 hPa [K]",
+            outfile="AirTemp950",
+            nticks=12,
+            nlevs=23,
+            range_min=270,
+            range_max=314,
+            interpvar="pressure",
+            interpvalue=950,
+            contour_color="navy",
+            colormap=get_cmap("Reds"),
+        ),
     },
 ]
 mp4stitch_args = [

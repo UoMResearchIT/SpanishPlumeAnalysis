@@ -16,6 +16,7 @@ def diagnostic(
     wrfout_dir: str,
     output_dir: str,
     variable_name: str,
+    sens_var: sv.svariable | None = None,
     file_tag: str = "",
     time_from: str | None = None,
     time_to: str | None = None,
@@ -40,6 +41,7 @@ def diagnostic(
     - wrfout_dir: Directory containing WRF output files.
     - output_dir: Directory where the output file(s) will be saved.
     - variable_name: Name of the variable to analyze (must be defined in SensibleVariables).
+    - sens_var: Sensible variable object (optional, only use if existing SensibleVariables cannot be used).
     - file_tag: String to append to the output filename (optional).
     - time_from: Only use wrfout files from this time onward (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
     - time_to: Only use wrfout files up to this time (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
@@ -85,6 +87,7 @@ def diagnostic(
         lat=lat,
         lon=lon,
         trajectory=trajectory,
+        sens_var=sens_var,
     )
 
     outfile = svar.outfile + file_tag
@@ -259,6 +262,7 @@ def wrfdiff(
     wrfout_dir_B: str,
     variable_name: str,
     output_dir: str,
+    sens_var: sv.svariable | None = None,
     file_tag: str = "",
     time_from: str | None = None,
     time_to: str | None = None,
@@ -280,6 +284,7 @@ def wrfdiff(
     - wrfout_dir_A: Full path to the first WRF output directory.
     - wrfout_dir_B: Full path to the second WRF output directory.
     - variable_name: Name of the variable to analyze (must be defined in SensibleVariables).
+    - sens_var: Sensible variable object (optional, only use if existing SensibleVariables cannot be used).
     - output_dir: Directory where the output file(s) will be saved.
     - file_tag: String to append to the output filename (optional).
     - time_from: Only use wrfout files from this time onward (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
@@ -301,6 +306,7 @@ def wrfdiff(
         variable_name=variable_name,
         range_min=range_min,
         range_max=range_max,
+        sens_var=sens_var,
     )
 
     outfile = f"wrf_diff_{svar.outfile}{file_tag}"
