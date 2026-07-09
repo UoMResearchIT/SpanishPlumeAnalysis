@@ -122,7 +122,7 @@ class TestTerrain:
         produced_name = wat.terrain(
             wrfout_dir=str(wrf_control_dir),
             output_dir=str(tmp_path),
-            region="UK",
+            region="-1.55e6,-0.45e6,2.1e6,3.3e6",
             place="Bath",
             file_tag="_Bath",
         )

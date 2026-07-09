@@ -28,6 +28,7 @@ def diagnostic(
     lon: float | None = None,
     trajectory: str | None = None,
     region: str = "full",
+    region_ticks: bool = False,
     smooth: bool = False,
     clean_png_frames: bool = True,
     save_pdf_frames: bool = False,
@@ -55,8 +56,9 @@ def diagnostic(
         - lon: Longitude for the variable (optional). If provided, lat must also be provided.
         - trajectory: Path to a trajectory file for SkewT plots animated along a trajectory (optional).
 
-    - region: Area covered by the plots, set by a comma-separated string of bounding box coordinates as "min_lon,max_lon,min_lat,max_lat".
+    - region: Area covered by the plots, set by a comma-separated string of projected bounding box coordinates as "min_x,max_x,min_y,max_y".
                 (default is "full", which uses all the area covered by the wrf data). See pre-defined regions in the readme.
+    - region_ticks: If True, plots show lat/lon labels on the top and left, and projected coordinate labels on the bottom and right.
     - smooth: Boolean indicating whether to apply smoothing to the plots (default is False).
     - clean_png_frames: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
     - save_pdf_frames: Boolean indicating whether to save each frame as a PDF (default is False).
@@ -75,6 +77,7 @@ def diagnostic(
             lat=lat,
             lon=lon,
             region=region,
+            region_ticks=region_ticks,
             smooth=smooth,
         )
 
@@ -102,6 +105,7 @@ def diagnostic(
         outdir=output_dir,
         smooth=smooth,
         region=region,
+        region_ticks=region_ticks,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
     )
@@ -121,6 +125,7 @@ def terrain(
     lat: float | None = None,
     lon: float | None = None,
     region: str = "full",
+    region_ticks: bool = False,
     smooth: bool = False,
 ):
     """
@@ -134,14 +139,17 @@ def terrain(
     - file_tag: String to append to the output filename (optional).
     - range_min: Minimum value for the elevation range (default is 0). Must be >= 0.
     - range_max: Maximum value for the elevation range (default is 2000). Must be >= 10.
-    - region: Area covered by the plots, set by a comma-separated string of bounding box coordinates as "min_lon,max_lon,min_lat,max_lat".
+    - region: Area covered by the plots, set by a comma-separated string of projected bounding box coordinates as "min_x,max_x,min_y,max_y".
                 (default is "full", which uses all the area covered by the wrf data). See pre-defined regions in the readme.
+    - region_ticks: If True, plots show lat/lon labels on the top and left, and projected coordinate labels on the bottom and right.
     - smooth: Boolean indicating whether to apply smoothing to the plot (default is False).
 
-    A point can also be added to the plot if lat and lon are provided, or a place if place is provided.
+    A marker* can also be added to the plot if lat and lon are provided, or a place if place is provided.
         - place: Predefined location name (optional).
         - lat: Latitude for the variable (optional). If provided, lon must also be provided.
         - lon: Longitude for the variable (optional). If provided, lat must also be provided.
+
+    * Two markers are added to the plot: a circle centred on the nearest grid point, and a cross at the specified location.
 
     Returns: The name of the output file saved in the output directory.
     """
@@ -175,6 +183,7 @@ def terrain(
         out_format=output_format,
         smooth=smooth,
         region=region,
+        region_ticks=region_ticks,
     )
 
     return outfile
@@ -272,6 +281,7 @@ def wrfdiff(
     windbarbs: bool | None = None,
     colormap: str | None = None,
     region: str = "full",
+    region_ticks: bool = False,
     smooth: bool = False,
     clean_png_frames: bool = True,
     save_pdf_frames: bool = False,
@@ -294,8 +304,9 @@ def wrfdiff(
     - range_max: Maximum value for the variable range (optional).
     - windbarbs: Boolean indicating whether to include wind barbs in the plots (optional).
     - colormap: Colormap to use for the plots (optional).
-    - region: Area covered by the plots, set by a comma-separated string of bounding box coordinates as "min_lon,max_lon,min_lat,max_lat".
+    - region: Area covered by the plots, set by a comma-separated string of projected bounding box coordinates as "min_x,max_x,min_y,max_y".
                 (default is "full", which uses all the area covered by the wrf data). See pre-defined regions in the readme.
+    - region_ticks: If True, plots show lat/lon labels on the top and left, and projected coordinate labels on the bottom and right.
     - smooth: Boolean indicating whether to apply smoothing to the plots (default is False).
     - clean_png_frames: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
     - save_pdf_frames: Boolean indicating whether to save each frame as a PDF (default is False).
@@ -324,6 +335,7 @@ def wrfdiff(
         outdir=output_dir,
         smooth=smooth,
         region=region,
+        region_ticks=region_ticks,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
     )

@@ -16,6 +16,7 @@ def Terrain(
     out_format="pdf",
     smooth=1,
     region="full",
+    region_ticks=False,
 ):
 
     ##Input check
@@ -53,6 +54,7 @@ def Terrain(
         outfname,
         smooth=smooth,
         region=region,
+        region_ticks=region_ticks,
         nlevs=11,
         time_tag=0,
         return_fig=1,

@@ -64,7 +64,13 @@ def cli():
         "--region",
         type=str,
         default="full",
-        help="Area to plot, can be the 'full' area in the WRF simulation, 'UK', which covers the UK and Ireland, or comma separated specified bounding box coordinates: 'min_lon,max_lon,min_lat,max_lat'.",
+        help="Area to plot, can be the 'full' area in the WRF simulation, or comma separated projected bounding box coordinates: 'min_x,max_x,min_y,max_y'.",
+    )
+    parser.add_argument(
+        "--region_ticks",
+        type=str2bool,
+        default=0,
+        help="Show lat/lon labels on the top and left and projected coordinate labels on the bottom and right.",
     )
     parser.add_argument(
         "--rows",
@@ -209,6 +215,7 @@ def cli():
                 lat=args.lat,
                 lon=args.lon,
                 region=args.region,
+                region_ticks=args.region_ticks,
                 smooth=args.smooth,
             )
 
@@ -228,6 +235,7 @@ def cli():
                 lon=args.lon,
                 trajectory=args.traj,
                 region=args.region,
+                region_ticks=args.region_ticks,
                 smooth=args.smooth,
                 clean_png_frames=args.clean,
                 save_pdf_frames=args.save_pdf_frames,
@@ -259,6 +267,7 @@ def cli():
                 windbarbs=args.windbarbs,
                 colormap=args.colormap,
                 region=args.region,
+                region_ticks=args.region_ticks,
                 smooth=args.smooth,
                 clean_png_frames=args.clean,
                 save_pdf_frames=args.save_pdf_frames,

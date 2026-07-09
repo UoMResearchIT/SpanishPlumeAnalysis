@@ -22,6 +22,7 @@ def WRFSmoothDiff(
     outfile="MyMP4",
     outdir="./",
     region="full",
+    region_ticks=False,
     cleanpng=1,
     save_pdf=0,
 ):
@@ -150,6 +151,7 @@ def WRFSmoothDiff(
                     v,
                     smooth=0,
                     region=region,
+                    region_ticks=region_ticks,
                     nlevs=20,
                     save_pdf=save_pdf,
                 )

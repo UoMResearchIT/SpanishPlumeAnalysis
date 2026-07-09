@@ -21,9 +21,9 @@ res_path = os.getenv("RESULTS_PATH", f"{base_dir}/tests/human_checks/results")
 all_args = [
     f"--task=diagnostic   --var=DewpointTemp925              --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/control/",
     f"--task=diagnostic   --var=DewpointTemp925              --wrfout_dir={wrfdata}/zero/         --output_dir={res_path}/zero/",
-    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/control/ --region=UK --save_pdf_frames=1",
-    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/zero/  --region=-1550000,-450000,2000000,3300000",
-    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/zero/  --region=UE_SW+NA",
+    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/control/ --region=-1.55e6,-0.45e6,2.1e6,3.3e6 --save_pdf_frames=1",
+    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/zero/  --region=-1550000,-450000,2000000,3300000 --region_ticks=1",
+    f"--task=diagnostic   --var=CAPE                         --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/zero/  --region=-3542500,942500,-732500,3642500 --file_tag=_UE_SW+NA",
     f"--task=diagnostic   --var=TerrainElevation1000        --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --lat=51.38  --lon=-2.36 --file_tag=_Bath1000",
     f"--task=terrain      --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --place=Bath --file_tag=_Bath",
     f"--task=csv          --wrfout_dir={wrfdata}/control/      --output_dir={res_path}/ --place=BristolChannel",
