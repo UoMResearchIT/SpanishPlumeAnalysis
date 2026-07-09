@@ -144,10 +144,12 @@ def terrain(
     - region_ticks: If True, plots show lat/lon labels on the top and left, and projected coordinate labels on the bottom and right.
     - smooth: Boolean indicating whether to apply smoothing to the plot (default is False).
 
-    A point can also be added to the plot if lat and lon are provided, or a place if place is provided.
+    A marker* can also be added to the plot if lat and lon are provided, or a place if place is provided.
         - place: Predefined location name (optional).
         - lat: Latitude for the variable (optional). If provided, lon must also be provided.
         - lon: Longitude for the variable (optional). If provided, lat must also be provided.
+
+    * Two markers are added to the plot: a circle centred on the nearest grid point, and a cross at the specified location.
 
     Returns: The name of the output file saved in the output directory.
     """
