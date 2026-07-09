@@ -64,7 +64,7 @@ def cli():
         "--region",
         type=str,
         default="full",
-        help="Area to plot, can be the 'full' area in the WRF simulation, 'UK', which covers the UK and Ireland, or comma separated projected bounding box coordinates: 'min_x,max_x,min_y,max_y'.",
+        help="Area to plot, can be the 'full' area in the WRF simulation, or comma separated projected bounding box coordinates: 'min_x,max_x,min_y,max_y'.",
     )
     parser.add_argument(
         "--region_ticks",

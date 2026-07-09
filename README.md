@@ -112,8 +112,8 @@ This is a (hopefully) complete list of the parameters that can be passed, but no
 - `lat`: Latitude for the variable. If provided, `lon` must also be provided.
 - `lon`: Longitude for the variable. If provided, `lat` must also be provided.
 - `trajectory`: Path to a trajectory file for SkewT plots animated along a trajectory.
-- `region`: Area covered by the plots, set by a comma-separated string of bounding box coordinates as "min_lon,max_lon,min_lat,max_lat".
-    (default is "full", which uses all the area covered by the wrf data). See [plotting regions](#plotting-regions) for pre-defined options.
+- `region`: Area covered by the plots, set by a comma-separated string of projected bounding box coordinates as "min_x,max_x,min_y,max_y".
+    (default is "full", which uses all the area covered by the wrf data). See [plotting regions](#plotting-regions) for details.
 - `smooth`: Boolean indicating whether to apply smoothing to the plots (default is False).
 - `clean_png_frames`: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
 - `save_pdf_frames`: Boolean indicating whether to save each frame as a PDF (default is False).
@@ -221,12 +221,14 @@ This is a list of the variables that are currently defined in the code, and can 
 
 ### Plotting Regions
 
-The plotting region can be specified as a bounding box with the `region` parameter as "min_lon,max_lon,min_lat,max_lat".
-Alternatively, the following pre-defined regions are available for use:
+The plotting region can be specified as a bounding box of the projected coordinates with the `region` parameter as "min_x,max_x,min_y,max_y".
+By default, the `full` area covered by the WRF data is plotted.
 
-- `full`: Uses all the area covered by the WRF data (this is the default).
-- `UK`: Covers the United Kingdom and Ireland. Values: "-1550000,-450000,2000000,3300000"
-- `UE_SW+NA`: Covers the south west of the EU, and North Africa. Values: "-3542500,942500,-732500,3642500"
+To be able to easily select a region, it is recommended that the terrain elevation is plotted first, with the `region_ticks` parameter set to True, i.e.:
+```
+wat.terrain(wrfout_dir="/my/data/", output_dir="/my/results/", region_ticks=True)
+```
+This will produce a plot with the projected coordinates on the right and bottom axes, which can be used to select the bounding box for the `region` parameter.
 
 ### Locations
 

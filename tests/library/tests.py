@@ -98,6 +98,7 @@ terrain_args = [
         "variable_name": "TerrainElevation",
         "wrfout_dir": f"{wrfdata}/control/",
         "output_dir": f"{res_path}/",
+        "region_ticks": True,
     },
     {
         "variable_name": "TerrainElevation",
@@ -107,8 +108,7 @@ terrain_args = [
         "range_min": 0,
         "range_max": 750,
         "file_tag": "_Bath_range_0-750",
-        "region": "-1.6e6,-0.5e6,2.1e6,3.3e6",
-        "region_ticks": True,
+        "region": "-1.55e6,-0.45e6,2.1e6,3.3e6",
     },
 ]
 csv_args = [
