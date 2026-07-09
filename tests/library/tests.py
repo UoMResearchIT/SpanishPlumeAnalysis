@@ -105,8 +105,10 @@ terrain_args = [
         "output_dir": f"{res_path}/",
         "place": "Bath",
         "range_min": 0,
-        "range_max": 1500,
-        "file_tag": "_Bath_range_0-1500",
+        "range_max": 750,
+        "file_tag": "_Bath_range_0-750",
+        "region": "-1.6e6,-0.5e6,2.1e6,3.3e6",
+        "region_ticks": True,
     },
 ]
 csv_args = [

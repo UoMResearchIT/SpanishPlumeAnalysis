@@ -1,6 +1,7 @@
 from netCDF4 import Dataset
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize, LogNorm, BoundaryNorm
+import matplotlib.ticker as mticker
 import numpy as np
 from pathlib import Path
 import cartopy
@@ -26,6 +27,7 @@ def Plot2DField(
     v=None,
     smooth=1,
     region="full",
+    region_ticks=False,
     nlevs=10,
     time_tag=1,
     return_fig=0,
@@ -199,26 +201,21 @@ def Plot2DField(
     if region == "full":  # Get limits from the WRF data
         ax.set_xlim(cartopy_xlim(smooth_var))
         ax.set_ylim(cartopy_ylim(smooth_var))
-    elif region == "UK":  # Covers the UK and Ireland
-        ax.set_xlim([-1550000, -450000])
-        ax.set_ylim([2000000, 3300000])
-    elif region == "UE_SW+NA":  # Covers the south west of the EU, and North Africa
-        ax.set_xlim([-3542500, 942500])
-        ax.set_ylim([-732500, 3642500])
-    else:  # expect string of 4 comma-separated floats: "min_lon,max_lon,min_lat,max_lat"
-        reg_split = region.split(",")
+    else:  # expect string of 4 comma-separated floats: "min_x,max_x,min_y,max_y"
+        reg_split = [float(x) for x in region.split(",")]
         if len(reg_split) == 4:
-            bounds = [float(b) for b in reg_split]
-            ax.set_xlim([bounds[0], bounds[1]])
-            ax.set_ylim([bounds[2], bounds[3]])
+            ax.set_xlim([reg_split[0], reg_split[1]])
+            ax.set_ylim([reg_split[2], reg_split[3]])
         else:
             raise ValueError(
                 f"Invalid region specification: {region}."
-                " Expected 'full', 'UK', 'UE_SW+NA', or 'min_lon,max_lon,min_lat,max_lat'"
+                " Expected 'full' or 'min_x,max_x,min_y,max_y'"
             )
 
     # Add the gridlines
     ax.gridlines(color="black", linestyle="dotted")
+    if region_ticks:
+        add_projected_ticks(ax)
 
     # Add title and frame time
     plt.title(svariable.ptitle)
@@ -232,3 +229,60 @@ def Plot2DField(
         if save_pdf:
             plt.savefig(outfname.replace(".png", ".pdf"))
         plt.close(fig)
+
+
+def add_projected_ticks(ax, nbins=10):
+
+    x_locator = mticker.MaxNLocator(nbins=nbins)
+    y_locator = mticker.MaxNLocator(nbins=nbins)
+    x_limits = ax.get_xlim()
+    y_limits = ax.get_ylim()
+    x_min, x_max = sorted(x_limits)
+    y_min, y_max = sorted(y_limits)
+
+    # Keep only ticks inside current limits to avoid expanding the plotted area.
+    x_ticks = x_locator.tick_values(x_min, x_max)
+    y_ticks = y_locator.tick_values(y_min, y_max)
+    x_ticks = x_ticks[(x_ticks >= x_min) & (x_ticks <= x_max)]
+    y_ticks = y_ticks[(y_ticks >= y_min) & (y_ticks <= y_max)]
+
+    ax.set_xticks(x_ticks)
+    ax.set_yticks(y_ticks)
+    ax.set_xlim(x_limits)
+    ax.set_ylim(y_limits)
+    ax.tick_params(
+        axis="x",
+        bottom=True,
+        top=False,
+        labelbottom=True,
+        labeltop=False,
+        labelsize=5,
+    )
+    ax.tick_params(
+        axis="y",
+        left=False,
+        right=True,
+        labelleft=False,
+        labelright=True,
+        labelsize=5,
+    )
+    ax.xaxis.set_major_formatter(mticker.FuncFormatter(_format_projected_tick))
+    ax.yaxis.set_major_formatter(mticker.FuncFormatter(_format_projected_tick))
+
+    ax.set_axisbelow(True)
+    ax.grid(True, which="major", linestyle="--", linewidth=0.4, color="black")
+
+    for label in ax.get_xticklabels():
+        label.set_rotation(45)
+        label.set_ha("right")
+        label.set_rotation_mode("anchor")
+
+    for label in ax.get_yticklabels():
+        label.set_rotation(45)
+        label.set_ha("left")
+        label.set_va("center")
+        label.set_rotation_mode("anchor")
+
+
+def _format_projected_tick(value, _position):
+    return f"{value:.1e}"

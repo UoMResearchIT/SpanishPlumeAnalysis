@@ -19,6 +19,7 @@ def Animate(
     outdir="./",
     smooth=1,
     region="full",
+    region_ticks=False,
     cleanpng=1,
     save_pdf=0,
 ):
@@ -141,6 +142,7 @@ def Animate(
                         v,
                         smooth,
                         region=region,
+                        region_ticks=region_ticks,
                         save_pdf=save_pdf,
                     )
                     PNGfiles.append(outfname)
