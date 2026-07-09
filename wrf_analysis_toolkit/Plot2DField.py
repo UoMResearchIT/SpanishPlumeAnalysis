@@ -213,7 +213,7 @@ def Plot2DField(
             )
 
     # Add the gridlines
-    ax.gridlines(color="black", linestyle="dotted")
+    add_lat_lon_ticks(ax, region_ticks)
     if region_ticks:
         add_projected_ticks(ax)
 
@@ -229,6 +229,22 @@ def Plot2DField(
         if save_pdf:
             plt.savefig(outfname.replace(".png", ".pdf"))
         plt.close(fig)
+
+
+def add_lat_lon_ticks(ax, draw_labels, nbins=6):
+    gl = ax.gridlines(color="black", linestyle="dotted")
+    gl.xlocator = mticker.MaxNLocator(nbins=nbins)
+    gl.ylocator = mticker.MaxNLocator(nbins=nbins)
+
+    gl.draw_labels = draw_labels
+    gl.x_inline = False
+    gl.top_labels = draw_labels
+    gl.bottom_labels = False
+    gl.xformatter = cartopy.mpl.gridliner.LONGITUDE_FORMATTER
+    gl.y_inline = False
+    gl.right_labels = False
+    gl.left_labels = draw_labels
+    gl.yformatter = cartopy.mpl.gridliner.LATITUDE_FORMATTER
 
 
 def add_projected_ticks(ax, nbins=10):
