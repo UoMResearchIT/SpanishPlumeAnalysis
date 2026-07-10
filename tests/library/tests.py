@@ -98,6 +98,12 @@ diagnostic_args = [
         "output_dir": f"{res_path}/control/",
         "windbarb_gap": 50,
     },
+    {
+        "variable_name": "WindSpeed925",
+        "wrfout_dir": f"{wrfdata}/arwen/",
+        "output_dir": f"{res_path}/",
+        "windbarb_gap": 50,
+    },
 ]
 terrain_args = [
     {

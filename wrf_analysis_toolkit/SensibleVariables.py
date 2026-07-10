@@ -1100,6 +1100,31 @@ Wetbulb700 = create_Wetbulb_at(700, range_min=254, range_max=294)
 Wetbulb500 = create_Wetbulb_at(500, range_min=240, range_max=280, overlap_gap=60)
 Wetbulb300 = create_Wetbulb_at(300, range_min=216, range_max=256, overlap_gap=120)
 
+
+def create_WindSpeed_at(interpvalue, range_min=0, range_max=60, nticks=12, nlevs=12):
+    return svariable(
+        dim=4,
+        wrfname="wspd",
+        ptitle=f"Wind Speed at {interpvalue} hPa [m/s]",
+        outfile=f"WindSpeed{interpvalue}",
+        interpvar="pressure",
+        interpvalue=interpvalue,
+        colormap=get_cmap("YlGnBu"),
+        nticks=nticks,
+        nlevs=nlevs,
+        range_min=range_min,
+        range_max=range_max,
+        windbarbs=True,
+    )
+
+
+WindSpeed925 = create_WindSpeed_at(925)
+WindSpeed850 = create_WindSpeed_at(850)
+WindSpeed700 = create_WindSpeed_at(700)
+WindSpeed500 = create_WindSpeed_at(500)
+WindSpeed300 = create_WindSpeed_at(300, range_min=0, range_max=80)
+
+
 # SkewT
 # https://www.umr-cnrm.fr/dbfastex/datasets/rsc_data.html
 SkewT = svariable(

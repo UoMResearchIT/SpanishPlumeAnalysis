@@ -219,6 +219,11 @@ This is a list of the variables that are currently defined in the code, and can 
 - Wetbulb700
 - Wetbulb850
 - Wetbulb925
+- WindSpeed300
+- WindSpeed500
+- WindSpeed700
+- WindSpeed850
+- WindSpeed925
 
 ### Plotting Regions
 
