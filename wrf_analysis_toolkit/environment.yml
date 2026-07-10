@@ -1,0 +1,16 @@
+name: wrf-py-env
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - netCDF4=1.7.4
+  - matplotlib=3.11.0
+  - cmasher=1.9.2
+  - cartopy=0.25.0
+  - wrf-python=1.4.2
+  - imageio=2.37.0
+  - imageio-ffmpeg=0.6.0
+  - metpy=1.7.1
+  - setuptools=82.0.1

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wrf_analysis_toolkit"
-version = "1.7.4"
+version = "2.0.0"
 requires-python = ">=3.10"
 dependencies = [
     "netCDF4>=1.7",
@@ -18,10 +18,6 @@ dependencies = [
 
 [project.scripts]
 wrf_analysis_toolkit_cli = "wrf_analysis_toolkit.cli:cli"
-
-[tool.setuptools.packages.find]
-include = ["wrf_analysis_toolkit*"]
-exclude = ["wrf_widget*"]
 
 [tool.setuptools.package-data]
 wrf_analysis_toolkit = [
