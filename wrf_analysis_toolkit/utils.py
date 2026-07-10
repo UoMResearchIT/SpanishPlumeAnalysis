@@ -20,6 +20,7 @@ def set_variable(
     range_min=None,
     range_max=None,
     windbarbs=None,
+    windbarb_gap=None,
     place=None,
     lat=None,
     lon=None,
@@ -47,6 +48,9 @@ def set_variable(
 
     if windbarbs is not None:
         svar.windbarbs = str2bool(windbarbs)
+
+    if windbarb_gap is not None:
+        svar.windbarb_gap = int(windbarb_gap)
 
     if place is not None:
         try:

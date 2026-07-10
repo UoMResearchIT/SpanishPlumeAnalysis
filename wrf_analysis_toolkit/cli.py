@@ -41,6 +41,12 @@ def cli():
         help="Default behaviour is set by sensible variable.",
     )
     parser.add_argument(
+        "--windbarb_gap",
+        type=int,
+        default=None,
+        help="Number of grid points between wind barbs (optional).",
+    )
+    parser.add_argument(
         "--smooth",
         type=str2bool,
         default=0,
@@ -230,6 +236,7 @@ def cli():
                 range_min=args.range_min,
                 range_max=args.range_max,
                 windbarbs=args.windbarbs,
+                windbarb_gap=args.windbarb_gap,
                 place=args.place,
                 lat=args.lat,
                 lon=args.lon,
@@ -265,6 +272,7 @@ def cli():
                 range_min=args.range_min,
                 range_max=args.range_max,
                 windbarbs=args.windbarbs,
+                windbarb_gap=args.windbarb_gap,
                 colormap=args.colormap,
                 region=args.region,
                 region_ticks=args.region_ticks,

@@ -23,6 +23,7 @@ def diagnostic(
     range_min: float | None = None,
     range_max: float | None = None,
     windbarbs: bool | None = None,
+    windbarb_gap: int | None = None,
     place: str | None = None,
     lat: float | None = None,
     lon: float | None = None,
@@ -49,6 +50,7 @@ def diagnostic(
     - range_min: Minimum value for the variable range (optional).
     - range_max: Maximum value for the variable range (optional).
     - windbarbs: Boolean indicating whether to include wind barbs in the plots (optional).
+    - windbarb_gap: Number of grid points between wind barbs (optional).
 
     For SkewT plots, the following additional inputs are available:
         - place: Predefined location name for SkewT plots (optional).
@@ -86,6 +88,7 @@ def diagnostic(
         range_min=range_min,
         range_max=range_max,
         windbarbs=windbarbs,
+        windbarb_gap=windbarb_gap,
         place=place,
         lat=lat,
         lon=lon,
@@ -279,6 +282,7 @@ def wrfdiff(
     range_min: float | None = None,
     range_max: float | None = None,
     windbarbs: bool | None = None,
+    windbarb_gap: int | None = None,
     colormap: str | None = None,
     region: str = "full",
     region_ticks: bool = False,
@@ -303,6 +307,7 @@ def wrfdiff(
     - range_min: Minimum value for the variable range (optional).
     - range_max: Maximum value for the variable range (optional).
     - windbarbs: Boolean indicating whether to include wind barbs in the plots (optional).
+    - windbarb_gap: Number of grid points between wind barbs (optional).
     - colormap: Colormap to use for the plots (optional).
     - region: Area covered by the plots, set by a comma-separated string of projected bounding box coordinates as "min_x,max_x,min_y,max_y".
                 (default is "full", which uses all the area covered by the wrf data). See pre-defined regions in the readme.
@@ -318,6 +323,8 @@ def wrfdiff(
         range_min=range_min,
         range_max=range_max,
         sens_var=sens_var,
+        windbarbs=windbarbs,
+        windbarb_gap=windbarb_gap,
     )
 
     outfile = f"wrf_diff_{svar.outfile}{file_tag}"
@@ -328,7 +335,7 @@ def wrfdiff(
         svar,
         time_from=time_from,
         time_to=time_to,
-        windbarbs=windbarbs,
+        windbarbs=svar.windbarbs,
         difflabel=label_diff,
         colormap=colormap,
         outfile=outfile,

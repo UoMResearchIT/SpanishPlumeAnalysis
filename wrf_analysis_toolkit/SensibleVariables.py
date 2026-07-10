@@ -15,6 +15,7 @@ class svariable:
         interpvar="pressure",
         interpvalue=None,
         windbarbs=0,
+        windbarb_gap=25,
         isdif=0,
         colormap=get_cmap("jet"),
         under_color=None,
@@ -43,6 +44,7 @@ class svariable:
         self.interpvar = interpvar
         self.interpvalue = interpvalue
         self.windbarbs = windbarbs
+        self.windbarb_gap = windbarb_gap
         self.isdif = isdif
         self.colormap = colormap
         if under_color is not None:

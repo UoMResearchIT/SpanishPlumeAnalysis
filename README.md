@@ -108,6 +108,7 @@ This is a (hopefully) complete list of the parameters that can be passed, but no
 - `range_min`: Minimum value for the variable range .
 - `range_max`: Maximum value for the variable range .
 - `windbarbs`: Boolean indicating whether to include wind barbs in the plots.
+- `windbarb_gap`: Number of grid points between wind barbs (default is 25).
 - `place`: Predefined location name (see the list of available [locations](#locations)).
 - `lat`: Latitude for the variable. If provided, `lon` must also be provided.
 - `lon`: Longitude for the variable. If provided, `lat` must also be provided.

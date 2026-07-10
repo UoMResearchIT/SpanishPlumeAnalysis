@@ -92,6 +92,12 @@ diagnostic_args = [
         "range_min": 290,
         "range_max": 310,
     },
+    {
+        "variable_name": "SeaLevelPressure",
+        "wrfout_dir": f"{wrfdata}/control/",
+        "output_dir": f"{res_path}/control/",
+        "windbarb_gap": 50,
+    },
 ]
 terrain_args = [
     {

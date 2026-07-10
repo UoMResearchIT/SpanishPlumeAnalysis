@@ -186,7 +186,7 @@ def Plot2DField(
         u = u * 1.94384
         v = v * 1.94384
         # Add wind barbs, only plotting every nbarbs
-        nbarbs = 25
+        nbarbs = svariable.windbarb_gap
         ax.barbs(
             x[::nbarbs, ::nbarbs],
             y[::nbarbs, ::nbarbs],
