@@ -190,6 +190,11 @@ This is a list of the variables that are currently defined in the code, and can 
 - GeoPotHeight850
 - GeoPotHeight925
 - InstRain
+- PotVorticity300
+- PotVorticity500
+- PotVorticity700
+- PotVorticity850
+- PotVorticity925
 - PotentialTemp2m
 - PotentialTemp500
 - PotentialTemp600
@@ -197,11 +202,6 @@ This is a list of the variables that are currently defined in the code, and can 
 - PotentialTemp800
 - PotentialTemp850
 - PotentialTemp925
-- PotVorticity300
-- PotVorticity500
-- PotVorticity700
-- PotVorticity850
-- PotVorticity925
 - Rain
 - RelativeHumidity2m
 - RelativeHumidity300
