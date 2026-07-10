@@ -1125,6 +1125,32 @@ WindSpeed500 = create_WindSpeed_at(500)
 WindSpeed300 = create_WindSpeed_at(300, range_min=0, range_max=80)
 
 
+def create_PotentialVorticity_at(
+    interpvalue, overlap_gap=30, range_min=-100, range_max=200, nticks=8, nlevs=15
+):
+    max_frac = 0.55 + min(0.45, (range_max / (range_max - range_min)))
+    min_frac = 0.55 + min(0, (range_min / (range_max - range_min)))
+    return svariable(
+        dim=4,
+        wrfname="avo",
+        ptitle=f"Potential Vorticity at {interpvalue} hPa",
+        outfile=f"PotVorticity{interpvalue}",
+        interpvar="pressure",
+        interpvalue=interpvalue,
+        colormap=cmr.get_sub_cmap("PuOr", min_frac, max_frac, N=nlevs),
+        nticks=nticks,
+        nlevs=nlevs,
+        range_min=range_min,
+        range_max=range_max,
+    )
+
+
+PotVorticity925 = create_PotentialVorticity_at(925)
+PotVorticity850 = create_PotentialVorticity_at(850)
+PotVorticity700 = create_PotentialVorticity_at(700, range_min=-75, range_max=150)
+PotVorticity500 = create_PotentialVorticity_at(500, range_min=-75, range_max=100)
+PotVorticity300 = create_PotentialVorticity_at(300, range_min=-50, range_max=100)
+
 # SkewT
 # https://www.umr-cnrm.fr/dbfastex/datasets/rsc_data.html
 SkewT = svariable(

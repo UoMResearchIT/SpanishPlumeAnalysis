@@ -104,6 +104,11 @@ diagnostic_args = [
         "output_dir": f"{res_path}/",
         "windbarb_gap": 50,
     },
+    {
+        "variable_name": "PotVorticity925",
+        "wrfout_dir": f"{wrfdata}/arwen/",
+        "output_dir": f"{res_path}/",
+    },
 ]
 terrain_args = [
     {
