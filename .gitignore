@@ -4,3 +4,6 @@ Results/
 results/
 
 .env
+.venv
+
+*.sif

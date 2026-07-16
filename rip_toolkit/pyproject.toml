@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=82"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rip_toolkit"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "netCDF4>=1.7",
+]
+
+[tool.setuptools.package-data]
+rip_toolkit = [
+    "sample_data/**/*"
+]

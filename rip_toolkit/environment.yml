@@ -1,0 +1,9 @@
+name: rip-py-env
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - netCDF4=1.7.4
+  - setuptools=82.0.1

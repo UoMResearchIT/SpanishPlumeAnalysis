@@ -1,0 +1,33 @@
+# This compose file runs the tests for the rip-toolkit and exits when done.
+# To run the tests, cd into tests/ and execute:
+#   docker compose up --build
+#
+
+name: rip-toolkit
+services:
+  library-tests:
+    ## This service runs the library tests.
+    ## You may then explore the results in the /memory/library_tests_results directory:
+    ## xdg-open $(docker volume inspect rip-toolkit_memory -f '{{ .Mountpoint }}')/library_tests_results
+    ## ```
+    image: rip-toolkit:testing
+    tty: true
+    stdin_open: true
+    build:
+      context: ../
+      dockerfile: tests/Dockerfile
+    container_name: rip-toolkit-library-tests
+    volumes:
+      - memory:/memory # Used to persist pytest cache between runs
+      - $WRF_DATA_PATH:/wrfdata:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      - RESULTS_PATH=/memory/library_tests_results # Library tests save outputs here for inspection
+    command: >-
+      bash -c "
+        rm -rf /memory/library_tests_results/* &&
+        python -u tests/library/tests.py
+      "
+
+volumes:
+  memory:

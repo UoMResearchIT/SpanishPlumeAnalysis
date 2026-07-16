@@ -1,0 +1,195 @@
+import os
+from datetime import datetime
+from netCDF4 import Dataset
+
+
+def _parse_wrf_datetime(value: str) -> datetime:
+    """Parse common WRF time string formats."""
+    value = value.strip()
+    for fmt in ("%Y-%m-%d_%H:%M:%S", "%Y-%m-%d_%H:%M", "%Y-%m-%d_%H"):
+        try:
+            return datetime.strptime(value, fmt)
+        except ValueError:
+            continue
+    raise ValueError(f"Unsupported WRF time format: {value}")
+
+
+def _times_from_file(path: str) -> list[datetime]:
+    """
+    Read all frame times from a wrfout NetCDF file (Times variable).
+    Falls back to parsing the timestamp from filename if Times is missing.
+    """
+    out = []
+    with Dataset(path) as ds:
+        if "Times" in ds.variables:
+            times_var = ds.variables["Times"][:]  # typically shape (Time, DateStrLen)
+            for row in times_var:
+                # row is usually a char array; bytes decode handles this robustly
+                tstr = (
+                    row.tobytes()
+                    .decode("ascii", errors="ignore")
+                    .strip("\x00 ")
+                    .strip()
+                )
+                if tstr:
+                    out.append(_parse_wrf_datetime(tstr))
+        else:
+            # fallback: parse from filename suffix
+            fname = os.path.basename(path)
+            out.append(_parse_wrf_datetime(fname[-19:]))
+
+    return out
+
+
+def get_model_times(wrfout_dir: str) -> dict[float, str]:
+    """
+    Return available model times (hours since simulation start) mapped to date strings.
+
+    Inputs:
+    - wrfout_dir (str): Directory containing wrfout_* files.
+
+    Outputs:
+    - dict[float, str]: {model_hour: "YYYY-MM-DD_HH:MM:SS"} for all available frames.
+    """
+    if not os.path.isdir(wrfout_dir):
+        raise FileNotFoundError(f"wrfout_dir does not exist: {wrfout_dir}")
+
+    wrf_files = sorted(
+        os.path.join(wrfout_dir, f)
+        for f in os.listdir(wrfout_dir)
+        if f.startswith("wrfout_")
+    )
+    if not wrf_files:
+        raise ValueError(f"No files starting with 'wrfout_' found in: {wrfout_dir}")
+
+    frame_datetimes = []
+    for path in wrf_files:
+        frame_datetimes.extend(_times_from_file(path))
+
+    # deduplicate and sort in case times overlap across files
+    frame_datetimes = sorted(set(frame_datetimes))
+    t0 = frame_datetimes[0]
+
+    model_times = {}
+    for t in frame_datetimes:
+        hours = (t - t0).total_seconds() / 3600.0
+        model_times[round(hours, 6)] = t.strftime("%Y-%m-%d_%H:%M:%S")
+
+    return model_times
+
+
+def generate_default_file_tag(wrfout_dir: str, time_step: int):
+    """
+    Generates a default file tag based on the wrfout directory and time step.
+    """
+    # get last two directory names from the wrfout_dir path and join them with an underscore
+    file_tag = "_".join(wrfout_dir.split("/")[-2:])
+    file_tag = f"{file_tag}_dt={time_step}"
+    return file_tag
+
+
+def setup_dir_structure(output_dir: str):
+    """
+    Sets up the directory structure used by the rip container.
+    It generates dedicated directories for the WRF data, RIPDP and BTrajectories outputs.
+
+    Inputs:
+    - output_dir (str): The base output directory where the subdirectories will be created.
+    """
+    print(f"Setting up directory structure in {output_dir}...")
+    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "WRFData"), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "RIPDP"), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "BTrajectories"), exist_ok=True)
+
+
+def check_dir_structure(path: str):
+    """
+    Checks if the directory structure used by the rip container is set up correctly.
+
+    Inputs:
+    - path (str): The path that should exist.
+    """
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            f"The directory {path} does not exist."
+            f"Please set up the directory structure first."
+        )
+
+
+def check_image_exists(image_path: str):
+    """
+    Checks if the apptainer image exists.
+
+    Inputs:
+    - image_path (str): The path to the apptainer image.
+    """
+    if not os.path.exists(image_path):
+        raise FileNotFoundError(
+            f"The apptainer image {image_path} does not exist."
+            f"Please provide a valid path to the apptainer image."
+        )
+    if not image_path.endswith(".sif"):
+        raise ValueError(
+            f"The apptainer image {image_path} is not a valid .sif file."
+            f"Please provide a valid path to the apptainer image, including the .sif extension."
+        )
+
+
+def generate_rdp_input(
+    output_dir: str,
+    file_tag: str,
+    time_from: int,
+    time_to: int,
+    time_step: int,
+):
+    """
+    Generates the input file for the RIPDP module.
+
+    Inputs:
+    - output_dir (str): The base output directory where the RIPDP directory is located.
+    - file_tag (str): The tag to identify the inputs file.
+    - time_from (int): The starting time for the trajectory computation.
+    - time_to (int): The ending time for the trajectory computation.
+    - time_step (int): The time step for the trajectory computation.
+
+    Outputs:
+    - The path to the generated input file relative to the output_dir.
+    """
+    print(f"Generating RIPDP input file in {output_dir}...")
+    check_dir_structure(os.path.join(output_dir, "RIPDP"))
+
+    rdp_in = os.path.join("RIPDP", f"rdp_{file_tag}")
+    with open(os.path.join(output_dir, rdp_in), "w") as f:
+        f.write("&userin\n")
+        f.write(f"ptimes={time_from},-{time_to},{time_step},ptimeunits='h',tacc=90.,\n")
+        f.write("iexpandedout=1\n")
+        f.write("/\n")
+
+    return rdp_in
+
+
+def generate_rdp_run_script(output_dir: str, rdp_in: str):
+    """
+    Generates a shell script that will be run inside the rip container to run the RIPDP module.
+
+    Inputs:
+    - output_dir (str): The base output directory where the RIPDP directory is located.
+    - rdp_in (str): The path to the RIPDP input file relative to the output_dir.
+
+    Outputs:
+    - The name of the generated shell script (directly generated in the output_dir).
+    """
+    print(f"Generating RIPDP run script in {output_dir}...")
+    check_dir_structure(os.path.join(output_dir, "RIPDP"))
+
+    run_script = f"run_{rdp_in.split('/')[-1]}.sh"
+    with open(os.path.join(output_dir, run_script), "w") as f:
+        f.write("#!/bin/bash\n")
+        f.write(
+            "source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable\n"
+        )
+        f.write(f"ripdp_wrfarw -n {rdp_in} {rdp_in} all WRFData/wrfout_*\n")
+
+    os.chmod(os.path.join(output_dir, run_script), 0o755)
+    return run_script
