@@ -1,17 +1,20 @@
 from importlib.metadata import PackageNotFoundError, version
 
-from .api import (
-    run_rip_container,
-    preprocess,
-)
+
 from .utils import (
     get_model_times,
 )
-
-__all__ = [
+from .api import (
     run_rip_container,
     preprocess,
-    get_model_times,
+    point_trajectory,
+)
+
+__all__ = [
+    "get_model_times",
+    "preprocess",
+    "point_trajectory",
+    "run_rip_container",
 ]
 
 try:

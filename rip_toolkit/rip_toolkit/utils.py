@@ -103,9 +103,9 @@ def setup_dir_structure(output_dir: str):
     os.makedirs(os.path.join(output_dir, "BTrajectories"), exist_ok=True)
 
 
-def check_dir_structure(path: str):
+def check_dir_exists(path: str):
     """
-    Checks if the directory structure used by the rip container is set up correctly.
+    Used to checks if the directory structure used by the rip container is set up correctly.
 
     Inputs:
     - path (str): The path that should exist.
@@ -113,7 +113,7 @@ def check_dir_structure(path: str):
     if not os.path.exists(path):
         raise FileNotFoundError(
             f"The directory {path} does not exist."
-            f"Please set up the directory structure first."
+            f"Please make sure the path you specified is correct and the directory structure is set up first."
         )
 
 
@@ -157,7 +157,7 @@ def generate_rdp_input(
     - The path to the generated input file relative to the output_dir.
     """
     print(f"Generating RIPDP input file in {output_dir}...")
-    check_dir_structure(os.path.join(output_dir, "RIPDP"))
+    check_dir_exists(os.path.join(output_dir, "RIPDP"))
 
     rdp_in = os.path.join("RIPDP", f"rdp_{file_tag}")
     with open(os.path.join(output_dir, rdp_in), "w") as f:
@@ -181,7 +181,7 @@ def generate_rdp_run_script(output_dir: str, rdp_in: str):
     - The name of the generated shell script (directly generated in the output_dir).
     """
     print(f"Generating RIPDP run script in {output_dir}...")
-    check_dir_structure(os.path.join(output_dir, "RIPDP"))
+    check_dir_exists(os.path.join(output_dir, "RIPDP"))
 
     run_script = f"run_{rdp_in.split('/')[-1]}.sh"
     with open(os.path.join(output_dir, run_script), "w") as f:
@@ -190,6 +190,63 @@ def generate_rdp_run_script(output_dir: str, rdp_in: str):
             "source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable\n"
         )
         f.write(f"ripdp_wrfarw -n {rdp_in} {rdp_in} all WRFData/wrfout_*\n")
+
+    os.chmod(os.path.join(output_dir, run_script), 0o755)
+    return run_script
+
+
+def generate_point_traj_input(
+    output_dir: str,
+    traj_name: str,
+    traj_t_0: float,
+    traj_t_f: float,
+    traj_dt: int,
+    file_dt: int,
+    traj_x: int,
+    traj_y: int,
+    traj_z: float,
+    hydrometeor: int,
+):
+    """
+    Generate a RIP input file for a single trajectory and return its path relative
+    to output_dir.
+    """
+    check_dir_exists(os.path.join(output_dir, "BTrajectories"))
+
+    traj_in = os.path.join("BTrajectories", f"{traj_name}.in")
+    with open(os.path.join(output_dir, traj_in), "w") as f:
+        f.write("&userin\n")
+        f.write(" itrajcalc=1\n")
+        f.write(" /\n")
+        f.write(" &trajcalc\n")
+        f.write(
+            f" rtim={traj_t_0},ctim={traj_t_f},dtfile={file_dt}.,dttraj={traj_dt}.,vctraj='p',\n"
+        )
+        f.write(f" xjtraj={traj_x},\n")
+        f.write(f" yitraj={traj_y},\n")
+        f.write(f" zktraj={traj_z},\n")
+        f.write(f" ihydrometeor={hydrometeor}\n")
+        f.write(" /\n")
+
+    return traj_in
+
+
+def generate_point_traj_run_script(
+    output_dir: str,
+    rdp_in: str,
+    traj_in: str,
+):
+    """
+    Generate the container run script for a single trajectory and return its
+    filename (relative to output_dir root inside the container).
+    """
+    run_script = f"run_{os.path.basename(traj_in).replace('.in', '')}.sh"
+    with open(os.path.join(output_dir, run_script), "w") as f:
+        f.write("#!/bin/bash\n")
+        f.write(
+            "source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable\n"
+        )
+        f.write(f"rip -f {rdp_in} {traj_in}\n")
 
     os.chmod(os.path.join(output_dir, run_script), 0o755)
     return run_script
