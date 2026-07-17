@@ -102,6 +102,10 @@ def preprocess(
         file_tag = generate_default_file_tag(wrfout_dir, time_step)
 
     mt = get_model_times(wrfout_dir)
+    if len(mt) < 2:
+        raise ValueError(
+            f"Not enough model times found in wrfout_dir ({wrfout_dir}) to perform preprocessing. Found: {mt}"
+        )
     if time_to is None:
         time_to = max(mt.keys())
     if time_from < min(mt.keys()):
