@@ -11,7 +11,9 @@ from .utils import (
     generate_rdp_run_script,
     diagnostic_groups,
     generate_point_traj_input,
+    generate_tabdiag_format,
     generate_point_traj_run_script,
+    tabdiag_to_csv,
 )
 
 
@@ -248,11 +250,16 @@ def point_trajectory(
         hydrometeor=hydrometeor,
         traj_diagnostics=traj_diagnostics,
     )
+    tabdiag_format = generate_tabdiag_format(
+        output_dir=output_dir,
+        traj_tag=traj_tag,
+        traj_diagnostics=traj_diagnostics,
     )
     run_script = generate_point_traj_run_script(
         output_dir=output_dir,
         rdp_in=rdp_in,
         traj_in=traj_in,
+        tabdiag_format=tabdiag_format,
     )
 
     run_rip_container(
@@ -265,6 +272,14 @@ def point_trajectory(
     )
 
     traj_file = os.path.join(output_dir, "BTrajectories", traj_name)
+
+    if traj_diagnostics != {}:
+        tabdiag_to_csv(
+            traj_file=traj_file,
+            tabdiag_file=traj_file + ".tabdiag",
+            traj_diagnostics=traj_diagnostics,
+        )
+
     print(f"Trajectory computation done. Outputs saved to: {traj_file}*")
 
     return f"{traj_file}.traj"
