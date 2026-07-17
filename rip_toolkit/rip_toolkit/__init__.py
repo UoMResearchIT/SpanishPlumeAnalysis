@@ -3,6 +3,7 @@ from importlib.metadata import PackageNotFoundError, version
 
 from .utils import (
     get_model_times,
+    diagnostic_groups,
 )
 from .api import (
     run_rip_container,
@@ -12,6 +13,7 @@ from .api import (
 
 __all__ = [
     "get_model_times",
+    "diagnostic_groups",
     "preprocess",
     "point_trajectory",
     "run_rip_container",

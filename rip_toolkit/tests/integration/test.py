@@ -29,6 +29,7 @@ tp = ript.point_trajectory(
     traj_t_f=9,
     traj_dt=1200,
     hydrometeor=0,
+    traj_diagnostics=ript.diagnostic_groups("base"),
     image_path=image_path,
 )
 

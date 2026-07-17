@@ -195,6 +195,65 @@ def generate_rdp_run_script(output_dir: str, rdp_in: str):
     return run_script
 
 
+def diagnostic_groups(group_name: str):
+    """
+    Returns a dictionary of diagnostic fields for a given group name.
+
+    Inputs:
+    - group_name (str): The name of the diagnostic group. Valid options are:
+        - "base": Basic diagnostics (latitude, longitude, elevation, pressure, geopotential height)
+        - "short": temperature, potential temperature, dewpoint, humidity, wind speed/direction
+        - "long": saturated equivalent potential temperature, static stability, buoyancy, CAPE/CIN
+
+    Outputs:
+    - dict[str, str]: A dictionary mapping diagnostic field names to their descriptions.
+    """
+    group_name = group_name.lower()
+    base = {
+        "xlat": "Latitude [deg]",
+        "xlon": "Longitude [deg]",
+        "ter": "Elevation [m]",
+        "prs": "Pressure [mb]",
+        "ght": "Geopotential Height [m]",
+        "ghtagl": "Geopotential Height Above Ground Level [m]",
+    }
+    short = {
+        "tmc": "Air Temperature [C]",
+        "the": "Potential Temperature [K]",
+        "eth": "Equivalent Potential Temperature [K]",
+        "tdp": "Dewpoint Temperature [C]",
+        "rhu": "Relative Humidity [%]",
+        "qvp": "Water Vapor Mixing Ratio [g/kg]",
+        "lcl": "Lifted Condensation Level [m]",
+        "lfc": "Level of Free Convection [m]",
+        "omg": "Omega [mb/s]",
+        "pvm": "Moist Potential Vorticity",
+        "pvo": "Potential Vorticity",
+        "wsp": "Wind Speed [m/s]",
+        "wdr": "Horizontal Wind Direction [deg]",
+        "www": "Vertical velocity [cm/s]",
+    }
+    long = {
+        "sateth": "Saturated Equivalent Potential Temperature [K]",
+        "stb": "Static Stability [K/hPa]",
+        "stbe": "Equivalent Static Stability [K/hPa]",
+        "stbz": "Buoyancy [K/km]",
+        "tdd": "Temperature Deficit [C]",
+        "cin3": "Convective Inhibition [J/kg]",
+        "cap3": "Convective Available Potential Energy [J/kg]",
+        "mcap": "Most Unstable Convective Available Potential Energy [J/kg]",
+        "mcin": "Most Unstable Convective Inhibition [J/kg]",
+    }
+
+    if group_name == "base":
+        return base
+    if group_name == "short":
+        return {**base, **short}
+    if group_name == "long":
+        return {**base, **short, **long}
+    raise ValueError("group_name must be one of: base, short, long")
+
+
 def generate_point_traj_input(
     output_dir: str,
     traj_name: str,
@@ -206,6 +265,7 @@ def generate_point_traj_input(
     traj_y: int,
     traj_z: float,
     hydrometeor: int,
+    traj_diagnostics: dict,
 ):
     """
     Generate a RIP input file for a single trajectory and return its path relative
@@ -227,6 +287,19 @@ def generate_point_traj_input(
         f.write(f" zktraj={traj_z},\n")
         f.write(f" ihydrometeor={hydrometeor}\n")
         f.write(" /\n")
+
+        # Add diagnostic fields so RIP writes .diag output when requested.
+        if traj_diagnostics:
+            f.write(
+                "===========================================================================\n"
+                "---------------------- Plot Specification Table ---------------------\n"
+                "===========================================================================\n"
+            )
+            for diag in traj_diagnostics:
+                f.write(f"feld={diag}\n")
+                f.write(
+                    "===========================================================================\n"
+                )
 
     return traj_in
 

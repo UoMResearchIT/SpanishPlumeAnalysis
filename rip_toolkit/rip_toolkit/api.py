@@ -9,10 +9,8 @@ from .utils import (
     check_image_exists,
     generate_rdp_input,
     generate_rdp_run_script,
-    generate_point_traj_input,
     diagnostic_groups,
-    generate_point_tabdiag_format,
-    generate_point_tabdiag_to_csv_script,
+    generate_point_traj_input,
     generate_point_traj_run_script,
 )
 
@@ -169,6 +167,7 @@ def point_trajectory(
     traj_dt: int = 600,
     file_dt: int | None = None,
     hydrometeor: int = 0,
+    traj_diagnostics: dict = diagnostic_groups("base"),
     image_path: str = "ripdocker_latest.sif",
 ):
     """
@@ -187,6 +186,7 @@ def point_trajectory(
     - traj_dt (int): Trajectory numerical timestep (seconds).
     - file_dt (int): Time interval in RIPDP data (seconds).
     - hydrometeor (int): Set to 0 for Air Parcel trajectories, or 1 for Hydrometeor trajectories.
+    - traj_diagnostics (dict): Diagnostics to be computed along trajectory, as returned by `diagnostic_groups(group_name)`.
     - image_path (str): Path to apptainer image.
 
     Outputs:
@@ -242,6 +242,8 @@ def point_trajectory(
         traj_y=traj_y,
         traj_z=traj_z,
         hydrometeor=hydrometeor,
+        traj_diagnostics=traj_diagnostics,
+    )
     )
     run_script = generate_point_traj_run_script(
         output_dir=output_dir,
