@@ -9,6 +9,7 @@ from .api import (
     run_rip_container,
     preprocess,
     point_trajectory,
+    plot_trajectories,
 )
 
 __all__ = [
@@ -16,6 +17,7 @@ __all__ = [
     "diagnostic_groups",
     "preprocess",
     "point_trajectory",
+    "plot_trajectories",
     "run_rip_container",
 ]
 

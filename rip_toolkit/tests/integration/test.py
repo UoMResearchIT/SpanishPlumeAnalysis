@@ -7,6 +7,7 @@ image_path = "RIP_legacy/ripdocker_latest.sif"
 
 print("Model times available in wrfout_dir:")
 print(f"{ript.get_model_times(wrfout_dir)}".replace(",", "\n"))
+print()
 
 ripdp = ript.preprocess(
     wrfout_dir=wrfout_dir,
@@ -15,22 +16,43 @@ ripdp = ript.preprocess(
     image_path=image_path,
 )
 
-print(ripdp)
 
 tp = ript.point_trajectory(
     wrfout_dir=wrfout_dir,
     output_dir=output_dir,
     ripdp_data=ripdp,
-    traj_tag="yucatan",
+    traj_tag="yucatan_900",
     traj_x=48,
     traj_y=17,
     traj_z=900,
     traj_t_0=0,
-    traj_t_f=9,
+    traj_t_f=12,
     traj_dt=1200,
     hydrometeor=0,
     traj_diagnostics=ript.diagnostic_groups("base"),
     image_path=image_path,
 )
 
-print(tp)
+tp = ript.point_trajectory(
+    wrfout_dir=wrfout_dir,
+    output_dir=output_dir,
+    ripdp_data=ripdp,
+    traj_tag="yucatan_600",
+    traj_x=48,
+    traj_y=17,
+    traj_z=600,
+    traj_t_0=0,
+    traj_t_f=12,
+    traj_dt=1200,
+    hydrometeor=0,
+    traj_diagnostics=ript.diagnostic_groups("base"),
+    image_path=image_path,
+)
+
+pl = ript.plot_trajectories(
+    output_dir=output_dir,
+    ripdp_data=ripdp,
+    traj_colors={"yucatan_900": "red", "yucatan_600": "blue"},
+    plot_tag="test_plot",
+    image_path=image_path,
+)
