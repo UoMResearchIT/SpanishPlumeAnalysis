@@ -138,6 +138,32 @@ def check_image_exists(image_path: str):
         )
 
 
+def generate_run_script(output_dir: str, script_name: str, commands: list[str]):
+    """
+    Generate a generic container run script with common environment setup, and append the provided commands.
+    Script is saved in the output_dir and made executable.
+
+    Inputs:
+    - output_dir (str): Base output directory.
+    - script_name (str): Script filename to create in output_dir.
+    - commands (list[str]): Command lines to append after environment setup.
+
+    Outputs:
+    - str: Script filename.
+    """
+    script_path = os.path.join(output_dir, script_name)
+    with open(script_path, "w") as f:
+        f.write("#!/bin/bash\n")
+        f.write(
+            "source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable\n"
+        )
+        for cmd in commands:
+            f.write(f"{cmd}\n")
+
+    os.chmod(script_path, 0o755)
+    return script_name
+
+
 def generate_rdp_input(
     output_dir: str,
     file_tag: str,
@@ -169,32 +195,6 @@ def generate_rdp_input(
         f.write("/\n")
 
     return rdp_in
-
-
-def generate_rdp_run_script(output_dir: str, rdp_in: str):
-    """
-    Generates a shell script that will be run inside the rip container to run the RIPDP module.
-
-    Inputs:
-    - output_dir (str): The base output directory where the RIPDP directory is located.
-    - rdp_in (str): The path to the RIPDP input file relative to the output_dir.
-
-    Outputs:
-    - The name of the generated shell script (directly generated in the output_dir).
-    """
-    print(f"Generating RIPDP run script in {output_dir}...")
-    check_dir_exists(os.path.join(output_dir, "RIPDP"))
-
-    run_script = f"run_{rdp_in.split('/')[-1]}.sh"
-    with open(os.path.join(output_dir, run_script), "w") as f:
-        f.write("#!/bin/bash\n")
-        f.write(
-            "source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable\n"
-        )
-        f.write(f"ripdp_wrfarw -n {rdp_in} {rdp_in} all WRFData/wrfout_*\n")
-
-    os.chmod(os.path.join(output_dir, run_script), 0o755)
-    return run_script
 
 
 def diagnostic_groups(group_name: str):
@@ -329,34 +329,6 @@ def generate_tabdiag_format(
         f.write(f"'{header}'\n")
         f.write(f"'({len(traj_diagnostics)+1}(3x,f9.3,3x))'\n")
     return tabdiag_format
-
-
-def generate_point_traj_run_script(
-    output_dir: str,
-    rdp_in: str,
-    traj_in: str,
-    tabdiag_format: str | None = None,
-):
-    """
-    Generate the container run script for a single trajectory and return its
-    filename (relative to output_dir root inside the container).
-    """
-    print(f"Generating point trajectory run script in {output_dir}...")
-    run_script = f"run_{os.path.basename(traj_in).replace('.in', '')}.sh"
-    with open(os.path.join(output_dir, run_script), "w") as f:
-        f.write("#!/bin/bash\n")
-        f.write(
-            "source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable\n"
-        )
-        f.write(f"rip -f {rdp_in} {traj_in}\n")
-        if tabdiag_format is not None:
-            traj_prefix = os.path.splitext(traj_in)[0]
-            f.write(f"if [ -f '{traj_prefix}.diag' ]; then\n")
-            f.write(f"  tabdiag {traj_prefix}.diag {tabdiag_format}\n")
-            f.write("fi\n")
-
-    os.chmod(os.path.join(output_dir, run_script), 0o755)
-    return run_script
 
 
 def tabdiag_to_csv(
@@ -513,27 +485,3 @@ def generate_traj_plot_input(
         )
 
     return plot_in
-
-
-def generate_traj_plot_run_script(
-    output_dir: str,
-    rdp_in: str,
-    plot_in: str,
-):
-    """
-    Generate a container run script for RIP trajectory plotting.
-
-    Outputs:
-    - str: Script filename relative to output_dir root.
-    """
-    print(f"Generating trajectory plot run script in {output_dir}...")
-    run_script = f"run_{Path(plot_in).stem}.sh"
-    with open(os.path.join(output_dir, run_script), "w") as f:
-        f.write("#!/bin/bash\n")
-        f.write(
-            "source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable\n"
-        )
-        f.write(f"rip -f {rdp_in} {plot_in}\n")
-
-    os.chmod(os.path.join(output_dir, run_script), 0o755)
-    return run_script

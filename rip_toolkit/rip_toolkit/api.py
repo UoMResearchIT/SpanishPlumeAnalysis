@@ -8,15 +8,13 @@ from .utils import (
     check_dir_exists,
     check_image_exists,
     generate_rdp_input,
-    generate_rdp_run_script,
+    generate_run_script,
     diagnostic_groups,
     generate_point_traj_input,
     generate_tabdiag_format,
-    generate_point_traj_run_script,
     tabdiag_to_csv,
     parse_point_traj_input,
     generate_traj_plot_input,
-    generate_traj_plot_run_script,
 )
 
 
@@ -40,7 +38,6 @@ def run_rip_container(
     output_dir = Path(output_dir).resolve()
     ripdp_dir = Path(ripdp_dir).resolve()
     image_path = Path(image_path).resolve()
-    run_script = run_script
 
     apptainer_command = [
         "apptainer",
@@ -140,7 +137,13 @@ def preprocess(
         time_to=time_to,
         time_step=time_step,
     )
-    run_script = generate_rdp_run_script(output_dir, rdp_in=rdp_in)
+
+    run_script = generate_run_script(
+        output_dir=output_dir,
+        script_name=f"run_{Path(rdp_in).name}.sh",
+        commands=[f"ripdp_wrfarw -n {rdp_in} {rdp_in} all WRFData/wrfout_*"],
+    )
+
     run_rip_container(
         wrfout_dir=wrfout_dir,
         output_dir=output_dir,
@@ -263,11 +266,21 @@ def point_trajectory(
         traj_tag=traj_tag,
         traj_diagnostics=traj_diagnostics,
     )
-    run_script = generate_point_traj_run_script(
+
+    commands = [f"rip -f {rdp_in} {traj_in}"]
+    if tabdiag_format is not None:
+        traj_prefix = os.path.splitext(traj_in)[0]
+        commands.extend(
+            [
+                f"if [ -f '{traj_prefix}.diag' ]; then",
+                f"  tabdiag {traj_prefix}.diag {tabdiag_format}",
+                "fi",
+            ]
+        )
+    run_script = generate_run_script(
         output_dir=output_dir,
-        rdp_in=rdp_in,
-        traj_in=traj_in,
-        tabdiag_format=tabdiag_format,
+        script_name=f"run_{Path(traj_in).stem}.sh",
+        commands=commands,
     )
 
     run_rip_container(
@@ -370,10 +383,11 @@ def plot_trajectories(
         trajectories=trajectories,
         format=format,
     )
-    run_script = generate_traj_plot_run_script(
+
+    run_script = generate_run_script(
         output_dir=output_dir,
-        rdp_in=rdp_in_rel,
-        plot_in=plot_in,
+        script_name=f"run_{Path(plot_in).stem}.sh",
+        commands=[f"rip -f {rdp_in_rel} {plot_in}"],
     )
 
     run_rip_container(
