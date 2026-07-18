@@ -80,6 +80,27 @@ def get_model_times(wrfout_dir: str) -> dict[float, str]:
     return model_times
 
 
+def colours():
+    """
+    Returns a list of RIP color names.
+    """
+    return [
+        "magenta",
+        "light.magenta",
+        "red.coral",
+        "red",
+        "orange",
+        "mustard",
+        "green",
+        "dark.green",
+        "blue",
+        "light.cerulean",
+        "lavender",
+        "light.blue",
+        "violet",
+    ]
+
+
 def generate_default_file_tag(wrfout_dir: str, time_step: int):
     """
     Generates a default file tag based on the wrfout directory and time step.

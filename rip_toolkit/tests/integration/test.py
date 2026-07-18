@@ -17,7 +17,7 @@ ripdp = ript.preprocess(
 )
 
 
-tp = ript.point_trajectory(
+pt_y = ript.point_trajectory(
     wrfout_dir=wrfout_dir,
     output_dir=output_dir,
     ripdp_data=ripdp,
@@ -33,7 +33,7 @@ tp = ript.point_trajectory(
     image_path=image_path,
 )
 
-tp = ript.point_trajectory(
+pt_f = ript.point_trajectory(
     wrfout_dir=wrfout_dir,
     output_dir=output_dir,
     ripdp_data=ripdp,
@@ -49,10 +49,26 @@ tp = ript.point_trajectory(
     image_path=image_path,
 )
 
+st = ript.stack_trajectories(
+    wrfout_dir=wrfout_dir,
+    output_dir=output_dir,
+    ripdp_data=ripdp,
+    traj_tag="gulf_of_mexico",
+    traj_x=60,
+    traj_y=30,
+    traj_z=[900, 800, 700, 600, 500],
+    traj_t_0=0,
+    traj_t_f=12,
+    traj_dt=1200,
+    hydrometeor=0,
+    traj_diagnostics=ript.diagnostic_groups("base"),
+    image_path=image_path,
+)
+
 pl = ript.plot_trajectories(
     output_dir=output_dir,
     ripdp_data=ripdp,
-    traj_colors={"yucatan_900": "green", "florida_900": "red"},
+    traj_colors={"yucatan_900": "green", "florida_900": "blue", **st},
     plot_tag="test_plot",
     image_path=image_path,
 )

@@ -3,6 +3,7 @@ from pathlib import Path
 import subprocess
 from .utils import (
     get_model_times,
+    colours,
     generate_default_file_tag,
     setup_dir_structure,
     check_dir_exists,
@@ -305,6 +306,54 @@ def point_trajectory(
     print(f"Outputs saved to: {traj_file}*\n")
 
     return f"{traj_file}.traj"
+
+
+def stack_trajectories(
+    wrfout_dir: str,
+    output_dir: str,
+    ripdp_data: str,
+    traj_tag: str,
+    traj_x: int,
+    traj_y: int,
+    traj_t_0: float,
+    traj_t_f: float,
+    traj_z: list[float] = [950, 900, 850, 800, 750, 700, 650, 600, 500, 400, 300, 200],
+    traj_dt: int = 600,
+    file_dt: int | None = None,
+    hydrometeor: int = 0,
+    traj_diagnostics: dict = diagnostic_groups("base"),
+    image_path: str = "ripdocker_latest.sif",
+):
+    """
+    Computes the trajectory of a stack of points.
+    """
+    i = 0
+    tags = {}
+    cols = colours()
+    for z in traj_z:
+
+        t_tag = f"{traj_tag}_{int(z)}"
+        point_trajectory(
+            wrfout_dir=wrfout_dir,
+            output_dir=output_dir,
+            ripdp_data=ripdp_data,
+            traj_tag=t_tag,
+            traj_x=traj_x,
+            traj_y=traj_y,
+            traj_z=z,
+            traj_t_0=traj_t_0,
+            traj_t_f=traj_t_f,
+            traj_dt=traj_dt,
+            file_dt=file_dt,
+            hydrometeor=hydrometeor,
+            traj_diagnostics=traj_diagnostics,
+            image_path=image_path,
+        )
+        tags[t_tag] = cols[i]
+        i += 1
+        if i >= len(cols):
+            i = 0
+    return tags
 
 
 def swarm_trajectory():
