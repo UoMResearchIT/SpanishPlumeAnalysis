@@ -43,6 +43,41 @@ def _times_from_file(path: str) -> list[datetime]:
     return out
 
 
+def _list_wrfout_files(wrfout_dir: str) -> list[str]:
+    return sorted(
+        [p.name for p in Path(wrfout_dir).iterdir() if p.name.startswith("wrfout_")]
+    )
+
+
+def chunks(wrfout_dir: str, n: int):
+    items = _list_wrfout_files(wrfout_dir)
+    for i in range(0, len(items), n):
+        yield 1 + i // n, items[i : i + n]
+
+
+def _read_xtimes(path: str) -> list[float]:
+    vals = []
+    with open(path) as f:
+        lines = [ln.strip() for ln in f if ln.strip()]
+    for ln in lines[1:]:
+        try:
+            vals.append(float(ln))
+        except ValueError:
+            pass
+    return vals
+
+
+def merge_xtimes(xtimes_paths: list[str]):
+    all_times = []
+    for path in xtimes_paths:
+        all_times.extend(_read_xtimes(path))
+    times = sorted(set(all_times))
+    with open(xtimes_paths[0].split(".xtimes")[0] + ".xtimes", "w") as f:
+        f.write(f"{len(times)}\n")
+        for t in times:
+            f.write(f"{t:010.5f}\n")
+
+
 def get_model_times(wrfout_dir: str) -> dict[float, str]:
     """
     Return available model times (hours since simulation start) mapped to date strings.
@@ -64,20 +99,71 @@ def get_model_times(wrfout_dir: str) -> dict[float, str]:
     if not wrf_files:
         raise ValueError(f"No files starting with 'wrfout_' found in: {wrfout_dir}")
 
-    frame_datetimes = []
-    for path in wrf_files:
-        frame_datetimes.extend(_times_from_file(path))
+    model_times: dict[float, str] = {}
+    fallback_datetimes: list[datetime] = []
+    used_xtime = False
 
-    # deduplicate and sort in case times overlap across files
-    frame_datetimes = sorted(set(frame_datetimes))
+    for path in wrf_files:
+        with Dataset(path) as ds:
+            # Read Times strings (if present) in file order.
+            times_str: list[str] = []
+            if "Times" in ds.variables:
+                for row in ds.variables["Times"][:]:
+                    tstr = (
+                        row.tobytes()
+                        .decode("ascii", errors="ignore")
+                        .strip("\x00 ")
+                        .strip()
+                    )
+                    if tstr:
+                        times_str.append(tstr)
+
+            # Preferred source: XTIME is minutes since simulation start.
+            if "XTIME" in ds.variables:
+                xtime_vals = ds.variables["XTIME"][:]
+                # Ensure we can iterate even if scalar-ish.
+                try:
+                    iterator = list(xtime_vals)
+                except TypeError:
+                    iterator = [xtime_vals]
+
+                for i, xv in enumerate(iterator):
+                    try:
+                        hour = round(float(xv) / 60.0, 6)
+                    except (TypeError, ValueError):
+                        continue
+
+                    if i < len(times_str):
+                        date_str = times_str[i]
+                    else:
+                        # Fallback for missing Times rows.
+                        try:
+                            date_str = _parse_wrf_datetime(
+                                os.path.basename(path)[-19:]
+                            ).strftime("%Y-%m-%d_%H:%M:%S")
+                        except ValueError:
+                            date_str = f"hour_{hour:.6f}"
+
+                    model_times[hour] = date_str
+
+                used_xtime = True
+            else:
+                # Keep old behavior as a fallback only when XTIME is absent.
+                fallback_datetimes.extend(_times_from_file(path))
+
+    if used_xtime:
+        return dict(sorted(model_times.items(), key=lambda kv: kv[0]))
+
+    # Fallback path: infer model hours from absolute datetimes.
+    frame_datetimes = sorted(set(fallback_datetimes))
     t0 = frame_datetimes[0]
 
-    model_times = {}
+    out = {}
     for t in frame_datetimes:
         hours = (t - t0).total_seconds() / 3600.0
-        model_times[round(hours, 6)] = t.strftime("%Y-%m-%d_%H:%M:%S")
+        out[round(hours, 6)] = t.strftime("%Y-%m-%d_%H:%M:%S")
 
-    return model_times
+    return out
 
 
 def colours():

@@ -1,15 +1,18 @@
 import os
 from pathlib import Path
+import shutil
 import subprocess
 from .utils import (
     get_model_times,
     colours,
+    chunks,
     generate_default_file_tag,
     setup_dir_structure,
     check_dir_exists,
     check_image_exists,
     generate_rdp_input,
     generate_run_script,
+    merge_xtimes,
     diagnostic_groups,
     generate_point_traj_input,
     generate_tabdiag_format,
@@ -84,6 +87,7 @@ def preprocess(
     time_to: float | None = None,
     time_step: float | None = None,
     image_path: str = "ripdocker_latest.sif",
+    batch_size: int = 50,
 ):
     """
     This step only needs to be performed once per set of wrf data, and can be reused to compute many trajectories a posteriori.
@@ -96,6 +100,7 @@ def preprocess(
     - time_from (float): Start model time for preprocessing, in hours since simulation start (inclusive).
     - time_to (float | None): End model time for preprocessing, in hours since simulation start (inclusive).
     - time_step (float): Requested RIPDP output interval in hours for ptimes. RIPDP can only emit times that exist in the provided WRF history data.
+    - batch_size (int): The number of wrfout files to process in each batch (progress is saved at the end of each batch).
 
     *Note: model times can be obtained from the wrfout files using the `get_model_times` function in `rip_toolkit.utils`.
 
@@ -139,22 +144,43 @@ def preprocess(
         time_step=time_step,
     )
 
-    run_script = generate_run_script(
-        output_dir=output_dir,
-        script_name=f"run_{Path(rdp_in).name}.sh",
-        commands=[f"ripdp_wrfarw -n {rdp_in} {rdp_in} all WRFData/wrfout_*"],
-    )
-
-    run_rip_container(
-        wrfout_dir=wrfout_dir,
-        output_dir=output_dir,
-        ripdp_dir=os.path.join(output_dir, "RIPDP"),
-        file_tag=file_tag,
-        image_path=image_path,
-        run_script=run_script,
-    )
-
+    all_xtimes = []
     xtimes_file = os.path.join(output_dir, "RIPDP", f"rdp_{file_tag}.xtimes")
+    batches = list(chunks(wrfout_dir, batch_size))
+    nbatches = len(batches)
+
+    for batch_id, batch in batches:
+        print(f"Processing batch {batch_id}/{nbatches} ({len(batch)} wrfout files)...")
+        # Command for this chunk only
+        rel_files = " ".join(f"WRFData/{name}" for name in batch)
+        cmd = f"ripdp_wrfarw -n {rdp_in} {rdp_in} all {rel_files}"
+        run_script = generate_run_script(
+            output_dir=output_dir,
+            script_name=f"run_{Path(rdp_in).name}_{batch_id:03d}.sh",
+            commands=[cmd],
+        )
+
+        run_rip_container(
+            wrfout_dir=wrfout_dir,
+            output_dir=output_dir,
+            ripdp_dir=os.path.join(output_dir, "RIPDP"),
+            file_tag=file_tag,
+            image_path=image_path,
+            run_script=run_script,
+        )
+
+        if os.path.isfile(xtimes_file):
+            batch_xtimes = os.path.join(
+                output_dir, "RIPDP", f"rdp_{file_tag}.xtimes.batch_{batch_id:03d}"
+            )
+            shutil.copy2(xtimes_file, batch_xtimes)
+            all_xtimes.append(batch_xtimes)
+        else:
+            raise RuntimeError(f"Missing xtimes after batch {batch_id}: {xtimes_file}")
+
+    # final merged xtimes
+    merge_xtimes(all_xtimes)
+
     if not os.path.isfile(xtimes_file):
         print(
             f"ERROR: Preprocessing container is done, but the expected xtimes file was not found: {xtimes_file}"
