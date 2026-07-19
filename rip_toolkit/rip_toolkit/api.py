@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+from datetime import datetime
 from .utils import (
     get_model_times,
     colours,
@@ -29,11 +30,17 @@ def run_rip_container(
     file_tag: str,
     image_path: str,
     run_script: str,
+    raise_on_error: bool = True,
 ):
     """
     Calls apptainer to run the rip_toolkit commands.
     It bind mounts the output directory, the RIPDP directory, and the wrfout directory.
     Then it runs the run_script inside the container specified by the image.
+
+    Streams output lines that contain 'forecast time=' in real time, to track preprocessing progress.
+
+    Outputs:
+    - int: process exit code.
     """
     print(f"Running RIP container with image {image_path}...")
     check_dir_exists(output_dir)
@@ -57,26 +64,44 @@ def run_rip_container(
         "/bin/bash",
         f"{run_script}",
     ]
-    try:
-        print(f"Starting rip container...")
-        cp = subprocess.run(
-            apptainer_command,
-            check=True,
-            text=True,
-            capture_output=True,  # captures both stdout/stderr
-        )
-        if cp.stdout:
-            print(cp.stdout)
-        if cp.stderr:
-            print(cp.stderr)
-    except subprocess.CalledProcessError as e:
+    print(f"Starting rip container...")
+    proc = subprocess.Popen(
+        apptainer_command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=1,
+    )
+
+    assert proc.stdout is not None
+    os.makedirs(os.path.join(output_dir, "Logs"), exist_ok=True)
+    run_name = Path(run_script).stem
+    logs_path = os.path.join(output_dir, "Logs", f"{file_tag}.combined_out")
+    with open(logs_path, "a") as f:
+        ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        f.write(f"{'='*80}\n{ts} {'-'*10} Started: {run_name} {'-'*10}\n")
+        for line in proc.stdout:
+            if (
+                "forecast time=" in line
+            ):  # ripdp preprocessing streams processing time live
+                print(line, end="")
+            f.write(line)  # everything is written to the logs
+        te = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        f.write(f"{te} {'-'*10} Completed: {run_name} {'-'*10}\n")
+        f.write(f"{'='*80}\n")
+
+    proc.wait()
+
+    if proc.returncode != 0 and raise_on_error:
         msg = (
             "Container failed.\n"
-            f"  --- Command --\n    {' '.join(apptainer_command)}\n"
-            f"  --- stdout ---\n    {e.stdout or ''}\n"
-            f"  --- stderr ---\n    {e.stderr or ''}"
+            f"  --  Command  --\n    {' '.join(apptainer_command)}\n"
+            f"  -- Exit code --\n    {proc.returncode}\n"
+            f"  -- Log file  --\n    {logs_path}\n"
         )
         raise RuntimeError(msg) from None
+
+    return proc.returncode
 
 
 def preprocess(
@@ -324,6 +349,18 @@ def point_trajectory(
 
     traj_file = os.path.join(output_dir, "BTrajectories", traj_name)
 
+    if not os.path.isfile(traj_file + ".traj"):
+        print(
+            f"ERROR: Plot container run completed but expected output file was not found: {traj_file+".traj"}"
+        )
+        trajout = f"    {traj_file}.out:\n"
+        if os.path.isfile(traj_file + ".out"):
+            with open(traj_file + ".out", "r") as f:
+                for line in f:
+                    trajout += f"     {line}"
+                print(trajout)
+        raise RuntimeError(f"Trajectory file could not be generated.")
+
     if traj_diagnostics != {}:
         tabdiag_to_csv(
             traj_file=traj_file,
@@ -481,8 +518,15 @@ def plot_trajectories(
     plot_file = os.path.join(output_dir, f"{plot_tag}.{format}")
     if not os.path.isfile(plot_file):
         print(
-            f"WARNING: Plot container run completed but expected output file was not found: {plot_file}"
+            f"ERROR: Plot container run completed but expected output file was not found: {plot_file}"
         )
+        plotout = f"    {plot_file.replace(format, 'out')}:\n"
+        if os.path.isfile(plot_file.replace(format, "out")):
+            with open(plot_file.replace(format, "out"), "r") as f:
+                for line in f:
+                    plotout += f"     {line}"
+                print(plotout)
+        raise RuntimeError(f"Plot file could not be generated.")
     else:
         print(f"\nTrajectory plot done.")
         print(f"Output saved to: {plot_file}\n")
