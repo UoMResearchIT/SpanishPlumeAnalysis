@@ -517,6 +517,7 @@ def generate_traj_plot_input(
     output_dir: str,
     plot_tag: str,
     trajectories: list[dict],
+    min_t0: float,
     format: str,
 ):
     """
@@ -547,7 +548,7 @@ def generate_traj_plot_input(
         f.write(
             "&userin\n"
             " idotitle=1,titlecolor='def.foreground',\n"
-            " ptimes=0,\n"
+            f" ptimes={min_t0},\n"
             " ptimeunits='h',tacc=120,timezone=0,iusdaylightrule=0,\n"
             " iinittime=1,ifcsttime=1,inearesth=0,\n"
             " flmin=.09, frmax=.92, fbmin=.10, ftmax=.85,\n"

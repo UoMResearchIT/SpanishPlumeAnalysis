@@ -83,7 +83,7 @@ def preprocess(
     wrfout_dir: str,
     output_dir: str,
     file_tag: str | None = None,
-    time_from: float = 0,
+    time_from: float | None = None,
     time_to: float | None = None,
     time_step: float | None = None,
     image_path: str = "ripdocker_latest.sif",
@@ -116,6 +116,8 @@ def preprocess(
         raise ValueError(
             f"Not enough model times found in wrfout_dir ({wrfout_dir}) to perform preprocessing. Found: {mt}"
         )
+    if time_from is None:
+        time_from = min(mt.keys())
     if time_to is None:
         time_to = max(mt.keys())
     if time_from < min(mt.keys()):
@@ -136,6 +138,7 @@ def preprocess(
         )
 
     setup_dir_structure(output_dir)
+
     rdp_in = generate_rdp_input(
         output_dir,
         file_tag=file_tag,
@@ -456,6 +459,7 @@ def plot_trajectories(
         output_dir=output_dir,
         plot_tag=plot_tag,
         trajectories=trajectories,
+        min_t0=min(t["traj_t_0"] for t in trajectories),
         format=format,
     )
 
@@ -474,10 +478,10 @@ def plot_trajectories(
         run_script=run_script,
     )
 
-    plot_file = os.path.join(output_dir, f"{plot_tag}.pdf")
+    plot_file = os.path.join(output_dir, f"{plot_tag}.{format}")
     if not os.path.isfile(plot_file):
         print(
-            f"WARNING: Plot container run completed but expected pdf file was not found: {plot_file}"
+            f"WARNING: Plot container run completed but expected output file was not found: {plot_file}"
         )
     else:
         print(f"\nTrajectory plot done.")
