@@ -1,0 +1,14 @@
+[run]
+source = .
+core = ctrace
+omit =
+    tests/*
+    */__*
+parallel = True
+concurrency = multiprocessing
+
+[report]
+skip_empty = True
+omit =
+    tests/*
+    */__*
