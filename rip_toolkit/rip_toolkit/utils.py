@@ -129,7 +129,7 @@ def get_model_times(wrfout_dir: str) -> dict[float, str]:
 
                 for i, xv in enumerate(iterator):
                     try:
-                        hour = round(float(xv) / 60.0, 6)
+                        hour = round(float(xv) / 60.0, 5)
                     except (TypeError, ValueError):
                         continue
 
@@ -142,7 +142,7 @@ def get_model_times(wrfout_dir: str) -> dict[float, str]:
                                 os.path.basename(path)[-19:]
                             ).strftime("%Y-%m-%d_%H:%M:%S")
                         except ValueError:
-                            date_str = f"hour_{hour:.6f}"
+                            date_str = f"hour_{hour:.5f}"
 
                     model_times[hour] = date_str
 
@@ -161,9 +161,30 @@ def get_model_times(wrfout_dir: str) -> dict[float, str]:
     out = {}
     for t in frame_datetimes:
         hours = (t - t0).total_seconds() / 3600.0
-        out[round(hours, 6)] = t.strftime("%Y-%m-%d_%H:%M:%S")
+        out[round(hours, 5)] = t.strftime("%Y-%m-%d_%H:%M:%S")
 
     return out
+
+
+def date_model_times(model_times: dict[float, str]) -> dict[str, list[float]]:
+    """
+    Reverse the model_times dictionary to map date strings to lists of model hours safely.
+    """
+    reversed_dict: dict[str, list[float]] = {}
+    for hr, dt in model_times.items():
+        reversed_dict.setdefault(dt, []).append(hr)
+        for dt in reversed_dict:
+            reversed_dict[dt].sort()
+
+    for date in reversed_dict:
+        if len(reversed_dict[date]) > 1:
+            print(
+                f"Warning: Multiple model hours found for date {date}: {reversed_dict[date]}"
+            )
+            return reversed_dict
+    single_times = {dt: hrs[0] for dt, hrs in reversed_dict.items() if len(hrs) == 1}
+
+    return single_times
 
 
 def print_model_times(model_times: dict[float, str]):

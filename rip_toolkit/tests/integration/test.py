@@ -11,6 +11,7 @@ file_tag = "Sample"
 
 mt = ript.get_model_times(wrfout_dir)
 ript.print_model_times(mt)
+dmt = ript.utils.date_model_times(mt)
 
 ripdp = ript.preprocess(
     wrfout_dir=wrfout_dir,
@@ -27,8 +28,8 @@ pt_y = ript.point_trajectory(
     traj_x=48,
     traj_y=17,
     traj_z=900,
-    traj_t_0=0,
-    traj_t_f=12,
+    traj_t_0=dmt["2005-08-28_00:00:00"],
+    traj_t_f=dmt["2005-08-28_12:00:00"],
     traj_dt=1200,
     hydrometeor=0,
     traj_diagnostics=ript.diagnostic_groups("base"),

@@ -3,6 +3,7 @@ from importlib.metadata import PackageNotFoundError, version
 
 from .utils import (
     get_model_times,
+    date_model_times,
     print_model_times,
     diagnostic_groups,
 )
@@ -16,6 +17,7 @@ from .api import (
 
 __all__ = [
     "get_model_times",
+    "date_model_times",
     "print_model_times",
     "diagnostic_groups",
     "preprocess",
