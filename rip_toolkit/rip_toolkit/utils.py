@@ -169,6 +169,16 @@ def get_model_times(wrfout_dir: str) -> dict[float, str]:
 def date_model_times(model_times: dict[float, str]) -> dict[str, list[float]]:
     """
     Reverse the model_times dictionary to map date strings to lists of model hours safely.
+
+    Useful to be able to pass a date string to the point_trajectory function and have it find the corresponding model hour.
+
+    It will warn if multiple model hours are found for the same date string, and return a dictionary with lists of model hours for each date string.
+
+    Inputs:
+    - model_times (dict[float, str]): Dictionary mapping model hours to date strings.
+
+    Outputs:
+    - dict[str, list[float]]: Dictionary mapping date strings to lists of model hours.
     """
     reversed_dict: dict[str, list[float]] = {}
     for hr, dt in model_times.items():
@@ -188,6 +198,12 @@ def date_model_times(model_times: dict[float, str]) -> dict[str, list[float]]:
 
 
 def print_model_times(model_times: dict[float, str]):
+    """
+    Pretty print the model times mapped to date strings.
+
+    Inputs:
+    - model_times (dict[float, str]): Dictionary mapping model hours to date strings.
+    """
     mt_s = sorted(model_times.items())
     print("Model times available in wrfout_dir:")
     if len(mt_s) <= 10:
@@ -203,7 +219,7 @@ def print_model_times(model_times: dict[float, str]):
 
 def colours():
     """
-    Returns a list of RIP color names.
+    Returns a list of RIP color names that can be used for plotting trajectories.
     """
     return [
         "magenta",
