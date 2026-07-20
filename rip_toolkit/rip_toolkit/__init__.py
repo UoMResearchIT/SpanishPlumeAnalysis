@@ -6,6 +6,7 @@ from .utils import (
     date_model_times,
     print_model_times,
     diagnostic_groups,
+    colours,
 )
 from .api import (
     run_rip_container,
@@ -20,6 +21,7 @@ __all__ = [
     "date_model_times",
     "print_model_times",
     "diagnostic_groups",
+    "colours",
     "preprocess",
     "point_trajectory",
     "swarm_trajectories",
