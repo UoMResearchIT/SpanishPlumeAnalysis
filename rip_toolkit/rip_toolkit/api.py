@@ -436,6 +436,9 @@ def swarm_trajectories(
                 )
                 tags[t_tag] = colours[i % len(colours)]
                 i += 1
+
+    print(f"\nSwarm trajectory computation done. {len(tags)} trajectories computed.")
+
     return tags
 
 
