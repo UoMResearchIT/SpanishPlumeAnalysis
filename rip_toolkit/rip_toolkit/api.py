@@ -245,11 +245,11 @@ def point_trajectory(
     output_dir: str,
     ripdp_data: str,
     traj_tag: str,
+    traj_t_0: float,
+    traj_t_f: float,
     traj_x: int,
     traj_y: int,
     traj_z: float,
-    traj_t_0: float,
-    traj_t_f: float,
     traj_dt: int = 600,
     file_dt: int | None = None,
     hydrometeor: int = 0,
@@ -390,59 +390,53 @@ def point_trajectory(
     return f"{traj_file}.traj"
 
 
-def stack_trajectories(
+def swarm_trajectories(
     wrfout_dir: str,
     output_dir: str,
     ripdp_data: str,
     traj_tag: str,
-    traj_x: int,
-    traj_y: int,
     traj_t_0: float,
     traj_t_f: float,
+    traj_x: list[int],
+    traj_y: list[int],
     traj_z: list[float] = [950, 900, 850, 800, 750, 700, 650, 600, 500, 400, 300, 200],
     traj_dt: int = 600,
     file_dt: int | None = None,
     hydrometeor: int = 0,
     traj_diagnostics: dict = diagnostic_groups("base"),
+    colours: list[str] = colours(),
     image_path: str = "ripdocker_latest.sif",
 ):
     """
-    Computes the trajectory of a stack of points.
+    Computes the trajectory of a swarm of points.
+
+    All combinations of the provided x, y, z coordinates will be computed.
     """
     i = 0
     tags = {}
-    cols = colours()
     for z in traj_z:
-
-        t_tag = f"{traj_tag}_{int(z)}"
-        point_trajectory(
-            wrfout_dir=wrfout_dir,
-            output_dir=output_dir,
-            ripdp_data=ripdp_data,
-            traj_tag=t_tag,
-            traj_x=traj_x,
-            traj_y=traj_y,
-            traj_z=z,
-            traj_t_0=traj_t_0,
-            traj_t_f=traj_t_f,
-            traj_dt=traj_dt,
-            file_dt=file_dt,
-            hydrometeor=hydrometeor,
-            traj_diagnostics=traj_diagnostics,
-            image_path=image_path,
-        )
-        tags[t_tag] = cols[i]
-        i += 1
-        if i >= len(cols):
-            i = 0
+        for y in traj_y:
+            for x in traj_x:
+                t_tag = f"{traj_tag}_{int(x)}_{int(y)}_{int(z)}"
+                point_trajectory(
+                    wrfout_dir=wrfout_dir,
+                    output_dir=output_dir,
+                    ripdp_data=ripdp_data,
+                    traj_tag=t_tag,
+                    traj_x=x,
+                    traj_y=y,
+                    traj_z=z,
+                    traj_t_0=traj_t_0,
+                    traj_t_f=traj_t_f,
+                    traj_dt=traj_dt,
+                    file_dt=file_dt,
+                    hydrometeor=hydrometeor,
+                    traj_diagnostics=traj_diagnostics,
+                    image_path=image_path,
+                )
+                tags[t_tag] = colours[i % len(colours)]
+                i += 1
     return tags
-
-
-def swarm_trajectory():
-    """
-    Computes the trajectory of a swarm of points.
-    """
-    pass
 
 
 def plot_trajectories(

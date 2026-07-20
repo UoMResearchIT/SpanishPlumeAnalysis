@@ -11,7 +11,7 @@ from .api import (
     run_rip_container,
     preprocess,
     point_trajectory,
-    stack_trajectories,
+    swarm_trajectories,
     plot_trajectories,
 )
 
@@ -22,7 +22,7 @@ __all__ = [
     "diagnostic_groups",
     "preprocess",
     "point_trajectory",
-    "stack_trajectories",
+    "swarm_trajectories",
     "plot_trajectories",
     "run_rip_container",
 ]
