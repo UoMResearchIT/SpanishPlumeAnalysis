@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import shutil
+import shlex
 import subprocess
 from datetime import datetime
 from .utils import (
@@ -31,6 +32,9 @@ def run_rip_container(
     image_path: str,
     run_script: str,
     raise_on_error: bool = True,
+    load_apptainer_module: bool = False,
+    module_init_cmd: str = "source /etc/profile.d/modules.sh",
+    module_load_cmd: str = "module load apptainer",
 ):
     """
     Calls apptainer to run the rip_toolkit commands.
@@ -64,9 +68,21 @@ def run_rip_container(
         "/bin/bash",
         f"{run_script}",
     ]
+
+    if load_apptainer_module or os.getenv("LOAD_APPTAINER_MODULE", "0") == "1":
+        # Build a safe shell command for bash -lc
+        apptainer_cmd_str = " ".join(shlex.quote(arg) for arg in apptainer_command)
+        shell_cmd = (
+            f"{module_init_cmd} >/dev/null 2>&1 || true; "
+            f"{module_load_cmd} && {apptainer_cmd_str}"
+        )
+        popen_cmd = ["bash", "-lc", shell_cmd]
+    else:
+        popen_cmd = apptainer_command
+
     print(f"Starting rip container...")
     proc = subprocess.Popen(
-        apptainer_command,
+        popen_cmd,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,
