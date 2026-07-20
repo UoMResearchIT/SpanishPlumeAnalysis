@@ -417,7 +417,7 @@ def swarm_trajectories(
     for z in traj_z:
         for y in traj_y:
             for x in traj_x:
-                t_tag = f"{traj_tag}_{int(x)}_{int(y)}_{int(z)}"
+                t_tag = f"{traj_tag}_-_{int(x)}_{int(y)}_-_{int(z)}_hPa"
                 point_trajectory(
                     wrfout_dir=wrfout_dir,
                     output_dir=output_dir,
@@ -500,7 +500,7 @@ def plot_trajectories(
                 "traj_file_rel": str(traj_abs.relative_to(output_abs)),
                 "traj_t_0": parsed["traj_t_0"],
                 "traj_t_f": parsed["traj_t_f"],
-                "traj_z": parsed["traj_z"],
+                "traj_title": traj_tag,
                 "traj_color": traj_color,
             }
         )

@@ -524,7 +524,7 @@ def parse_point_traj_input(traj_in_file: str):
     Parse a single-point RIP trajectory input file and extract core metadata.
 
     Outputs:
-    - dict with keys: traj_t_0, traj_t_f, traj_z
+    - dict with keys: traj_t_0, traj_t_f
     """
     if not os.path.isfile(traj_in_file):
         raise FileNotFoundError(f"Trajectory input file not found: {traj_in_file}")
@@ -533,9 +533,8 @@ def parse_point_traj_input(traj_in_file: str):
 
     rtim_match = re.search(r"\brtim\s*=\s*([-+]?\d*\.?\d+)", content)
     ctim_match = re.search(r"\bctim\s*=\s*([-+]?\d*\.?\d+)", content)
-    z_match = re.search(r"\bzktraj\s*=\s*([-+]?\d*\.?\d+)", content)
 
-    if not rtim_match or not ctim_match or not z_match:
+    if not rtim_match or not ctim_match:
         raise ValueError(
             "Could not parse rtim/ctim/zktraj from trajectory input file: "
             f"{traj_in_file}"
@@ -544,7 +543,6 @@ def parse_point_traj_input(traj_in_file: str):
     return {
         "traj_t_0": float(rtim_match.group(1)),
         "traj_t_f": float(ctim_match.group(1)),
-        "traj_z": float(z_match.group(1)),
     }
 
 
@@ -565,7 +563,7 @@ def generate_traj_plot_input(
         - traj_file_rel (str): Trajectory path relative to output_dir.
         - traj_t_0 (float): Trajectory start time in model hours.
         - traj_t_f (float): Trajectory end time in model hours.
-        - traj_z (float): Trajectory pressure level in hPa.
+        - traj_title (str): Trajectory title (to be used in legend).
         - traj_color (str): RIP color name.
 
     Outputs:
@@ -600,26 +598,16 @@ def generate_traj_plot_input(
             traj_rel = item["traj_file_rel"]
             traj_t_0 = float(item["traj_t_0"])
             traj_t_f = float(item["traj_t_f"])
-            traj_z = float(item["traj_z"])
             traj_color = item["traj_color"]
-
+            traj_title = item["traj_title"]
             tjst = min(traj_t_0, traj_t_f)
             tjen = max(traj_t_0, traj_t_f)
-
-            z_label = int(round(traj_z)) if float(traj_z).is_integer() else traj_z
-            t0_label = (
-                int(round(traj_t_0)) if float(traj_t_0).is_integer() else traj_t_0
-            )
-            tf_label = (
-                int(round(traj_t_f)) if float(traj_t_f).is_integer() else traj_t_f
-            )
-            trajectory_title = f"{z_label}_hPa_from_hour_{t0_label}_to_{tf_label}"
 
             f.write(f"feld=arrow; ptyp=ht; tjfl={traj_rel}; vcor=p;>\n")
             f.write(
                 f"    colr={traj_color}; tjar=0.002,0.012; vwin=1000,500; tjst={tjst}; tjen={tjen};>\n"
             )
-            f.write(f"    nolb; titl={trajectory_title}\n")
+            f.write(f"    nolb; titl={traj_title}\n")
 
         f.write("feld=map; ptyp=hb\n")
         f.write("feld=tic; ptyp=hb; axlg=50\n")
