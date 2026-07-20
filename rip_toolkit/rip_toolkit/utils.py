@@ -166,6 +166,20 @@ def get_model_times(wrfout_dir: str) -> dict[float, str]:
     return out
 
 
+def print_model_times(model_times: dict[float, str]):
+    mt_s = sorted(model_times.items())
+    print("Model times available in wrfout_dir:")
+    if len(mt_s) <= 10:
+        for t, ts in mt_s:
+            print(f"{t:12.5f}:  {ts}")
+    else:
+        for t, ts in mt_s[0:5]:
+            print(f"{t:12.5f}:  {ts}")
+        print("...")
+        for t, ts in mt_s[-5:]:
+            print(f"{t:12.5f}:  {ts}")
+
+
 def colours():
     """
     Returns a list of RIP color names.

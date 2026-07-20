@@ -9,9 +9,8 @@ wrfout_dir = "RIP_legacy/Sample/WRFData"
 output_dir = "tests/integration/results/Sample"
 file_tag = "Sample"
 
-print("Model times available in wrfout_dir:")
-print(f"{ript.get_model_times(wrfout_dir)}".replace(",", "\n"))
-print()
+mt = ript.get_model_times(wrfout_dir)
+ript.print_model_times(mt)
 
 ripdp = ript.preprocess(
     wrfout_dir=wrfout_dir,
@@ -44,8 +43,8 @@ pt_f = ript.point_trajectory(
     traj_x=80,
     traj_y=40,
     traj_z=900,
-    traj_t_0=0,
-    traj_t_f=12,
+    traj_t_0=12,
+    traj_t_f=0,
     traj_dt=1200,
     hydrometeor=0,
     traj_diagnostics=ript.diagnostic_groups("base"),
