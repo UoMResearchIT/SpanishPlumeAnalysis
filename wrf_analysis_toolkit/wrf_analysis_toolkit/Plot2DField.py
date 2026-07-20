@@ -216,6 +216,7 @@ def Plot2DField(
     add_lat_lon_ticks(ax, region_ticks)
     if region_ticks:
         add_projected_ticks(ax)
+        add_grid_ticks(ax, lats, lons, cart_proj)
 
     # Add title and frame time
     plt.title(svariable.ptitle)
@@ -298,6 +299,62 @@ def add_projected_ticks(ax, nbins=10):
         label.set_ha("left")
         label.set_va("center")
         label.set_rotation_mode("anchor")
+
+
+def add_grid_ticks(ax, lats, lons, cart_proj, nbins=11, color="0.65"):
+    """
+    Add approximate WRF grid-index ticks (i,j) to projected map axes.
+    lats/lons are 2D arrays for the displayed field.
+    """
+    ny, nx = lats.shape
+    locator = mticker.MaxNLocator(nbins=10, integer=True)
+
+    i_vals = locator.tick_values(0, nx - 1)
+    j_vals = locator.tick_values(0, ny - 1)
+
+    i_vals = i_vals[(i_vals >= 0) & (i_vals <= nx - 1)].astype(int)
+    j_vals = j_vals[(j_vals >= 0) & (j_vals <= ny - 1)].astype(int)
+
+    # Use middle row/column as representative transects
+    j_mid = ny // 2
+    i_mid = nx // 2
+
+    # Convert selected lon/lat points to projected map coordinates
+    pc = cartopy.crs.PlateCarree()
+
+    x_pts = cart_proj.transform_points(
+        pc,
+        lons[j_mid, i_vals],
+        lats[j_mid, i_vals],
+    )[:, 0]
+
+    y_pts = cart_proj.transform_points(
+        pc,
+        lons[j_vals, i_mid],
+        lats[j_vals, i_mid],
+    )[:, 1]
+
+    # Keep only ticks inside current visible bounds
+    x0, x1 = sorted(ax.get_xlim())
+    y0, y1 = sorted(ax.get_ylim())
+    x_mask = (x_pts >= x0) & (x_pts <= x1)
+    y_mask = (y_pts >= y0) & (y_pts <= y1)
+
+    ax_x = ax.secondary_xaxis("bottom")
+    ax_y = ax.secondary_yaxis("right")
+
+    ax_x.set_xticks(x_pts[x_mask])
+    ax_x.set_xticklabels([str(i) for i in i_vals[x_mask]], color=color)
+    ax_x.tick_params(axis="x", colors=color, labelsize=5, pad=2)
+
+    ax_y.set_yticks(y_pts[y_mask])
+    ax_y.set_yticklabels([str(j) for j in j_vals[y_mask]], color=color)
+    ax_y.tick_params(axis="y", colors=color, labelsize=5, pad=2)
+
+    for spine in ax_x.spines.values():
+        spine.set_edgecolor(color)
+    for spine in ax_y.spines.values():
+        spine.set_edgecolor(color)
 
 
 def _format_projected_tick(value, _position):
