@@ -134,7 +134,7 @@ This is a (hopefully) complete list of the parameters that can be passed, but no
 - `cols`: (`mp4stitch` task only) Number of columns in the output video (will increase to fit all files, if necessary).
 
 #### Module only
-When used as a library, a full `svariable` object can be passed to the `diagnostic` and `wrfdiff` tasks, instead of a named variable from the available list. This allows for more control over the plotting of the variable, including the colour scale, units, title, range, type of plot, annotations (like wind-barbs or contour-lines), and potentially overlapping variables. If it is something that you find yourself using a lot, please consider adding it to the list of [variables](#variables) in the code.
+When used as a library, a full `svariable` object can be passed to the `diagnostic` and `wrfdiff` tasks, instead of a named variable from the available list. This allows for more control over the plotting of the variable, including the color scale, units, title, range, type of plot, annotations (like wind-barbs or contour-lines), and potentially overlapping variables. If it is something that you find yourself using a lot, please consider adding it to the list of [variables](#variables) in the code.
 
 - `sens_var`: (`diagnostic` and `wrfdiff` tasks only) This must be an `svariable` object and it is recommended that it is only used if existing [variables](#variables) cannot be used.
 
@@ -293,7 +293,7 @@ The object is basically composed of metadata for the diagnostics that are of int
 
 The information in each object is used as instructions in the extraction of the variable from netcdf files and during plotting.
 
-Each of the variables has the attributes that describe the way the variable should be plotted, including the colour scale, units, title, range, type of plot, annotations (like wind-barbs or contour-lines), and potentially overlapping variables.
+Each of the variables has the attributes that describe the way the variable should be plotted, including the color scale, units, title, range, type of plot, annotations (like wind-barbs or contour-lines), and potentially overlapping variables.
 
 See the description of each predefined **svariable** inside the file.
 
@@ -342,7 +342,7 @@ This function simply stitches videos on a grid with ***N*** rows and ***M*** col
 #### WRFSmoothDiff
 This is a slightly more advanced way of comparing two sets of data.
 
-It gets the difference directly from the wrfout files, and then animates the result using a divergent colourscale.
+It gets the difference directly from the wrfout files, and then animates the result using a divergent color scale.
 If the flag ***smooth*** is set to 1, it smooths the data before making the diff, so that slight positional changes are not as strongly reflected in the output.
 
 

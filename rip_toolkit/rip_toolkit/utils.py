@@ -217,7 +217,7 @@ def print_model_times(model_times: dict[float, str]):
             print(f"{t:12.5f}:  {ts}")
 
 
-def colours():
+def colors():
     """
     Returns a list of RIP color names that can be used for plotting trajectories.
     """

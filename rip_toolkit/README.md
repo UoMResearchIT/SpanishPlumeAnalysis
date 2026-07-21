@@ -35,7 +35,7 @@ The tasks that you will normally want to use are:
  - **swarm_trajectories**, which calls `point_trajectory` for multiple points.
    - Requires: the same as `point_trajectory`, but takes arrays for `traj_x`, `traj_y` and `traj_z`.
  - **plot_trajectories**, which generates a plot from the trajectories.
-   - Requires: `output_dir`, `ripdp_data`, `image_path`, and `traj_colors`.
+   - Requires: `output_dir`, `ripdp_data`, `image_path`, and `traj_tags_colors`.
  
 ### As a module
 You can import the package and call the main tasks as members of `rip_toolkit`.
@@ -55,7 +55,7 @@ ript.point_trajectory(wrfout_dir=wrfout_dir, output_dir=output_dir, image_path=i
 
 my_swarm_trajectories = ript.swarm_trajectories(wrfout_dir=wrfout_dir, output_dir=output_dir, image_path=image_path, ripdp_data=ripdp_data, traj_x=[20, 25], traj_y=[30, 35], traj_z=[900, 850], traj_t_0=0, traj_t_f=10, traj_tag="my_swarm_t=0-10")
 
-ript.plot_trajectories(output_dir=output_dir, ripdp_data=ripdp_data, image_path=image_path, traj_colors={"my_trajectory_t=0-10": "blue", **my_swarm_trajectories})
+ript.plot_trajectories(output_dir=output_dir, ripdp_data=ripdp_data, image_path=image_path, traj_tags_colors={"my_trajectory_t=0-10": "blue", **my_swarm_trajectories})
 ```
 
 You may access the full documentation of each of these functions by calling, for example:
