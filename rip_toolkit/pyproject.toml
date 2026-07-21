@@ -4,11 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rip_toolkit"
-version = "1.2.4"
+version = "1.3.0"
 requires-python = ">=3.10"
 dependencies = [
     "netCDF4>=1.7",
 ]
+
+
+[project.scripts]
+rip_toolkit_cli = "rip_toolkit.cli:cli"
 
 [tool.setuptools.package-data]
 rip_toolkit = [

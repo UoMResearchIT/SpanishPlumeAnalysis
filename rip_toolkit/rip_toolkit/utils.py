@@ -5,6 +5,17 @@ from netCDF4 import Dataset
 from pathlib import Path
 
 
+def str2bool(s):
+    if isinstance(s, bool):
+        return s
+    if s.lower() in ("yes", "true", "t", "y", "1"):
+        return 1
+    elif s.lower() in ("no", "false", "f", "n", "0"):
+        return 0
+    else:
+        raise Exception("Boolean value expected.")
+
+
 def _parse_wrf_datetime(value: str) -> datetime:
     """Parse common WRF time string formats."""
     value = value.strip()
