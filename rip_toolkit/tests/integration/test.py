@@ -190,6 +190,8 @@ pl = ript.plot_trajectories(
 #     format="pdf",
 # )
 
+######################################################################################
+######################################################################################
 
 # image_path="RIP_legacy/ripdocker_latest.sif"
 # wrfout_dir="RIP_legacy/Sample/WRFData"
@@ -198,7 +200,22 @@ pl = ript.plot_trajectories(
 #   ripdp_data=tests/integration/results/CLI/RIPDP/rdp_cli_sample
 # rip_toolkit_cli --task point_trajectory --wrfout_dir $wrfout_dir --output_dir $output_dir --ripdp_data $ripdp_data --tag "cli_yucatan_t=0-12_900_hPa" --traj_x 48 --traj_y 17 --traj_z 900 --traj_t_0 0 --traj_t_f 12 --traj_dt 1200 --hydrometeor 0 --traj_diagnostic_group base --image_path $image_path
 #   point_traj=tests/integration/results/CLI/BTrajectories/cli_yucatan_t=0-12_900_hPa_traj_point.traj
-# rip_toolkit_cli --task swarm_trajectories --wrfout_dir $wrfout_dir --output_dir $output_dir --ripdp_data $ripdp_data --tag "cli_yucatan_t=0-12_900_hPa" --swarm_x 50,65 --swarm_y 30,45 --swarm_z 600,900 --traj_t_0 0 --traj_t_f 12 --traj_dt 1200 --hydrometeor 0 --traj_diagnostic_group base --image_path $image_path
+# rip_toolkit_cli --task swarm_trajectories --wrfout_dir $wrfout_dir --output_dir $output_dir --ripdp_data $ripdp_data --tag "cli_yucatan_t=0-12_900_hPa" --traj_x 50,65 --traj_y 30,45 --traj_z 600,900 --traj_t_0 0 --traj_t_f 12 --traj_dt 1200 --hydrometeor 0 --traj_diagnostic_group base --image_path $image_path
 #   traj_tags=cli_yucatan_t=0-12_900_hPa_-_50_30_-_600_hPa,cli_yucatan_t=0-12_900_hPa_-_65_30_-_600_hPa,cli_yucatan_t=0-12_900_hPa_-_50_45_-_600_hPa,cli_yucatan_t=0-12_900_hPa_-_65_45_-_600_hPa,cli_yucatan_t=0-12_900_hPa_-_50_30_-_900_hPa,cli_yucatan_t=0-12_900_hPa_-_65_30_-_900_hPa,cli_yucatan_t=0-12_900_hPa_-_50_45_-_900_hPa,cli_yucatan_t=0-12_900_hPa_-_65_45_-_900_hPa
 #   traj_cols=magenta,light.magenta,red.coral,red,orange,mustard,green,dark.green
 # rip_toolkit_cli --task plot_trajectories --output_dir $output_dir --ripdp_data $ripdp_data --traj_tags cli_yucatan_t=0-12_900_hPa,$traj_tags --traj_cols blue,$traj_cols --tag "cli_sample_plot" --image_path $image_path
+
+######################################################################################
+######################################################################################
+
+# export IMAGE_PATH="RIP_legacy/ripdocker_latest.sif"
+# export WRFOUT_DIR="RIP_legacy/Sample/WRFData"
+# export OUTPUT_DIR="tests/integration/results/CLI"
+# rip_toolkit_cli -t preprocess -T "cli_short_sample"
+#   export RIPDP_DATA=tests/integration/results/CLI/RIPDP/rdp_cli_short_sample
+# rip_toolkit_cli -t point_trajectory -T "cli_short_yucatan_t=0-12_900_hPa" -x 48 -y 17 -z 900 -t0 0 -tf 12 -dt 1200 -H 0 -g base
+#   point_traj=tests/integration/results/CLI/BTrajectories/cli_short_yucatan_t=0-12_900_hPa_traj_point.traj
+# rip_toolkit_cli -t swarm_trajectories -T "cli_short_yucatan_t=0-12_900_hPa" -x 50,65 -y 30,45 -z 600,900 -t0 0 -tf 12 -dt 1200 -H 0 -g base
+#   traj_tags=cli_short_yucatan_t=0-12_900_hPa_-_50_30_-_600_hPa,cli_short_yucatan_t=0-12_900_hPa_-_65_30_-_600_hPa,cli_short_yucatan_t=0-12_900_hPa_-_50_45_-_600_hPa,cli_short_yucatan_t=0-12_900_hPa_-_65_45_-_600_hPa,cli_short_yucatan_t=0-12_900_hPa_-_50_30_-_900_hPa,cli_short_yucatan_t=0-12_900_hPa_-_65_30_-_900_hPa,cli_short_yucatan_t=0-12_900_hPa_-_50_45_-_900_hPa,cli_short_yucatan_t=0-12_900_hPa_-_65_45_-_900_hPa
+#   traj_cols=magenta,light.magenta,red.coral,red,orange,mustard,green,dark.green
+# rip_toolkit_cli -t plot_trajectories --traj_tags cli_short_yucatan_t=0-12_900_hPa,$traj_tags --traj_cols blue,$traj_cols -T "cli_short_sample_plot"

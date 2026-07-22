@@ -9,6 +9,7 @@ This toolkit contains a set of functions to generate trajectories from WRF outpu
   - [Usage](#usage)
     - [As a module](#as-a-module)
     - [As a CLI](#as-a-cli)
+    - [Parameters](#parameters)
     - [Notebook Example](#notebook-example)
   - [Conda environment](#conda-environment)
 
@@ -86,7 +87,56 @@ ript.plot_trajectories(traj_tags_colors={"my_trajectory_t=0-10": "blue", **my_sw
 
 ### As a CLI
 
-Not yet implemented
+You can also use the package as a command line interface (CLI) tool. The CLI is called `rip_toolkit_cli` and has the same tasks as the module.
+
+Once the package is installed, you can run the CLI from the command line. For example:
+
+```
+image_path="/path/to/rip_container.sif"
+output_dir="/path/to/my/output/dir"
+wrfout_dir="/path/to/my/wrfout/dir"
+
+rip_toolkit_cli --task preprocess --wrfout_dir $wrfout_dir --output_dir $output_dir --tag "cli_sample" --image_path $image_path
+
+ripdp_data=${output_dir}/RIPDP/rdp_cli_sample
+
+rip_toolkit_cli --task point_trajectory --wrfout_dir $wrfout_dir --output_dir $output_dir --ripdp_data $ripdp_data --tag "my_traj_tag" --traj_x 50 --traj_y 30 --traj_z 900 --traj_t_0 0 --traj_t_f 12 --image_path $image_path
+
+rip_toolkit_cli --task swarm_trajectories --wrfout_dir $wrfout_dir --output_dir $output_dir --ripdp_data $ripdp_data --tag "my_swarm_tag" --swarm_x 40,60 --swarm_y 30 --swarm_z 900 --traj_t_0 0 --traj_t_f 12 --image_path $image_path
+
+traj_tags="my_traj_tag,my_swarm_tag_-_40_30_-_900_hPa,my_swarm_tag_-_60_30_-_900_hPa"
+traj_cols=magenta,red,dark.green
+
+rip_toolkit_cli --task plot_trajectories --output_dir $output_dir --ripdp_data $ripdp_data --traj_tags $traj_tags --traj_cols blue,$traj_cols --tag "cli_sample_plot" --image_path $image_path
+```
+
+you may also set environment variables for `image_path`, `wrfout_dir`, `output_dir`, and `ripdp_data`, which means you don;t need to pass them as arguments. Additionally, you may use short tags for the arguments. For example:
+
+```
+export IMAGE_PATH="/path/to/rip_container.sif"
+export WRFOUT_DIR="/path/to/my/wrfout/dir"
+export OUTPUT_DIR="/path/to/my/output/dir"
+
+
+rip_toolkit_cli -t preprocess -T "cli_sample"
+
+export RIPDP_DATA=${OUTPUT_DIR}/RIPDP/rdp_cli_sample
+
+rip_toolkit_cli -t point_trajectory -T "my_traj_tag" -x 50 -y 30 -z 900 -t0 0 -tf 12
+
+rip_toolkit_cli -t swarm_trajectories -T "my_swarm_tag" -x 40,60 -y 30 -z 900 -t0 0 -tf 12
+
+traj_tags="my_traj_tag,my_swarm_tag_-_40_30_-_900_hPa,my_swarm_tag_-_60_30_-_900_hPa"
+traj_cols=magenta,red,dark.green
+
+rip_toolkit_cli -t plot_trajectories -T "cli_sample_plot" --traj_tags $traj_tags --traj_cols $traj_cols
+```
+
+### Parameters
+The parameters for each of the tasks are described in each of the functions.
+
+The cli simplifies some inputs so that dictionaries and lists can be passed in as comma-separated strings.
+You may call the cli with the `--help` flag to see the flags that are available.
 
 ### Notebook Example
 
