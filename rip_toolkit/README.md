@@ -63,6 +63,27 @@ You may access the full documentation of each of these functions by calling, for
 help(ript.point_trajectory)
 ```
 
+you may also set environment variables for `image_path`, `wrfout_dir`, `output_dir`, and `ripdp_data`, which means you don;t need to pass them as arguments:
+
+```python
+import os
+import rip_toolkit as ript
+
+os.environ["IMAGE_PATH"] = "/path/to/rip_container.sif"
+os.environ["OUTPUT_DIR"] = "/path/to/my/output/dir"
+os.environ["WRFOUT_DIR"] = "/path/to/my/wrfout/dir"
+
+ripdp_data = ript.preprocess(file_tag="my_run")
+
+os.environ["RIPDP_DATA"] = ripdp_data
+
+ript.point_trajectory(traj_x=20, traj_y=30, traj_z=900, traj_t_0=0, traj_t_f=10, traj_tag="my_trajectory_t=0-10")
+
+my_swarm_trajectories = ript.swarm_trajectories(traj_x=[20, 25], traj_y=[30, 35], traj_z=[900, 850], traj_t_0=0, traj_t_f=10, traj_tag="my_swarm_t=0-10")
+
+ript.plot_trajectories(traj_tags_colors={"my_trajectory_t=0-10": "blue", **my_swarm_trajectories})
+```
+
 ### As a CLI
 
 Not yet implemented

@@ -1,3 +1,4 @@
+import os
 import rip_toolkit as ript
 
 image_path = "RIP_legacy/ripdocker_latest.sif"
@@ -71,9 +72,76 @@ st = ript.swarm_trajectories(
 pl = ript.plot_trajectories(
     output_dir=output_dir,
     ripdp_data=ripdp,
-    traj_tags_colors={"yucatan_900_hPa": "light.blue", "florida_900_hPa": "blue", **st},
+    traj_tags_colors={
+        "yucatan_t=0-12_900_hPa": "light.blue",
+        "florida_t=0-12_900_hPa": "blue",
+        **st,
+    },
     plot_tag="Sample_plot",
     image_path=image_path,
+    format="pdf",
+)
+
+######################################################################################
+######################################################################################
+
+os.environ["IMAGE_PATH"] = image_path
+os.environ["WRFOUT_DIR"] = wrfout_dir
+os.environ["OUTPUT_DIR"] = "tests/integration/results/SampleEnv"
+
+mt = ript.get_model_times(wrfout_dir)
+ript.print_model_times(mt)
+dmt = ript.utils.date_model_times(mt)
+
+ripdp = ript.preprocess(
+    file_tag=file_tag,
+)
+
+os.environ["RIPDP_DATA"] = ripdp
+
+pt_y = ript.point_trajectory(
+    traj_tag="yucatan_t=0-12_900_hPa",
+    traj_x=48,
+    traj_y=17,
+    traj_z=900,
+    traj_t_0=dmt["2005-08-28_00:00:00"],
+    traj_t_f=dmt["2005-08-28_12:00:00"],
+    traj_dt=1200,
+    hydrometeor=0,
+    traj_diagnostics=ript.diagnostic_groups("base"),
+)
+
+pt_f = ript.point_trajectory(
+    traj_tag="florida_t=0-12_900_hPa",
+    traj_x=80,
+    traj_y=40,
+    traj_z=900,
+    traj_t_0=12,
+    traj_t_f=0,
+    traj_dt=1200,
+    hydrometeor=0,
+    traj_diagnostics=ript.diagnostic_groups("base"),
+)
+
+st = ript.swarm_trajectories(
+    traj_tag="gulf_of_mexico_t=0-6",
+    traj_x=[50, 65],
+    traj_y=[30, 45],
+    traj_z=[900, 600],
+    traj_t_0=0,
+    traj_t_f=6,
+    traj_dt=1200,
+    hydrometeor=0,
+    traj_diagnostics=ript.diagnostic_groups("base"),
+)
+
+pl = ript.plot_trajectories(
+    traj_tags_colors={
+        "yucatan_t=0-12_900_hPa": "light.blue",
+        "florida_t=0-12_900_hPa": "blue",
+        **st,
+    },
+    plot_tag="Sample_plot",
     format="pdf",
 )
 

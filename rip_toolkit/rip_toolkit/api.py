@@ -25,12 +25,12 @@ from .utils import (
 
 
 def run_rip_container(
-    wrfout_dir: str,
-    output_dir: str,
-    ripdp_dir: str,
     file_tag: str,
-    image_path: str,
     run_script: str,
+    wrfout_dir: str | None = None,
+    output_dir: str | None = None,
+    ripdp_dir: str | None = None,
+    image_path: str | None = None,
     raise_on_error: bool = True,
     load_apptainer_module: bool = False,
     module_init_cmd: str = "source /etc/profile.d/modules.sh",
@@ -46,12 +46,12 @@ def run_rip_container(
     Set the environment variable `LOAD_APPTAINER_MODULE=1` or pass `load_apptainer_module=True` to load the apptainer module before running the container (useful for HPC systems).
 
     Inputs:
-    - wrfout_dir (str): Path to the directory containing the wrfout files.
-    - output_dir (str): Directory where the RIPDP directory will be created and populated.
-    - ripdp_dir (str): Path to the RIPDP directory containing the preprocessing outputs.
     - file_tag (str): A tag to identify the run within the container.
-    - image_path (str): Path to the apptainer image.
     - run_script (str): Path to the script to be executed inside the container.
+    - wrfout_dir (str | None): Path to the directory containing the wrfout files. Can also be set via the environment variable `WRFOUT_DIR`.
+    - output_dir (str | None): Directory where the RIPDP directory will be created and populated. Can also be set via the environment variable `OUTPUT_DIR`.
+    - ripdp_dir (str | None): Path to the RIPDP directory containing the preprocessing outputs. Can also be extracted from the environment variable `RIPDP_DATA`.
+    - image_path (str | None): Path to the apptainer image. Can also be set via the environment variable `IMAGE_PATH`.
     - raise_on_error (bool): If True, raises a RuntimeError if the container exits with a non-zero exit code. If False, returns the exit code.
     - load_apptainer_module (bool): If True, loads the apptainer module before running the container. Can also be set via the environment variable `LOAD_APPTAINER_MODULE=1`.
     - module_init_cmd (str): Command to initialize the module system (default: "source /etc/profile.d/modules.sh").
@@ -60,6 +60,15 @@ def run_rip_container(
     Outputs:
     - int: process exit code.
     """
+    if wrfout_dir is None:
+        wrfout_dir = os.environ["WRFOUT_DIR"]
+    if output_dir is None:
+        output_dir = os.environ["OUTPUT_DIR"]
+    if ripdp_dir is None:
+        ripdp_data = os.environ["RIPDP_DATA"]
+        ripdp_dir = str(Path(ripdp_data).parent) if ripdp_data else None
+    if image_path is None:
+        image_path = os.environ["IMAGE_PATH"]
     print(f"Running RIP container with image {image_path}...")
     check_dir_exists(output_dir)
     check_image_exists(image_path)
@@ -135,13 +144,13 @@ def run_rip_container(
 
 
 def preprocess(
-    wrfout_dir: str,
-    output_dir: str,
     file_tag: str | None = None,
     time_from: float | None = None,
     time_to: float | None = None,
     time_step: float | None = None,
-    image_path: str = "ripdocker_latest.sif",
+    wrfout_dir: str | None = None,
+    output_dir: str | None = None,
+    image_path: str | None = None,
     batch_size: int = 50,
 ):
     """
@@ -149,13 +158,13 @@ def preprocess(
     It creates the output directory and, inside it, a `RIPDP` directory, where it saves all the preprocessing outputs.
 
     Inputs:
-    - wrfout_dir (str): Path to the directory containing the wrfout files.
-    - output_dir (str): Directory where the RIPDP directory will be created and populated.
     - file_tag (str | None): A tag to identify the run of the preprocessing.
     - time_from (float): Start model time for preprocessing, in hours since simulation start (inclusive).
     - time_to (float | None): End model time for preprocessing, in hours since simulation start (inclusive).
     - time_step (float): Requested RIPDP output interval in hours for ptimes. RIPDP can only emit times that exist in the provided WRF history data.
-    - image_path (str): Path to apptainer image.
+    - wrfout_dir (str | None): Path to the directory containing the wrfout files. Can also be set via the environment variable `WRFOUT_DIR`.
+    - output_dir (str | None): Directory where the RIPDP directory will be created and populated. Can also be set via the environment variable `OUTPUT_DIR`.
+    - image_path (str | None): Path to apptainer image. Can also be set via the environment variable `IMAGE_PATH`.
     - batch_size (int): The number of wrfout files to process in each batch (progress is saved at the end of each batch).
 
     *Note: model times can be obtained from the wrfout files using the `get_model_times` function in `rip_toolkit.utils`.
@@ -163,7 +172,15 @@ def preprocess(
     Outputs:
     - The path to the RIPDP directory containing the preprocessing outputs.
     """
+    if wrfout_dir is None:
+        wrfout_dir = os.environ["WRFOUT_DIR"]
+    if output_dir is None:
+        output_dir = os.environ["OUTPUT_DIR"]
+    if image_path is None:
+        image_path = os.environ["IMAGE_PATH"]
     print(f"Starting preprocessing of {wrfout_dir} data...")
+    check_dir_exists(wrfout_dir)
+    check_image_exists(image_path)
     if file_tag is None:
         file_tag = generate_default_file_tag(wrfout_dir, time_step)
 
@@ -256,9 +273,6 @@ def preprocess(
 
 
 def point_trajectory(
-    wrfout_dir: str,
-    output_dir: str,
-    ripdp_data: str,
     traj_tag: str,
     traj_t_0: float,
     traj_t_f: float,
@@ -269,15 +283,15 @@ def point_trajectory(
     file_dt: int | None = None,
     hydrometeor: int = 0,
     traj_diagnostics: dict = diagnostic_groups("base"),
-    image_path: str = "ripdocker_latest.sif",
+    wrfout_dir: str | None = None,
+    output_dir: str | None = None,
+    ripdp_data: str | None = None,
+    image_path: str | None = None,
 ):
     """
     Computes a single trajectory using existing RIPDP preprocessed data.
 
     Inputs:
-    - wrfout_dir (str): Path to the directory containing wrfout files.
-    - output_dir (str): Directory where trajectory files will be saved.
-    - ripdp_data (str): Full path to the RIPDP prefix file (e.g. RIPDP/rdp_test) generated by the preprocess function.
     - traj_tag (str): A tag to identify the trajectory. It is recommended for it to include trajectory times and release coordinates, e.g. `my_traj_t=0-12_900hPa`.
     - traj_t_0 (float): Particle release time (model time) in hours.
     - traj_t_f (float): Time until which the trajectory will be computed (model time) in hours.
@@ -288,11 +302,26 @@ def point_trajectory(
     - file_dt (int): Time interval in RIPDP data (seconds).
     - hydrometeor (int): Set to 0 for Air Parcel trajectories, or 1 for Hydrometeor trajectories.
     - traj_diagnostics (dict): Diagnostics to be computed along trajectory, as returned by `diagnostic_groups(group_name)`.
-    - image_path (str): Path to apptainer image.
+    - wrfout_dir (str | None): Path to the directory containing wrfout files. Can also be set via the environment variable `WRFOUT_DIR`.
+    - output_dir (str | None): Directory where trajectory files will be saved. Can also be set via the environment variable `OUTPUT_DIR`.
+    - ripdp_data (str | None): Full path to the RIPDP prefix file (e.g. RIPDP/rdp_test) generated by the preprocess function. Can also be set via the environment variable `RIPDP_DATA`.
+    - image_path (str | None): Path to apptainer image. Can also be set via the environment variable `IMAGE_PATH`.
 
     Outputs:
     - Path to generated trajectory file.
     """
+    if wrfout_dir is None:
+        wrfout_dir = os.environ["WRFOUT_DIR"]
+    if output_dir is None:
+        output_dir = os.environ["OUTPUT_DIR"]
+    if ripdp_data is None:
+        ripdp_data = os.environ["RIPDP_DATA"]
+    if image_path is None:
+        image_path = os.environ["IMAGE_PATH"]
+    check_dir_exists(wrfout_dir)
+    check_dir_exists(ripdp_data)
+    check_image_exists(image_path)
+
     print(f"Computing trajectory '{traj_tag}'...")
 
     setup_dir_structure(output_dir)
@@ -406,9 +435,6 @@ def point_trajectory(
 
 
 def swarm_trajectories(
-    wrfout_dir: str,
-    output_dir: str,
-    ripdp_data: str,
     traj_tag: str,
     traj_t_0: float,
     traj_t_f: float,
@@ -420,7 +446,10 @@ def swarm_trajectories(
     hydrometeor: int = 0,
     traj_diagnostics: dict = diagnostic_groups("base"),
     colors: list[str] = colors(),
-    image_path: str = "ripdocker_latest.sif",
+    wrfout_dir: str | None = None,
+    output_dir: str | None = None,
+    ripdp_data: str | None = None,
+    image_path: str | None = None,
 ):
     """
     Computes the trajectory of a swarm of points.
@@ -428,9 +457,6 @@ def swarm_trajectories(
     All combinations of the provided x, y, z coordinates will be computed.
 
     Inputs:
-    - wrfout_dir (str): Path to the directory containing wrfout files.
-    - output_dir (str): Directory where trajectory files will be saved.
-    - ripdp_data (str): Full path to the RIPDP prefix file (e.g. RIPDP/rdp_test) generated by the preprocess function.
     - traj_tag (str): A tag to identify the trajectory.
     - traj_t_0 (float): Particle release time (model time) in hours.
     - traj_t_f (float): Time until which the trajectory will be computed (model time) in hours.
@@ -442,11 +468,22 @@ def swarm_trajectories(
     - hydrometeor (int): Set to 0 for Air Parcel trajectories, or 1 for Hydrometeor trajectories.
     - traj_diagnostics (dict): Diagnostics to be computed along trajectory, as returned by `diagnostic_groups(group_name)`.
     - colors (list[str]): List of colors to be used for the trajectories. If there are more trajectories than colors, colors will be reused.
-    - image_path (str): Path to apptainer image.
+    - wrfout_dir (str | None): Path to the directory containing wrfout files. Can also be set via the environment variable `WRFOUT_DIR`.
+    - output_dir (str | None): Directory where trajectory files will be saved. Can also be set via the environment variable `OUTPUT_DIR`.
+    - ripdp_data (str | None): Full path to the RIPDP prefix file (e.g. RIPDP/rdp_test) generated by the preprocess function. Can also be set via the environment variable `RIPDP_DATA`.
+    - image_path (str | None): Path to apptainer image. Can also be set via the environment variable `IMAGE_PATH`.
 
     Outputs:
     - Dictionary with trajectory tags as keys and colors as values (`{traj_tag: rip_color}`), as required by `plot_trajectories`.
     """
+    if wrfout_dir is None:
+        wrfout_dir = os.environ["WRFOUT_DIR"]
+    if output_dir is None:
+        output_dir = os.environ["OUTPUT_DIR"]
+    if ripdp_data is None:
+        ripdp_data = os.environ["RIPDP_DATA"]
+    if image_path is None:
+        image_path = os.environ["IMAGE_PATH"]
     i = 0
     tags = {}
     for z in traj_z:
@@ -478,27 +515,33 @@ def swarm_trajectories(
 
 
 def plot_trajectories(
-    output_dir: str,
-    ripdp_data: str,
     traj_tags_colors: dict[str, str],
     plot_tag: str,
     format: str = "pdf",
-    image_path: str = "ripdocker_latest.sif",
+    output_dir: str | None = None,
+    ripdp_data: str | None = None,
+    image_path: str | None = None,
 ):
     """
     Generate trajectory plot from the trajectory(ies) specified.
 
     Inputs:
-    - output_dir (str): Output directory used by the RIP workflow (must contain `BTrajectories` directory).
-    - ripdp_data (str): Full path to the RIPDP prefix file (e.g. RIPDP/rdp_test) generated by the preprocess function.
     - traj_tags_colors (dict[str, str]): A dictionary with trajectory tags as keys and colors as values (`{traj_tag: rip_color}`).
-      For each key `traj_tag`, a `BTrajectories/{traj_tag}.traj` or `BTrajectories/{traj_tag}_traj_point.traj` is expected.
+        For each key `traj_tag`, a `BTrajectories/{traj_tag}.traj` or `BTrajectories/{traj_tag}_traj_point.traj` is expected.
     - file_tag (str | None): A tag to identify the plot.
-    - image_path (str): Path to apptainer image.
+    - output_dir (str | None): Output directory used by the RIP workflow (must contain `BTrajectories` directory). Can also be set via the environment variable `OUTPUT_DIR`.
+    - ripdp_data (str | None): Full path to the RIPDP prefix file (e.g. RIPDP/rdp_test) generated by the preprocess function. Can also be set via the environment variable `RIPDP_DATA`.
+    - image_path (str | None): Path to apptainer image. Can also be set via the environment variable `IMAGE_PATH`.
 
     Outputs:
     - Path to generated plot file (`.pdf`).
     """
+    if output_dir is None:
+        output_dir = os.environ["OUTPUT_DIR"]
+    if ripdp_data is None:
+        ripdp_data = os.environ["RIPDP_DATA"]
+    if image_path is None:
+        image_path = os.environ["IMAGE_PATH"]
     print(f"Generating trajectory plot...")
     if not traj_tags_colors:
         raise ValueError(
