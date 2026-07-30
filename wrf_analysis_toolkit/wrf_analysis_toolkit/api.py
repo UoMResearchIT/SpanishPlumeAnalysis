@@ -456,3 +456,33 @@ def mp4stitch(
     )
 
     return outfile
+
+
+def vcross(
+    wrfout_dir: str,
+    output_dir: str,
+    variable_name: str,
+    file_tag: str = "",
+):
+    """
+    Generates a vertical cross-section for the specified variable and saves it to the output directory.
+
+    Inputs marked as '(optional)' take default values as defined in SensibleVariables.
+
+    Inputs:
+    - wrfout_dir: Directory containing WRF output files.
+    - output_dir: Directory where the output file(s) will be saved.
+    - variable_name: Name of the variable to analyze (must be defined in SensibleVariables).
+
+    CURRENTLY A DUMMY FUNCTION FOR TESTING
+
+    Returns: The name of the output file saved in the output directory.
+    """
+    svar = set_variable(
+        variable_name=variable_name
+    )
+
+    outfile = svar.outfile + file_tag
+
+    return outfile
+
