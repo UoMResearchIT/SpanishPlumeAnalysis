@@ -307,7 +307,13 @@ def cli():
                 rows=args.rows,
                 cols=args.cols,
             )
-
+        case "vcross":
+            wat.vcross(
+                wrfout_dir=dirs[0],
+                output_dir=args.output_dir,
+                variable_name=args.var,
+                file_tag=args.file_tag,
+            )
 
 if __name__ == "__main__":
     cli()
