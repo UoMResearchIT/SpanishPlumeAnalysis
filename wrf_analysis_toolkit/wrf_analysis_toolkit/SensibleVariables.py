@@ -1353,10 +1353,22 @@ SkewT_Gibraltar = svariable(
     range_max=40,
 )
 
+AbsoluteVorticityCross = svariable(
+    dim=4,
+    wrfname="avo",
+    ptitle=f"Absolute Vorticity vertical Cross-Section [10-5/s]",
+    outfile=f"AbsVorticityVertCrossSec",
+    colormap=get_cmap("coolwarm"),
+    range_min=-150,
+    range_max=200,
+    nticks=8,
+    nlevs=15
+)
+
 AirTempCross = svariable(
     dim=4,
     wrfname="temp",
-    ptitle=f"Wind Speed vertical Cross-Section [m/s]",
+    ptitle=f"Wind Speed vertical Cross-Section [K]",
     outfile=f"WindSpeedVertCrossSec",
     colormap=get_cmap("coolwarm"),
     nticks=15,
@@ -1368,7 +1380,7 @@ AirTempCross = svariable(
 DewpointTempCross = svariable(
     dim=4,
     wrfname="td",
-    ptitle=f"Dewpoint Temperature vertical Cross-Section [m/s]",
+    ptitle=f"Dewpoint Temperature vertical Cross-Section [K]",
     outfile=f"DewpointTempVertCrossSec",
     colormap=get_cmap("coolwarm"),
     range_min=-75,
@@ -1378,7 +1390,7 @@ DewpointTempCross = svariable(
 RelativeHumidityCross = svariable(
     dim=4,
     wrfname="rh",
-    ptitle=f"Relative Humidity vertical Cross-Section [m/s]",
+    ptitle=f"Relative Humidity vertical Cross-Section [K]",
     outfile=f"RelativeHumidityVertCrossSec",
     colormap=get_cmap("YlGnBu"),
     range_min=0,
@@ -1390,7 +1402,7 @@ RelativeHumidityCross = svariable(
 PotentialTempCross = svariable(
     dim=4,
     wrfname="theta",
-    ptitle=f"Potential temperature vertical Cross-Section [m/s]",
+    ptitle=f"Potential temperature vertical Cross-Section [K]",
     outfile=f"PotTempVertCrossSec",
     colormap=get_cmap("YlGnBu"),
     range_min=275,
@@ -1401,8 +1413,8 @@ PotentialTempCross = svariable(
 
 PotVorticityCross = svariable(
     dim=4,
-    wrfname="twb",
-    ptitle=f"Potential Vorticity vertical Cross-Section [m/s]",
+    wrfname="pvo",
+    ptitle=f"Potential Vorticity vertical Cross-Section [PVU]",
     outfile=f"PotVorticityVertCrossSec",
     colormap=get_cmap("PuOr"),
     range_min=-100,
@@ -1414,7 +1426,7 @@ PotVorticityCross = svariable(
 WetbulbCross = svariable(
     dim=4,
     wrfname="twb",
-    ptitle=f"Wetbulb Temperature vertical Cross-Section [m/s]",
+    ptitle=f"Wetbulb Temperature vertical Cross-Section [K]",
     outfile=f"WindSpeedVertCrossSec",
     colormap=get_cmap("coolwarm"),
     range_min=264,
@@ -1434,5 +1446,3 @@ WindSpeedCross = svariable(
     range_min=0,
     range_max=50,
 )
-
-
