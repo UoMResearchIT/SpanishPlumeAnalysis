@@ -216,7 +216,6 @@ def cli():
         help="End latlon coordinate for making vertical cross section.",
     )
 
-
     args = parser.parse_args()
 
     if args.task not in wat.__all__:

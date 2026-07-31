@@ -465,7 +465,6 @@ def vcross(
     variable_name: str,
     start_latlon: tuple | None,
     end_latlon: tuple | None,
-    sens_var: sv.svariable | None = None,
     file_tag: str = "",
     time_from: str | None = None,
     time_to: str | None = None,
@@ -489,27 +488,23 @@ def vcross(
 
     Returns: The name of the output file saved in the output directory.
     """
-    svar = set_variable(
-        variable_name=variable_name,
-        range_min=range_min,
-        range_max=range_max,
-        sens_var=sens_var,
-    )
 
-    outfile = svar.outfile + file_tag
+    # outfile = svar.outfile + file_tag
 
     VerticalCrossSection(
         dir_path=wrfout_dir,
-        svariable=svar,
+        variable_name=variable_name,
         start_latlon=start_latlon,
         end_latlon=end_latlon,
         time_from=time_from,
         time_to=time_to,
-        outfile=outfile,
+        range_min=range_min,
+        range_max=range_max,
+        # outfile=outfile,
         outdir=output_dir,
         smooth=smooth,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
     )
 
-    return outfile
+    # return outfile
