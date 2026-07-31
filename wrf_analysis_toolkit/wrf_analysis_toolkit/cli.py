@@ -9,6 +9,15 @@ from wrf_analysis_toolkit.utils import str2bool
 import wrf_analysis_toolkit as wat
 
 
+def latlon(value):
+    try:
+        lat, lon = map(float, [x.strip() for x in value.split(",")])
+        return (lat, lon)
+    except ValueError as err:
+        raise argparse.ArgumentTypeError(
+            "Expected lat,lon, e.g. 52.5,-2.0"
+        ) from err
+
 def cli():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -194,6 +203,19 @@ def cli():
         default=None,
         help="Path to the trajectory CSV file.",
     )
+    parser.add_argument(
+        "--start_latlon",
+        type=latlon,
+        default=None,
+        help="Start latlon coordinate for making vertical cross section.",
+    )
+    parser.add_argument(
+        "--end_latlon",
+        type=latlon,
+        default=None,
+        help="End latlon coordinate for making vertical cross section.",
+    )
+
 
     args = parser.parse_args()
 
@@ -313,6 +335,8 @@ def cli():
                 output_dir=args.output_dir,
                 variable_name=args.var,
                 file_tag=args.file_tag,
+                start_latlon=args.start_latlon,
+                end_latlon=args.end_latlon,
             )
 
 if __name__ == "__main__":

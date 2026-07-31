@@ -10,6 +10,7 @@ from wrf_analysis_toolkit.TerrainPlots import Terrain
 from wrf_analysis_toolkit.CSV_Data import CSV_Data
 from wrf_analysis_toolkit.MP4Compare import ConcatNDiff, ConcatNxM
 from wrf_analysis_toolkit.WRFCompare import WRFSmoothDiff
+from wrf_analysis_toolkit.VerticalCrossSection import VerticalCrossSection
 
 
 def diagnostic(
@@ -462,7 +463,17 @@ def vcross(
     wrfout_dir: str,
     output_dir: str,
     variable_name: str,
+    start_latlon: tuple | None,
+    end_latlon: tuple | None,
+    sens_var: sv.svariable | None = None,
     file_tag: str = "",
+    time_from: str | None = None,
+    time_to: str | None = None,
+    range_min: float | None = None,
+    range_max: float | None = None,
+    smooth: bool = False,
+    clean_png_frames: bool = False,
+    save_pdf_frames: bool = False,
 ):
     """
     Generates a vertical cross-section for the specified variable and saves it to the output directory.
@@ -479,10 +490,26 @@ def vcross(
     Returns: The name of the output file saved in the output directory.
     """
     svar = set_variable(
-        variable_name=variable_name
+        variable_name=variable_name,
+        range_min=range_min,
+        range_max=range_max,
+        sens_var=sens_var,
     )
 
     outfile = svar.outfile + file_tag
 
-    return outfile
+    VerticalCrossSection(
+        dir_path=wrfout_dir,
+        svariable=svar,
+        start_latlon=start_latlon,
+        end_latlon=end_latlon,
+        time_from=time_from,
+        time_to=time_to,
+        outfile=outfile,
+        outdir=output_dir,
+        smooth=smooth,
+        cleanpng=clean_png_frames,
+        save_pdf=save_pdf_frames,
+    )
 
+    return outfile
