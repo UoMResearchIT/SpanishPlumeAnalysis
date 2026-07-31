@@ -19,6 +19,7 @@ def VerticalCrossSection(
     time_to=None,
     outfile="VertCrossSec",
     outdir="./",
+    time_tag=1,
     dpi=100,
     cleanpng=0,
     save_pdf=0,
@@ -83,6 +84,7 @@ def VerticalCrossSection(
 
             # Extract variable along pressure coordinates
             var =  getvar(ncfile, svariable.wrfname)
+            dtime = str(var.Time.values)[0:19]
             p = getvar(ncfile, "pressure")
             var_cross = vertcross(
                 var,
@@ -95,7 +97,7 @@ def VerticalCrossSection(
             )
 
             # Create a figure
-            fig = plt.figure(figsize=(10.88, 8.16), dpi=dpi)
+            fig = plt.figure(figsize=(10.88, 7.16), dpi=dpi)
             ax = plt.axes()
             coord_pairs = to_np(var_cross.coords["xy_loc"])
             var_contours = ax.contourf(
@@ -126,6 +128,10 @@ def VerticalCrossSection(
             ax.set_yticks(np.linspace(100, 1000, 10))
             ax.set_ylim(1000, 100)
             ax.set_ylabel("Pressure (hPa)", fontsize=12)
+
+            plt.title(svariable.ptitle)
+            if time_tag:
+                plt.annotate(dtime, xy=(0.02, -0.03), xycoords="axes fraction")
 
             plt.savefig(outfname)
             if save_pdf:

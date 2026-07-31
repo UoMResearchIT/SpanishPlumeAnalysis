@@ -1353,14 +1353,86 @@ SkewT_Gibraltar = svariable(
     range_max=40,
 )
 
-WindSpeedVCross = svariable(
+AirTempCross = svariable(
+    dim=4,
+    wrfname="temp",
+    ptitle=f"Wind Speed vertical Cross-Section [m/s]",
+    outfile=f"WindSpeedVertCrossSec",
+    colormap=get_cmap("coolwarm"),
+    nticks=15,
+    nlevs=15,
+    range_min=240,
+    range_max=310,
+)
+
+DewpointTempCross = svariable(
+    dim=4,
+    wrfname="td",
+    ptitle=f"Dewpoint Temperature vertical Cross-Section [m/s]",
+    outfile=f"DewpointTempVertCrossSec",
+    colormap=get_cmap("coolwarm"),
+    range_min=-75,
+    range_max=25,
+)
+
+RelativeHumidityCross = svariable(
+    dim=4,
+    wrfname="rh",
+    ptitle=f"Relative Humidity vertical Cross-Section [m/s]",
+    outfile=f"RelativeHumidityVertCrossSec",
+    colormap=get_cmap("YlGnBu"),
+    range_min=0,
+    range_max=100,
+    nticks=11,
+    nlevs=21,
+)
+
+PotentialTempCross = svariable(
+    dim=4,
+    wrfname="theta",
+    ptitle=f"Potential temperature vertical Cross-Section [m/s]",
+    outfile=f"PotTempVertCrossSec",
+    colormap=get_cmap("YlGnBu"),
+    range_min=275,
+    range_max=335,
+    nticks=13,
+    nlevs=13,
+)
+
+PotVorticityCross = svariable(
+    dim=4,
+    wrfname="twb",
+    ptitle=f"Potential Vorticity vertical Cross-Section [m/s]",
+    outfile=f"PotVorticityVertCrossSec",
+    colormap=get_cmap("PuOr"),
+    range_min=-100,
+    range_max=200,
+    nticks=8,
+    nlevs=15
+)
+
+WetbulbCross = svariable(
+    dim=4,
+    wrfname="twb",
+    ptitle=f"Wetbulb Temperature vertical Cross-Section [m/s]",
+    outfile=f"WindSpeedVertCrossSec",
+    colormap=get_cmap("coolwarm"),
+    range_min=264,
+    range_max=304,
+    nticks=11,
+    nlevs=21
+)
+
+WindSpeedCross = svariable(
     dim=4,
     wrfname="wspd",
     ptitle=f"Wind Speed vertical Cross-Section [m/s]",
     outfile=f"WindSpeedVertCrossSec",
     colormap=get_cmap("viridis"),
-    nticks=9,
-    nlevs=9,
+    nticks=11,
+    nlevs=11,
     range_min=0,
-    range_max=40,
+    range_max=50,
 )
+
+
