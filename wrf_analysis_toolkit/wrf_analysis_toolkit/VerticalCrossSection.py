@@ -129,9 +129,7 @@ def VerticalCrossSection(
             ax.set_ylim(1000, 100)
             ax.set_ylabel("Pressure (hPa)", fontsize=12)
 
-            plt.title(svariable.ptitle)
-            if time_tag:
-                plt.annotate(dtime, xy=(0.02, -0.03), xycoords="axes fraction")
+            plt.title(f"{svariable.ptitle} at {dtime}")
 
             plt.savefig(outfname)
             if save_pdf:
