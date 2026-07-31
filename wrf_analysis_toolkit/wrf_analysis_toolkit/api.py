@@ -507,7 +507,6 @@ def vcross(
         time_to=time_to,
         outfile=outfile,
         outdir=output_dir,
-        smooth=smooth,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
     )
