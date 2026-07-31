@@ -82,9 +82,10 @@ def VerticalCrossSection(
             outfname = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
 
             # Extract variable along pressure coordinates
+            var =  getvar(ncfile, svariable.wrfname)
             p = getvar(ncfile, "pressure")
             var_cross = vertcross(
-                svariable.wrfname,
+                var,
                 p,
                 wrfin=ncfile,
                 start_point=start_point,
