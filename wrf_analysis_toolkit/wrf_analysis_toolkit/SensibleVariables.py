@@ -1352,3 +1352,15 @@ SkewT_Gibraltar = svariable(
     range_min=-60,
     range_max=40,
 )
+
+WindSpeedVCross = svariable(
+    dim=4,
+    wrfname="wspd",
+    ptitle=f"Wind Speed vertical Cross-Section [m/s]",
+    outfile=f"WindSpeedVertCrossSec",
+    colormap=get_cmap("viridis"),
+    nticks=10,
+    nlevs=10,
+    range_min=0,
+    range_max=50,
+)

@@ -12,18 +12,14 @@ import wrf_analysis_toolkit.SensibleVariables as sv
 
 def VerticalCrossSection(
     dir_path,
-    variable_name,
+    svariable,
     start_latlon,
     end_latlon,
     time_from=None,
     time_to=None,
-    range_min=0,
-    range_max=50,
-    nlevs=10,
     outfile="VertCrossSec",
     outdir="./",
     dpi=100,
-    colormap="viridis",
     cleanpng=0,
     save_pdf=0,
 ):
@@ -44,7 +40,7 @@ def VerticalCrossSection(
     end_point = CoordPair(lat=end_latlon[0], lon=end_latlon[1])
 
     # Organise files to analyse
-    print(f"Generating vertical cross-section for {variable_name}")
+    print(f"Generating vertical cross-section for {svariable.outfile}")
     print(f"From {start_point.latlon_str} to {end_point.latlon_str}")
     WRFfiles = select_wrfout_files(dir_path, time_from, time_to)
     print("Source wrfout files:", dir_path)
@@ -63,8 +59,8 @@ def VerticalCrossSection(
         os.mkdir(tmp_dir)
     tmp_dir = tmp_dir + "/"
 
-    levs = np.linspace(range_min, range_max, nlevs)
-    ticklevs = np.linspace(range_min, range_max, nlevs)
+    levs = np.linspace(svariable.range_min, svariable.range_max, svariable.nlevs)
+    ticklevs = np.linspace(svariable.range_min, svariable.range_max, svariable.nlevs)
 
     # Plot each time frame in each file
     latlon_passed = False
@@ -88,7 +84,7 @@ def VerticalCrossSection(
             # Extract variable along pressure coordinates
             p = getvar(ncfile, "pressure")
             var_cross = vertcross(
-                variable_name,
+                svariable.wrfname,
                 p,
                 wrfin=ncfile,
                 start_point=start_point,
@@ -106,7 +102,7 @@ def VerticalCrossSection(
                 to_np(var_cross["vertical"]), 
                 to_np(var_cross),
                 levels=levs,
-                cmap=get_cmap(colormap)
+                cmap=get_cmap(svariable.colormap)
             )
             col_bar = plt.colorbar(
                 var_contours,
@@ -141,7 +137,7 @@ def latlon_check(ncfile: Dataset, coord_pair: CoordPair):
     lon = coord_pair.lon
     try:
         x_y = ll_to_xy(ncfile, lat, lon)
-    except ValueError:
+    except ValueError as err:
         raise ValueError(
             f"Point ({lat}, {lon}) is outside the WRF domain"
-        )
+        ) from err
