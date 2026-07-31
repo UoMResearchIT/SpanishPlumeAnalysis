@@ -1359,8 +1359,8 @@ WindSpeedVCross = svariable(
     ptitle=f"Wind Speed vertical Cross-Section [m/s]",
     outfile=f"WindSpeedVertCrossSec",
     colormap=get_cmap("viridis"),
-    nticks=10,
-    nlevs=10,
+    nticks=9,
+    nlevs=9,
     range_min=0,
-    range_max=50,
+    range_max=40,
 )

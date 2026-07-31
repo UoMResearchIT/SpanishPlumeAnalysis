@@ -334,6 +334,10 @@ def cli():
                 output_dir=args.output_dir,
                 variable_name=args.var,
                 file_tag=args.file_tag,
+                time_from=args.time_from,
+                time_to=args.time_to,
+                range_min=args.range_min,
+                range_max=args.range_max,
                 start_latlon=args.start_latlon,
                 end_latlon=args.end_latlon,
             )
