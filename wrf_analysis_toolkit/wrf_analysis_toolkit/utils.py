@@ -98,7 +98,7 @@ def set_variable(
     if plim_top is not None:
         svar.plim_top = float(plim_top)
     if plevs is not None:
-        svar.plevs = float(plevs)
+        svar.plevs = int(plevs)
 
     return svar
 

@@ -473,7 +473,7 @@ def vcross(
     range_max: float | None = None,
     plim_bottom: float | None = None,
     plim_top: float | None = None,
-    plevs: float | None = None,
+    plevs: int | None = None,
     clean_png_frames: bool = False,
     save_pdf_frames: bool = False,
 ):

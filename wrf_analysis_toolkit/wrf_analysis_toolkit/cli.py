@@ -229,7 +229,7 @@ def cli():
     )
     parser.add_argument(
         "--plevs",
-        type=float,
+        type=int,
         default=None,
         help="Number of pressure values on y-axis for vertical cross section plots.",
     )
