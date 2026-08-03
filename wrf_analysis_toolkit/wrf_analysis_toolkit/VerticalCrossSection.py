@@ -34,7 +34,7 @@ def VerticalCrossSection(
         os.makedirs(outdir)
     # Need to implement input check here!
 
-    if start_latlon is None or start_latlon is None:
+    if start_latlon is None or end_latlon is None:
         raise ValueError("start_latlon and end_latlon must be defined to make a vertical cross-section")
 
     start_point = CoordPair(lat=start_latlon[0], lon=start_latlon[1])
