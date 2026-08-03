@@ -13,15 +13,10 @@ import wrf_analysis_toolkit.SensibleVariables as sv
 def VerticalCrossSection(
     dir_path,
     svariable,
-    start_latlon,
-    end_latlon,
     time_from=None,
     time_to=None,
     outfile="VertCrossSec",
     outdir="./",
-    plim_bottom=1000,
-    plim_top=100,
-    plevs=10,
     dpi=100,
     cleanpng=0,
     save_pdf=0,
@@ -36,6 +31,9 @@ def VerticalCrossSection(
         os.makedirs(outdir)
     # Need to implement input check here!
 
+    start_latlon = svariable.start_latlon
+    end_latlon = svariable.end_latlon
+
     if start_latlon is None or end_latlon is None:
         raise ValueError("start_latlon and end_latlon must be defined to make a vertical cross-section")
 
@@ -44,7 +42,7 @@ def VerticalCrossSection(
 
     # Organise files to analyse
     print(f"Generating vertical cross-section for {svariable.outfile}")
-    print(f"From {start_point.latlon_str} to {end_point.latlon_str}")
+    print(f"From {start_point.latlon_str()} to {end_point.latlon_str()}")
     WRFfiles = select_wrfout_files(dir_path, time_from, time_to)
     print("Source wrfout files:", dir_path)
     for f in WRFfiles:
@@ -127,8 +125,10 @@ def VerticalCrossSection(
             # Arrange y-axis labels - pressure
             ax.set_yscale('symlog')
             ax.yaxis.set_major_formatter(ScalarFormatter())
-            ax.set_yticks(np.linspace(plim_top, plim_bottom, plevs))
-            ax.set_ylim(plim_bottom, plim_top)
+            ax.set_yticks(
+                np.linspace(svariable.plim_top, svariable.plim_bottom, svariable.plevs)
+            )
+            ax.set_ylim(svariable.plim_bottom, svariable.plim_top)
             ax.set_ylabel("Pressure (hPa)", fontsize=12)
 
             plt.title(f"{svariable.ptitle} at {dtime}")

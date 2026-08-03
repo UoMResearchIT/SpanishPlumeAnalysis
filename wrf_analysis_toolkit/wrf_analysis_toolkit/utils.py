@@ -25,6 +25,11 @@ def set_variable(
     lat=None,
     lon=None,
     trajectory=None,
+    start_latlon=None,
+    end_latlon=None,
+    plim_bottom=None,
+    plim_top=None,
+    plevs=None,
     sens_var=None,
 ):
     """
@@ -78,6 +83,22 @@ def set_variable(
     if "SkewT" in svar.outfile and (lat is not None or lon is not None):
         svar.outfile = f"SkewT_at_{svar.lat}_{svar.lon}"
         svar.ptitle = f"SkewT at {svar.lat},{svar.lon}"
+
+    # Settings for aking vertical cross sections
+    if (start_latlon is not None and end_latlon is None) \
+        or (start_latlon is None and end_latlon is not None):
+        raise ValueError("Both 'start_latlon' and 'end_latlon' must be provided together.")
+
+    if start_latlon is not None:
+        svar.start_latlon = tuple(start_latlon)
+    if end_latlon is not None:
+        svar.end_latlon = tuple(end_latlon)
+    if plim_bottom is not None:
+        svar.plim_bottom = float(plim_bottom)
+    if plim_top is not None:
+        svar.plim_top = float(plim_top)
+    if plevs is not None:
+        svar.plevs = float(plevs)
 
     return svar
 

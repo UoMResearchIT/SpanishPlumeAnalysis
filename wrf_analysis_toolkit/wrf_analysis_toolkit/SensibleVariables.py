@@ -34,6 +34,11 @@ class svariable:
         lat=None,
         lon=None,
         along_traj=None,
+        start_latlon=None,
+        end_latlon=None,
+        plim_bottom=1000,
+        plim_top=100,
+        plevs=11,
     ):
         self.dim = dim
         self.wrfname = wrfname
@@ -65,7 +70,11 @@ class svariable:
         self.lat = lat
         self.lon = lon
         self.along_traj = along_traj
-
+        self.start_latlon=start_latlon
+        self.end_latlon=end_latlon
+        self.plim_bottom=plim_bottom
+        self.plim_top=plim_top
+        self.plevs=plevs
 
 def get_sv_names():
     """Return names of declared sensible variables in this module."""
