@@ -19,7 +19,6 @@ def VerticalCrossSection(
     time_to=None,
     outfile="VertCrossSec",
     outdir="./",
-    time_tag=1,
     dpi=100,
     cleanpng=0,
     save_pdf=0,
