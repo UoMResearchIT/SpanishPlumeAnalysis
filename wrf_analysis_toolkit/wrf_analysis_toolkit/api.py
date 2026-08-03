@@ -471,7 +471,9 @@ def vcross(
     time_to: str | None = None,
     range_min: float | None = None,
     range_max: float | None = None,
-    smooth: bool = False,
+    plim_bottom: float | None=None,
+    plim_top: float | None=None,
+    plevs: float | None=None,
     clean_png_frames: bool = False,
     save_pdf_frames: bool = False,
 ):
@@ -507,6 +509,9 @@ def vcross(
         time_to=time_to,
         outfile=outfile,
         outdir=output_dir,
+        plim_bottom=plim_bottom,
+        plim_top=plim_top,
+        plevs=plevs,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
     )

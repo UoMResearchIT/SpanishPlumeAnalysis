@@ -215,6 +215,24 @@ def cli():
         default=None,
         help="End latlon coordinate for making vertical cross section.",
     )
+    parser.add_argument(
+        "--plim_bottom",
+        type=float,
+        default=None,
+        help="Pressure level at bottom of y-axis for vertical cross section plots.",
+    )
+    parser.add_argument(
+        "--plim_top",
+        type=float,
+        default=None,
+        help="Pressure level at top of y-axis for vertical cross section plots.",
+    )
+    parser.add_argument(
+        "--plevs",
+        type=float,
+        default=None,
+        help="Number of pressure values on y-axis for vertical cross section plots.",
+    )
 
     args = parser.parse_args()
 
@@ -333,13 +351,16 @@ def cli():
                 wrfout_dir=dirs[0],
                 output_dir=args.output_dir,
                 variable_name=args.var,
+                start_latlon=args.start_latlon,
+                end_latlon=args.end_latlon,
                 file_tag=args.file_tag,
                 time_from=args.time_from,
                 time_to=args.time_to,
                 range_min=args.range_min,
                 range_max=args.range_max,
-                start_latlon=args.start_latlon,
-                end_latlon=args.end_latlon,
+                plim_bottom=args.plim_bottom,
+                plim_top=args.plim_top,
+                plevs=args.plevs,
             )
 
 if __name__ == "__main__":

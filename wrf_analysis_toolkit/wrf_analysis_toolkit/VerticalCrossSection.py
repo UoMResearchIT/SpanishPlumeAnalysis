@@ -19,6 +19,9 @@ def VerticalCrossSection(
     time_to=None,
     outfile="VertCrossSec",
     outdir="./",
+    plim_bottom=1000,
+    plim_top=100,
+    plevs=10,
     dpi=100,
     cleanpng=0,
     save_pdf=0,
@@ -124,8 +127,8 @@ def VerticalCrossSection(
             # Arrange y-axis labels - pressure
             ax.set_yscale('symlog')
             ax.yaxis.set_major_formatter(ScalarFormatter())
-            ax.set_yticks(np.linspace(100, 1000, 10))
-            ax.set_ylim(1000, 100)
+            ax.set_yticks(np.linspace(plim_top, plim_bottom, plevs))
+            ax.set_ylim(plim_bottom, plim_top)
             ax.set_ylabel("Pressure (hPa)", fontsize=12)
 
             plt.title(f"{svariable.ptitle} at {dtime}")
