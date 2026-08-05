@@ -86,6 +86,8 @@ def VerticalCrossSection(
     else:
         plt.title(f"{svariable.ptitle}")
 
+    plt.tight_layout()
+
     if return_fig:
         return fig
     else:
