@@ -1,5 +1,5 @@
 from netCDF4 import Dataset
-import os
+
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import get_cmap
 from matplotlib.ticker import ScalarFormatter
