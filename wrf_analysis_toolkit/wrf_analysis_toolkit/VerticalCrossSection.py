@@ -114,12 +114,12 @@ def VerticalCrossSection(
             )
 
             # Arrange x-axis labels - latlon pairs
-            x_ticks = np.arange(coord_pairs.shape[0][::2])
+            x_ticks = np.arange(coord_pairs.shape[0])
             x_labels = [
                 pair.latlon_str(fmt="{:.2f}, {:.2f}") for pair in to_np(coord_pairs)
             ]
-            ax.set_xticks(x_ticks[::10])
-            ax.set_xticklabels(x_labels[::10], rotation=45, fontsize=10)
+            ax.set_xticks(x_ticks[::20])
+            ax.set_xticklabels(x_labels[::20], rotation=45, fontsize=10)
             ax.set_xlabel("Latitude/Longitude", fontsize=12)
 
             # Arrange y-axis labels - pressure
