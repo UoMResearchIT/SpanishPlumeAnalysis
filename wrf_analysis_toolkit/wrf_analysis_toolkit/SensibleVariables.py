@@ -39,7 +39,7 @@ class svariable:
         end_latlon=None,
         plim_bottom=1000,
         plim_top=100,
-        plevs=11,
+        plevs=10,
     ):
         self.dim = dim
         self.wrfname = wrfname
