@@ -7,7 +7,6 @@ from .api import (
     wrfdiff,
     mp4diff,
     mp4stitch,
-    vcross,
 )
 
 __all__ = [
@@ -17,7 +16,6 @@ __all__ = [
     "wrfdiff",
     "mp4diff",
     "mp4stitch",
-    "vcross",
 ]
 
 try:
