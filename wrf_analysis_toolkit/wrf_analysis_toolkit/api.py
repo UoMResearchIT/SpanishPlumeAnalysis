@@ -31,6 +31,12 @@ def diagnostic(
     trajectory: str | None = None,
     region: str = "full",
     region_ticks: bool = False,
+    vcross: bool = False,
+    start_latlon: tuple | None = None,
+    end_latlon: tuple | None = None,
+    plim_bottom: float | None = None,
+    plim_top: float | None = None,
+    plevs: int | None = None,
     smooth: bool = False,
     clean_png_frames: bool = True,
     save_pdf_frames: bool = False,
@@ -94,6 +100,12 @@ def diagnostic(
         lat=lat,
         lon=lon,
         trajectory=trajectory,
+        vcross=vcross,
+        start_latlon=start_latlon,
+        end_latlon=end_latlon,
+        plim_bottom=plim_bottom,
+        plim_top=plim_top,
+        plevs=plevs,
         sens_var=sens_var,
     )
 
@@ -110,6 +122,7 @@ def diagnostic(
         smooth=smooth,
         region=region,
         region_ticks=region_ticks,
+        vcross=vcross,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
     )
@@ -458,62 +471,3 @@ def mp4stitch(
 
     return outfile
 
-
-def vcross(
-    wrfout_dir: str,
-    output_dir: str,
-    variable_name: str,
-    start_latlon: tuple | None,
-    end_latlon: tuple | None,
-    sens_var: sv.svariable | None = None,
-    file_tag: str = "",
-    time_from: str | None = None,
-    time_to: str | None = None,
-    range_min: float | None = None,
-    range_max: float | None = None,
-    plim_bottom: float | None = None,
-    plim_top: float | None = None,
-    plevs: int | None = None,
-    clean_png_frames: bool = False,
-    save_pdf_frames: bool = False,
-):
-    """
-    Generates a vertical cross-section for the specified variable and saves it to the output directory.
-
-    Inputs marked as '(optional)' take default values as defined in SensibleVariables.
-
-    Inputs:
-    - wrfout_dir: Directory containing WRF output files.
-    - output_dir: Directory where the output file(s) will be saved.
-    - variable_name: Name of the variable to analyze (must be defined in SensibleVariables).
-
-    CURRENTLY A DUMMY FUNCTION FOR TESTING
-
-    Returns: The name of the output file saved in the output directory.
-    """
-    svar = set_variable(
-        variable_name=variable_name,
-        range_min=range_min,
-        range_max=range_max,
-        sens_var=sens_var,
-        start_latlon=start_latlon,
-        end_latlon=end_latlon,
-        plim_bottom=plim_bottom,
-        plim_top=plim_top,
-        plevs=plevs,
-    )
-
-    outfile = svar.outfile + file_tag
-
-    VerticalCrossSection(
-        dir_path=wrfout_dir,
-        svariable=svar,
-        time_from=time_from,
-        time_to=time_to,
-        outfile=outfile,
-        outdir=output_dir,
-        cleanpng=clean_png_frames,
-        save_pdf=save_pdf_frames,
-    )
-
-    return outfile

@@ -33,6 +33,7 @@ class svariable:
         overlap_cmap=None,
         lat=None,
         lon=None,
+        vcross=False,
         along_traj=None,
         start_latlon=None,
         end_latlon=None,
@@ -70,6 +71,7 @@ class svariable:
         self.lat = lat
         self.lon = lon
         self.along_traj = along_traj
+        self.vcross=vcross,
         self.start_latlon=start_latlon
         self.end_latlon=end_latlon
         self.plim_bottom=plim_bottom

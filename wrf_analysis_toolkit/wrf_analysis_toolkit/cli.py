@@ -204,6 +204,12 @@ def cli():
         help="Path to the trajectory CSV file.",
     )
     parser.add_argument(
+        "--vcross",
+        type=str2bool,
+        default=0,
+        help="Set to 1 to make a vertical cross section plot.",
+    )
+    parser.add_argument(
         "--start_latlon",
         type=latlon,
         default=None,
@@ -282,6 +288,12 @@ def cli():
                 trajectory=args.traj,
                 region=args.region,
                 region_ticks=args.region_ticks,
+                vcross=args.vcross,
+                start_latlon=args.start_latlon,
+                end_latlon=args.end_latlon,
+                plim_bottom=args.plim_bottom,
+                plim_top=args.plim_top,
+                plevs=args.plevs,
                 smooth=args.smooth,
                 clean_png_frames=args.clean,
                 save_pdf_frames=args.save_pdf_frames,
@@ -345,22 +357,6 @@ def cli():
                 labels=labels,
                 rows=args.rows,
                 cols=args.cols,
-            )
-        case "vcross":
-            wat.vcross(
-                wrfout_dir=dirs[0],
-                output_dir=args.output_dir,
-                variable_name=args.var,
-                start_latlon=args.start_latlon,
-                end_latlon=args.end_latlon,
-                file_tag=args.file_tag,
-                time_from=args.time_from,
-                time_to=args.time_to,
-                range_min=args.range_min,
-                range_max=args.range_max,
-                plim_bottom=args.plim_bottom,
-                plim_top=args.plim_top,
-                plevs=args.plevs,
             )
 
 if __name__ == "__main__":

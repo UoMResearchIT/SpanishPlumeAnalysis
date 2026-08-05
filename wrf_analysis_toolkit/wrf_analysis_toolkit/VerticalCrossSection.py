@@ -11,132 +11,88 @@ from wrf_analysis_toolkit.GetSensVar import *
 import wrf_analysis_toolkit.SensibleVariables as sv
 
 def VerticalCrossSection(
-    dir_path,
-    svariable,
-    time_from=None,
-    time_to=None,
-    outfile="VertCrossSec",
-    outdir="./",
+    ncfile: Dataset,
+    svariable: sv.svariable,
+    outfname="VCrossSec.png",
+    time_tag=1,
+    return_fig=0,
     dpi=100,
-    cleanpng=0,
     save_pdf=0,
 ):
-    ##Input check
-    # Directories
-    if dir_path[-1] != "/":
-        dir_path = dir_path + "/"
-    if outdir[-1] != "/":
-        outdir = outdir + "/"
-    if not os.path.exists(outdir):
-        os.makedirs(outdir)
-    # Need to implement input check here!
-
+    # Confirm valid start/end lat-lon points are inside the domain
     start_latlon = svariable.start_latlon
     end_latlon = svariable.end_latlon
-
     if start_latlon is None or end_latlon is None:
         raise ValueError("start_latlon and end_latlon must be defined to make a vertical cross-section")
-
     start_point = CoordPair(lat=start_latlon[0], lon=start_latlon[1])
     end_point = CoordPair(lat=end_latlon[0], lon=end_latlon[1])
-
-    # Organise files to analyse
-    print(f"Generating vertical cross-section for {svariable.outfile}")
-    print(f"From {start_point.latlon_str()} to {end_point.latlon_str()}")
-    WRFfiles = select_wrfout_files(dir_path, time_from, time_to)
-    print("Source wrfout files:", dir_path)
-    for f in WRFfiles:
-        print("  ", f)
-    print(
-        "\n\tcleanpng  =",
-        cleanpng,
-    )
-    print("Output will be saved as ", outdir + outfile, "\n")
-
-    # Initialization
-    PNGfiles = []
-    tmp_dir = outdir + "__" + outfile
-    if not os.path.exists(tmp_dir):
-        os.mkdir(tmp_dir)
-    tmp_dir = tmp_dir + "/"
+    latlon_check(ncfile, start_point)
+    latlon_check(ncfile, end_point)
 
     levs = np.linspace(svariable.range_min, svariable.range_max, svariable.nlevs)
     ticklevs = np.linspace(svariable.range_min, svariable.range_max, svariable.nlevs)
 
-    # Plot each time frame in each file
-    latlon_passed = False
-    for wrf_fn in WRFfiles:
-        # Open the NetCDF file
-        print("Loading ", wrf_fn)
-        ncfile = Dataset(dir_path + wrf_fn)
+    # Extract variable along pressure coordinates
+    var =  getvar(ncfile, svariable.wrfname)
+    dtime = str(var.Time.values)[0:19]
+    p = getvar(ncfile, "pressure")
+    var_cross = vertcross(
+        var,
+        p,
+        wrfin=ncfile,
+        start_point=start_point,
+        end_point=end_point,
+        latlon=True,
+        meta=True
+    )
 
-        # Confirm start/end latpoints are inside the domain
-        if not latlon_passed:
-            latlon_check(ncfile, start_point)
-            latlon_check(ncfile, end_point)
-            latlon_passed = True
+    # Create a figure
+    fig = plt.figure(figsize=(10.88, 7.16), dpi=dpi)
+    ax = plt.axes()
+    coord_pairs = to_np(var_cross.coords["xy_loc"])
+    var_contours = ax.contourf(
+        np.arange(coord_pairs.shape[0]),
+        to_np(var_cross["vertical"]),
+        to_np(var_cross),
+        levels=levs,
+        cmap=get_cmap(svariable.colormap)
+    )
+    col_bar = plt.colorbar(
+        var_contours,
+        extendfrac=[0.01, 0.01],
+        ticks=ticklevs
+    )
 
-        # Get number of time frames and plot them
-        timerange = ncfile.variables["Times"].shape[0]
-        for ti in range(timerange):
-            print("Processing:", ti + 1, "/", timerange, end="\r")
-            outfname = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
+    # Arrange x-axis labels - latlon pairs
+    x_ticks = np.arange(coord_pairs.shape[0])
+    x_labels = [
+        pair.latlon_str(fmt="{:.2f}, {:.2f}") for pair in to_np(coord_pairs)
+    ]
+    ax.set_xticks(x_ticks[::20])
+    ax.set_xticklabels(x_labels[::20], rotation=45, fontsize=10)
+    ax.set_xlabel("Latitude/Longitude", fontsize=12)
 
-            # Extract variable along pressure coordinates
-            var =  getvar(ncfile, svariable.wrfname)
-            dtime = str(var.Time.values)[0:19]
-            p = getvar(ncfile, "pressure")
-            var_cross = vertcross(
-                var,
-                p,
-                wrfin=ncfile,
-                start_point=start_point,
-                end_point=end_point,
-                latlon=True,
-                meta=True
-            )
+    # Arrange y-axis labels - pressure
+    ax.set_yscale('symlog')
+    ax.yaxis.set_major_formatter(ScalarFormatter())
+    ax.set_yticks(
+        np.linspace(svariable.plim_top, svariable.plim_bottom, svariable.plevs)
+    )
+    ax.set_ylim(svariable.plim_bottom, svariable.plim_top)
+    ax.set_ylabel("Pressure (hPa)", fontsize=12)
 
-            # Create a figure
-            fig = plt.figure(figsize=(10.88, 6), dpi=dpi)
-            ax = plt.axes()
-            coord_pairs = to_np(var_cross.coords["xy_loc"])
-            var_contours = ax.contourf(
-                np.arange(coord_pairs.shape[0]),
-                to_np(var_cross["vertical"]),
-                to_np(var_cross),
-                levels=levs,
-                cmap=get_cmap(svariable.colormap)
-            )
-            col_bar = plt.colorbar(
-                var_contours,
-                extendfrac=[0.01, 0.01],
-                ticks=ticklevs
-            )
+    if time_tag:
+        plt.title(f"{svariable.ptitle} at {dtime}")
+    else:
+        plt.title(f"{svariable.ptitle}")
 
-            # Arrange x-axis labels - latlon pairs
-            x_ticks = np.arange(coord_pairs.shape[0])
-            x_labels = [
-                pair.latlon_str(fmt="{:.2f}, {:.2f}") for pair in to_np(coord_pairs)
-            ]
-            ax.set_xticks(x_ticks[::20])
-            ax.set_xticklabels(x_labels[::20], rotation=45, fontsize=10)
-            ax.set_xlabel("Latitude/Longitude", fontsize=12)
-
-            # Arrange y-axis labels - pressure
-            ax.set_yscale('symlog')
-            ax.yaxis.set_major_formatter(ScalarFormatter())
-            ax.set_yticks(
-                np.linspace(svariable.plim_top, svariable.plim_bottom, svariable.plevs)
-            )
-            ax.set_ylim(svariable.plim_bottom, svariable.plim_top)
-            ax.set_ylabel("Pressure (hPa)", fontsize=12)
-
-            plt.title(f"{svariable.ptitle} at {dtime}")
-
-            plt.savefig(outfname)
-            if save_pdf:
-                plt.savefig(outfname.replace(".png", ".pdf"))
-            plt.close(fig)
+    if return_fig:
+        return fig
+    else:
+        plt.savefig(outfname)
+        if save_pdf:
+            plt.savefig(outfname.replace(".png", ".pdf"))
+        plt.close(fig)
 
 
 def latlon_check(ncfile: Dataset, coord_pair: CoordPair):

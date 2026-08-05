@@ -25,6 +25,7 @@ def set_variable(
     lat=None,
     lon=None,
     trajectory=None,
+    vcross=None,
     start_latlon=None,
     end_latlon=None,
     plim_bottom=None,
@@ -84,7 +85,9 @@ def set_variable(
         svar.outfile = f"SkewT_at_{svar.lat}_{svar.lon}"
         svar.ptitle = f"SkewT at {svar.lat},{svar.lon}"
 
-    # Settings for aking vertical cross sections
+    # Settings for making vertical cross sections
+    if vcross is not None:
+        svar.vcross = str2bool(vcross)
     if (start_latlon is not None and end_latlon is None) \
         or (start_latlon is None and end_latlon is not None):
         raise ValueError("Both 'start_latlon' and 'end_latlon' must be provided together.")
