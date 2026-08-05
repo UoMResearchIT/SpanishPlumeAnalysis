@@ -7,9 +7,15 @@ import wrf_analysis_toolkit.SensibleVariables as sv
 def str2bool(s):
     if isinstance(s, bool):
         return s
-    if s.lower() in ("yes", "true", "t", "y", "1"):
+
+    if not isinstance(s, str):
+        str_in = str(s)
+    else:
+        str_in = s
+
+    if str_in.lower() in ("yes", "true", "t", "y", "1"):
         return 1
-    elif s.lower() in ("no", "false", "f", "n", "0"):
+    elif str_in.lower() in ("no", "false", "f", "n", "0"):
         return 0
     else:
         raise Exception("Boolean value expected.")

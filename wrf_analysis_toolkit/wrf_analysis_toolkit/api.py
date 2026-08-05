@@ -73,8 +73,8 @@ def diagnostic(
 
     For Vertical Cross-Section plots, the following additional inputs are available:
         - vcross: Set to True to make a vertical cross section plot (optional)
-        - start_latlon: latitude-longitude coordinate pair for start point of cross-section (options). Required if vcross==True
-        - end_latlon: latitude-longitude coordinate pair for end point of cross-section (options). Required if vcross==True
+        - start_latlon: latitude-longitude coordinate pair for start point of cross-section (optional). Required if vcross==True
+        - end_latlon: latitude-longitude coordinate pair for end point of cross-section (optional). Required if vcross==True
         - plim_bottom: pressure value for bottom of y-axis of vertical-cross section plots (optional)
         - plim_bottom: pressure value for top of y-axis of vertical-cross section plots (optional)
         - plevs: Number of pressure values of y-axis of vertical-cross section plots (optional)
