@@ -6,6 +6,7 @@ from wrf_analysis_toolkit.utils import select_wrfout_files
 from wrf_analysis_toolkit.Plot2DField import *
 from wrf_analysis_toolkit.SkewT import *
 from wrf_analysis_toolkit.GetSensVar import *
+from wrf_analysis_toolkit.VerticalCrossSection import VerticalCrossSection
 import wrf_analysis_toolkit.SensibleVariables as sv
 
 
@@ -20,6 +21,7 @@ def Animate(
     smooth=1,
     region="full",
     region_ticks=False,
+    vcross=False,
     cleanpng=1,
     save_pdf=0,
 ):
@@ -125,6 +127,17 @@ def Animate(
                     )
                     PNGfiles.append(outfname)
                 sim_ti = sim_ti + 1
+
+            elif vcross:
+                outfname = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
+                VerticalCrossSection(
+                    ncfile,
+                    svariable,
+                    outfname,
+                    save_pdf=save_pdf,
+                )
+                PNGfiles.append(outfname)
+
             else:
                 var, u, v, vpv = GetSensVar(ncfile, svariable, windbarbs, ti, vpv)
                 if svariable.overlap_sv is not None:
@@ -146,6 +159,7 @@ def Animate(
                         save_pdf=save_pdf,
                     )
                     PNGfiles.append(outfname)
+
         print("Processed successfully.")
 
     # Build GIF

@@ -9,6 +9,15 @@ from wrf_analysis_toolkit.utils import str2bool
 import wrf_analysis_toolkit as wat
 
 
+def latlon(value):
+    try:
+        lat, lon = map(float, [x.strip() for x in value.split(",")])
+        return (lat, lon)
+    except ValueError as err:
+        raise argparse.ArgumentTypeError(
+            "Expected lat,lon, e.g. 52.5,-2.0"
+        ) from err
+
 def cli():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -194,6 +203,42 @@ def cli():
         default=None,
         help="Path to the trajectory CSV file.",
     )
+    parser.add_argument(
+        "--vcross",
+        type=str2bool,
+        default=0,
+        help="Set to 1 to make a vertical cross section plot.",
+    )
+    parser.add_argument(
+        "--start_latlon",
+        type=latlon,
+        default=None,
+        help="Start latlon coordinate for making vertical cross section.",
+    )
+    parser.add_argument(
+        "--end_latlon",
+        type=latlon,
+        default=None,
+        help="End latlon coordinate for making vertical cross section.",
+    )
+    parser.add_argument(
+        "--plim_bottom",
+        type=float,
+        default=None,
+        help="Pressure level at bottom of y-axis for vertical cross section plots.",
+    )
+    parser.add_argument(
+        "--plim_top",
+        type=float,
+        default=None,
+        help="Pressure level at top of y-axis for vertical cross section plots.",
+    )
+    parser.add_argument(
+        "--plevs",
+        type=int,
+        default=None,
+        help="Number of pressure values on y-axis for vertical cross section plots.",
+    )
 
     args = parser.parse_args()
 
@@ -243,6 +288,12 @@ def cli():
                 trajectory=args.traj,
                 region=args.region,
                 region_ticks=args.region_ticks,
+                vcross=args.vcross,
+                start_latlon=args.start_latlon,
+                end_latlon=args.end_latlon,
+                plim_bottom=args.plim_bottom,
+                plim_top=args.plim_top,
+                plevs=args.plevs,
                 smooth=args.smooth,
                 clean_png_frames=args.clean,
                 save_pdf_frames=args.save_pdf_frames,
@@ -307,7 +358,6 @@ def cli():
                 rows=args.rows,
                 cols=args.cols,
             )
-
 
 if __name__ == "__main__":
     cli()

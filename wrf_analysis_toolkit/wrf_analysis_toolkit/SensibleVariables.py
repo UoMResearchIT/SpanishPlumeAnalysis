@@ -33,7 +33,13 @@ class svariable:
         overlap_cmap=None,
         lat=None,
         lon=None,
+        vcross=False,
         along_traj=None,
+        start_latlon=None,
+        end_latlon=None,
+        plim_bottom=1000,
+        plim_top=100,
+        plevs=10,
     ):
         self.dim = dim
         self.wrfname = wrfname
@@ -65,7 +71,12 @@ class svariable:
         self.lat = lat
         self.lon = lon
         self.along_traj = along_traj
-
+        self.vcross=vcross,
+        self.start_latlon=start_latlon
+        self.end_latlon=end_latlon
+        self.plim_bottom=plim_bottom
+        self.plim_top=plim_top
+        self.plevs=plevs
 
 def get_sv_names():
     """Return names of declared sensible variables in this module."""
@@ -438,6 +449,17 @@ SimRadarReflectivityMax = svariable(
 )
 
 # 3D + Field
+AirTemp = svariable(
+    dim=4,
+    wrfname="temp",
+    ptitle=f"Air Temperature [K]",
+    outfile=f"AirTemp",
+    colormap=get_cmap("Reds"),
+    nticks=15,
+    nlevs=15,
+    range_min=240,
+    range_max=310,
+)
 AirTemp925 = svariable(
     dim=4,
     wrfname="temp",
@@ -583,6 +605,16 @@ AirTempDif12h500 = svariable(
     interpvalue=500,
     colormap=get_cmap("seismic"),
 )
+
+DewpointTemp = svariable(
+    dim=4,
+    wrfname="td",
+    ptitle=f"Dewpoint Temperature [C]",
+    outfile=f"DewpointTemp",
+    colormap=get_cmap("BuPu"),
+    range_min=-75,
+    range_max=25,
+)
 DewpointTemp925 = svariable(
     dim=4,
     wrfname="td",
@@ -638,6 +670,18 @@ DewpointTemp300 = svariable(
     interpvalue=300,
     colormap=get_cmap("BuPu"),
 )
+
+RelativeHumidity = svariable(
+    dim=4,
+    wrfname="rh",
+    ptitle=f"Relative Humidity [%]",
+    outfile=f"RelativeHumidity",
+    colormap=get_cmap("YlGnBu"),
+    range_min=0,
+    range_max=100,
+    nticks=11,
+    nlevs=21,
+)
 RelativeHumidity925 = svariable(
     dim=4,
     wrfname="rh",
@@ -692,6 +736,18 @@ RelativeHumidity300 = svariable(
     interpvar="pressure",
     interpvalue=300,
     colormap=get_cmap("YlGnBu"),
+)
+
+PotentialTemp = svariable(
+    dim=4,
+    wrfname="theta",
+    ptitle=f"Potential temperature [K]",
+    outfile=f"PotTemp",
+    colormap=get_cmap("Reds"),
+    range_min=270,
+    range_max=335,
+    nticks=13,
+    nlevs=25,
 )
 PotentialTemp925 = svariable(
     dim=4,
@@ -1041,6 +1097,17 @@ Frontogenesis500 = svariable(
     range_max=8,
 )
 
+AbsoluteVorticity = svariable(
+    dim=4,
+    wrfname="avo",
+    ptitle=f"Absolute Vorticity [10-5/s]",
+    outfile=f"AbsVorticity",
+    colormap=cmr.get_sub_cmap("PuOr", 0.55, 1, N=15),
+    range_min=-150,
+    range_max=200,
+    nticks=8,
+    nlevs=15
+)
 
 def create_AbsoluteVorticity_at(
     interpvalue, overlap_gap=30, range_min=-150, range_max=200, nticks=8, nlevs=15
@@ -1072,6 +1139,18 @@ AbsoluteVorticity500 = create_AbsoluteVorticity_at(500, overlap_gap=60)
 AbsoluteVorticity300 = create_AbsoluteVorticity_at(300, overlap_gap=120)
 
 
+Wetbulb = svariable(
+    dim=4,
+    wrfname="twb",
+    ptitle=f"Wetbulb Temperature [K]",
+    outfile=f"Wetbulb",
+    colormap=cmr.get_sub_cmap("Reds", 0.0, 0.8),
+    range_min=214,
+    range_max=304,
+    nticks=11,
+    nlevs=21
+)
+
 def create_Wetbulb_at(
     interpvalue, overlap_gap=30, range_min=264, range_max=304, nticks=11, nlevs=21
 ):
@@ -1101,6 +1180,18 @@ Wetbulb500 = create_Wetbulb_at(500, range_min=240, range_max=280, overlap_gap=60
 Wetbulb300 = create_Wetbulb_at(300, range_min=216, range_max=256, overlap_gap=120)
 
 
+WindSpeed = svariable(
+    dim=4,
+    wrfname="wspd",
+    ptitle=f"Wind Speed [m/s]",
+    outfile=f"WindSpeed",
+    colormap=get_cmap("YlGnBu"),
+    nticks=13,
+    nlevs=13,
+    range_min=0,
+    range_max=60,
+)
+
 def create_WindSpeed_at(interpvalue, range_min=0, range_max=60, nticks=12, nlevs=12):
     return svariable(
         dim=4,
@@ -1125,6 +1216,17 @@ WindSpeed500 = create_WindSpeed_at(500)
 WindSpeed300 = create_WindSpeed_at(300, range_min=0, range_max=80)
 
 
+PotVorticity = svariable(
+    dim=4,
+    wrfname="pvo",
+    ptitle=f"Potential Vorticity [PVU]",
+    outfile=f"PotVorticity",
+    colormap=cmr.get_sub_cmap("PuOr", 0.55, 1.0, N=15),
+    range_min=-100,
+    range_max=200,
+    nticks=8,
+    nlevs=15
+)
 def create_PotentialVorticity_at(
     interpvalue, overlap_gap=30, range_min=-100, range_max=200, nticks=8, nlevs=15
 ):
