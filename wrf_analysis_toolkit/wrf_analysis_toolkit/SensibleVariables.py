@@ -1184,8 +1184,8 @@ WindSpeed = svariable(
     ptitle=f"Wind Speed [m/s]",
     outfile=f"WindSpeed",
     colormap=get_cmap("YlGnBu"),
-    nticks=12,
-    nlevs=12,
+    nticks=13,
+    nlevs=13,
     range_min=0,
     range_max=60,
 )

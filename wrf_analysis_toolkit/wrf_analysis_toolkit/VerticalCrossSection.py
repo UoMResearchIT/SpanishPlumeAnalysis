@@ -102,7 +102,7 @@ def VerticalCrossSection(
             coord_pairs = to_np(var_cross.coords["xy_loc"])
             var_contours = ax.contourf(
                 np.arange(coord_pairs.shape[0]),
-                to_np(var_cross["vertical"]), 
+                to_np(var_cross["vertical"]),
                 to_np(var_cross),
                 levels=levs,
                 cmap=get_cmap(svariable.colormap)
@@ -114,7 +114,7 @@ def VerticalCrossSection(
             )
 
             # Arrange x-axis labels - latlon pairs
-            x_ticks = np.arange(coord_pairs.shape[0])
+            x_ticks = np.arange(coord_pairs.shape[0][::2])
             x_labels = [
                 pair.latlon_str(fmt="{:.2f}, {:.2f}") for pair in to_np(coord_pairs)
             ]

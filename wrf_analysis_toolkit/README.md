@@ -89,6 +89,7 @@ wrf_analysis_toolkit_cli --task=csv --csv_vars=AirTemp2m,CAPE --wrfout_dir=/my/d
 wrf_analysis_toolkit_cli --task=wrfdiff --var=AirTemp2m --dirs=/my/data1/,/my/data2/ --output_dir=/my/results/
 wrf_analysis_toolkit_cli --task=mp4diff --files=/my/data1/diagnostic.mp4,/my/data2/diagnostic.mp4 --output_dir=/my/results/
 wrf_analysis_toolkit_cli --task=mp4stitch --files=/my/data1/diagnostic.mp4,/my/data2/diagnostic.mp4 --output_dir=/my/results/ --rows=1 --cols=2
+wrf_analysis_toolkit_cli --task=vcross --wrfout_dir=/my/data/ --output_dir=/my/results/ --var=WindSpeed --start_latlon=55,-2.0 --end_latlon=50.0,2.0
 ```
 
 You may access the full cli documentation with the -h flag:
