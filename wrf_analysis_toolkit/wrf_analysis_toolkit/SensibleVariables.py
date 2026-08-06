@@ -976,6 +976,8 @@ InstRain = svariable(
     range_min=0,
     range_max=128,
 )
+
+# Frontgenesis
 Frontogenesis925 = svariable(
     dim=4,
     ptitle="Petterssen Frontogenesis at 925 hPa [K/(100km 3h)]",
@@ -1097,20 +1099,28 @@ Frontogenesis500 = svariable(
     range_max=8,
 )
 
+
+# Absolute Vorticity
+av_range_min = -150
+av_range_max = 200
+av_max_frac = 0.55 + min(0.45, (av_range_max / (av_range_max - av_range_min)))
+av_min_frac = 0.55 + min(0, (av_range_min / (av_range_max - av_range_min)))
+av_nticks = 8
+av_nlevs = 15
 AbsoluteVorticity = svariable(
     dim=4,
     wrfname="avo",
     ptitle=f"Absolute Vorticity [10-5/s]",
     outfile=f"AbsVorticity",
-    colormap=cmr.get_sub_cmap("PuOr", 0.55, 1, N=15),
-    range_min=-150,
-    range_max=200,
-    nticks=8,
-    nlevs=15
+    colormap=cmr.get_sub_cmap("PuOr", av_min_frac, av_max_frac, N=av_nlevs),
+    range_min=av_range_min,
+    range_max=av_range_max,
+    nticks=av_nticks,
+    nlevs=av_nlevs
 )
 
 def create_AbsoluteVorticity_at(
-    interpvalue, overlap_gap=30, range_min=-150, range_max=200, nticks=8, nlevs=15
+    interpvalue, overlap_gap=30, range_min=av_range_min, range_max=av_range_max, nticks=av_nticks, nlevs=av_nticks
 ):
     max_frac = 0.55 + min(0.45, (range_max / (range_max - range_min)))
     min_frac = 0.55 + min(0, (range_min / (range_max - range_min)))
@@ -1139,6 +1149,7 @@ AbsoluteVorticity500 = create_AbsoluteVorticity_at(500, overlap_gap=60)
 AbsoluteVorticity300 = create_AbsoluteVorticity_at(300, overlap_gap=120)
 
 
+# Wetbulb Temperature
 Wetbulb = svariable(
     dim=4,
     wrfname="twb",
@@ -1172,7 +1183,6 @@ def create_Wetbulb_at(
         range_max=range_max,
     )
 
-
 Wetbulb925 = create_Wetbulb_at(925)
 Wetbulb850 = create_Wetbulb_at(850)
 Wetbulb700 = create_Wetbulb_at(700, range_min=254, range_max=294)
@@ -1180,6 +1190,7 @@ Wetbulb500 = create_Wetbulb_at(500, range_min=240, range_max=280, overlap_gap=60
 Wetbulb300 = create_Wetbulb_at(300, range_min=216, range_max=256, overlap_gap=120)
 
 
+# WindSpeed
 WindSpeed = svariable(
     dim=4,
     wrfname="wspd",
