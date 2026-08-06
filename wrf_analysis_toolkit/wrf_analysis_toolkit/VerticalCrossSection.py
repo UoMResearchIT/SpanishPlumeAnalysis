@@ -47,7 +47,7 @@ def VerticalCrossSection(
     )
 
     # Create a figure
-    fig = plt.figure(figsize=(10.88, 7.16), dpi=dpi)
+    fig = plt.figure(figsize=(10.88, 8.16), dpi=dpi)
     ax = plt.axes()
     coord_pairs = to_np(var_cross.coords["xy_loc"])
     var_contours = ax.contourf(
