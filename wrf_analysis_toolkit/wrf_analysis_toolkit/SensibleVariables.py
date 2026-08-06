@@ -1247,7 +1247,7 @@ def create_PotentialVorticity_at(
     return svariable(
         dim=4,
         wrfname="pvo",
-        ptitle=f"Potential Vorticity [PVU] at {interpvalue} hPa",
+        ptitle=f"Potential Vorticity at {interpvalue} hPa [PVU]",
         outfile=f"PotVorticity{interpvalue}",
         interpvar="pressure",
         interpvalue=interpvalue,
