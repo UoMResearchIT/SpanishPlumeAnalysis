@@ -1215,27 +1215,39 @@ WindSpeed700 = create_WindSpeed_at(700)
 WindSpeed500 = create_WindSpeed_at(500)
 WindSpeed300 = create_WindSpeed_at(300, range_min=0, range_max=80)
 
+# Potential Vorticity
+pv_range_min = -10
+pv_range_max = 10
+pv_max_frac = 0.55 + min(0.45, (pv_range_max / (pv_range_max - pv_range_min)))
+pv_min_frac = 0.55 + min(0, (pv_range_min / (pv_range_max - pv_range_min)))
+pv_nticks = 11
+pv_nlevs = 11
 
 PotVorticity = svariable(
     dim=4,
     wrfname="pvo",
     ptitle=f"Potential Vorticity [PVU]",
     outfile=f"PotVorticity",
-    colormap=cmr.get_sub_cmap("PuOr", 0.55, 1.0, N=15),
-    range_min=-100,
-    range_max=200,
-    nticks=8,
-    nlevs=15
+    colormap=cmr.get_sub_cmap("PuOr", pv_min_frac, pv_max_frac, N=pv_nlevs),
+    range_min=pv_range_min,
+    range_max=pv_range_max,
+    nticks=pv_nticks,
+    nlevs=pv_nlevs
 )
 def create_PotentialVorticity_at(
-    interpvalue, overlap_gap=30, range_min=-100, range_max=200, nticks=8, nlevs=15
+    interpvalue,
+    overlap_gap=30,
+    range_min=pv_range_min,
+    range_max=pv_range_max,
+    nticks=pv_nticks,
+    nlevs=pv_nlevs
 ):
     max_frac = 0.55 + min(0.45, (range_max / (range_max - range_min)))
     min_frac = 0.55 + min(0, (range_min / (range_max - range_min)))
     return svariable(
         dim=4,
-        wrfname="avo",
-        ptitle=f"Potential Vorticity at {interpvalue} hPa",
+        wrfname="pvo",
+        ptitle=f"Potential Vorticity at {interpvalue} hPa [PVU]",
         outfile=f"PotVorticity{interpvalue}",
         interpvar="pressure",
         interpvalue=interpvalue,
@@ -1246,12 +1258,11 @@ def create_PotentialVorticity_at(
         range_max=range_max,
     )
 
-
-PotVorticity925 = create_PotentialVorticity_at(925)
-PotVorticity850 = create_PotentialVorticity_at(850)
-PotVorticity700 = create_PotentialVorticity_at(700, range_min=-75, range_max=150)
-PotVorticity500 = create_PotentialVorticity_at(500, range_min=-75, range_max=100)
-PotVorticity300 = create_PotentialVorticity_at(300, range_min=-50, range_max=100)
+PotVorticity925 = create_PotentialVorticity_at(925, range_min=-5, range_max=5)
+PotVorticity850 = create_PotentialVorticity_at(850, range_min=-5, range_max=5)
+PotVorticity700 = create_PotentialVorticity_at(700, range_min=-5, range_max=5)
+PotVorticity500 = create_PotentialVorticity_at(500, range_min=-5, range_max=5)
+PotVorticity300 = create_PotentialVorticity_at(300, range_min=-10, range_max=10)
 
 # SkewT
 # https://www.umr-cnrm.fr/dbfastex/datasets/rsc_data.html
