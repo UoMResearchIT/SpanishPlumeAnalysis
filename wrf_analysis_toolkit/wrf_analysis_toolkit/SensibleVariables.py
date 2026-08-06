@@ -1228,7 +1228,7 @@ PotVorticity = svariable(
     nlevs=15
 )
 def create_PotentialVorticity_at(
-    interpvalue, overlap_gap=30, range_min=-100, range_max=200, nticks=8, nlevs=15
+    interpvalue, overlap_gap=30, range_min=-10, range_max=10, nticks=11, nlevs=11
 ):
     max_frac = 0.55 + min(0.45, (range_max / (range_max - range_min)))
     min_frac = 0.55 + min(0, (range_min / (range_max - range_min)))
@@ -1249,9 +1249,9 @@ def create_PotentialVorticity_at(
 
 PotVorticity925 = create_PotentialVorticity_at(925)
 PotVorticity850 = create_PotentialVorticity_at(850)
-PotVorticity700 = create_PotentialVorticity_at(700, range_min=-75, range_max=150)
-PotVorticity500 = create_PotentialVorticity_at(500, range_min=-75, range_max=100)
-PotVorticity300 = create_PotentialVorticity_at(300, range_min=-50, range_max=100)
+PotVorticity700 = create_PotentialVorticity_at(700)
+PotVorticity500 = create_PotentialVorticity_at(500)
+PotVorticity300 = create_PotentialVorticity_at(300)
 
 # SkewT
 # https://www.umr-cnrm.fr/dbfastex/datasets/rsc_data.html
