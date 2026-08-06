@@ -1231,8 +1231,8 @@ PotVorticity = svariable(
     colormap=cmr.get_sub_cmap("PuOr", pv_min_frac, pv_max_frac, N=pv_nlevs),
     range_min=pv_range_min,
     range_max=pv_range_max,
-    nticks=11,
-    nlevs=11
+    nticks=pv_nticks,
+    nlevs=pv_nlevs
 )
 def create_PotentialVorticity_at(
     interpvalue,
