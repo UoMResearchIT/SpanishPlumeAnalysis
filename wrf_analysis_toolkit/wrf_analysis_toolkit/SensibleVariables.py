@@ -1234,7 +1234,7 @@ def create_PotentialVorticity_at(
     min_frac = 0.55 + min(0, (range_min / (range_max - range_min)))
     return svariable(
         dim=4,
-        wrfname="avo",
+        wrfname="pvo",
         ptitle=f"Potential Vorticity at {interpvalue} hPa",
         outfile=f"PotVorticity{interpvalue}",
         interpvar="pressure",
