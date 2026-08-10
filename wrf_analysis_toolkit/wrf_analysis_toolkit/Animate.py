@@ -37,7 +37,7 @@ def Animate(
     # Need to implement input check here!
 
     if cleanpng and not save_pdf and not make_mp4:
-        raise ValueError("save_pdf and/or make_mp4 must be True if cleanpng is True, or Animate will save no output")
+        raise ValueError("save_pdf_frames and/or make_mp4 must be True if clean_png_frames is True, or Animate will save no output")
 
     #
     print("Generating diagnostic for", svariable.outfile)
@@ -184,6 +184,7 @@ def Animate(
         print("Deleting png files...")
         for file in PNGfiles:
             os.remove(file)
-        if not save_pdf:
+        # clean up directory if it is now empty
+        if not save_pdf and not any(os.scandir(tmp_dir)):
             os.removedirs(tmp_dir)
         print("All done.")
