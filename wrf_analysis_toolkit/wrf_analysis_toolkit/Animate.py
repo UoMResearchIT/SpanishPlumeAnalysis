@@ -24,6 +24,7 @@ def Animate(
     vcross=False,
     cleanpng=1,
     save_pdf=0,
+    make_mp4=True
 ):
     ##Input check
     # Directories
@@ -34,6 +35,9 @@ def Animate(
     if not os.path.exists(outdir):
         os.makedirs(outdir)
     # Need to implement input check here!
+
+    if cleanpng and not save_pdf and not make_mp4:
+        raise ValueError("save_pdf and/or make_mp4 must be True if cleanpng is True, or Animate will save no output")
 
     #
     print("Generating diagnostic for", svariable.outfile)
@@ -168,11 +172,12 @@ def Animate(
     #        image = imageio.imread(filename)
     #        writer.append_data(image)
     # Build mp4
-    print("Building MP4 from png files...")
-    with imageio.get_writer(outdir + outfile + ".mp4", mode="I") as writer:
-        for filename in PNGfiles:
-            image = imageio.imread(filename)
-            writer.append_data(image)
+    if make_mp4:
+        print("Building MP4 from png files...")
+        with imageio.get_writer(outdir + outfile + ".mp4", mode="I") as writer:
+            for filename in PNGfiles:
+                image = imageio.imread(filename)
+                writer.append_data(image)
 
     # Remove individual frame files
     if cleanpng:

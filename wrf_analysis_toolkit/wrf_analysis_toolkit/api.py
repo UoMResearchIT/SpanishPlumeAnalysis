@@ -40,6 +40,7 @@ def diagnostic(
     smooth: bool = False,
     clean_png_frames: bool = True,
     save_pdf_frames: bool = False,
+    make_mp4: bool = True,
 ):
     """
     Generates a diagnostic animation for the specified variable and saves it to the output directory.
@@ -64,6 +65,7 @@ def diagnostic(
     - smooth: Boolean indicating whether to apply smoothing to the plots (default is False).
     - clean_png_frames: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
     - save_pdf_frames: Boolean indicating whether to save each frame as a PDF (default is False).
+    - make_mp4: Boolean whether to combine frames into an animated mpeg file
 
     For SkewT plots, the following additional inputs are available:
         - place: Predefined location name for SkewT plots (optional).
@@ -132,6 +134,7 @@ def diagnostic(
         vcross=vcross,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
+        make_mp4=make_mp4,
     )
 
     return outfile
