@@ -14,6 +14,7 @@ def VerticalCrossSection(
     ncfile: Dataset,
     svariable: sv.svariable,
     outfname="VCrossSec.png",
+    overlap=None,
     time_tag=1,
     return_fig=0,
     dpi=100,
@@ -62,6 +63,35 @@ def VerticalCrossSection(
         extendfrac=[0.01, 0.01],
         ticks=ticklevs
     )
+
+    # Make overlay line-plot
+    if overlap is not None:
+        ov_cross = vertcross(
+            overlap,
+            p,
+            wrfin=ncfile,
+            start_point=start_point,
+            end_point=end_point,
+            latlon=False,
+            meta=True
+        )
+        min_ov = np.nanmin(ov_cross)
+        max_ov = np.nanmax(ov_cross)
+        gap = svariable.overlap_gap
+        # Adjusts to the nearest multiple of overlap_gap
+        adjusted_min_ov = int(min_ov - (min_ov % gap))
+        adjusted_max_ov = int(max_ov + (gap - (max_ov % gap)) % gap)
+        olevs = list(range(adjusted_min_ov, adjusted_max_ov, gap))
+        ov_contour = ax.contour(
+            np.arange(coord_pairs.shape[0]),
+            to_np(ov_cross["vertical"]),
+            to_np(ov_cross),
+            levels=olevs,
+            linewidths=0.4,
+            colors=svariable.overlap_cmap,
+            linestyles='dashed'
+        )
+        plt.clabel(ov_contour, inline=True, fontsize=10, levels=olevs[0::2])
 
     # Arrange x-axis labels - latlon pairs
     x_ticks = np.arange(coord_pairs.shape[0])
