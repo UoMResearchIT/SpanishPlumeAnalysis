@@ -394,3 +394,29 @@ Finally, install the package in editable mode with
 pip install -e .
 ```
 You are now set up to use the code.
+
+### Install Instructions for MASC compute
+
+These instructions are for installing a new version of the tool on our shared service. 
+
+#### Notes:
+- Replace `<version>` with your new version number (e.g. `2.2.1`) in the commands below. This version number should be taken from the `pyproject.toml` file, e.g.:
+```
+[project]
+name = "wrf_analysis_toolkit"
+version = "2.2.1"
+```
+- Start by copying a template environment directory (`wrf-py-env-template`) which has all the supporting libraries needed on this platform, rather than building the environment fresh each time. This ensures we don't accidentally change version. This copy process will take several minutes to perform.
+- When installing the local package make sure to use `python -m pip` - otherwise pip will not get the environment setup correct, and will try to install the binary in `~/.local/bin/`.
+- `/mnt/projects/wrf-python/wrf-py-env` is a soft symlink to our current environment, so we can delete this link safely before linking to the new environment.
+- Don't delete the old environment until you've confirmed that the new one works!
+
+#### Steps:
+- `cp -a /mnt/projects/wrf-python/wrf-py-env-template /mnt/projects/wrf-python/wrf-py-env-<version>` **replace `<version>` in this code!**
+- `module load micromamba`
+- `micromamba activate /mnt/projects/wrf-python/wrf-py-env-<version>` **replace `<version>` in this code!**
+- `python -m pip install .` **this must be run from this git repo, in `wrf_analysis_toolkit` directory**
+- `rm /mnt/projects/wrf-python/wrf-py-env`
+- `ln -s /mnt/projects/wrf-python/wrf-py-env-<version> /mnt/projects/wrf-python/wrf-py-env` **replace `<version>` in this code!**
+
+
