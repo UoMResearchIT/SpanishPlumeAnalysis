@@ -136,7 +136,7 @@ def Animate(
                 VerticalCrossSection(
                     ncfile,
                     svariable,
-                    outname=outfname,
+                    outfname=outfname,
                     overlap=overlap,
                     save_pdf=save_pdf,
                 )
