@@ -6,7 +6,7 @@ from matplotlib.ticker import ScalarFormatter
 
 from wrf import to_np, getvar, CoordPair, vertcross, ll_to_xy
 
-from wrf_analysis_toolkit.utils import select_wrfout_files
+from wrf_analysis_toolkit.utils import set_variable
 from wrf_analysis_toolkit.GetSensVar import *
 import wrf_analysis_toolkit.SensibleVariables as sv
 
@@ -62,6 +62,37 @@ def VerticalCrossSection(
         extendfrac=[0.01, 0.01],
         ticks=ticklevs
     )
+
+    # Make overlay line-plot
+    if svariable.overlap_sv is not None:
+        ov_svar = set_variable(svariable.overlap_sv)
+        ov_var =  getvar(ncfile, ov_svar.wrfname)
+        ov_cross = vertcross(
+            ov_var,
+            p,
+            wrfin=ncfile,
+            start_point=start_point,
+            end_point=end_point,
+            latlon=True,
+            meta=True
+        )
+        min_ov = np.nanmin(ov_cross)
+        max_ov = np.nanmax(ov_cross)
+        gap = svariable.overlap_gap
+        # Adjusts to the nearest multiple of overlap_gap
+        adjusted_min_ov = int(min_ov - (min_ov % gap))
+        adjusted_max_ov = int(max_ov + (gap - (max_ov % gap)) % gap)
+        olevs = list(range(adjusted_min_ov, adjusted_max_ov, gap))
+        ov_contour = ax.contour(
+            np.arange(coord_pairs.shape[0]),
+            to_np(ov_cross["vertical"]),
+            to_np(ov_cross),
+            levels=olevs,
+            linewidths=0.4,
+            cmap=svariable.overlap_cmap,
+            linestyles='dashed'
+        )
+        plt.clabel(ov_contour, inline=True, fontsize=10, levels=olevs[0::2])
 
     # Arrange x-axis labels - latlon pairs
     x_ticks = np.arange(coord_pairs.shape[0])

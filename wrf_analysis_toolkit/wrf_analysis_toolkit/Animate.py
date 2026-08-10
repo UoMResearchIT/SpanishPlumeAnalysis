@@ -133,7 +133,7 @@ def Animate(
                 VerticalCrossSection(
                     ncfile,
                     svariable,
-                    outfname,
+                    outfname=outfname,
                     save_pdf=save_pdf,
                 )
                 PNGfiles.append(outfname)
