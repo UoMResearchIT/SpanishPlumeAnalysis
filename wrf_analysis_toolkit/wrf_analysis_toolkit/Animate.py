@@ -130,14 +130,10 @@ def Animate(
 
             elif vcross:
                 outfname = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
-                if svariable.overlap_sv is not None:
-                    overlapsv = eval("sv." + svariable.overlap_sv)
-                    overlap, _, _, _ = GetSensVar(ncfile, overlapsv, 0, ti, None)
                 VerticalCrossSection(
                     ncfile,
                     svariable,
                     outfname=outfname,
-                    overlap=overlap,
                     save_pdf=save_pdf,
                 )
                 PNGfiles.append(outfname)

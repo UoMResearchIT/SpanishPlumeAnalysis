@@ -14,7 +14,6 @@ def VerticalCrossSection(
     ncfile: Dataset,
     svariable: sv.svariable,
     outfname="VCrossSec.png",
-    overlap=None,
     time_tag=1,
     return_fig=0,
     dpi=100,
@@ -65,8 +64,8 @@ def VerticalCrossSection(
     )
 
     # Make overlay line-plot
-    if overlap is not None:
-        ov_var =  getvar(ncfile, overlap.wrfname)
+    if svariable.overlap_sv is not None:
+        ov_var =  getvar(ncfile, svariable.overlap_sv.wrfname)
         ov_cross = vertcross(
             ov_var,
             p,
