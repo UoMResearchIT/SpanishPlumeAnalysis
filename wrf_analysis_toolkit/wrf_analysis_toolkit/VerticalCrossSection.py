@@ -66,13 +66,14 @@ def VerticalCrossSection(
 
     # Make overlay line-plot
     if overlap is not None:
+        ov_var =  getvar(ncfile, overlap.wrfname)
         ov_cross = vertcross(
-            overlap,
+            ov_var,
             p,
             wrfin=ncfile,
             start_point=start_point,
             end_point=end_point,
-            latlon=False,
+            latlon=True,
             meta=True
         )
         min_ov = np.nanmin(ov_cross)
