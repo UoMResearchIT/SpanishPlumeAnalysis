@@ -89,7 +89,7 @@ def VerticalCrossSection(
             to_np(ov_cross),
             levels=olevs,
             linewidths=0.4,
-            colors=svariable.overlap_cmap,
+            cmap=svariable.overlap_cmap,
             linestyles='dashed'
         )
         plt.clabel(ov_contour, inline=True, fontsize=10, levels=olevs[0::2])
