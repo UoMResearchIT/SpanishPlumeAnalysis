@@ -184,7 +184,7 @@ def Animate(
         print("Deleting png files...")
         for file in PNGfiles:
             os.remove(file)
-        # clean up directory if it is now empty
-        if not save_pdf and not any(os.scandir(tmp_dir)):
+        # clean up temp output directory if it is now empty
+        if not any(os.scandir(tmp_dir)):
             os.removedirs(tmp_dir)
         print("All done.")
