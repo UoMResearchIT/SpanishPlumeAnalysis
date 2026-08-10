@@ -6,7 +6,7 @@ from matplotlib.ticker import ScalarFormatter
 
 from wrf import to_np, getvar, CoordPair, vertcross, ll_to_xy
 
-from wrf_analysis_toolkit.utils import select_wrfout_files
+from wrf_analysis_toolkit.utils import set_variable
 from wrf_analysis_toolkit.GetSensVar import *
 import wrf_analysis_toolkit.SensibleVariables as sv
 
@@ -65,7 +65,8 @@ def VerticalCrossSection(
 
     # Make overlay line-plot
     if svariable.overlap_sv is not None:
-        ov_var =  getvar(ncfile, svariable.overlap_sv.wrfname)
+        ov_svar = set_variable(svariable.overlap_sv)
+        ov_var =  getvar(ncfile, ov_svar.wrfname)
         ov_cross = vertcross(
             ov_var,
             p,
