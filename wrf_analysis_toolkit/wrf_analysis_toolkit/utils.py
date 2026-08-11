@@ -1,4 +1,5 @@
 import os
+import re
 from copy import deepcopy
 from datetime import datetime, timedelta
 
@@ -121,10 +122,10 @@ def check_timestamp(timestamp: str):
     """
     try:
         return datetime.strptime(timestamp, "%Y-%m-%d_%H:%M:%S")
-    except ValueError as err:
+    except:
         raise ValueError(
             f"Invalid timestamp format: {timestamp}. Expected format is YYYY-MM-DD_HH:MM:SS."
-        ) from err
+        )
 
 def parse_timestep(time_step: str):
     """
@@ -133,14 +134,14 @@ def parse_timestep(time_step: str):
 
     Returns a timedelta object version of the time_step
     """
-    try:
-        dt_step = datetime.strptime(time_step, "%H:%M:%S")
-    except ValueError as err:
+    pattern_time = r"\d{2}:\d{2}:\d{2}$"
+    if re.match(pattern_time, time_step):
+        h, m, s = map(int, time_step.split(":"))
+    else:
         raise ValueError(
-            f"Invalid time_step format: {time_step}. Expected format is 'HH:MM:SS'."
-        ) from err
-
-    return timedelta(hours=dt_step.hour, minutes=dt_step.minute, seconds=dt_step.second)
+            f"Invalid timestamp format: {time_step}. Expected format is 'DD_HH:MM:SS' or 'HH:MM:SS'."
+        )
+    return timedelta(hours=h, minutes=m, seconds=s)
 
 def select_wrfout_files(
         wrfout_dir: str,
