@@ -154,11 +154,13 @@ On top of the parameters listed above, the CLI has a few additional parameters o
 
 This is a list of the variables that are currently defined in the code, and can be used as `variable_name` parameters.
 
+- AbsoluteVorticity
 - AbsoluteVorticity300
 - AbsoluteVorticity500
 - AbsoluteVorticity700
 - AbsoluteVorticity850
 - AbsoluteVorticity925
+- AirTemp
 - AirTemp2m
 - AirTemp300
 - AirTemp500
@@ -175,6 +177,7 @@ This is a list of the variables that are currently defined in the code, and can 
 - CIN
 - CIN_YlGn
 - CIN_YlGnBu
+- DewpointTemp
 - DewpointTemp2m
 - DewpointTemp300
 - DewpointTemp500
@@ -191,11 +194,13 @@ This is a list of the variables that are currently defined in the code, and can 
 - GeoPotHeight850
 - GeoPotHeight925
 - InstRain
+- PotVorticity
 - PotVorticity300
 - PotVorticity500
 - PotVorticity700
 - PotVorticity850
 - PotVorticity925
+- PotentialTemp
 - PotentialTemp2m
 - PotentialTemp500
 - PotentialTemp600
@@ -204,6 +209,7 @@ This is a list of the variables that are currently defined in the code, and can 
 - PotentialTemp850
 - PotentialTemp925
 - Rain
+- RelativeHumidity
 - RelativeHumidity2m
 - RelativeHumidity300
 - RelativeHumidity500
@@ -220,11 +226,13 @@ This is a list of the variables that are currently defined in the code, and can 
 - StaticStability850700
 - TerrainElevation
 - TerrainElevation1000
+- Wetbulb
 - Wetbulb300
 - Wetbulb500
 - Wetbulb700
 - Wetbulb850
 - Wetbulb925
+- WindSpeed
 - WindSpeed300
 - WindSpeed500
 - WindSpeed700
