@@ -76,6 +76,12 @@ def cli():
         help="Set to 1 to save pdf files of each frame generated during the task",
     )
     parser.add_argument(
+        "--make_mp4",
+        type=str2bool,
+        default=0,
+        help="Set to 1 to combine PNG frames into an MP4 file (only for task=diagnostic)",
+    )
+    parser.add_argument(
         "--region",
         type=str,
         default="full",
@@ -297,6 +303,7 @@ def cli():
                 smooth=args.smooth,
                 clean_png_frames=args.clean,
                 save_pdf_frames=args.save_pdf_frames,
+                make_mp4=args.make_mp4
             )
         case "csv":
             wat.csv(
