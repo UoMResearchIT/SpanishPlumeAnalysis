@@ -120,12 +120,12 @@ def check_timestamp(timestamp: str):
 
     Returns a datetime object of the timestamp
     """
-    pattern = r"^\d{4}-\d{2}-\d{2}_\d{2}:\d{2}:\d{2}$"
-    if not re.match(pattern, timestamp):
+    try:
+        return datetime.strptime(timestamp, "%Y-%m-%d_%H:%M:%S")
+    except:
         raise ValueError(
             f"Invalid timestamp format: {timestamp}. Expected format is YYYY-MM-DD_HH:MM:SS."
         )
-    return datetime(timestamp)
 
 def parse_timestep(time_step: str):
     """
