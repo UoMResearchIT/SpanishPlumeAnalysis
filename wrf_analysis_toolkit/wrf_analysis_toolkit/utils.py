@@ -1,5 +1,4 @@
 import os
-import re
 from copy import deepcopy
 from datetime import datetime, timedelta
 
@@ -122,32 +121,26 @@ def check_timestamp(timestamp: str):
     """
     try:
         return datetime.strptime(timestamp, "%Y-%m-%d_%H:%M:%S")
-    except:
+    except ValueError as err:
         raise ValueError(
             f"Invalid timestamp format: {timestamp}. Expected format is YYYY-MM-DD_HH:MM:SS."
-        )
+        ) from err
 
 def parse_timestep(time_step: str):
     """
-    Checks if the time_step is in the format DD_HH:MM:SS or HH:MM:SS.
+    Checks if the time_step is in the format HH:MM:SS.
     Raises a ValueError if the format is invalid.
 
     Returns a timedelta object version of the time_step
     """
-    pattern_time = r"\d{2}:\d{2}:\d{2}$"
-    pattern_daytime = r"\d{2}_d{2}:\d{2}:\d{2}$"
-    if re.match(pattern_time, time_step):
-        h, m, s = map(int, time_step.split(":"))
-        d = 0
-    elif re.match(pattern_daytime, time_step):
-        d_str, t_str = time_step.split("_")
-        d = int(d_str)
-        h, m, s = map(int, t_str.split(":"))
-    else:
+    try:
+        dt_step = datetime.strptime(time_step, "%H:%M:%S")
+    except ValueError as err:
         raise ValueError(
-            f"Invalid timestamp format: {time_step}. Expected format is 'DD_HH:MM:SS' or 'HH:MM:SS'."
-        )
-    return timedelta(days=d, hours=h, minutes=m, seconds=s)
+            f"Invalid time_step format: {time_step}. Expected format is 'HH:MM:SS'."
+        ) from err
+
+    return timedelta(hours=dt_step.hour, minutes=dt_step.minute, seconds=dt_step.second)
 
 def select_wrfout_files(
         wrfout_dir: str,

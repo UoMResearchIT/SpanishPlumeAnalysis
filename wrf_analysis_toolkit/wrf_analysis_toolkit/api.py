@@ -56,7 +56,7 @@ def diagnostic(
     - file_tag: String to append to the output filename (optional).
     - time_from: Only use wrfout files from this time onward (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
     - time_to: Only use wrfout files up to this time (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
-    - time_step: Only use wrfout files seperated by this time step. Expects format "DD_HH:MM:SS" or "HH:MM:SS" (optional).
+    - time_step: Only use wrfout files seperated by this time step. Expects format "HH:MM:SS" (optional).
     - range_min: Minimum value for the variable range (optional).
     - range_max: Maximum value for the variable range (optional).
     - windbarbs: Boolean indicating whether to include wind barbs in the plots (optional).
