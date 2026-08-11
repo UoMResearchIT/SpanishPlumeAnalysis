@@ -131,7 +131,6 @@ def diagnostic(
         smooth=smooth,
         region=region,
         region_ticks=region_ticks,
-        vcross=vcross,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
         make_mp4=make_mp4,

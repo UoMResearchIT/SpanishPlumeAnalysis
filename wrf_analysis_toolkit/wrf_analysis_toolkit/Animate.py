@@ -21,7 +21,6 @@ def Animate(
     smooth=1,
     region="full",
     region_ticks=False,
-    vcross=False,
     cleanpng=1,
     save_pdf=0,
     make_mp4=True
@@ -48,10 +47,16 @@ def Animate(
     print(
         "Using:\n\twindbarbs =",
         windbarbs,
+        "\n\tvcross    =",
+        svariable.vcross,
         "\n\tsmooth    =",
         smooth,
         "\n\tcleanpng  =",
         cleanpng,
+        "\n\tsave_pdf  =",
+        save_pdf,
+        "\n\tmake_mp4  =",
+        make_mp4,
     )
     print("Output will be saved as ", outdir + outfile, "\n")
 
@@ -132,7 +137,7 @@ def Animate(
                     PNGfiles.append(outfname)
                 sim_ti = sim_ti + 1
 
-            elif vcross:
+            elif svariable.vcross:
                 outfname = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
                 VerticalCrossSection(
                     ncfile,
