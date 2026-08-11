@@ -167,6 +167,12 @@ def cli():
         help="Only use wrfout files up to this time (inclusive). Expects format 'YYYY-MM-DD_HH:MM:SS' (optional).",
     )
     parser.add_argument(
+        "--time_step",
+        type=str,
+        default=None,
+        help="Only use wrfout files seperated by this time step. Expects format 'DD_HH:MM:SS' or 'HH:MM:SS' (optional).",
+    )
+    parser.add_argument(
         "--output_dir",
         type=str,
         default="./",
@@ -284,6 +290,7 @@ def cli():
                 file_tag=args.file_tag,
                 time_from=args.time_from,
                 time_to=args.time_to,
+                time_step=args.time_step,
                 range_min=args.range_min,
                 range_max=args.range_max,
                 windbarbs=args.windbarbs,
