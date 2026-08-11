@@ -119,6 +119,7 @@ This is a (hopefully) complete list of the parameters that can be passed, but no
 - `smooth`: Boolean indicating whether to apply smoothing to the plots (default is False).
 - `clean_png_frames`: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
 - `save_pdf_frames`: Boolean indicating whether to save each frame as a PDF (default is False).
+- `make_mp4`: Boolean indicating whether to combine PNG frames in to an MP4 file (default is True).
 - `output_format`: (`terrain` task only) Format of the output file (default is "pdf"; can be "png").
 - `variable_names`: (`csv` task only) List of variable names to include in the CSV file.
 - `wrfout_dir_A`: (`wrfdiff` task only) Full path to the first WRF output directory.
