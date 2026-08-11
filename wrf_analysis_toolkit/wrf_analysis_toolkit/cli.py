@@ -170,7 +170,7 @@ def cli():
         "--time_step",
         type=str,
         default=None,
-        help="Only use wrfout files seperated by this time step. Expects format 'DD_HH:MM:SS' or 'HH:MM:SS' (optional).",
+        help="Only use wrfout files seperated by this time step. Expects format 'HH:MM:SS' (optional, only useable with diagnostic).",
     )
     parser.add_argument(
         "--output_dir",
