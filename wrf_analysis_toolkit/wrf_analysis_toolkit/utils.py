@@ -181,10 +181,14 @@ def select_wrfout_files(
     return WRFfiles
 
 def latlon_check(ncfile: Dataset, latlon: tuple):
+    print(f"Checking {latlon}")
     coord_pair = CoordPair(lat=latlon[0], lon=latlon[1])
+    lat = coord_pair.lat
+    lon = coord_pair.lon
     try:
-        x_y = ll_to_xy(ncfile, coord_pair.lat, coord_pair.lon)
+        x_y = ll_to_xy(ncfile, lat, lon)
+        print(x_y)
     except ValueError as err:
         raise ValueError(
-            f"Point ({coord_pair.lat}, {coord_pair.lon}) is outside the WRF domain"
+            f"Point ({lat}, {lon}) is outside the WRF domain"
         ) from err
