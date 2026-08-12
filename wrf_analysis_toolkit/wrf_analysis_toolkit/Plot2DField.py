@@ -222,7 +222,7 @@ def Plot2DField(
             lons,
             lats,
             color='dimgrey', linestyle='-', linewidth=2.5,
-            zorder=3,
+            zorder=99,
             transform=cartopy.crs.PlateCarree()
         )
 
