@@ -217,8 +217,8 @@ def Plot2DField(
         plt.plot(
             [svariable.start_latlon[1], svariable.end_latlon[1]],
             [svariable.start_latlon[0], svariable.end_latlon[0]],
-            color='gray', linestyle='--',
-            transform=cartopy.crs.PlateCarree(),
+            color='black', linestyle='-',
+            transform=cart_proj,
         )
 
     # Add the gridlines
