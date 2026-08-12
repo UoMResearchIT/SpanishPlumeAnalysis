@@ -225,15 +225,18 @@ def Plot2DField(
             lons,
             lats,
         )
-        print(pts)
-        print(type(ax))
-        print(ax.get_xlim())
-        print(ax.get_ylim())
+        # plt.plot(
+        #     pts[:, 0],
+        #     pts[:, 1],
+        #     color='grey', linestyle='--', linewidth=2,
+        #     zorder=3,
+        # )
         plt.plot(
-            pts[:, 0],
-            pts[:, 1],
-            color='black', linestyle='-', linewidth=2,
+            lons,
+            lats,
+            color='grey', linestyle='--', linewidth=2,
             zorder=3,
+            transform=cartopy.crs.PlateCarree()
         )
 
     # Add the gridlines
