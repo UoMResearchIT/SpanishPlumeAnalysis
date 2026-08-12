@@ -113,6 +113,7 @@ def Plot2DField(
         cmap=svariable.colormap,
         alpha=0.8,
         extend="both",
+        zorder=1,
     )
     if svariable.contour_color is not None:
         contour_lines = plt.contour(
@@ -124,6 +125,7 @@ def Plot2DField(
             linewidths=0.4,
             transform=cartopy.crs.PlateCarree(),
             extend="both",
+            zorder=2,
         )
         if svariable.contour_c_labels:
             plt.clabel(contour_lines, inline=True, fontsize=8, levels=ticklevs)
@@ -219,6 +221,7 @@ def Plot2DField(
             [svariable.start_latlon[0], svariable.end_latlon[0]],
             color='black', linestyle='-',
             transform=cart_proj,
+            zorder=3,
         )
 
     # Add the gridlines
