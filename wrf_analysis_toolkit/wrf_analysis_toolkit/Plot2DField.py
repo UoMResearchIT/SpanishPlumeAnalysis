@@ -226,6 +226,9 @@ def Plot2DField(
             lats,
         )
         print(pts)
+        print(type(ax))
+        print(ax.get_xlim())
+        print(ax.get_ylim())
         plt.plot(
             pts[:, 0],
             pts[:, 1],
