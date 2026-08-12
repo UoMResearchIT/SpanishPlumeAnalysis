@@ -5,6 +5,8 @@ from datetime import datetime, timedelta
 
 import wrf_analysis_toolkit.SensibleVariables as sv
 
+from wrf import CoordPair, ll_to_xy
+
 
 def str2bool(s):
     if isinstance(s, bool):
@@ -177,3 +179,12 @@ def select_wrfout_files(
         ]
 
     return WRFfiles
+
+def latlon_check(ncfile: Dataset, latlon: tuple):
+    coord_pair = CoordPair(lat=latlon[0], lon=latlon[1])
+    try:
+        x_y = ll_to_xy(ncfile, coord_pair.lat, coord_pair.lon)
+    except ValueError as err:
+        raise ValueError(
+            f"Point ({coord_pair.lat}, {coord_pair.lon}) is outside the WRF domain"
+        ) from err
