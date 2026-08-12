@@ -213,6 +213,7 @@ def Plot2DField(
             )
 
     if svariable.start_latlon and svariable.end_latlon:
+        print(f"Drawing line between {svariable.start_latlon} and {svariable.end_latlon}")
         ax.plot(
             [svariable.start_latlon[0], svariable.end_latlon[0]],
             [svariable.start_latlon[1], svariable.end_latlon[1]],
