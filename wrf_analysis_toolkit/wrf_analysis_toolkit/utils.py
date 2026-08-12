@@ -1,5 +1,7 @@
 import os
+import re
 from copy import deepcopy
+from datetime import datetime, timedelta
 
 import wrf_analysis_toolkit.SensibleVariables as sv
 
@@ -111,23 +113,42 @@ def set_variable(
 
     return svar
 
-
 def check_timestamp(timestamp: str):
     """
     Checks if the timestamp is in the format YYYY-MM-DD_HH:MM:SS.
     Raises a ValueError if the format is invalid.
-    """
-    import re
 
-    pattern = r"^\d{4}-\d{2}-\d{2}_\d{2}:\d{2}:\d{2}$"
-    if not re.match(pattern, timestamp):
+    Returns a datetime object of the timestamp
+    """
+    try:
+        return datetime.strptime(timestamp, "%Y-%m-%d_%H:%M:%S")
+    except:
         raise ValueError(
             f"Invalid timestamp format: {timestamp}. Expected format is YYYY-MM-DD_HH:MM:SS."
         )
-    return timestamp
 
+def parse_timestep(time_step: str):
+    """
+    Checks if the time_step is in the format HH:MM:SS.
+    Raises a ValueError if the format is invalid.
 
-def select_wrfout_files(wrfout_dir: str, time_from: str = None, time_to: str = None):
+    Returns a timedelta object version of the time_step
+    """
+    pattern_time = r"\d{2}:\d{2}:\d{2}$"
+    if re.match(pattern_time, time_step):
+        h, m, s = map(int, time_step.split(":"))
+    else:
+        raise ValueError(
+            f"Invalid timestamp format: {time_step}. Expected format is 'DD_HH:MM:SS' or 'HH:MM:SS'."
+        )
+    return timedelta(hours=h, minutes=m, seconds=s)
+
+def select_wrfout_files(
+        wrfout_dir: str,
+        time_from: str = None,
+        time_to: str = None,
+        time_step: str = None,
+    ):
     """
     Returns a list of WRF output files in the specified directory, optionally filtered by time range.
     Expect the files to be named in the format "wrfout_*_YYYY-MM-DD_HH:MM:SS", where * is a wildcard.
@@ -136,14 +157,23 @@ def select_wrfout_files(wrfout_dir: str, time_from: str = None, time_to: str = N
 
     If time_from is provided, only files with timestamps >= time_from are included.
     If time_to is provided, only files with timestamps <= time_to are included.
+    If time_step is provided, only files that are time_step apart from each other are included
     """
     WRFfiles = sorted(f for f in os.listdir(wrfout_dir) if f.startswith("wrfout_"))
 
     if time_from is not None:
-        check_timestamp(time_from)
-        WRFfiles = [f for f in WRFfiles if check_timestamp(f[-19:]) >= time_from]
+        datetime_from = check_timestamp(time_from)
+        WRFfiles = [f for f in WRFfiles if check_timestamp(f[-19:]) >= datetime_from]
     if time_to is not None:
-        check_timestamp(time_to)
-        WRFfiles = [f for f in WRFfiles if check_timestamp(f[-19:]) <= time_to]
+        datetime_to = check_timestamp(time_to)
+        WRFfiles = [f for f in WRFfiles if check_timestamp(f[-19:]) <= datetime_to]
+    if time_step is not None:
+        time_delta = parse_timestep(time_step)
+        datetimes = [check_timestamp(f[-19:]) for f in WRFfiles]
+        t0 = datetimes[0]
+        WRFfiles = [
+            f for f, t in zip(WRFfiles, datetimes)
+            if (t - t0) % time_delta == timedelta(0)
+        ]
 
     return WRFfiles

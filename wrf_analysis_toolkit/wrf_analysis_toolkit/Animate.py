@@ -15,13 +15,13 @@ def Animate(
     svariable,
     time_from=None,
     time_to=None,
+    time_step=None,
     windbarbs=0,
     outfile="MyMP4",
     outdir="./",
     smooth=1,
     region="full",
     region_ticks=False,
-    vcross=False,
     cleanpng=1,
     save_pdf=0,
     make_mp4=True
@@ -41,17 +41,23 @@ def Animate(
 
     #
     print("Generating diagnostic for", svariable.outfile)
-    WRFfiles = select_wrfout_files(dir_path, time_from, time_to)
+    WRFfiles = select_wrfout_files(dir_path, time_from, time_to, time_step)
     print("Source wrfout files:", dir_path)
     for f in WRFfiles:
         print("  ", f)
     print(
         "Using:\n\twindbarbs =",
         windbarbs,
+        "\n\tvcross    =",
+        svariable.vcross,
         "\n\tsmooth    =",
         smooth,
         "\n\tcleanpng  =",
         cleanpng,
+        "\n\tsave_pdf  =",
+        save_pdf,
+        "\n\tmake_mp4  =",
+        make_mp4,
     )
     print("Output will be saved as ", outdir + outfile, "\n")
 
@@ -132,7 +138,7 @@ def Animate(
                     PNGfiles.append(outfname)
                 sim_ti = sim_ti + 1
 
-            elif vcross:
+            elif svariable.vcross:
                 outfname = tmp_dir + outfile + wrf_fn + "_t_" + str(ti) + ".png"
                 VerticalCrossSection(
                     ncfile,

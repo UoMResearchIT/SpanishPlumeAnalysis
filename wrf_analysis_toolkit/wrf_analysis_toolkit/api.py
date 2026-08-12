@@ -21,6 +21,7 @@ def diagnostic(
     file_tag: str = "",
     time_from: str | None = None,
     time_to: str | None = None,
+    time_step: str | None = None,
     range_min: float | None = None,
     range_max: float | None = None,
     windbarbs: bool | None = None,
@@ -55,6 +56,7 @@ def diagnostic(
     - file_tag: String to append to the output filename (optional).
     - time_from: Only use wrfout files from this time onward (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
     - time_to: Only use wrfout files up to this time (inclusive). Expects format "YYYY-MM-DD_HH:MM:SS" (optional).
+    - time_step: Only use wrfout files seperated by this time step. Expects format "HH:MM:SS" (optional).
     - range_min: Minimum value for the variable range (optional).
     - range_max: Maximum value for the variable range (optional).
     - windbarbs: Boolean indicating whether to include wind barbs in the plots (optional).
@@ -125,13 +127,13 @@ def diagnostic(
         svariable=svar,
         time_from=time_from,
         time_to=time_to,
+        time_step=time_step,
         windbarbs=svar.windbarbs,
         outfile=outfile,
         outdir=output_dir,
         smooth=smooth,
         region=region,
         region_ticks=region_ticks,
-        vcross=vcross,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
         make_mp4=make_mp4,
