@@ -219,7 +219,7 @@ def Plot2DField(
         plt.plot(
             [svariable.start_latlon[1], svariable.end_latlon[1]],
             [svariable.start_latlon[0], svariable.end_latlon[0]],
-            color='black', linestyle='-',
+            color='black', linestyle='-', linewidth=2,
             transform=cart_proj,
             zorder=3,
         )
