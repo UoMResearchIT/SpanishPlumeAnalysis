@@ -212,6 +212,14 @@ def Plot2DField(
                 " Expected 'full' or 'min_x,max_x,min_y,max_y'"
             )
 
+    if svariable.start_latlon and svariable.end_latlon:
+        ax.plot(
+            [svariable.start_latlon[0], svariable.end_latlon[0]],
+            [svariable.start_latlon[1], svariable.end_latlon[1]],
+            color='gray', linestyle='--',
+            transform=cartopy.crs.PlateCarree(),
+        )
+
     # Add the gridlines
     add_lat_lon_ticks(ax, region_ticks)
     if region_ticks:
