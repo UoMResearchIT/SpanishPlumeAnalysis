@@ -226,7 +226,7 @@ def Plot2DField(
         plt.plot(
             xy_pts[:, 0],
             xy_pts[:, 1],
-            color='dimgrey', linestyle='--', linewidth=2,
+            color='black', linestyle='-', linewidth=2,
             zorder=3,
         )
 
