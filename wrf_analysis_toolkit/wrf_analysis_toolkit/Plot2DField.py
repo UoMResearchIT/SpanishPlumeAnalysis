@@ -215,17 +215,17 @@ def Plot2DField(
             )
 
     if svariable.start_latlon and svariable.end_latlon:
-        lons = np.array([svariable.start_latlon[1], svariable.end_latlon[1]])
-        lats = np.array([svariable.start_latlon[0], svariable.end_latlon[0]])
+        se_lons = np.array([svariable.start_latlon[1], svariable.end_latlon[1]])
+        se_lats = np.array([svariable.start_latlon[0], svariable.end_latlon[0]])
         print(f"Drawing line between {svariable.start_latlon} and {svariable.end_latlon}")
-        pts = cart_proj.transform_points(
+        xy_pts = cart_proj.transform_points(
             cartopy.crs.PlateCarree(),
-            lons,
-            lats,
+            se_lons,
+            se_lats,
         )
         plt.plot(
-            pts[:, 0],
-            pts[:, 1],
+            xy_pts[:, 0],
+            xy_pts[:, 1],
             color='dimgrey', linestyle='--', linewidth=2,
             zorder=3,
         )
