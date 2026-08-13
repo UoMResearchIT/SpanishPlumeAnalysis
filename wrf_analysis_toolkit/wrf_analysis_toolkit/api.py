@@ -64,6 +64,10 @@ def diagnostic(
     - region: Area covered by the plots, set by a comma-separated string of projected bounding box coordinates as "min_x,max_x,min_y,max_y".
                 (default is "full", which uses all the area covered by the wrf data). See pre-defined regions in the readme.
     - region_ticks: If True, plots show lat/lon labels on the top and left, and projected coordinate labels on the bottom and right.
+    - start_latlon: latitude-longitude coordinate pair for start point of cross-section, or start point to draw a line on a 2D map plot.
+        (optional), required if vcross==True.
+    - end_latlon: latitude-longitude coordinate pair for end point of cross-section, or end point to draw a line on a 2D map plot.
+        (optional), required if vcross==True.
     - smooth: Boolean indicating whether to apply smoothing to the plots (default is False).
     - clean_png_frames: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
     - save_pdf_frames: Boolean indicating whether to save each frame as a PDF (default is False).
@@ -77,8 +81,6 @@ def diagnostic(
 
     For Vertical Cross-Section plots, the following additional inputs are available:
         - vcross: Set to True to make a vertical cross section plot (optional)
-        - start_latlon: latitude-longitude coordinate pair for start point of cross-section (optional). Required if vcross==True
-        - end_latlon: latitude-longitude coordinate pair for end point of cross-section (optional). Required if vcross==True
         - plim_bottom: pressure value for bottom of y-axis of vertical-cross section plots (optional)
         - plim_bottom: pressure value for top of y-axis of vertical-cross section plots (optional)
         - plevs: Number of pressure values of y-axis of vertical-cross section plots (optional)
