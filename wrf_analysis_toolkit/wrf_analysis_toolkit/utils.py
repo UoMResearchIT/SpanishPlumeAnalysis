@@ -2,10 +2,9 @@ import os
 import re
 from copy import deepcopy
 from datetime import datetime, timedelta
+from wrf import CoordPair, ll_to_xy
 
 import wrf_analysis_toolkit.SensibleVariables as sv
-
-from wrf import CoordPair, ll_to_xy
 
 
 def str2bool(s):
