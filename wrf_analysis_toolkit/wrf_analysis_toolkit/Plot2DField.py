@@ -16,6 +16,10 @@ import wrf_analysis_toolkit.SensibleVariables as sv
 # from datetime import datetime      ###############################################
 # print(datetime.now())              ###############################################
 
+# Currently hardcoded path to US state data
+# This should be made into an environment variable if codebase
+# is used on a different system
+CARTOPY_PATH = "/mnt/projects/wrf-python/data/cartopy"
 
 def Plot2DField(
     var,
@@ -28,6 +32,7 @@ def Plot2DField(
     smooth=1,
     region="full",
     region_ticks=False,
+    us_states=False,
     nlevs=10,
     time_tag=1,
     return_fig=0,
@@ -70,8 +75,18 @@ def Plot2DField(
     ax.coastlines("50m", linewidth=0.8)
 
     # Add U.S. state borders
-    states = cartopy.feature.STATES.with_scale("50m")
-    ax.add_feature(states, linestyle=':', linewidth=0.3, edgecolor='black')
+    if us_states:
+        # Needs to get the US state boundary data.
+        # This is currently hardcoded, but path will need changing if
+        # used on a different system
+        if not Path(CARTOPY_PATH).exists():
+            raise ValueError(f"Failed to open directory containing Cartopy data: {CARTOPY_PATH}")
+        states_feature = cartopy.feature.ShapelyFeature(
+            cartopy.io.shapereader.Reader(CARTOPY_PATH).geometries(),
+            cartopy.crs.PlateCarree(),
+            facecolor="none",
+        )
+        ax.add_feature(states_feature, linestyle=':', linewidth=0.3, edgecolor='black')
 
     # Filled contours
     z = to_np(smooth_var)
