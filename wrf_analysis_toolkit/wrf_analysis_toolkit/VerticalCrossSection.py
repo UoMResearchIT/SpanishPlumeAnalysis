@@ -6,7 +6,7 @@ from matplotlib.ticker import ScalarFormatter
 
 from wrf import to_np, getvar, CoordPair, vertcross
 
-from wrf_analysis_toolkit.utils import set_variable, latlon_check
+from wrf_analysis_toolkit.utils import set_variable
 from wrf_analysis_toolkit.GetSensVar import *
 import wrf_analysis_toolkit.SensibleVariables as sv
 
