@@ -69,6 +69,10 @@ def Plot2DField(
     ax.add_feature(borders, linewidth=0.4, edgecolor="black")
     ax.coastlines("50m", linewidth=0.8)
 
+    # Add U.S. state borders
+    states = cartopy.feature.STATES.with_scale("50m")
+    ax.add_feature(states, linestyle=':', linewidth=0.3, edgecolor='black')
+
     # Filled contours
     z = to_np(smooth_var)
     match svariable.scale:
