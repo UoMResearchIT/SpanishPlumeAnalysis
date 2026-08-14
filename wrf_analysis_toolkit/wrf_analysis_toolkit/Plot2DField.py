@@ -82,7 +82,7 @@ def Plot2DField(
         if not Path(CARTOPY_PATH).exists():
             raise ValueError(f"Failed to open directory containing Cartopy data: {CARTOPY_PATH}")
         states_feature = cartopy.feature.ShapelyFeature(
-            cartopy.io.shapereader.Reader(CARTOPY_PATH).geometries(),
+            cartopy.io.shapereader.Reader(f"{CARTOPY_PATH}/ne_50m_admin_1_states_provinces").geometries(),
             cartopy.crs.PlateCarree(),
             facecolor="none",
         )
