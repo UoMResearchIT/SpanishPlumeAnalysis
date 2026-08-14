@@ -231,13 +231,13 @@ def cli():
         "--start_latlon",
         type=latlon,
         default=None,
-        help="Start latlon coordinate for making vertical cross section.",
+        help="Start latlon coordinate for making vertical cross section, or start point to draw a line on a 2D map plot."
     )
     parser.add_argument(
         "--end_latlon",
         type=latlon,
         default=None,
-        help="End latlon coordinate for making vertical cross section.",
+        help="End latlon coordinate for making vertical cross section, or end point to draw a line on a 2D map plot.",
     )
     parser.add_argument(
         "--plim_bottom",

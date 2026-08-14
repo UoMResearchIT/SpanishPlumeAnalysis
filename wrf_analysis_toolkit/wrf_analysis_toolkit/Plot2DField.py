@@ -120,6 +120,7 @@ def Plot2DField(
         cmap=svariable.colormap,
         alpha=0.8,
         extend="both",
+        zorder=1,
     )
     if svariable.contour_color is not None:
         contour_lines = plt.contour(
@@ -131,6 +132,7 @@ def Plot2DField(
             linewidths=0.4,
             transform=cartopy.crs.PlateCarree(),
             extend="both",
+            zorder=2,
         )
         if svariable.contour_c_labels:
             plt.clabel(contour_lines, inline=True, fontsize=8, levels=ticklevs)
@@ -218,6 +220,22 @@ def Plot2DField(
                 f"Invalid region specification: {region}."
                 " Expected 'full' or 'min_x,max_x,min_y,max_y'"
             )
+
+    if svariable.start_latlon and svariable.end_latlon:
+        se_lons = np.array([svariable.start_latlon[1], svariable.end_latlon[1]])
+        se_lats = np.array([svariable.start_latlon[0], svariable.end_latlon[0]])
+        print(f"Drawing line between {svariable.start_latlon} and {svariable.end_latlon}")
+        xy_pts = cart_proj.transform_points(
+            cartopy.crs.PlateCarree(),
+            se_lons,
+            se_lats,
+        )
+        plt.plot(
+            xy_pts[:, 0],
+            xy_pts[:, 1],
+            color='black', linestyle='-', linewidth=2,
+            zorder=3,
+        )
 
     # Add the gridlines
     add_lat_lon_ticks(ax, region_ticks)
