@@ -22,6 +22,7 @@ def Animate(
     smooth=1,
     region="full",
     region_ticks=False,
+    us_states=False,
     cleanpng=1,
     save_pdf=0,
     make_mp4=True
@@ -171,6 +172,7 @@ def Animate(
                         smooth,
                         region=region,
                         region_ticks=region_ticks,
+                        us_states=us_states,
                         save_pdf=save_pdf,
                     )
                     PNGfiles.append(outfname)

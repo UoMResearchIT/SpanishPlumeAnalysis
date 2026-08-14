@@ -32,6 +32,7 @@ def diagnostic(
     trajectory: str | None = None,
     region: str = "full",
     region_ticks: bool = False,
+    us_states: bool = False,
     vcross: bool = False,
     start_latlon: tuple | None = None,
     end_latlon: tuple | None = None,
@@ -64,6 +65,7 @@ def diagnostic(
     - region: Area covered by the plots, set by a comma-separated string of projected bounding box coordinates as "min_x,max_x,min_y,max_y".
                 (default is "full", which uses all the area covered by the wrf data). See pre-defined regions in the readme.
     - region_ticks: If True, plots show lat/lon labels on the top and left, and projected coordinate labels on the bottom and right.
+    - us_states: Boolean, if True add US state boundaries to plot (default is False)
     - start_latlon: latitude-longitude coordinate pair for start point of cross-section, or start point to draw a line on a 2D map plot.
         (optional), required if vcross==True.
     - end_latlon: latitude-longitude coordinate pair for end point of cross-section, or end point to draw a line on a 2D map plot.
@@ -136,6 +138,7 @@ def diagnostic(
         smooth=smooth,
         region=region,
         region_ticks=region_ticks,
+        us_states=us_states,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
         make_mp4=make_mp4,
