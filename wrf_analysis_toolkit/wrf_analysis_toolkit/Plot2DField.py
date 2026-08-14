@@ -9,6 +9,7 @@ from wrf import to_np, smooth2d, get_cartopy, cartopy_xlim, cartopy_ylim, latlon
 
 _pkg_data_dir = Path(__file__).resolve().parent / "cartopy_data"
 if _pkg_data_dir.exists():
+    print(_pkg_data_dir)
     cartopy.config["data_dir"] = str(_pkg_data_dir)
 
 import wrf_analysis_toolkit.SensibleVariables as sv
@@ -28,6 +29,7 @@ def Plot2DField(
     smooth=1,
     region="full",
     region_ticks=False,
+    us_states=False,
     nlevs=10,
     time_tag=1,
     return_fig=0,
@@ -68,6 +70,11 @@ def Plot2DField(
     borders = cartopy.feature.BORDERS.with_scale("50m")
     ax.add_feature(borders, linewidth=0.4, edgecolor="black")
     ax.coastlines("50m", linewidth=0.8)
+
+    # Add U.S. state borders
+    if us_states:
+        states_feature = cartopy.feature.STATES.with_scale("50m")
+        ax.add_feature(states_feature, linestyle=':', linewidth=0.3, edgecolor='black')
 
     # Filled contours
     z = to_np(smooth_var)

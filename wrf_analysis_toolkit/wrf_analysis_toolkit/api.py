@@ -32,6 +32,7 @@ def diagnostic(
     trajectory: str | None = None,
     region: str = "full",
     region_ticks: bool = False,
+    us_states: bool = False,
     vcross: bool = False,
     start_latlon: tuple | None = None,
     end_latlon: tuple | None = None,
@@ -64,6 +65,7 @@ def diagnostic(
     - region: Area covered by the plots, set by a comma-separated string of projected bounding box coordinates as "min_x,max_x,min_y,max_y".
                 (default is "full", which uses all the area covered by the wrf data). See pre-defined regions in the readme.
     - region_ticks: If True, plots show lat/lon labels on the top and left, and projected coordinate labels on the bottom and right.
+    - us_states: Boolean, if True add US state boundaries to plot (default is False)
     - smooth: Boolean indicating whether to apply smoothing to the plots (default is False).
     - clean_png_frames: Boolean indicating whether to delete intermediate PNG frames after creating the animation (default is True).
     - save_pdf_frames: Boolean indicating whether to save each frame as a PDF (default is False).
@@ -134,6 +136,7 @@ def diagnostic(
         smooth=smooth,
         region=region,
         region_ticks=region_ticks,
+        us_states=us_states,
         cleanpng=clean_png_frames,
         save_pdf=save_pdf_frames,
         make_mp4=make_mp4,
