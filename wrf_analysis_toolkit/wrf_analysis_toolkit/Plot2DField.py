@@ -72,8 +72,8 @@ def Plot2DField(
 
     # Add U.S. state borders
     if us_states:
-        states = cartopy.feature.STATES.with_scale("50m")
-        ax.add_feature(states, linestyle=':', linewidth=0.3, edgecolor='black')
+        states_feature = cartopy.feature.STATES.with_scale("50m")
+        ax.add_feature(states_feature, linestyle=':', linewidth=0.3, edgecolor='black')
 
     # Filled contours
     z = to_np(smooth_var)
