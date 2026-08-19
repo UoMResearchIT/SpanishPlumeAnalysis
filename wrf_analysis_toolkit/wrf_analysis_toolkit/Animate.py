@@ -151,6 +151,7 @@ def Animate(
                     svariable,
                     outfname=outfname,
                     save_pdf=save_pdf,
+                    time=ti,
                 )
                 PNGfiles.append(outfname)
 
