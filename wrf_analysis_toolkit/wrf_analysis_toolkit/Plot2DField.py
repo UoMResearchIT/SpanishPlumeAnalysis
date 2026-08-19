@@ -9,7 +9,6 @@ from wrf import to_np, smooth2d, get_cartopy, cartopy_xlim, cartopy_ylim, latlon
 
 _pkg_data_dir = Path(__file__).resolve().parent / "cartopy_data"
 if _pkg_data_dir.exists():
-    print(_pkg_data_dir)
     cartopy.config["data_dir"] = str(_pkg_data_dir)
 
 import wrf_analysis_toolkit.SensibleVariables as sv
