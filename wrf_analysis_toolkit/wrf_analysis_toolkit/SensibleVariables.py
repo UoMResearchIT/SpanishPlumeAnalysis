@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 University of Manchester
+#
+# SPDX-License-Identifier: apache-2.0
+
 from matplotlib.pyplot import get_cmap
 from matplotlib.colors import ListedColormap
 import cmasher as cmr
