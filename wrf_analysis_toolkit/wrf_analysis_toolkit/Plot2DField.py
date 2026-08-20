@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 University of Manchester
+#
+# SPDX-License-Identifier: apache-2.0
+
 from netCDF4 import Dataset
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize, LogNorm, BoundaryNorm
