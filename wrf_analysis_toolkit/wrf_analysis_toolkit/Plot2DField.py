@@ -179,8 +179,8 @@ def Plot2DField(
             smooth_overlap = smooth2d(overlap, 3, cenweight=4)
         else:
             smooth_overlap = overlap
-        post_min = np.nanmin((overlap.values))
-        post_max = np.nanmax((overlap.values))
+        post_min = np.nanmin((smooth_overlap.values))
+        post_max = np.nanmax((smooth_overlap.values))
         print("pre_min=",pre_min,"; pre_max=",pre_max)
         print("post_min=",post_min,"; post_max=",post_max)
 
